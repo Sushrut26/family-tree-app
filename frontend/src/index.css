@@ -1,0 +1,191 @@
+@import "tailwindcss";
+
+@theme {
+  /* Nature-Inspired Color Palette */
+  --color-primary: #059669; /* Emerald green (growth) */
+  --color-primary-hover: #047857;
+  --color-primary-light: #d1fae5;
+
+  --color-secondary: #d97706; /* Amber (heritage/roots) */
+  --color-secondary-hover: #b45309;
+  --color-secondary-light: #fef3c7;
+
+  --color-accent: #7c3aed; /* Violet (creativity) */
+  --color-accent-hover: #6d28d9;
+  --color-accent-light: #ede9fe;
+
+  --color-success: #10b981;
+  --color-error: #ef4444;
+  --color-warning: #f59e0b;
+  --color-info: #3b82f6;
+
+  --color-background: #fffbeb; /* Cream */
+  --color-surface: #ffffff;
+  --color-foreground: #292524; /* Dark brown */
+  --color-muted: #78716c;
+  --color-border: #e7e5e4;
+
+  /* Semantic colors */
+  --color-destructive: #dc2626;
+  --color-destructive-foreground: #ffffff;
+
+  /* Spacing scale */
+  --spacing-xs: 0.25rem;
+  --spacing-sm: 0.5rem;
+  --spacing-md: 1rem;
+  --spacing-lg: 1.5rem;
+  --spacing-xl: 2rem;
+  --spacing-2xl: 3rem;
+
+  /* Border radius */
+  --radius-sm: 0.25rem;
+  --radius-md: 0.5rem;
+  --radius-lg: 0.75rem;
+  --radius-xl: 1rem;
+
+  /* Typography */
+  --font-sans: ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+  --font-mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+
+  /* Font weights */
+  --font-normal: 400;
+  --font-medium: 500;
+  --font-semibold: 600;
+  --font-bold: 700;
+
+  /* Shadows */
+  --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+  --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+  --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+  --shadow-xl: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);
+
+  /* Transitions */
+  --transition-fast: 150ms cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-normal: 300ms cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-slow: 500ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Base Styles */
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground font-sans antialiased;
+    font-feature-settings: "rlig" 1, "calt" 1;
+    margin: 0;
+    min-width: 320px;
+    min-height: 100vh;
+  }
+
+  /* Heirloom feel - slightly textured background */
+  body::before {
+    content: "";
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image:
+      repeating-linear-gradient(
+        90deg,
+        rgba(41, 37, 36, 0.01) 0px,
+        transparent 1px,
+        transparent 2px,
+        rgba(41, 37, 36, 0.01) 3px
+      );
+    pointer-events: none;
+    z-index: -1;
+  }
+
+  h1 {
+    font-size: 2.25rem;
+    line-height: 2.5rem;
+    font-weight: 700;
+  }
+
+  h2 {
+    font-size: 1.875rem;
+    line-height: 2.25rem;
+    font-weight: 600;
+  }
+
+  h3 {
+    font-size: 1.5rem;
+    line-height: 2rem;
+    font-weight: 600;
+  }
+
+  a {
+    color: var(--color-primary);
+    text-decoration: none;
+    transition: color var(--transition-fast);
+  }
+
+  a:hover {
+    color: var(--color-primary-hover);
+  }
+}
+
+/* Component Patterns */
+@layer components {
+  /* Card with premium feel */
+  .card {
+    @apply bg-surface rounded-lg border border-border;
+    box-shadow: var(--shadow-md);
+  }
+
+  /* Nature-inspired gradient backgrounds */
+  .gradient-primary {
+    background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-primary-hover) 100%);
+  }
+
+  .gradient-secondary {
+    background: linear-gradient(135deg, var(--color-secondary) 0%, var(--color-secondary-hover) 100%);
+  }
+
+  /* Focus styles */
+  .focus-ring {
+    @apply focus:outline-none;
+    box-shadow: 0 0 0 2px var(--color-background), 0 0 0 4px var(--color-primary);
+  }
+
+  /* Smooth transitions */
+  .transition-smooth {
+    transition: all var(--transition-normal);
+  }
+}
+
+/* Utility classes */
+@layer utilities {
+  /* Hide scrollbar but keep functionality */
+  .scrollbar-hide {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+
+  .scrollbar-hide::-webkit-scrollbar {
+    display: none;
+  }
+
+  /* Custom scrollbar */
+  .scrollbar-custom {
+    scrollbar-width: thin;
+    scrollbar-color: var(--color-primary) var(--color-background);
+  }
+
+  .scrollbar-custom::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+  }
+
+  .scrollbar-custom::-webkit-scrollbar-track {
+    background: var(--color-background);
+  }
+
+  .scrollbar-custom::-webkit-scrollbar-thumb {
+    background-color: var(--color-primary);
+    border-radius: 20px;
+  }
+}

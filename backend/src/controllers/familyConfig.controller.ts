@@ -3,7 +3,11 @@ import bcrypt from 'bcryptjs';
 import { randomUUID } from 'crypto';
 import { AuthRequest } from '../middleware/auth';
 import prisma from '../config/database';
-import { createFamilySession } from '../middleware/familyPasswordCheck';
+import config from '../config/env';
+import { createFamilySession, FAMILY_SESSION_EXPIRY_MS } from '../middleware/familyPasswordCheck';
+import { auditLogService } from '../services/auditLog.service';
+import { getClientIp } from '../utils/requestHelpers';
+import { ActionType, EntityType } from '@prisma/client';
 
 export const verifyFamilyPassword = async (
   req: AuthRequest,
@@ -33,13 +37,21 @@ export const verifyFamilyPassword = async (
       return;
     }
 
+    const cookieOptions = {
+      httpOnly: true,
+      secure: config.nodeEnv === 'production',
+      sameSite: config.nodeEnv === 'production' ? 'none' : 'lax',
+      path: '/',
+      maxAge: FAMILY_SESSION_EXPIRY_MS,
+    } as const;
+
     // Generate session ID with fingerprinting
     const sessionId = randomUUID();
     await createFamilySession(sessionId, req);
 
+    res.cookie('family_session_id', sessionId, cookieOptions);
     res.json({
       success: true,
-      sessionId,
       message: 'Family password verified',
     });
   } catch (error) {
@@ -87,6 +99,19 @@ export const updateFamilyPassword = async (
       where: { id: config.id },
       data: { passwordHash: newPasswordHash },
     });
+
+    try {
+      await auditLogService.logAction({
+        userId: req.user.id,
+        actionType: ActionType.UPDATE,
+        entityType: EntityType.FAMILY_CONFIG,
+        entityId: config.id,
+        ipAddress: getClientIp(req),
+        newData: { changed: true },
+      });
+    } catch (error) {
+      console.error('Failed to log family password update:', error);
+    }
 
     res.json({ message: 'Family password updated successfully' });
   } catch (error) {

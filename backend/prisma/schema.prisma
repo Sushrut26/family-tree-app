@@ -144,12 +144,17 @@ enum ActionType {
   CREATE
   UPDATE
   DELETE
+  LOGIN
+  LOGIN_FAILED
+  LOGOUT
+  SECURITY_ALERT
 }
 
 enum EntityType {
   PERSON
   RELATIONSHIP
   USER
+  FAMILY_CONFIG
 }
 
 model AuditLog {

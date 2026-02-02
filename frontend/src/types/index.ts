@@ -18,7 +18,7 @@ export interface User {
 
 export interface AuthResponse {
   user: User;
-  token: string;
+  token?: string;
 }
 
 export interface LoginRequest {
@@ -40,7 +40,6 @@ export interface FamilyPasswordRequest {
 
 export interface FamilyPasswordResponse {
   success: boolean;
-  sessionId: string;
   message: string;
 }
 
@@ -115,6 +114,8 @@ export const AuditActionType = {
   DELETE: 'DELETE',
   LOGIN: 'LOGIN',
   LOGOUT: 'LOGOUT',
+  LOGIN_FAILED: 'LOGIN_FAILED',
+  SECURITY_ALERT: 'SECURITY_ALERT',
 } as const;
 
 export type AuditActionType = (typeof AuditActionType)[keyof typeof AuditActionType];

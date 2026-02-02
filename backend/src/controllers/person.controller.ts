@@ -1,7 +1,10 @@
 import { Response } from 'express';
 import { AuthRequest } from '../middleware/auth';
 import { personService, CreatePersonDto, UpdatePersonDto, BulkImportEntry } from '../services/person.service';
-import { getStringParam } from '../utils/requestHelpers';
+import { getClientIp, getStringParam } from '../utils/requestHelpers';
+import { auditLogService } from '../services/auditLog.service';
+import { sendAdminAlert } from '../services/email.service';
+import { ActionType, EntityType } from '@prisma/client';
 
 export const getAllPersons = async (
   req: AuthRequest,
@@ -63,6 +66,29 @@ export const createPerson = async (
       req.user.id
     );
 
+    try {
+      await auditLogService.logAction({
+        userId: req.user.id,
+        actionType: ActionType.CREATE,
+        entityType: EntityType.PERSON,
+        entityId: person.id,
+        ipAddress: getClientIp(req),
+        newData: {
+          firstName: person.firstName,
+          lastName: person.lastName,
+        },
+      });
+    } catch (error) {
+      console.error('Failed to log person creation:', error);
+    }
+
+    void sendAdminAlert({
+      subject: 'New family member added',
+      text: `${req.user.firstName} ${req.user.lastName} added ${person.firstName} ${person.lastName}.`,
+    }).catch((error) => {
+      console.error('Failed to send person create alert email:', error);
+    });
+
     res.status(201).json(person);
   } catch (error) {
     console.error('Create person error:', error);
@@ -83,6 +109,8 @@ export const updatePerson = async (
     const id = getStringParam(req.params.id);
     const { firstName, lastName } = req.body;
 
+    const existingPerson = await personService.getPersonById(id);
+
     const updatePersonDto: UpdatePersonDto = {
       firstName,
       lastName,
@@ -96,6 +124,26 @@ export const updatePerson = async (
       req.user.id,
       isAdmin
     );
+
+    try {
+      await auditLogService.logAction({
+        userId: req.user.id,
+        actionType: ActionType.UPDATE,
+        entityType: EntityType.PERSON,
+        entityId: person.id,
+        ipAddress: getClientIp(req),
+        oldData: existingPerson ? {
+          firstName: existingPerson.firstName,
+          lastName: existingPerson.lastName,
+        } : undefined,
+        newData: {
+          firstName: person.firstName,
+          lastName: person.lastName,
+        },
+      });
+    } catch (error) {
+      console.error('Failed to log person update:', error);
+    }
 
     res.json(person);
   } catch (error) {
@@ -121,7 +169,25 @@ export const deletePerson = async (
     const id = getStringParam(req.params.id);
     const isAdmin = req.user.role === 'ADMIN';
 
+    const existingPerson = await personService.getPersonById(id);
+
     await personService.deletePerson(id, req.user.id, isAdmin);
+
+    try {
+      await auditLogService.logAction({
+        userId: req.user.id,
+        actionType: ActionType.DELETE,
+        entityType: EntityType.PERSON,
+        entityId: id,
+        ipAddress: getClientIp(req),
+        oldData: existingPerson ? {
+          firstName: existingPerson.firstName,
+          lastName: existingPerson.lastName,
+        } : undefined,
+      });
+    } catch (error) {
+      console.error('Failed to log person deletion:', error);
+    }
 
     res.json({ message: 'Person deleted successfully' });
   } catch (error) {
@@ -219,8 +285,32 @@ export const bulkImport = async (
 
     const result = await personService.bulkCreatePersonsWithRelationships(
       entries,
-      req.user.id
+      req.user.id,
+      req.user.role === 'ADMIN'
     );
+
+    try {
+      await auditLogService.logAction({
+        userId: req.user.id,
+        actionType: ActionType.CREATE,
+        entityType: EntityType.PERSON,
+        entityId: 'bulk-import',
+        ipAddress: getClientIp(req),
+        newData: {
+          personsCreated: result.persons.length,
+          relationshipsCreated: result.relationshipsCreated,
+        },
+      });
+    } catch (error) {
+      console.error('Failed to log bulk import:', error);
+    }
+
+    void sendAdminAlert({
+      subject: 'Bulk import completed',
+      text: `${req.user.firstName} ${req.user.lastName} imported ${result.persons.length} people and ${result.relationshipsCreated} relationships.`,
+    }).catch((error) => {
+      console.error('Failed to send bulk import alert email:', error);
+    });
 
     res.status(201).json({
       message: `Successfully created ${result.persons.length} persons and ${result.relationshipsCreated} relationships`,

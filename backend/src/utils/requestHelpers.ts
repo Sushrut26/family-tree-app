@@ -24,3 +24,14 @@ export function getOptionalStringParam(
   }
   return value;
 }
+
+/**
+ * Extract client IP address (handles proxies via X-Forwarded-For)
+ */
+export function getClientIp(req: { headers: Record<string, string | string[] | undefined>; ip?: string; socket?: { remoteAddress?: string | undefined } }): string {
+  const forwarded = req.headers['x-forwarded-for'];
+  if (forwarded) {
+    return Array.isArray(forwarded) ? forwarded[0] : forwarded.split(',')[0].trim();
+  }
+  return req.ip || req.socket?.remoteAddress || 'unknown';
+}

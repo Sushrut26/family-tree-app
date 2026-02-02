@@ -2,7 +2,7 @@ import prisma from '../config/database';
 import { AuditLog, ActionType, EntityType } from '@prisma/client';
 
 export interface CreateAuditLogDto {
-  userId: string;
+  userId?: string;
   actionType: ActionType;
   entityType: EntityType;
   entityId: string;
@@ -39,7 +39,7 @@ export class AuditLogService {
 
     return await prisma.auditLog.create({
       data: {
-        userId,
+        userId: userId ?? null,
         actionType,
         entityType,
         entityId,

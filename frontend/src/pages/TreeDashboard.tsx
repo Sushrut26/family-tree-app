@@ -2,6 +2,7 @@ import { useCallback, useEffect, useMemo, useState } from 'react';
 import ReactFlow, {
   type Node,
   type Edge,
+  type EdgeProps,
   Background,
   Controls,
   MiniMap,
@@ -11,6 +12,7 @@ import ReactFlow, {
   addEdge,
   type NodeTypes,
   MarkerType,
+  useStore,
   Handle,
   Position,
 } from 'reactflow';
@@ -30,6 +32,7 @@ import {
   Edit2,
   Shield,
   Upload,
+  FileText,
   Plus,
   Minus,
 } from 'lucide-react';
@@ -109,9 +112,85 @@ const edgeStyles: Record<string, { stroke: string; strokeWidth: number; strokeDa
   SIBLING: { stroke: '#2563eb', strokeWidth: 2, strokeDasharray: '2,4' }, // Dotted blue line
 };
 
-const NODE_X_SPACING = 200;
-const NODE_Y_SPACING = 150;
-const GROUP_GAP = 0.3;
+type ParentChildEdgeData = {
+  otherParentId?: string;
+};
+
+function ParentChildEdge({
+  sourceX,
+  sourceY,
+  targetX,
+  targetY,
+  data,
+  markerEnd,
+  style,
+}: EdgeProps<ParentChildEdgeData>) {
+  const otherParentId = data?.otherParentId;
+  const otherParent = useStore((state) =>
+    otherParentId ? state.nodeInternals.get(otherParentId) : undefined
+  );
+
+  const stroke = (style?.stroke as string) ?? '#059669';
+  const strokeWidth = (style?.strokeWidth as number) ?? 2;
+  const strokeDasharray = style?.strokeDasharray as string | undefined;
+
+  if (!otherParent) {
+    return (
+      <path
+        d={`M ${sourceX},${sourceY} L ${targetX},${targetY}`}
+        fill="none"
+        stroke={stroke}
+        strokeWidth={strokeWidth}
+        strokeDasharray={strokeDasharray}
+        markerEnd={markerEnd}
+      />
+    );
+  }
+
+  const otherX =
+    (otherParent.positionAbsolute?.x ?? otherParent.position.x) +
+    (otherParent.width ?? 0) / 2;
+  const otherY =
+    (otherParent.positionAbsolute?.y ?? otherParent.position.y) +
+    (otherParent.height ?? 0);
+  const mergeX = (sourceX + otherX) / 2;
+  const mergeY = sourceY + (targetY - sourceY) * 0.5;
+
+  return (
+    <g className="react-flow__edge">
+      <path
+        d={`M ${sourceX},${sourceY} L ${mergeX},${mergeY}`}
+        fill="none"
+        stroke={stroke}
+        strokeWidth={strokeWidth}
+        strokeDasharray={strokeDasharray}
+      />
+      <path
+        d={`M ${otherX},${otherY} L ${mergeX},${mergeY}`}
+        fill="none"
+        stroke={stroke}
+        strokeWidth={strokeWidth}
+        strokeDasharray={strokeDasharray}
+      />
+      <path
+        d={`M ${mergeX},${mergeY} L ${targetX},${targetY}`}
+        fill="none"
+        stroke={stroke}
+        strokeWidth={strokeWidth}
+        strokeDasharray={strokeDasharray}
+        markerEnd={markerEnd}
+      />
+    </g>
+  );
+}
+
+const edgeTypes = {
+  parentChild: ParentChildEdge,
+};
+
+const NODE_X_SPACING = 260;
+const NODE_Y_SPACING = 210;
+const GROUP_GAP = 0.6;
 
 const computeHierarchyPositions = (
   persons: Person[],
@@ -123,10 +202,12 @@ const computeHierarchyPositions = (
   const personMap = new Map(persons.map((person) => [person.id, person]));
   const parentIdsByChild = new Map<string, string[]>();
   const spouseLinks = new Map<string, Set<string>>();
+  const siblingLinks = new Map<string, Set<string>>();
 
   for (const person of persons) {
     parentIdsByChild.set(person.id, []);
     spouseLinks.set(person.id, new Set());
+    siblingLinks.set(person.id, new Set());
   }
 
   for (const rel of relationships) {
@@ -135,6 +216,9 @@ const computeHierarchyPositions = (
     } else if (rel.relationshipType === 'SPOUSE') {
       spouseLinks.get(rel.person1Id)?.add(rel.person2Id);
       spouseLinks.get(rel.person2Id)?.add(rel.person1Id);
+    } else if (rel.relationshipType === 'SIBLING') {
+      siblingLinks.get(rel.person1Id)?.add(rel.person2Id);
+      siblingLinks.get(rel.person2Id)?.add(rel.person1Id);
     }
   }
 
@@ -192,13 +276,64 @@ const computeHierarchyPositions = (
     spouseGroups.set(root, group);
   }
 
+  const generationParent = new Map<string, string>();
+  const generationFind = (id: string): string => {
+    const parent = generationParent.get(id) ?? id;
+    if (parent === id) {
+      generationParent.set(id, id);
+      return id;
+    }
+    const root = generationFind(parent);
+    generationParent.set(id, root);
+    return root;
+  };
+  const generationUnion = (a: string, b: string) => {
+    const rootA = generationFind(a);
+    const rootB = generationFind(b);
+    if (rootA !== rootB) {
+      generationParent.set(rootB, rootA);
+    }
+  };
+
+  for (const [id, spouses] of spouseLinks.entries()) {
+    for (const spouseId of spouses) {
+      generationUnion(id, spouseId);
+    }
+  }
+
+  for (const [id, siblings] of siblingLinks.entries()) {
+    for (const siblingId of siblings) {
+      generationUnion(id, siblingId);
+    }
+  }
+
+  for (const [id, spouses] of spouseLinks.entries()) {
+    for (const spouseId of spouses) {
+      const parentsA = parentIdsByChild.get(id) || [];
+      const parentsB = parentIdsByChild.get(spouseId) || [];
+      for (const parentA of parentsA) {
+        for (const parentB of parentsB) {
+          generationUnion(parentA, parentB);
+        }
+      }
+    }
+  }
+
+  const generationGroups = new Map<string, string[]>();
+  for (const person of persons) {
+    const root = generationFind(person.id);
+    const group = generationGroups.get(root) || [];
+    group.push(person.id);
+    generationGroups.set(root, group);
+  }
+
   let changed = true;
   let guard = 0;
   while (changed && guard < persons.length * 4) {
     guard += 1;
     changed = false;
 
-    for (const group of spouseGroups.values()) {
+    for (const group of generationGroups.values()) {
       let maxDepth = 0;
       for (const id of group) {
         maxDepth = Math.max(maxDepth, depth.get(id) ?? 0);
@@ -225,14 +360,21 @@ const computeHierarchyPositions = (
     }
   }
 
-  const groupsByDepth = new Map<number, string[][]>();
-  for (const group of spouseGroups.values()) {
+  const spouseGroupIdByPerson = new Map<string, string>();
+  for (const [groupId, members] of spouseGroups.entries()) {
+    for (const member of members) {
+      spouseGroupIdByPerson.set(member, groupId);
+    }
+  }
+
+  const groupsByDepth = new Map<number, string[]>();
+  for (const [groupId, members] of spouseGroups.entries()) {
     let groupDepth = 0;
-    for (const id of group) {
+    for (const id of members) {
       groupDepth = Math.max(groupDepth, depth.get(id) ?? 0);
     }
     const list = groupsByDepth.get(groupDepth) || [];
-    list.push(group);
+    list.push(groupId);
     groupsByDepth.set(groupDepth, list);
   }
 
@@ -244,102 +386,172 @@ const computeHierarchyPositions = (
 
   const sortedDepths = [...groupsByDepth.keys()].sort((a, b) => a - b);
   for (const level of sortedDepths) {
-    const groups = groupsByDepth.get(level) || [];
-    const baseOrder = [...groups].sort((a, b) => {
-      const aLabel = a.map(getLabel).sort()[0] || '';
-      const bLabel = b.map(getLabel).sort()[0] || '';
-      return aLabel.localeCompare(bLabel);
-    });
+    const groupIds = groupsByDepth.get(level) || [];
 
     type GroupLayout = {
+      groupId: string;
       members: string[];
+      width: number;
+      labelKey: string;
+      parentGroupId?: string;
+      parentCenter?: number;
       desiredCenter: number;
       center: number;
-      width: number;
-      minCenter: number;
       left: number;
       right: number;
-      labelKey: string;
     };
 
-    const layouts: GroupLayout[] = baseOrder.map((group, index) => {
-      const members = [...group].sort((a, b) => getLabel(a).localeCompare(getLabel(b)));
-      const parentXs: number[] = [];
-      const seenParents = new Set<string>();
+    const getGroupCenter = (groupId: string): number | undefined => {
+      const members = spouseGroups.get(groupId) || [];
+      const xs = members
+        .map((member) => positions.get(member)?.x)
+        .filter((value): value is number => typeof value === 'number');
+      if (xs.length === 0) return undefined;
+      return xs.reduce((sum, value) => sum + value, 0) / xs.length;
+    };
 
+    const layouts: GroupLayout[] = groupIds.map((groupId, index) => {
+      const members = [...(spouseGroups.get(groupId) || [])].sort((a, b) =>
+        getLabel(a).localeCompare(getLabel(b))
+      );
+
+      const parentGroupCounts = new Map<string, number>();
       for (const member of members) {
         for (const parentId of parentIdsByChild.get(member) || []) {
-          if (seenParents.has(parentId)) continue;
-          const parentPos = positions.get(parentId);
-          if (parentPos) {
-            parentXs.push(parentPos.x);
-            seenParents.add(parentId);
-          }
+          const parentGroupId = spouseGroupIdByPerson.get(parentId);
+          if (!parentGroupId) continue;
+          parentGroupCounts.set(parentGroupId, (parentGroupCounts.get(parentGroupId) || 0) + 1);
         }
       }
 
+      let parentGroupId: string | undefined;
+      let maxCount = 0;
+      for (const [candidateId, count] of parentGroupCounts.entries()) {
+        if (count > maxCount) {
+          parentGroupId = candidateId;
+          maxCount = count;
+        }
+      }
+
+      const parentCenter = parentGroupId ? getGroupCenter(parentGroupId) : undefined;
       const fallbackCenter = (index + 0.5) * NODE_X_SPACING;
-      const desiredCenter = parentXs.length > 0
-        ? parentXs.reduce((sum, value) => sum + value, 0) / parentXs.length
-        : fallbackCenter;
+      const desiredCenter = parentCenter ?? fallbackCenter;
       const width = members.length * NODE_X_SPACING;
       const labelKey = members.map(getLabel).sort()[0] || '';
 
       return {
+        groupId,
         members,
+        width,
+        labelKey,
+        parentGroupId,
+        parentCenter,
         desiredCenter,
         center: desiredCenter,
-        width,
-        minCenter: desiredCenter,
         left: desiredCenter - width / 2,
         right: desiredCenter + width / 2,
-        labelKey,
       };
     });
 
-    layouts.sort((a, b) => {
-      if (a.desiredCenter !== b.desiredCenter) {
-        return a.desiredCenter - b.desiredCenter;
-      }
+    const clusters = new Map<string, GroupLayout[]>();
+    const clusterOrder: { id: string; center: number; labelKey: string }[] = [];
+
+    for (const layout of layouts) {
+      const clusterId = layout.parentGroupId || `__root__${level}`;
+      const list = clusters.get(clusterId) || [];
+      list.push(layout);
+      clusters.set(clusterId, list);
+    }
+
+    for (const [clusterId, clusterLayouts] of clusters.entries()) {
+      const parentCenter =
+        clusterId.startsWith('__root__') ? undefined : getGroupCenter(clusterId);
+      const labelKey = clusterLayouts.map((layout) => layout.labelKey).sort()[0] || '';
+      const center = parentCenter ?? clusterLayouts[0].desiredCenter;
+      clusterOrder.push({ id: clusterId, center, labelKey });
+    }
+
+    clusterOrder.sort((a, b) => {
+      if (a.center !== b.center) return a.center - b.center;
       return a.labelKey.localeCompare(b.labelKey);
     });
 
+    type ClusterLayout = {
+      id: string;
+      layouts: GroupLayout[];
+      width: number;
+      center: number;
+      left: number;
+      right: number;
+    };
+
     const gap = NODE_X_SPACING * GROUP_GAP;
+    const clusterLayouts: ClusterLayout[] = clusterOrder.map((cluster) => {
+      const list = clusters.get(cluster.id) || [];
+      const sorted = [...list].sort((a, b) => a.labelKey.localeCompare(b.labelKey));
+      const width = sorted.reduce((sum, item) => sum + item.width, 0) + gap * Math.max(0, sorted.length - 1);
+      const center = cluster.center;
+      return {
+        id: cluster.id,
+        layouts: sorted,
+        width,
+        center,
+        left: center - width / 2,
+        right: center + width / 2,
+      };
+    });
+
     let previousRight = -Infinity;
-    for (const layout of layouts) {
-      const half = layout.width / 2;
-      const minCenter = previousRight === -Infinity
-        ? layout.desiredCenter
-        : previousRight + gap + half;
-      const center = Math.max(layout.desiredCenter, minCenter);
-      layout.minCenter = minCenter;
-      layout.center = center;
-      layout.left = center - half;
-      layout.right = center + half;
-      previousRight = layout.right;
+    for (const cluster of clusterLayouts) {
+      const half = cluster.width / 2;
+      const minCenter = previousRight === -Infinity ? cluster.center : previousRight + gap + half;
+      cluster.center = Math.max(cluster.center, minCenter);
+      cluster.left = cluster.center - half;
+      cluster.right = cluster.center + half;
+      previousRight = cluster.right;
     }
 
-    for (let i = layouts.length - 1; i >= 0; i -= 1) {
-      const layout = layouts[i];
-      const half = layout.width / 2;
-      const nextLeft = i === layouts.length - 1 ? Infinity : layouts[i + 1].left;
-      const maxCenter = nextLeft === Infinity ? layout.center : nextLeft - gap - half;
-      let center = Math.min(layout.center, maxCenter);
-      if (center < layout.minCenter) {
-        center = layout.minCenter;
-      }
-      layout.center = center;
-      layout.left = center - half;
-      layout.right = center + half;
+    for (let i = clusterLayouts.length - 1; i >= 0; i -= 1) {
+      const cluster = clusterLayouts[i];
+      const half = cluster.width / 2;
+      const nextLeft = i === clusterLayouts.length - 1 ? Infinity : clusterLayouts[i + 1].left;
+      const maxCenter = nextLeft === Infinity ? cluster.center : nextLeft - gap - half;
+      cluster.center = Math.min(cluster.center, maxCenter);
+      cluster.left = cluster.center - half;
+      cluster.right = cluster.center + half;
     }
 
-    for (const layout of layouts) {
-      const startX = layout.center - layout.width / 2 + NODE_X_SPACING / 2;
-      for (let i = 0; i < layout.members.length; i += 1) {
-        positions.set(layout.members[i], {
-          x: startX + i * NODE_X_SPACING,
-          y: level * NODE_Y_SPACING,
-        });
+    for (const cluster of clusterLayouts) {
+      let cursor = cluster.left;
+      for (const layout of cluster.layouts) {
+        const groupCenter = cursor + layout.width / 2;
+        layout.center = groupCenter;
+        layout.left = cursor;
+        layout.right = cursor + layout.width;
+        cursor = layout.right + gap;
+
+        const parentCenter = layout.parentCenter;
+        let orderedMembers = [...layout.members];
+
+        if (layout.members.length === 2 && typeof parentCenter === 'number') {
+          const anchorCandidates = layout.members.filter((member) => {
+            const parentIds = parentIdsByChild.get(member) || [];
+            return parentIds.some((parentId) => spouseGroupIdByPerson.get(parentId) === layout.parentGroupId);
+          });
+          const anchor = anchorCandidates[0] || layout.members[0];
+          const spouse = layout.members.find((member) => member !== anchor) || layout.members[1];
+          orderedMembers = groupCenter < parentCenter ? [spouse, anchor] : [anchor, spouse];
+        } else {
+          orderedMembers = [...layout.members].sort((a, b) => getLabel(a).localeCompare(getLabel(b)));
+        }
+
+        const startX = layout.center - layout.width / 2 + NODE_X_SPACING / 2;
+        for (let i = 0; i < orderedMembers.length; i += 1) {
+          positions.set(orderedMembers[i], {
+            x: startX + i * NODE_X_SPACING,
+            y: level * NODE_Y_SPACING,
+          });
+        }
       }
     }
   }
@@ -358,6 +570,8 @@ export function TreeDashboard() {
     deletePerson,
     addRelationship,
     bulkImport,
+    normalizeRelationships,
+    exportRelationshipsPdf,
     isLoading,
     error,
     clearError,
@@ -383,6 +597,15 @@ export function TreeDashboard() {
   const [searchQuery, setSearchQuery] = useState('');
   const [editingPerson, setEditingPerson] = useState<Person | null>(null);
   const [deletingPerson, setDeletingPerson] = useState<Person | null>(null);
+  const editablePersons = useMemo(
+    () =>
+      user?.role === 'ADMIN'
+        ? persons
+        : persons.filter((person) => person.createdById === user?.id),
+    [persons, user]
+  );
+  const sidebarButtonClass =
+    'w-full flex items-center gap-3 px-4 py-3 text-left bg-emerald-600 text-white rounded-lg hover:bg-emerald-700 transition-colors disabled:opacity-50 disabled:cursor-not-allowed';
 
   // Bulk import state
   const emptyBulkRow: BulkImportEntry = {
@@ -437,28 +660,84 @@ export function TreeDashboard() {
       },
     }));
 
-    const newEdges: Edge[] = relationships.map((rel) => {
+    const parentRelsByChild = new Map<string, Relationship[]>();
+    for (const rel of relationships) {
+      if (rel.relationshipType === 'PARENT') {
+        const list = parentRelsByChild.get(rel.person2Id) || [];
+        list.push(rel);
+        parentRelsByChild.set(rel.person2Id, list);
+      }
+    }
+
+    const mergedChildren = new Set<string>();
+    const newEdges: Edge[] = [];
+
+    for (const rel of relationships) {
+      if (rel.relationshipType === 'PARENT') {
+        const parentRels = parentRelsByChild.get(rel.person2Id) || [];
+        if (parentRels.length === 2) {
+          if (mergedChildren.has(rel.person2Id)) {
+            continue;
+          }
+          mergedChildren.add(rel.person2Id);
+          const [primary, secondary] = [...parentRels].sort((a, b) =>
+            a.person1Id.localeCompare(b.person1Id)
+          );
+          const style = edgeStyles.PARENT;
+          newEdges.push({
+            id: `parent-merge-${primary.person2Id}-${primary.person1Id}-${secondary.person1Id}`,
+            source: primary.person1Id,
+            target: primary.person2Id,
+            type: 'parentChild',
+            animated: false,
+            style,
+            sourceHandle: 'bottom',
+            targetHandle: 'top',
+            markerEnd: {
+              type: MarkerType.ArrowClosed,
+              color: style.stroke,
+              width: 20,
+              height: 20,
+            },
+            data: {
+              otherParentId: secondary.person1Id,
+            },
+          });
+          continue;
+        }
+
+        const style = edgeStyles.PARENT;
+        newEdges.push({
+          id: rel.id,
+          source: rel.person1Id,
+          target: rel.person2Id,
+          type: 'straight',
+          animated: false,
+          style,
+          sourceHandle: 'bottom',
+          targetHandle: 'top',
+          markerEnd: {
+            type: MarkerType.ArrowClosed,
+            color: style.stroke,
+            width: 20,
+            height: 20,
+          },
+        });
+        continue;
+      }
+
       const style = edgeStyles[rel.relationshipType] || { stroke: '#666', strokeWidth: 2 };
-      const handlePositions = rel.relationshipType === 'PARENT'
-        ? { sourceHandle: 'bottom', targetHandle: 'top' }
-        : { sourceHandle: 'right', targetHandle: 'left' };
-      return {
+      newEdges.push({
         id: rel.id,
         source: rel.person1Id,
         target: rel.person2Id,
-        type: 'smoothstep',
+        type: 'straight',
         animated: false,
-        style: style,
-        ...handlePositions,
-        markerEnd: rel.relationshipType === 'PARENT' ? {
-          type: MarkerType.ArrowClosed,
-          color: style.stroke,
-          width: 20,
-          height: 20,
-        } : undefined,
-        // No label - the line style itself indicates the relationship type
-      };
-    });
+        style,
+        sourceHandle: 'right',
+        targetHandle: 'left',
+      });
+    }
 
     setNodes(newNodes);
     setEdges(newEdges);
@@ -484,15 +763,22 @@ export function TreeDashboard() {
     [setEdges]
   );
 
-  const handleFormatTree = useCallback(() => {
-    const positionMap = computeHierarchyPositions(persons, relationships);
+  const handleFormatTree = useCallback(async () => {
+    try {
+      await normalizeRelationships();
+    } catch {
+      showToast('Failed to normalize relationships', 'error');
+    }
+
+    const { persons: latestPersons, relationships: latestRelationships } = useTreeStore.getState();
+    const positionMap = computeHierarchyPositions(latestPersons, latestRelationships);
     setNodes((currentNodes) =>
       currentNodes.map((node) => ({
         ...node,
         position: positionMap.get(node.id) || node.position,
       }))
     );
-  }, [persons, relationships, setNodes]);
+  }, [normalizeRelationships, setNodes, showToast]);
 
   // Handle add person
   const handleAddPerson = async (data: PersonFormData) => {
@@ -536,11 +822,55 @@ export function TreeDashboard() {
   // Handle add relationship
   const handleAddRelationship = async (data: RelationshipFormData) => {
     try {
+      const existingParents = relationships
+        .filter(
+          (rel) =>
+            rel.relationshipType === 'PARENT' && rel.person2Id === data.person2Id
+        )
+        .map((rel) => rel.person1Id);
+      const otherParentId =
+        data.type === 'PARENT'
+          ? existingParents.find((id) => id !== data.person1Id)
+          : undefined;
+      const alreadySpouses =
+        !!otherParentId &&
+        relationships.some(
+          (rel) =>
+            rel.relationshipType === 'SPOUSE' &&
+            ((rel.person1Id === data.person1Id &&
+              rel.person2Id === otherParentId) ||
+              (rel.person2Id === data.person1Id &&
+                rel.person1Id === otherParentId))
+        );
+
       await addRelationship({
         person1Id: data.person1Id,
         person2Id: data.person2Id,
         relationshipType: data.type as RelationshipType,
       });
+
+      if (
+        data.type === 'PARENT' &&
+        otherParentId &&
+        !alreadySpouses &&
+        existingParents.length === 1
+      ) {
+        const parent1 = persons.find((person) => person.id === data.person1Id);
+        const parent2 = persons.find((person) => person.id === otherParentId);
+        const parent1Name = parent1 ? `${parent1.firstName} ${parent1.lastName}` : 'Parent 1';
+        const parent2Name = parent2 ? `${parent2.firstName} ${parent2.lastName}` : 'Parent 2';
+        const shouldLink = window.confirm(
+          `${parent1Name} and ${parent2Name} are both parents. Add them as spouses?`
+        );
+        if (shouldLink) {
+          await addRelationship({
+            person1Id: data.person1Id,
+            person2Id: otherParentId,
+            relationshipType: RelationshipType.SPOUSE,
+          });
+        }
+      }
+
       showToast('Relationship added successfully!', 'success');
       setShowAddRelationshipDialog(false);
       relationshipForm.reset();
@@ -564,6 +894,23 @@ export function TreeDashboard() {
       showToast('Tree exported successfully!', 'success');
     } catch {
       showToast('Failed to export tree', 'error');
+    }
+  };
+
+  const handleExportPdf = async () => {
+    try {
+      const scope = user?.role === 'ADMIN' ? 'full' : 'user-only';
+      const blob = await exportRelationshipsPdf(scope);
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      const filename = `family-relationships-${new Date().toISOString().split('T')[0]}.pdf`;
+      a.download = filename;
+      a.click();
+      URL.revokeObjectURL(url);
+      showToast('Relationships exported as PDF!', 'success');
+    } catch {
+      showToast('Failed to export relationships as PDF', 'error');
     }
   };
 
@@ -695,7 +1042,7 @@ export function TreeDashboard() {
                 personForm.reset();
                 setShowAddPersonDialog(true);
               }}
-              className="w-full flex items-center gap-3 px-4 py-3 text-left bg-emerald-600 text-white rounded-lg hover:bg-emerald-700 transition-colors"
+              className={sidebarButtonClass}
             >
               <UserPlus size={20} />
               Add Person
@@ -706,8 +1053,8 @@ export function TreeDashboard() {
                 relationshipForm.reset();
                 setShowAddRelationshipDialog(true);
               }}
-              disabled={persons.length < 2}
-              className="w-full flex items-center gap-3 px-4 py-3 text-left border border-gray-300 rounded-lg hover:bg-gray-50 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+              disabled={editablePersons.length < 2}
+              className={sidebarButtonClass}
             >
               <LinkIcon size={20} />
               Add Relationship
@@ -718,7 +1065,7 @@ export function TreeDashboard() {
                 setBulkRows([{ ...emptyBulkRow }]);
                 setShowBulkImportDialog(true);
               }}
-              className="w-full flex items-center gap-3 px-4 py-3 text-left border border-amber-400 bg-amber-50 text-amber-800 rounded-lg hover:bg-amber-100 transition-colors"
+              className={sidebarButtonClass}
             >
               <Upload size={20} />
               Add in Bulk
@@ -727,16 +1074,25 @@ export function TreeDashboard() {
             <button
               onClick={handleExport}
               disabled={persons.length === 0}
-              className="w-full flex items-center gap-3 px-4 py-3 text-left border border-gray-300 rounded-lg hover:bg-gray-50 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+              className={sidebarButtonClass}
             >
               <Download size={20} />
               Export Tree
             </button>
 
             <button
+              onClick={handleExportPdf}
+              disabled={relationships.length === 0}
+              className={sidebarButtonClass}
+            >
+              <FileText size={20} />
+              Export Relationships PDF
+            </button>
+
+            <button
               onClick={handleFormatTree}
               disabled={persons.length === 0}
-              className="w-full flex items-center gap-3 px-4 py-3 text-left border border-gray-300 rounded-lg hover:bg-gray-50 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+              className={sidebarButtonClass}
             >
               <LayoutGrid size={20} />
               Format Tree
@@ -843,6 +1199,7 @@ export function TreeDashboard() {
               onEdgesChange={onEdgesChange}
               onConnect={onConnect}
               nodeTypes={nodeTypes}
+              edgeTypes={edgeTypes}
               fitView
               className="bg-gray-50"
             >
@@ -1000,7 +1357,7 @@ export function TreeDashboard() {
                   className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-emerald-500 focus:border-transparent"
                 >
                   <option value="">Select a person</option>
-                  {persons.map((person) => (
+                  {editablePersons.map((person) => (
                     <option key={person.id} value={person.id}>
                       {person.firstName} {person.lastName}
                     </option>
@@ -1028,7 +1385,7 @@ export function TreeDashboard() {
                   className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-emerald-500 focus:border-transparent"
                 >
                   <option value="">Select a person</option>
-                  {persons.map((person) => (
+                  {editablePersons.map((person) => (
                     <option key={person.id} value={person.id}>
                       {person.firstName} {person.lastName}
                     </option>

@@ -4,8 +4,10 @@ import {
   relationshipService,
   CreateRelationshipDto,
 } from '../services/relationship.service';
-import { RelationshipType } from '@prisma/client';
-import { getStringParam } from '../utils/requestHelpers';
+import { RelationshipType, ActionType, EntityType } from '@prisma/client';
+import { getClientIp, getStringParam } from '../utils/requestHelpers';
+import { auditLogService } from '../services/auditLog.service';
+import { sendAdminAlert } from '../services/email.service';
 
 export const getAllRelationships = async (
   req: AuthRequest,
@@ -95,6 +97,37 @@ export const createRelationship = async (
       req.user.role === 'ADMIN'
     );
 
+    try {
+      await auditLogService.logAction({
+        userId: req.user.id,
+        actionType: ActionType.CREATE,
+        entityType: EntityType.RELATIONSHIP,
+        entityId: relationship.id,
+        ipAddress: getClientIp(req),
+        newData: {
+          person1Id: relationship.person1Id,
+          person2Id: relationship.person2Id,
+          relationshipType: relationship.relationshipType,
+        },
+      });
+    } catch (error) {
+      console.error('Failed to log relationship creation:', error);
+    }
+
+    const person1Name = relationship.person1
+      ? `${relationship.person1.firstName} ${relationship.person1.lastName}`
+      : relationship.person1Id;
+    const person2Name = relationship.person2
+      ? `${relationship.person2.firstName} ${relationship.person2.lastName}`
+      : relationship.person2Id;
+
+    void sendAdminAlert({
+      subject: 'New relationship added',
+      text: `${req.user.firstName} ${req.user.lastName} added a ${relationship.relationshipType} relationship between ${person1Name} and ${person2Name}.`,
+    }).catch((error) => {
+      console.error('Failed to send relationship alert email:', error);
+    });
+
     res.status(201).json(relationship);
   } catch (error) {
     if (error instanceof Error) {
@@ -126,11 +159,30 @@ export const deleteRelationship = async (
 
     const id = getStringParam(req.params.id);
 
+    const existingRelationship = await relationshipService.getRelationshipById(id);
+
     await relationshipService.deleteRelationship(
       id,
       req.user.id,
       req.user.role === 'ADMIN'
     );
+
+    try {
+      await auditLogService.logAction({
+        userId: req.user.id,
+        actionType: ActionType.DELETE,
+        entityType: EntityType.RELATIONSHIP,
+        entityId: id,
+        ipAddress: getClientIp(req),
+        oldData: existingRelationship ? {
+          person1Id: existingRelationship.person1Id,
+          person2Id: existingRelationship.person2Id,
+          relationshipType: existingRelationship.relationshipType,
+        } : undefined,
+      });
+    } catch (error) {
+      console.error('Failed to log relationship deletion:', error);
+    }
 
     res.json({ message: 'Relationship deleted successfully' });
   } catch (error) {
@@ -159,5 +211,27 @@ export const getRelationshipStats = async (
   } catch (error) {
     console.error('Get relationship stats error:', error);
     res.status(500).json({ error: 'Failed to fetch relationship statistics' });
+  }
+};
+
+export const normalizeRelationships = async (
+  req: AuthRequest,
+  res: Response
+): Promise<void> => {
+  try {
+    if (!req.user) {
+      res.status(401).json({ error: 'Authentication required' });
+      return;
+    }
+
+    await relationshipService.normalizeRelationships(
+      req.user.id,
+      req.user.role === 'ADMIN'
+    );
+
+    res.json({ message: 'Relationships normalized' });
+  } catch (error) {
+    console.error('Normalize relationships error:', error);
+    res.status(500).json({ error: 'Failed to normalize relationships' });
   }
 };

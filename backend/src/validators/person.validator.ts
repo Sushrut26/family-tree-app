@@ -47,6 +47,13 @@ export const personIdSchema = z.object({
   }),
 });
 
+// Person ID param validation for routes using :personId
+export const personIdParamSchema = z.object({
+  params: z.object({
+    personId: uuidSchema,
+  }),
+});
+
 // Bulk import entry validation
 export const bulkImportEntrySchema = z.object({
   firstName: nameSchema,
@@ -92,4 +99,5 @@ export const bulkImportSchema = z.object({
 export type CreatePersonInput = z.infer<typeof createPersonSchema>;
 export type UpdatePersonInput = z.infer<typeof updatePersonSchema>;
 export type PersonIdInput = z.infer<typeof personIdSchema>;
+export type PersonIdParamInput = z.infer<typeof personIdParamSchema>;
 export type BulkImportInput = z.infer<typeof bulkImportSchema>;

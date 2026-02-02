@@ -1,4 +1,5 @@
 import { Response } from 'express';
+import PDFDocument from 'pdfkit';
 import { AuthRequest } from '../middleware/auth';
 import { exportService } from '../services/export.service';
 
@@ -14,9 +15,9 @@ export const exportTree = async (
 
     const { format = 'json', scope = 'user-only' } = req.query;
 
-    if (format !== 'json') {
+    if (format !== 'json' && format !== 'pdf') {
       res.status(400).json({
-        error: 'Invalid format. Currently only "json" is supported',
+        error: 'Invalid format. Supported formats: "json", "pdf"',
       });
       return;
     }
@@ -38,6 +39,53 @@ export const exportTree = async (
     }
 
     const filename = exportService.generateFilename(format as string);
+
+    if (format === 'pdf') {
+      res.setHeader('Content-Type', 'application/pdf');
+      res.setHeader('Content-Disposition', `attachment; filename="${filename}"`);
+
+      const doc = new PDFDocument({ margin: 40 });
+      doc.pipe(res);
+
+      doc.fontSize(18).text('Family Relationships Export', { align: 'center' });
+      doc.moveDown(0.5);
+      doc.fontSize(11).text(`Exported at: ${exportData.exportedAt}`);
+      doc.text(`Total relationships: ${exportData.relationships.length}`);
+      doc.moveDown();
+
+      const formatType = (type: string) => {
+        switch (type) {
+          case 'PARENT':
+            return 'Parent -> Child';
+          case 'SPOUSE':
+            return 'Spouse / Partner';
+          case 'SIBLING':
+            return 'Sibling';
+          default:
+            return type;
+        }
+      };
+
+      exportData.relationships.forEach((rel, index) => {
+        const person1 = rel.person1
+          ? `${rel.person1.firstName} ${rel.person1.lastName}`
+          : rel.person1Id;
+        const person2 = rel.person2
+          ? `${rel.person2.firstName} ${rel.person2.lastName}`
+          : rel.person2Id;
+
+        if (doc.y > doc.page.height - 80) {
+          doc.addPage();
+        }
+
+        doc
+          .fontSize(11)
+          .text(`${index + 1}. ${person1}  [${formatType(rel.relationshipType)}]  ${person2}`);
+      });
+
+      doc.end();
+      return;
+    }
 
     // Set headers for file download
     res.setHeader('Content-Type', 'application/json');

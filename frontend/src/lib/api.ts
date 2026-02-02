@@ -9,26 +9,15 @@ export const api = axios.create({
   headers: {
     'Content-Type': 'application/json',
   },
+  withCredentials: true,
   timeout: 30000, // 30 seconds
 });
 
 /**
- * Request interceptor - Add auth token and family session to all requests
+ * Request interceptor - Attach cookies for auth and family session
  */
 api.interceptors.request.use(
   (config: InternalAxiosRequestConfig) => {
-    // Get token from localStorage
-    const token = localStorage.getItem('auth_token');
-    if (token && config.headers) {
-      config.headers.Authorization = `Bearer ${token}`;
-    }
-
-    // Get family session from localStorage
-    const familySessionId = localStorage.getItem('family_session_id');
-    if (familySessionId && config.headers) {
-      config.headers['X-Family-Session'] = familySessionId;
-    }
-
     return config;
   },
   (error) => {
@@ -37,7 +26,7 @@ api.interceptors.request.use(
 );
 
 /**
- * Response interceptor - Handle common errors and token expiration
+ * Response interceptor - Handle common errors and auth/session expiration
  */
 api.interceptors.response.use(
   (response) => {
@@ -63,8 +52,7 @@ api.interceptors.response.use(
 
         // Don't logout for family password verification errors
         if (errorCode !== 'FAMILY_PASSWORD_REQUIRED' && !errorMessage.includes('family password')) {
-          localStorage.removeItem('auth_token');
-          localStorage.removeItem('user');
+          localStorage.removeItem('auth-storage');
 
           // Only redirect if not already on auth pages
           if (!window.location.pathname.includes('/login') &&
@@ -85,9 +73,6 @@ api.interceptors.response.use(
           errorMessage.includes('family session') ||
           errorMessage.includes('session')
         ) {
-          // Clear family session - will trigger modal
-          localStorage.removeItem('family_session_id');
-
           // Dispatch custom event to trigger family password modal
           window.dispatchEvent(new CustomEvent('family-password-required'));
         }

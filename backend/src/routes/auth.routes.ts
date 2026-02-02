@@ -3,6 +3,7 @@ import passport from 'passport';
 import {
   register,
   login,
+  logout,
   getCurrentUser,
   googleCallback,
   getAllUsers,
@@ -15,6 +16,7 @@ const router = express.Router();
 // Email/Password authentication
 router.post('/register', register);
 router.post('/login', login);
+router.post('/logout', logout);
 
 // Get current user
 router.get('/me', authenticate, getCurrentUser);

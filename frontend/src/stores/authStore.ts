@@ -13,8 +13,6 @@ import type {
 interface AuthState {
   // State
   user: User | null;
-  token: string | null;
-  familySessionId: string | null;
   showFamilyPasswordModal: boolean;
   isLoading: boolean;
   error: string | null;
@@ -24,7 +22,6 @@ interface AuthState {
   register: (data: RegisterRequest) => Promise<void>;
   logout: () => void;
   verifyFamilyPassword: (password: string) => Promise<void>;
-  setFamilySessionId: (sessionId: string) => void;
   setShowFamilyPasswordModal: (show: boolean) => void;
   clearError: () => void;
 }
@@ -34,8 +31,6 @@ export const useAuthStore = create<AuthState>()(
     (set, _get) => ({
       // Initial state
       user: null,
-      token: null,
-      familySessionId: null,
       showFamilyPasswordModal: false,
       isLoading: false,
       error: null,
@@ -46,14 +41,10 @@ export const useAuthStore = create<AuthState>()(
 
         try {
           const response = await api.post<AuthResponse>('/auth/login', credentials);
-          const { user, token } = response.data;
-
-          // Store token in localStorage (separate from Zustand persist)
-          localStorage.setItem('auth_token', token);
+          const { user } = response.data;
 
           set({
             user,
-            token,
             isLoading: false,
             showFamilyPasswordModal: true, // Show family password modal after login
           });
@@ -70,14 +61,10 @@ export const useAuthStore = create<AuthState>()(
 
         try {
           const response = await api.post<AuthResponse>('/auth/register', data);
-          const { user, token } = response.data;
-
-          // Store token in localStorage
-          localStorage.setItem('auth_token', token);
+          const { user } = response.data;
 
           set({
             user,
-            token,
             isLoading: false,
             showFamilyPasswordModal: true, // Show family password modal after registration
           });
@@ -90,15 +77,13 @@ export const useAuthStore = create<AuthState>()(
 
       // Logout action
       logout: () => {
-        // Clear localStorage
-        localStorage.removeItem('auth_token');
-        localStorage.removeItem('family_session_id');
+        void api.post('/auth/logout').catch(() => {
+          // Ignore logout network errors
+        });
 
         // Reset state
         set({
           user: null,
-          token: null,
-          familySessionId: null,
           showFamilyPasswordModal: false,
           error: null,
         });
@@ -110,18 +95,12 @@ export const useAuthStore = create<AuthState>()(
 
         try {
           const request: FamilyPasswordRequest = { password };
-          const response = await api.post<FamilyPasswordResponse>(
+          await api.post<FamilyPasswordResponse>(
             '/family-config/verify',
             request
           );
 
-          const { sessionId } = response.data;
-
-          // Store session ID in localStorage
-          localStorage.setItem('family_session_id', sessionId);
-
           set({
-            familySessionId: sessionId,
             showFamilyPasswordModal: false,
             isLoading: false,
           });
@@ -130,12 +109,6 @@ export const useAuthStore = create<AuthState>()(
           set({ isLoading: false, error: message });
           throw error;
         }
-      },
-
-      // Set family session ID (used by interceptor on 403 errors)
-      setFamilySessionId: (sessionId: string) => {
-        localStorage.setItem('family_session_id', sessionId);
-        set({ familySessionId: sessionId });
       },
 
       // Control family password modal visibility

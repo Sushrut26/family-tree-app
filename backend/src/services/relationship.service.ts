@@ -44,6 +44,20 @@ export class RelationshipService {
     );
   }
 
+  private async getSiblingIds(personId: string): Promise<string[]> {
+    const siblings = await prisma.relationship.findMany({
+      where: {
+        relationshipType: 'SIBLING',
+        OR: [{ person1Id: personId }, { person2Id: personId }],
+      },
+      select: { person1Id: true, person2Id: true },
+    });
+
+    return siblings.map((rel) =>
+      rel.person1Id === personId ? rel.person2Id : rel.person1Id
+    );
+  }
+
   private async createParentLinkIfMissing(
     parentId: string,
     childId: string,
@@ -102,6 +116,43 @@ export class RelationshipService {
         createdById: userId,
       },
     });
+  }
+
+  private async syncDerivedRelationships(
+    personId: string,
+    userId: string,
+    isAdmin: boolean
+  ): Promise<void> {
+    const [parentIds, spouseIds, siblingIds, childIds] = await Promise.all([
+      this.getParentIds(personId),
+      this.getSpouseIds(personId),
+      this.getSiblingIds(personId),
+      this.getChildIds(personId),
+    ]);
+
+    for (const spouseId of spouseIds) {
+      for (const childId of childIds) {
+        await this.createParentLinkIfMissing(spouseId, childId, userId, isAdmin);
+      }
+    }
+
+    for (const parentId of parentIds) {
+      const parentSpouses = await this.getSpouseIds(parentId);
+      for (const spouseId of parentSpouses) {
+        await this.createParentLinkIfMissing(spouseId, personId, userId, isAdmin);
+      }
+    }
+
+    for (const siblingId of siblingIds) {
+      for (const parentId of parentIds) {
+        await this.createParentLinkIfMissing(parentId, siblingId, userId, isAdmin);
+      }
+
+      const siblingParents = await this.getParentIds(siblingId);
+      for (const parentId of siblingParents) {
+        await this.createParentLinkIfMissing(parentId, personId, userId, isAdmin);
+      }
+    }
   }
   /**
    * Get all relationships
@@ -187,13 +238,11 @@ export class RelationshipService {
       throw new Error(`Person with ID ${person2Id} not found`);
     }
 
-    // Non-admins can create relationships if they created at least one of the persons
-    // This allows users to connect their family members to existing persons in the tree
     if (!isAdmin) {
       const createdPerson1 = person1.createdById === userId;
       const createdPerson2 = person2.createdById === userId;
-      if (!createdPerson1 && !createdPerson2) {
-        throw new Error('You do not have permission to relate these persons. You must have created at least one of them.');
+      if (!createdPerson1 || !createdPerson2) {
+        throw new Error('You do not have permission to relate these persons. You must have created both of them.');
       }
     }
 
@@ -282,6 +331,11 @@ export class RelationshipService {
       }
     }
 
+    await Promise.all([
+      this.syncDerivedRelationships(person1Id, userId, isAdmin),
+      this.syncDerivedRelationships(person2Id, userId, isAdmin),
+    ]);
+
     return createdRelationship;
   }
 
@@ -308,6 +362,22 @@ export class RelationshipService {
     await prisma.relationship.delete({
       where: { id },
     });
+  }
+
+  /**
+   * Normalize derived relationships for all persons
+   */
+  async normalizeRelationships(
+    userId: string,
+    isAdmin: boolean
+  ): Promise<void> {
+    const persons = await prisma.person.findMany({
+      select: { id: true },
+    });
+
+    for (const person of persons) {
+      await this.syncDerivedRelationships(person.id, userId, isAdmin);
+    }
   }
 
   /**

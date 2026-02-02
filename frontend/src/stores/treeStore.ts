@@ -32,9 +32,11 @@ interface TreeState {
   fetchRelationships: () => Promise<void>;
   addRelationship: (relationship: CreateRelationshipDto) => Promise<Relationship>;
   deleteRelationship: (id: string) => Promise<void>;
+  normalizeRelationships: () => Promise<void>;
 
   // Actions - Export
   exportTree: () => Promise<ExportData>;
+  exportRelationshipsPdf: (scope?: 'full' | 'user-only') => Promise<Blob>;
 
   // Actions - Bulk Import
   bulkImport: (entries: BulkImportEntry[]) => Promise<BulkImportResponse>;
@@ -231,6 +233,30 @@ export const useTreeStore = create<TreeState>((set, _get) => ({
     }
   },
 
+  // Normalize relationships (auto-link parents/spouses/siblings)
+  normalizeRelationships: async () => {
+    set({ isLoading: true, error: null });
+
+    try {
+      await api.post('/relationships/normalize');
+
+      const [personsResponse, relationshipsResponse] = await Promise.all([
+        api.get<Person[]>('/persons'),
+        api.get<Relationship[]>('/relationships'),
+      ]);
+
+      set({
+        persons: personsResponse.data,
+        relationships: relationshipsResponse.data,
+        isLoading: false,
+      });
+    } catch (error) {
+      const message = getErrorMessage(error);
+      set({ isLoading: false, error: message });
+      throw error;
+    }
+  },
+
   // Export tree as JSON
   exportTree: async () => {
     set({ isLoading: true, error: null });
@@ -242,6 +268,25 @@ export const useTreeStore = create<TreeState>((set, _get) => ({
 
       set({ isLoading: false });
       return response.data;
+    } catch (error) {
+      const message = getErrorMessage(error);
+      set({ isLoading: false, error: message });
+      throw error;
+    }
+  },
+
+  // Export relationships as PDF
+  exportRelationshipsPdf: async (scope: 'full' | 'user-only' = 'user-only') => {
+    set({ isLoading: true, error: null });
+
+    try {
+      const response = await api.get('/export', {
+        params: { format: 'pdf', scope },
+        responseType: 'blob',
+      });
+
+      set({ isLoading: false });
+      return response.data as Blob;
     } catch (error) {
       const message = getErrorMessage(error);
       set({ isLoading: false, error: message });

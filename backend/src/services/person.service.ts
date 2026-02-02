@@ -250,7 +250,8 @@ export class PersonService {
    */
   async bulkCreatePersonsWithRelationships(
     entries: BulkImportEntry[],
-    userId: string
+    userId: string,
+    isAdmin: boolean
   ): Promise<{ persons: Person[]; relationshipsCreated: number }> {
     return await prisma.$transaction(async (tx) => {
       const createdPersons: Person[] = [];
@@ -288,6 +289,27 @@ export class PersonService {
 
       const createParentLinkIfMissing = async (parentId: string, childId: string) => {
         if (parentId === childId) return;
+        if (!isAdmin) {
+          const [parent, child] = await Promise.all([
+            tx.person.findUnique({
+              where: { id: parentId },
+              select: { createdById: true },
+            }),
+            tx.person.findUnique({
+              where: { id: childId },
+              select: { createdById: true },
+            }),
+          ]);
+
+          if (!parent || !child) {
+            return;
+          }
+
+          if (parent.createdById !== userId || child.createdById !== userId) {
+            return;
+          }
+        }
+
         const existingParentRel = await tx.relationship.findFirst({
           where: {
             relationshipType: 'PARENT',
@@ -313,6 +335,7 @@ export class PersonService {
 
       // First, get all existing persons to check for matches
       const existingPersons = await tx.person.findMany({
+        where: isAdmin ? undefined : { createdById: userId },
         select: { id: true, firstName: true, lastName: true },
       });
 

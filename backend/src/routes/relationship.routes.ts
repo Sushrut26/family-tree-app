@@ -14,7 +14,7 @@ import {
   createRelationshipSchema,
   relationshipIdSchema,
 } from '../validators/relationship.validator';
-import { personIdSchema } from '../validators/person.validator';
+import { personIdParamSchema } from '../validators/person.validator';
 
 const router = Router();
 
@@ -31,7 +31,7 @@ router.get('/stats', getRelationshipStats);
 router.post('/normalize', normalizeRelationships);
 
 // Get relationships for a specific person
-router.get('/person/:personId', validate(personIdSchema), getRelationshipsForPerson);
+router.get('/person/:personId', validate(personIdParamSchema), getRelationshipsForPerson);
 
 // Get a single relationship by ID
 router.get('/:id', validate(relationshipIdSchema), getRelationshipById);

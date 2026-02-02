@@ -150,6 +150,12 @@ export function AdminPanel() {
         return 'bg-red-100 text-red-800';
       case 'LOGIN':
         return 'bg-amber-100 text-amber-800';
+      case 'LOGOUT':
+        return 'bg-gray-100 text-gray-800';
+      case 'LOGIN_FAILED':
+        return 'bg-red-100 text-red-800';
+      case 'SECURITY_ALERT':
+        return 'bg-red-100 text-red-800';
       default:
         return 'bg-gray-100 text-gray-800';
     }

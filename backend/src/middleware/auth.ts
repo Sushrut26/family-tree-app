@@ -2,6 +2,7 @@ import { Request, Response, NextFunction } from 'express';
 import jwt from 'jsonwebtoken';
 import config from '../config/env';
 import prisma from '../config/database';
+import { getCookie } from '../utils/cookies';
 
 export interface AuthRequest extends Request {
   user?: {
@@ -18,13 +19,17 @@ export const authenticate = async (
 ): Promise<void> => {
   try {
     const authHeader = req.headers.authorization;
+    const bearerToken =
+      authHeader && authHeader.startsWith('Bearer ')
+        ? authHeader.substring(7)
+        : undefined;
+    const cookieToken = getCookie(req, 'auth_token');
+    const token = bearerToken || cookieToken;
 
-    if (!authHeader || !authHeader.startsWith('Bearer ')) {
+    if (!token) {
       res.status(401).json({ error: 'No token provided' });
       return;
     }
-
-    const token = authHeader.substring(7);
 
     const decoded = jwt.verify(token, config.jwt.secret) as {
       id: string;

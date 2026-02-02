@@ -4,6 +4,37 @@ import jwt from 'jsonwebtoken';
 import prisma from '../config/database';
 import config from '../config/env';
 import { AuthRequest } from '../middleware/auth';
+import { getCookie } from '../utils/cookies';
+import { auditLogService } from '../services/auditLog.service';
+import { sendAdminAlert } from '../services/email.service';
+import { recordFailedLogin } from '../services/securityAlert.service';
+import { getClientIp } from '../utils/requestHelpers';
+import { ActionType, EntityType } from '@prisma/client';
+
+const parseDurationMs = (value: string): number | undefined => {
+  const match = value.match(/^(\d+)([smhd])$/);
+  if (!match) return undefined;
+  const amount = Number(match[1]);
+  const unit = match[2];
+  const multipliers: Record<string, number> = {
+    s: 1000,
+    m: 60 * 1000,
+    h: 60 * 60 * 1000,
+    d: 24 * 60 * 60 * 1000,
+  };
+  return amount * (multipliers[unit] || 0);
+};
+
+const getAuthCookieOptions = () => ({
+  httpOnly: true,
+  secure: config.nodeEnv === 'production',
+  sameSite: config.nodeEnv === 'production' ? 'none' : 'lax',
+  path: '/',
+} as const);
+
+const getAuthCookieMaxAge = () => {
+  return parseDurationMs(config.jwt.expiry) ?? 7 * 24 * 60 * 60 * 1000;
+};
 
 export const register = async (req: Request, res: Response): Promise<void> => {
   try {
@@ -53,6 +84,11 @@ export const register = async (req: Request, res: Response): Promise<void> => {
       { expiresIn: config.jwt.expiry } as jwt.SignOptions
     );
 
+    res.cookie('auth_token', token, {
+      ...getAuthCookieOptions(),
+      maxAge: getAuthCookieMaxAge(),
+    });
+
     res.status(201).json({
       message: 'User registered successfully',
       user,
@@ -67,8 +103,17 @@ export const register = async (req: Request, res: Response): Promise<void> => {
 export const login = async (req: Request, res: Response): Promise<void> => {
   try {
     const { email, password } = req.body;
+    const ipAddress = getClientIp(req);
+    const userAgent = req.headers['user-agent'];
 
     if (!email || !password) {
+      void recordFailedLogin({
+        email,
+        ipAddress,
+        userAgent: userAgent,
+      }).catch((error) => {
+        console.error('Failed to record failed login:', error);
+      });
       res.status(400).json({ error: 'Email and password are required' });
       return;
     }
@@ -79,11 +124,25 @@ export const login = async (req: Request, res: Response): Promise<void> => {
     });
 
     if (!user) {
+      void recordFailedLogin({
+        email,
+        ipAddress,
+        userAgent: userAgent,
+      }).catch((error) => {
+        console.error('Failed to record failed login:', error);
+      });
       res.status(401).json({ error: 'Invalid email or password' });
       return;
     }
 
     if (!user.passwordHash) {
+      void recordFailedLogin({
+        email,
+        ipAddress,
+        userAgent: userAgent,
+      }).catch((error) => {
+        console.error('Failed to record failed login:', error);
+      });
       res.status(400).json({ error: 'Please use Google login for this account' });
       return;
     }
@@ -92,6 +151,13 @@ export const login = async (req: Request, res: Response): Promise<void> => {
     const isValidPassword = await bcrypt.compare(password, user.passwordHash);
 
     if (!isValidPassword) {
+      void recordFailedLogin({
+        email,
+        ipAddress,
+        userAgent: userAgent,
+      }).catch((error) => {
+        console.error('Failed to record failed login:', error);
+      });
       res.status(401).json({ error: 'Invalid email or password' });
       return;
     }
@@ -108,6 +174,33 @@ export const login = async (req: Request, res: Response): Promise<void> => {
       config.jwt.secret,
       { expiresIn: config.jwt.expiry } as jwt.SignOptions
     );
+
+    res.cookie('auth_token', token, {
+      ...getAuthCookieOptions(),
+      maxAge: getAuthCookieMaxAge(),
+    });
+
+    try {
+      await auditLogService.logAction({
+        userId: user.id,
+        actionType: ActionType.LOGIN,
+        entityType: EntityType.USER,
+        entityId: user.id,
+        ipAddress,
+        newData: {
+          email: user.email,
+        },
+      });
+    } catch (error) {
+      console.error('Failed to log login action:', error);
+    }
+
+    void sendAdminAlert({
+      subject: 'User login',
+      text: `${user.firstName} ${user.lastName} (${user.email}) logged in from IP ${ipAddress}.`,
+    }).catch((error) => {
+      console.error('Failed to send login alert email:', error);
+    });
 
     res.json({
       message: 'Login successful',
@@ -181,12 +274,47 @@ export const googleCallback = async (req: Request, res: Response): Promise<void>
       { expiresIn: config.jwt.expiry } as jwt.SignOptions
     );
 
-    // Redirect to frontend with token
-    res.redirect(`${config.frontendUrl}/auth/callback?token=${token}`);
+    res.cookie('auth_token', token, {
+      ...getAuthCookieOptions(),
+      maxAge: getAuthCookieMaxAge(),
+    });
+
+    // Redirect to frontend after setting cookie
+    res.redirect(`${config.frontendUrl}/`);
   } catch (error) {
     console.error('Google callback error:', error);
     res.redirect(`${config.frontendUrl}/login?error=auth_failed`);
   }
+};
+
+export const logout = async (req: Request, res: Response): Promise<void> => {
+  try {
+    const sessionToken = getCookie(req, 'family_session_id');
+    if (sessionToken) {
+      await prisma.familySession.deleteMany({
+        where: { sessionToken },
+      });
+    }
+  } catch (error) {
+    console.error('Logout error:', error);
+  }
+
+  try {
+    const ipAddress = getClientIp(req);
+    await auditLogService.logAction({
+      userId: (req as AuthRequest).user?.id,
+      actionType: ActionType.LOGOUT,
+      entityType: EntityType.USER,
+      entityId: (req as AuthRequest).user?.id || 'unknown',
+      ipAddress,
+    });
+  } catch (error) {
+    console.error('Failed to log logout action:', error);
+  }
+
+  res.clearCookie('auth_token', getAuthCookieOptions());
+  res.clearCookie('family_session_id', getAuthCookieOptions());
+  res.json({ message: 'Logged out' });
 };
 
 // Admin-only endpoint: Get all users
@@ -241,6 +369,22 @@ export const updateUserRole = async (req: AuthRequest, res: Response): Promise<v
       return;
     }
 
+    const existingUser = await prisma.user.findUnique({
+      where: { id: userId },
+      select: {
+        id: true,
+        email: true,
+        firstName: true,
+        lastName: true,
+        role: true,
+      },
+    });
+
+    if (!existingUser) {
+      res.status(404).json({ error: 'User not found' });
+      return;
+    }
+
     const user = await prisma.user.update({
       where: { id: userId },
       data: { role },
@@ -253,6 +397,20 @@ export const updateUserRole = async (req: AuthRequest, res: Response): Promise<v
         createdAt: true,
       },
     });
+
+    try {
+      await auditLogService.logAction({
+        userId: req.user.id,
+        actionType: ActionType.UPDATE,
+        entityType: EntityType.USER,
+        entityId: user.id,
+        ipAddress: getClientIp(req),
+        oldData: { role: existingUser.role },
+        newData: { role: user.role },
+      });
+    } catch (error) {
+      console.error('Failed to log user role change:', error);
+    }
 
     res.json({
       message: 'User role updated successfully',

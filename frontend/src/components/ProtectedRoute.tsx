@@ -8,23 +8,11 @@ interface ProtectedRouteProps {
 }
 
 export function ProtectedRoute({ children, adminOnly = false }: ProtectedRouteProps) {
-  const { user, token, familySessionId } = useAuthStore();
+  const { user } = useAuthStore();
 
   // Check if user is authenticated
-  if (!user || !token) {
+  if (!user) {
     return <Navigate to="/login" replace />;
-  }
-
-  // Check if family password is verified
-  if (!familySessionId) {
-    // User is authenticated but hasn't verified family password yet
-    // The modal will be shown automatically by the auth store
-    return <div className="flex items-center justify-center min-h-screen">
-      <div className="text-center">
-        <h2 className="text-2xl font-semibold mb-2">Family Password Required</h2>
-        <p className="text-muted">Please verify the family password to continue.</p>
-      </div>
-    </div>;
   }
 
   // Check admin access if required

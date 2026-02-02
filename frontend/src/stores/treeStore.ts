@@ -7,6 +7,8 @@ import type {
   UpdatePersonDto,
   CreateRelationshipDto,
   ExportData,
+  BulkImportEntry,
+  BulkImportResponse,
 } from '../types';
 
 interface TreeState {
@@ -34,12 +36,15 @@ interface TreeState {
   // Actions - Export
   exportTree: () => Promise<ExportData>;
 
+  // Actions - Bulk Import
+  bulkImport: (entries: BulkImportEntry[]) => Promise<BulkImportResponse>;
+
   // Utilities
   clearError: () => void;
   reset: () => void;
 }
 
-export const useTreeStore = create<TreeState>((set, get) => ({
+export const useTreeStore = create<TreeState>((set, _get) => ({
   // Initial state
   persons: [],
   relationships: [],
@@ -187,14 +192,20 @@ export const useTreeStore = create<TreeState>((set, get) => ({
 
     try {
       const response = await api.post<Relationship>('/relationships', relationshipDto);
-      const newRelationship = response.data;
 
-      set((state) => ({
-        relationships: [...state.relationships, newRelationship],
+      // Refetch to capture any auto-linked relationships
+      const [personsResponse, relationshipsResponse] = await Promise.all([
+        api.get<Person[]>('/persons'),
+        api.get<Relationship[]>('/relationships'),
+      ]);
+
+      set({
+        persons: personsResponse.data,
+        relationships: relationshipsResponse.data,
         isLoading: false,
-      }));
+      });
 
-      return newRelationship;
+      return response.data;
     } catch (error) {
       const message = getErrorMessage(error);
       set({ isLoading: false, error: message });
@@ -230,6 +241,33 @@ export const useTreeStore = create<TreeState>((set, get) => ({
       });
 
       set({ isLoading: false });
+      return response.data;
+    } catch (error) {
+      const message = getErrorMessage(error);
+      set({ isLoading: false, error: message });
+      throw error;
+    }
+  },
+
+  // Bulk import persons with relationships
+  bulkImport: async (entries: BulkImportEntry[]) => {
+    set({ isLoading: true, error: null });
+
+    try {
+      const response = await api.post<BulkImportResponse>('/persons/bulk-import', { entries });
+
+      // Refetch the entire tree to get updated data
+      const [personsResponse, relationshipsResponse] = await Promise.all([
+        api.get<Person[]>('/persons'),
+        api.get<Relationship[]>('/relationships'),
+      ]);
+
+      set({
+        persons: personsResponse.data,
+        relationships: relationshipsResponse.data,
+        isLoading: false,
+      });
+
       return response.data;
     } catch (error) {
       const message = getErrorMessage(error);

@@ -1,8 +1,10 @@
 // User & Auth Types
-export enum UserRole {
-  USER = 'USER',
-  ADMIN = 'ADMIN',
-}
+export const UserRole = {
+  USER: 'USER',
+  ADMIN: 'ADMIN',
+} as const;
+
+export type UserRole = (typeof UserRole)[keyof typeof UserRole];
 
 export interface User {
   id: string;
@@ -51,7 +53,6 @@ export interface UpdateFamilyPasswordRequest {
 export interface Person {
   id: string;
   firstName: string;
-  middleName?: string | null;
   lastName: string;
   createdById: string;
   createdAt: string;
@@ -65,28 +66,28 @@ export interface Person {
 
 export interface CreatePersonDto {
   firstName: string;
-  middleName?: string;
   lastName: string;
 }
 
 export interface UpdatePersonDto {
   firstName?: string;
-  middleName?: string;
   lastName?: string;
 }
 
 // Relationship Types
-export enum RelationshipType {
-  PARENT = 'PARENT', // person1 is parent of person2
-  SPOUSE = 'SPOUSE', // person1 and person2 are spouses
-  SIBLING = 'SIBLING', // person1 and person2 are siblings
-}
+export const RelationshipType = {
+  PARENT: 'PARENT', // person1 is parent of person2
+  SPOUSE: 'SPOUSE', // person1 and person2 are spouses
+  SIBLING: 'SIBLING', // person1 and person2 are siblings
+} as const;
+
+export type RelationshipType = (typeof RelationshipType)[keyof typeof RelationshipType];
 
 export interface Relationship {
   id: string;
   person1Id: string;
   person2Id: string;
-  type: RelationshipType;
+  relationshipType: RelationshipType;
   createdAt: string;
   person1?: Person;
   person2?: Person;
@@ -95,7 +96,7 @@ export interface Relationship {
 export interface CreateRelationshipDto {
   person1Id: string;
   person2Id: string;
-  type: RelationshipType;
+  relationshipType: RelationshipType;
 }
 
 // Export Types
@@ -108,20 +109,24 @@ export interface ExportData {
 }
 
 // Audit Log Types
-export enum AuditActionType {
-  CREATE = 'CREATE',
-  UPDATE = 'UPDATE',
-  DELETE = 'DELETE',
-  LOGIN = 'LOGIN',
-  LOGOUT = 'LOGOUT',
-}
+export const AuditActionType = {
+  CREATE: 'CREATE',
+  UPDATE: 'UPDATE',
+  DELETE: 'DELETE',
+  LOGIN: 'LOGIN',
+  LOGOUT: 'LOGOUT',
+} as const;
 
-export enum AuditEntityType {
-  USER = 'USER',
-  PERSON = 'PERSON',
-  RELATIONSHIP = 'RELATIONSHIP',
-  FAMILY_CONFIG = 'FAMILY_CONFIG',
-}
+export type AuditActionType = (typeof AuditActionType)[keyof typeof AuditActionType];
+
+export const AuditEntityType = {
+  USER: 'USER',
+  PERSON: 'PERSON',
+  RELATIONSHIP: 'RELATIONSHIP',
+  FAMILY_CONFIG: 'FAMILY_CONFIG',
+} as const;
+
+export type AuditEntityType = (typeof AuditEntityType)[keyof typeof AuditEntityType];
 
 export interface AuditLog {
   id: string;
@@ -168,4 +173,28 @@ export interface TreeNode {
   children: TreeNode[];
   spouses: TreeNode[];
   siblings: TreeNode[];
+}
+
+// Bulk Import Types
+export const BulkRelationshipType = {
+  PARENT: 'PARENT',   // The person in this row is the CHILD of the related person
+  CHILD: 'CHILD',     // The person in this row is the PARENT of the related person
+  SPOUSE: 'SPOUSE',
+  SIBLING: 'SIBLING',
+} as const;
+
+export type BulkRelationshipType = (typeof BulkRelationshipType)[keyof typeof BulkRelationshipType];
+
+export interface BulkImportEntry {
+  firstName: string;
+  lastName: string;
+  relatedFirstName?: string;
+  relatedLastName?: string;
+  relationshipType?: BulkRelationshipType;
+}
+
+export interface BulkImportResponse {
+  message: string;
+  persons: Person[];
+  relationshipsCreated: number;
 }

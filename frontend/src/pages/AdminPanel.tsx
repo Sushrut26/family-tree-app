@@ -35,12 +35,10 @@ type FamilyPasswordFormData = z.infer<typeof familyPasswordSchema>;
 
 type TabType = 'users' | 'audit' | 'settings';
 
-interface PaginatedResponse<T> {
-  data: T[];
+interface AuditLogResponse {
+  logs: AuditLog[];
   total: number;
-  page: number;
-  limit: number;
-  totalPages: number;
+  hasMore: boolean;
 }
 
 export function AdminPanel() {
@@ -58,6 +56,7 @@ export function AdminPanel() {
   const [auditLoading, setAuditLoading] = useState(false);
   const [auditPage, setAuditPage] = useState(1);
   const [auditTotalPages, setAuditTotalPages] = useState(1);
+  const auditPageSize = 10;
 
   // Family password form
   const [showCurrentPassword, setShowCurrentPassword] = useState(false);
@@ -70,8 +69,6 @@ export function AdminPanel() {
   const fetchUsers = async () => {
     setUsersLoading(true);
     try {
-      // Note: Backend would need a /api/users endpoint for admin
-      // For now, we'll simulate with a placeholder
       const response = await api.get<User[]>('/auth/users');
       setUsers(response.data);
     } catch (error) {
@@ -87,11 +84,11 @@ export function AdminPanel() {
   const fetchAuditLogs = async (page = 1) => {
     setAuditLoading(true);
     try {
-      const response = await api.get<PaginatedResponse<AuditLog>>('/audit', {
-        params: { page, limit: 10 },
+      const response = await api.get<AuditLogResponse>('/audit', {
+        params: { limit: auditPageSize, offset: (page - 1) * auditPageSize },
       });
-      setAuditLogs(response.data.data || []);
-      setAuditTotalPages(response.data.totalPages || 1);
+      setAuditLogs(response.data.logs || []);
+      setAuditTotalPages(Math.max(1, Math.ceil(response.data.total / auditPageSize)));
       setAuditPage(page);
     } catch (error) {
       showToast('Failed to load audit logs', 'error');
@@ -105,7 +102,7 @@ export function AdminPanel() {
   const handleFamilyPasswordChange = async (data: FamilyPasswordFormData) => {
     setIsLoading(true);
     try {
-      await api.put('/family-config/password', {
+      await api.put('/family-config/update', {
         currentPassword: data.currentPassword,
         newPassword: data.newPassword,
       });
@@ -152,7 +149,7 @@ export function AdminPanel() {
       case 'DELETE':
         return 'bg-red-100 text-red-800';
       case 'LOGIN':
-        return 'bg-purple-100 text-purple-800';
+        return 'bg-amber-100 text-amber-800';
       default:
         return 'bg-gray-100 text-gray-800';
     }
@@ -294,7 +291,7 @@ export function AdminPanel() {
                           <span
                             className={`inline-flex items-center px-2 py-1 rounded-full text-xs font-medium ${
                               u.role === 'ADMIN'
-                                ? 'bg-purple-100 text-purple-700'
+                                ? 'bg-amber-100 text-amber-700'
                                 : 'bg-gray-100 text-gray-700'
                             }`}
                           >

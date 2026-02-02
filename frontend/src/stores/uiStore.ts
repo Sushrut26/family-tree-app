@@ -19,6 +19,7 @@ interface UIState {
   showEditPersonDialog: boolean;
   showDeleteConfirmDialog: boolean;
   showAddRelationshipDialog: boolean;
+  showBulkImportDialog: boolean;
 
   // Toast notifications
   toasts: Toast[];
@@ -32,6 +33,7 @@ interface UIState {
   setShowEditPersonDialog: (show: boolean) => void;
   setShowDeleteConfirmDialog: (show: boolean) => void;
   setShowAddRelationshipDialog: (show: boolean) => void;
+  setShowBulkImportDialog: (show: boolean) => void;
   showToast: (message: string, type: ToastType, duration?: number) => void;
   removeToast: (id: string) => void;
   toggleSidebar: () => void;
@@ -46,6 +48,7 @@ export const useUIStore = create<UIState>((set, get) => ({
   showEditPersonDialog: false,
   showDeleteConfirmDialog: false,
   showAddRelationshipDialog: false,
+  showBulkImportDialog: false,
   toasts: [],
   isSidebarOpen: false,
 
@@ -69,6 +72,10 @@ export const useUIStore = create<UIState>((set, get) => ({
 
   setShowAddRelationshipDialog: (show: boolean) => {
     set({ showAddRelationshipDialog: show });
+  },
+
+  setShowBulkImportDialog: (show: boolean) => {
+    set({ showBulkImportDialog: show });
   },
 
   // Toast notifications

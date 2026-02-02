@@ -1,4 +1,4 @@
-import axios, { AxiosError, InternalAxiosRequestConfig } from 'axios';
+import axios, { type AxiosError, type InternalAxiosRequestConfig } from 'axios';
 import type { ApiError } from '../types';
 
 const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:3000/api';
@@ -58,10 +58,11 @@ api.interceptors.response.use(
     switch (status) {
       case 401: {
         // Unauthorized - clear auth and redirect to login
-        const errorMessage = data?.error || '';
+        const errorMessage = (data?.error || '').toLowerCase();
+        const errorCode = data?.code;
 
         // Don't logout for family password verification errors
-        if (!errorMessage.includes('family password')) {
+        if (errorCode !== 'FAMILY_PASSWORD_REQUIRED' && !errorMessage.includes('family password')) {
           localStorage.removeItem('auth_token');
           localStorage.removeItem('user');
 
@@ -76,8 +77,14 @@ api.interceptors.response.use(
 
       case 403: {
         // Forbidden - might be family password required
-        const errorMessage = data?.error || '';
-        if (errorMessage.includes('family password') || errorMessage.includes('session')) {
+        const errorMessage = (data?.error || '').toLowerCase();
+        const errorCode = data?.code;
+        if (
+          errorCode === 'FAMILY_PASSWORD_REQUIRED' ||
+          errorMessage.includes('family password') ||
+          errorMessage.includes('family session') ||
+          errorMessage.includes('session')
+        ) {
           // Clear family session - will trigger modal
           localStorage.removeItem('family_session_id');
 

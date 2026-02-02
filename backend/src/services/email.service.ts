@@ -1,4 +1,4 @@
-import nodemailer from 'nodemailer';
+import { Resend } from 'resend';
 
 type EmailPayload = {
   subject: string;
@@ -6,31 +6,21 @@ type EmailPayload = {
   html?: string;
 };
 
-let cachedTransporter: nodemailer.Transporter | null = null;
+let resendClient: Resend | null = null;
 
-const getTransporter = () => {
-  if (cachedTransporter) {
-    return cachedTransporter;
+const getResendClient = () => {
+  if (resendClient) {
+    return resendClient;
   }
 
-  const host = process.env.SMTP_HOST;
-  const port = Number(process.env.SMTP_PORT || 587);
-  const user = process.env.SMTP_USER;
-  const pass = process.env.SMTP_PASS;
-  const secure = process.env.SMTP_SECURE === 'true';
+  const apiKey = process.env.RESEND_API_KEY;
 
-  if (!host) {
+  if (!apiKey) {
     return null;
   }
 
-  cachedTransporter = nodemailer.createTransport({
-    host,
-    port,
-    secure,
-    auth: user && pass ? { user, pass } : undefined,
-  });
-
-  return cachedTransporter;
+  resendClient = new Resend(apiKey);
+  return resendClient;
 };
 
 const getAdminRecipient = () => {
@@ -38,18 +28,20 @@ const getAdminRecipient = () => {
 };
 
 const getFromAddress = () => {
-  return process.env.SMTP_FROM || 'Family Tree <no-reply@family-tree.local>';
+  // Resend requires a verified domain or use their default for testing
+  // Default: 'onboarding@resend.dev' works for testing
+  return process.env.EMAIL_FROM || 'Family Tree <onboarding@resend.dev>';
 };
 
 export const sendAdminAlert = async (payload: EmailPayload): Promise<void> => {
   const to = getAdminRecipient();
-  const transporter = getTransporter();
+  const client = getResendClient();
 
-  if (!to || !transporter) {
+  if (!to || !client) {
     return;
   }
 
-  await transporter.sendMail({
+  await client.emails.send({
     from: getFromAddress(),
     to,
     subject: payload.subject,

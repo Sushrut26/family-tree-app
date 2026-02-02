@@ -72,10 +72,7 @@ const familyPasswordLimiter = rateLimit({
   skip: (req) => req.method === 'OPTIONS', // Skip rate limiting for CORS preflight
 });
 
-// Apply general rate limiting to all requests
-app.use(generalLimiter);
-
-// CORS configuration
+// CORS configuration - MUST be before all other middleware
 // Log CORS config at startup for debugging
 console.log('CORS Config - Frontend URL:', config.frontendUrl);
 console.log('CORS Config - Node ENV:', config.nodeEnv);
@@ -107,7 +104,12 @@ app.use(cors({
   },
   credentials: true,
   allowedHeaders: ['Content-Type', 'Authorization', 'X-Family-Session'],
+  methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS', 'PATCH'],
+  optionsSuccessStatus: 200,
 }));
+
+// Apply general rate limiting to all requests (AFTER CORS)
+app.use(generalLimiter);
 
 app.use(express.json({ limit: '10mb' }));
 app.use(express.urlencoded({ extended: true, limit: '10mb' }));

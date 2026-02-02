@@ -33,9 +33,9 @@ export const verifyFamilyPassword = async (
       return;
     }
 
-    // Generate session ID
+    // Generate session ID with fingerprinting
     const sessionId = randomUUID();
-    createFamilySession(sessionId);
+    await createFamilySession(sessionId, req);
 
     res.json({
       success: true,

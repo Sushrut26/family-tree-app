@@ -28,7 +28,17 @@ console.log('CORS Config - Node ENV:', config.nodeEnv);
 
 // Request logging middleware - FIRST to see all incoming requests
 app.use((req, res, next) => {
-  console.log(`[${new Date().toISOString()}] ${req.method} ${req.path} - Origin: ${req.headers.origin || 'none'}`);
+  const start = Date.now();
+  const origin = req.headers.origin || 'none';
+  const userAgent = req.headers['user-agent'] || 'unknown';
+  const reqId = Math.random().toString(36).slice(2, 10);
+  (req as any)._reqId = reqId;
+  console.log(`[${new Date().toISOString()}] [${reqId}] ${req.method} ${req.path} - Origin: ${origin}`);
+  console.log(`[${new Date().toISOString()}] [${reqId}] UA: ${userAgent}`);
+  res.on('finish', () => {
+    const ms = Date.now() - start;
+    console.log(`[${new Date().toISOString()}] [${reqId}] ${req.method} ${req.path} -> ${res.statusCode} (${ms}ms)`);
+  });
   next();
 });
 
@@ -104,6 +114,8 @@ app.use(familyPasswordCheck);
 
 // Health check (no rate limiting)
 app.get('/health', (req, res) => {
+  const reqId = (req as any)._reqId || 'unknown';
+  console.log(`[${new Date().toISOString()}] [${reqId}] Health check responding`);
   res.json({ status: 'ok', timestamp: new Date().toISOString() });
 });
 
@@ -127,6 +139,14 @@ app.listen(PORT, () => {
   if (config.nodeEnv === 'development') {
     console.log(`Frontend URL: ${config.frontendUrl}`);
   }
+});
+
+// Crash visibility
+process.on('unhandledRejection', (reason) => {
+  console.error('Unhandled Rejection:', reason);
+});
+process.on('uncaughtException', (err) => {
+  console.error('Uncaught Exception:', err);
 });
 
 export default app;

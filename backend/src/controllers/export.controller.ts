@@ -22,6 +22,13 @@ export const exportTree = async (
       return;
     }
 
+    if (format === 'pdf' && req.user.role !== 'ADMIN') {
+      res.status(403).json({
+        error: 'PDF export is restricted to administrators',
+      });
+      return;
+    }
+
     let exportData;
 
     if (scope === 'full') {

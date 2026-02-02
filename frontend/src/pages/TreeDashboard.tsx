@@ -1080,14 +1080,16 @@ export function TreeDashboard() {
               Export Tree
             </button>
 
-            <button
-              onClick={handleExportPdf}
-              disabled={relationships.length === 0}
-              className={sidebarButtonClass}
-            >
-              <FileText size={20} />
-              Export Relationships PDF
-            </button>
+            {user?.role === 'ADMIN' && (
+              <button
+                onClick={handleExportPdf}
+                disabled={relationships.length === 0}
+                className={sidebarButtonClass}
+              >
+                <FileText size={20} />
+                Export Relationships PDF
+              </button>
+            )}
 
             <button
               onClick={handleFormatTree}

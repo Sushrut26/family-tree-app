@@ -13,6 +13,7 @@ import type {
 interface AuthState {
   // State
   user: User | null;
+  token: string | null;
   showFamilyPasswordModal: boolean;
   isLoading: boolean;
   error: string | null;
@@ -31,6 +32,7 @@ export const useAuthStore = create<AuthState>()(
     (set, _get) => ({
       // Initial state
       user: null,
+      token: null,
       showFamilyPasswordModal: false,
       isLoading: false,
       error: null,
@@ -41,10 +43,11 @@ export const useAuthStore = create<AuthState>()(
 
         try {
           const response = await api.post<AuthResponse>('/auth/login', credentials);
-          const { user } = response.data;
+          const { user, token } = response.data;
 
           set({
             user,
+            token: token || null,
             isLoading: false,
             showFamilyPasswordModal: true, // Show family password modal after login
           });
@@ -61,10 +64,11 @@ export const useAuthStore = create<AuthState>()(
 
         try {
           const response = await api.post<AuthResponse>('/auth/register', data);
-          const { user } = response.data;
+          const { user, token } = response.data;
 
           set({
             user,
+            token: token || null,
             isLoading: false,
             showFamilyPasswordModal: true, // Show family password modal after registration
           });
@@ -84,6 +88,7 @@ export const useAuthStore = create<AuthState>()(
         // Reset state
         set({
           user: null,
+          token: null,
           showFamilyPasswordModal: false,
           error: null,
         });
@@ -126,6 +131,7 @@ export const useAuthStore = create<AuthState>()(
       // Only persist user data, not sensitive tokens or states
       partialize: (state) => ({
         user: state.user,
+        token: state.token,
       }),
     }
   )

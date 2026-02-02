@@ -18,6 +18,20 @@ export const api = axios.create({
  */
 api.interceptors.request.use(
   (config: InternalAxiosRequestConfig) => {
+    if (typeof window !== 'undefined') {
+      try {
+        const raw = localStorage.getItem('auth-storage');
+        if (raw) {
+          const parsed = JSON.parse(raw) as { state?: { token?: string | null } };
+          const token = parsed?.state?.token;
+          if (token && !config.headers.Authorization) {
+            config.headers.Authorization = `Bearer ${token}`;
+          }
+        }
+      } catch {
+        // Ignore localStorage parse errors
+      }
+    }
     return config;
   },
   (error) => {

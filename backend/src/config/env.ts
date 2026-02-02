@@ -16,11 +16,18 @@ if (process.env.JWT_SECRET!.length < 32) {
 }
 
 // Log JWT_EXPIRY for debugging
-const jwtExpiry = process.env.JWT_EXPIRY || '7d';
-console.log('JWT_EXPIRY raw value:', JSON.stringify(jwtExpiry));
+const jwtExpiry = (process.env.JWT_EXPIRY || '7d').trim();
+console.log('JWT_EXPIRY raw from env:', JSON.stringify(process.env.JWT_EXPIRY));
+console.log('JWT_EXPIRY after trim:', JSON.stringify(jwtExpiry));
 console.log('JWT_EXPIRY length:', jwtExpiry.length);
 console.log('JWT_EXPIRY charCodes:', jwtExpiry.split('').map(c => c.charCodeAt(0)));
-console.log('JWT_EXPIRY trimmed:', JSON.stringify(jwtExpiry.trim()));
+
+// Validate JWT_EXPIRY format
+const validExpiryFormats = /^(\d+[smhd])$/;
+if (!validExpiryFormats.test(jwtExpiry)) {
+  console.error('Invalid JWT_EXPIRY format:', jwtExpiry, '- must be like "7d", "24h", "30m", or "1800s"');
+  console.error('Using default: 7d');
+}
 
 export const config = {
   port: parseInt(process.env.PORT || '3000', 10),
@@ -28,7 +35,7 @@ export const config = {
   databaseUrl: process.env.DATABASE_URL!,
   jwt: {
     secret: process.env.JWT_SECRET!,
-    expiry: jwtExpiry.trim(),
+    expiry: validExpiryFormats.test(jwtExpiry) ? jwtExpiry : '7d',
   },
   google: {
     clientId: process.env.GOOGLE_CLIENT_ID || '',

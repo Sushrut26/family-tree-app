@@ -22,7 +22,26 @@ if (config.nodeEnv === 'production') {
   app.set('trust proxy', 1);
 }
 
-// Security headers
+// Log startup config
+console.log('CORS Config - Frontend URL:', config.frontendUrl);
+console.log('CORS Config - Node ENV:', config.nodeEnv);
+
+// Request logging middleware - FIRST to see all incoming requests
+app.use((req, res, next) => {
+  console.log(`[${new Date().toISOString()}] ${req.method} ${req.path} - Origin: ${req.headers.origin || 'none'}`);
+  next();
+});
+
+// CORS configuration - MUST be BEFORE helmet and other middleware
+app.use(cors({
+  origin: config.frontendUrl,
+  credentials: true,
+  allowedHeaders: ['Content-Type', 'Authorization', 'X-Family-Session'],
+  methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS', 'PATCH'],
+  optionsSuccessStatus: 200,
+}));
+
+// Security headers - AFTER CORS
 app.use(helmet({
   contentSecurityPolicy: {
     directives: {
@@ -33,6 +52,7 @@ app.use(helmet({
     },
   },
   crossOriginEmbedderPolicy: false,
+  crossOriginResourcePolicy: { policy: 'cross-origin' },
   // Enable HSTS in production (tells browsers to always use HTTPS)
   hsts: config.nodeEnv === 'production' ? {
     maxAge: 31536000, // 1 year
@@ -71,42 +91,6 @@ const familyPasswordLimiter = rateLimit({
   legacyHeaders: false,
   skip: (req) => req.method === 'OPTIONS', // Skip rate limiting for CORS preflight
 });
-
-// CORS configuration - MUST be before all other middleware
-// Log CORS config at startup for debugging
-console.log('CORS Config - Frontend URL:', config.frontendUrl);
-console.log('CORS Config - Node ENV:', config.nodeEnv);
-
-app.use(cors({
-  origin: function(origin, callback) {
-    // Log every CORS request for debugging
-    console.log('CORS Request - Origin:', origin, '| Expected:', config.frontendUrl, '| Match:', origin === config.frontendUrl);
-
-    // In development, allow localhost origins
-    if (config.nodeEnv === 'development') {
-      if (!origin || origin.startsWith('http://localhost:')) {
-        return callback(null, true);
-      }
-    }
-
-    // In production, strictly check against configured frontend URL
-    if (origin === config.frontendUrl) {
-      return callback(null, true);
-    }
-
-    // Also allow requests with no origin (like health checks, Postman, etc.)
-    if (!origin) {
-      return callback(null, true);
-    }
-
-    console.log('CORS Rejected - Origin:', origin);
-    callback(new Error('Not allowed by CORS'));
-  },
-  credentials: true,
-  allowedHeaders: ['Content-Type', 'Authorization', 'X-Family-Session'],
-  methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS', 'PATCH'],
-  optionsSuccessStatus: 200,
-}));
 
 // Apply general rate limiting to all requests (AFTER CORS)
 app.use(generalLimiter);

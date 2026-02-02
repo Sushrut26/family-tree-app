@@ -191,14 +191,11 @@ export const login = async (req: Request, res: Response): Promise<void> => {
     });
 
     // Generate JWT token
-    console.log('About to sign JWT with expiry:', JSON.stringify(config.jwt.expiry), 'type:', typeof config.jwt.expiry);
-    console.log('Expiry charCodes:', config.jwt.expiry.split('').map(c => c.charCodeAt(0)));
     const token = jwt.sign(
       { id: user.id, email: user.email, role: user.role },
       config.jwt.secret,
       { expiresIn: config.jwt.expiry } as jwt.SignOptions
     );
-    console.log('JWT signed successfully');
 
     res.cookie('auth_token', token, {
       ...getAuthCookieOptions(),

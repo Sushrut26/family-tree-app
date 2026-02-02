@@ -43,9 +43,8 @@ app.use((req, res, next) => {
 });
 
 // CORS configuration - MUST be BEFORE helmet and other middleware
-// Using permissive CORS temporarily to debug
 app.use(cors({
-  origin: true, // Accept ALL origins temporarily for debugging
+  origin: config.frontendUrl,
   credentials: true,
   allowedHeaders: ['Content-Type', 'Authorization', 'X-Family-Session'],
   methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS', 'PATCH'],

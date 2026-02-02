@@ -48,6 +48,7 @@ const generalLimiter = rateLimit({
   message: { error: 'Too many requests, please try again later' },
   standardHeaders: true,
   legacyHeaders: false,
+  skip: (_req, _res) => _req.method === 'OPTIONS', // Skip rate limiting for CORS preflight
 });
 
 // Strict rate limiting for auth endpoints
@@ -58,6 +59,7 @@ const authLimiter = rateLimit({
   standardHeaders: true,
   legacyHeaders: false,
   skipSuccessfulRequests: true, // Only count failed attempts
+  skip: (req) => req.method === 'OPTIONS', // Skip rate limiting for CORS preflight
 });
 
 // Rate limiting for family password verification
@@ -67,6 +69,7 @@ const familyPasswordLimiter = rateLimit({
   message: { error: 'Too many family password attempts, please try again later' },
   standardHeaders: true,
   legacyHeaders: false,
+  skip: (req) => req.method === 'OPTIONS', // Skip rate limiting for CORS preflight
 });
 
 // Apply general rate limiting to all requests

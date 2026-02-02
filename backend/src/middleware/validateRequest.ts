@@ -1,44 +1,40 @@
 import { Request, Response, NextFunction } from 'express';
-import { ZodSchema, ZodError } from 'zod';
+import { ZodSchema } from 'zod';
 
 /**
  * Generic validation middleware for Zod schemas
  * Validates request body, params, and query against provided schema
+ * Uses safeParseAsync for Zod v4 compatibility
  */
 export const validate =
   (schema: ZodSchema) =>
   async (req: Request, res: Response, next: NextFunction): Promise<void> => {
-    try {
-      // Validate and transform the request
-      const validated = await schema.parseAsync({
-        body: req.body,
-        params: req.params,
-        query: req.query,
-      }) as any;
+    const result = await schema.safeParseAsync({
+      body: req.body,
+      params: req.params,
+      query: req.query,
+    });
 
-      // Replace request data with validated/sanitized data
-      req.body = validated.body || req.body;
-      req.params = validated.params || req.params;
-      req.query = validated.query || req.query;
+    if (!result.success) {
+      // Format Zod errors for user-friendly response
+      const errors = result.error.issues.map((err) => ({
+        field: err.path.join('.'),
+        message: err.message,
+      }));
 
-      next();
-    } catch (error) {
-      if (error instanceof ZodError) {
-        // Format Zod errors for user-friendly response
-        const errors = error.issues.map((err) => ({
-          field: err.path.join('.'),
-          message: err.message,
-        }));
-
-        res.status(400).json({
-          error: 'Validation failed',
-          details: errors,
-        });
-        return;
-      }
-
-      // Unexpected error
-      console.error('Validation middleware error:', error);
-      res.status(500).json({ error: 'Internal server error during validation' });
+      res.status(400).json({
+        error: 'Validation failed',
+        details: errors,
+      });
+      return;
     }
+
+    // Replace request body with validated/sanitized data
+    // Note: req.params and req.query are read-only in Express 5.x
+    const validated = result.data as { body?: unknown; params?: unknown; query?: unknown };
+    if (validated.body) {
+      req.body = validated.body;
+    }
+
+    next();
   };

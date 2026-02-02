@@ -8,7 +8,8 @@
     "build": "tsc -b && vite build",
     "lint": "eslint .",
     "test": "echo \"No frontend tests configured\"",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "start": "serve -s dist -l $PORT"
   },
   "dependencies": {
     "@hookform/resolvers": "^5.2.2",
@@ -21,6 +22,7 @@
     "react-hook-form": "^7.71.1",
     "react-router-dom": "^7.13.0",
     "reactflow": "^11.11.4",
+    "serve": "^14.2.5",
     "tailwind-merge": "^3.4.0",
     "zod": "^4.3.6",
     "zustand": "^5.0.11"

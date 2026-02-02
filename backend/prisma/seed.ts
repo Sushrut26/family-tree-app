@@ -6,9 +6,9 @@ const prisma = new PrismaClient();
 async function main() {
   console.log('🌱 Starting database seed...');
 
-  // Create admin user
-  const adminEmail = 'admin@family.com';
-  const adminPassword = 'admin123'; // Change this after first login!
+  // Create admin user (credentials from environment or defaults for dev only)
+  const adminEmail = process.env.ADMIN_EMAIL || 'admin@family.com';
+  const adminPassword = process.env.ADMIN_PASSWORD || 'ChangeMe123!';
 
   const existingAdmin = await prisma.user.findUnique({
     where: { email: adminEmail },
@@ -17,7 +17,7 @@ async function main() {
   if (existingAdmin) {
     console.log('✓ Admin user already exists');
   } else {
-    const adminPasswordHash = await bcrypt.hash(adminPassword, 10);
+    const adminPasswordHash = await bcrypt.hash(adminPassword, 12);
     const admin = await prisma.user.create({
       data: {
         email: adminEmail,
@@ -28,31 +28,27 @@ async function main() {
       },
     });
     console.log(`✓ Created admin user: ${admin.email}`);
-    console.log(`  Password: ${adminPassword} (please change after first login)`);
+    console.log('  ⚠️  Change password immediately after first login');
   }
 
-  // Create family password
-  const familyPassword = 'family2024'; // This is the shared family password
+  // Create family password (from environment or default for dev only)
+  const familyPassword = process.env.FAMILY_PASSWORD || 'ChangeFamilyPwd123!';
   const existingConfig = await prisma.familyConfig.findFirst();
 
   if (existingConfig) {
     console.log('✓ Family password already configured');
   } else {
-    const familyPasswordHash = await bcrypt.hash(familyPassword, 10);
+    const familyPasswordHash = await bcrypt.hash(familyPassword, 12);
     await prisma.familyConfig.create({
       data: {
         passwordHash: familyPasswordHash,
       },
     });
-    console.log(`✓ Created family password: ${familyPassword}`);
-    console.log('  (Share this with family members)');
+    console.log('✓ Created family password');
+    console.log('  ⚠️  Update via admin panel after deployment');
   }
 
   console.log('\n🎉 Database seed completed!');
-  console.log('\nLogin credentials:');
-  console.log('  Email: admin@family.com');
-  console.log('  Password: admin123');
-  console.log('  Family Password: family2024');
 }
 
 main()

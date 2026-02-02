@@ -17,6 +17,11 @@ import auditLogRoutes from './routes/auditLog.routes';
 
 const app = express();
 
+// Trust proxy for Railway/Heroku/etc (required for rate limiting behind reverse proxy)
+if (config.nodeEnv === 'production') {
+  app.set('trust proxy', 1);
+}
+
 // Security headers
 app.use(helmet({
   contentSecurityPolicy: {
@@ -28,6 +33,12 @@ app.use(helmet({
     },
   },
   crossOriginEmbedderPolicy: false,
+  // Enable HSTS in production (tells browsers to always use HTTPS)
+  hsts: config.nodeEnv === 'production' ? {
+    maxAge: 31536000, // 1 year
+    includeSubDomains: true,
+    preload: true,
+  } : false,
 }));
 
 // Rate limiting - general API limit
@@ -109,7 +120,10 @@ const PORT = config.port;
 app.listen(PORT, () => {
   console.log(`Server running on port ${PORT}`);
   console.log(`Environment: ${config.nodeEnv}`);
-  console.log(`Frontend URL: ${config.frontendUrl}`);
+  // Only log frontend URL in development (avoid exposing config in production logs)
+  if (config.nodeEnv === 'development') {
+    console.log(`Frontend URL: ${config.frontendUrl}`);
+  }
 });
 
 export default app;

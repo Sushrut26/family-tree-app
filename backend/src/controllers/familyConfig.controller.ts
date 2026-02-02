@@ -9,6 +9,8 @@ import { auditLogService } from '../services/auditLog.service';
 import { getClientIp } from '../utils/requestHelpers';
 import { ActionType, EntityType } from '@prisma/client';
 
+const BCRYPT_ROUNDS = 12;
+
 export const verifyFamilyPassword = async (
   req: AuthRequest,
   res: Response
@@ -22,15 +24,15 @@ export const verifyFamilyPassword = async (
     }
 
     // Get family password from database
-    const config = await prisma.familyConfig.findFirst();
+    const familyConfig = await prisma.familyConfig.findFirst();
 
-    if (!config) {
+    if (!familyConfig) {
       res.status(500).json({ error: 'Family password not configured' });
       return;
     }
 
     // Verify password
-    const isValid = await bcrypt.compare(password, config.passwordHash);
+    const isValid = await bcrypt.compare(password, familyConfig.passwordHash);
 
     if (!isValid) {
       res.status(401).json({ error: 'Incorrect family password' });
@@ -78,25 +80,25 @@ export const updateFamilyPassword = async (
       return;
     }
 
-    const config = await prisma.familyConfig.findFirst();
+    const familyConfig = await prisma.familyConfig.findFirst();
 
-    if (!config) {
+    if (!familyConfig) {
       res.status(500).json({ error: 'Family password not configured' });
       return;
     }
 
     // Verify current password
-    const isValid = await bcrypt.compare(currentPassword, config.passwordHash);
+    const isValid = await bcrypt.compare(currentPassword, familyConfig.passwordHash);
 
     if (!isValid) {
       res.status(401).json({ error: 'Incorrect current password' });
       return;
     }
 
-    // Hash and update new password
-    const newPasswordHash = await bcrypt.hash(newPassword, 10);
+    // Hash and update new password with strong cost factor
+    const newPasswordHash = await bcrypt.hash(newPassword, BCRYPT_ROUNDS);
     await prisma.familyConfig.update({
-      where: { id: config.id },
+      where: { id: familyConfig.id },
       data: { passwordHash: newPasswordHash },
     });
 
@@ -105,7 +107,7 @@ export const updateFamilyPassword = async (
         userId: req.user.id,
         actionType: ActionType.UPDATE,
         entityType: EntityType.FAMILY_CONFIG,
-        entityId: config.id,
+        entityId: familyConfig.id,
         ipAddress: getClientIp(req),
         newData: { changed: true },
       });

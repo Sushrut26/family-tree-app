@@ -162,6 +162,7 @@ export interface CanEditResponse {
 // API Error Response
 export interface ApiError {
   error: string;
+  code?: string;
   details?: unknown;
 }
 

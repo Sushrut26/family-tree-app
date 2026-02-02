@@ -8,6 +8,7 @@ import { RelationshipType, ActionType, EntityType } from '@prisma/client';
 import { getClientIp, getStringParam } from '../utils/requestHelpers';
 import { auditLogService } from '../services/auditLog.service';
 import { sendAdminAlert } from '../services/email.service';
+import prisma from '../config/database';
 
 export const getAllRelationships = async (
   req: AuthRequest,
@@ -114,11 +115,23 @@ export const createRelationship = async (
       console.error('Failed to log relationship creation:', error);
     }
 
-    const person1Name = relationship.person1
-      ? `${relationship.person1.firstName} ${relationship.person1.lastName}`
+    // Fetch person names for email notification
+    const [person1, person2] = await Promise.all([
+      prisma.person.findUnique({
+        where: { id: relationship.person1Id },
+        select: { firstName: true, lastName: true },
+      }),
+      prisma.person.findUnique({
+        where: { id: relationship.person2Id },
+        select: { firstName: true, lastName: true },
+      }),
+    ]);
+
+    const person1Name = person1
+      ? `${person1.firstName} ${person1.lastName}`
       : relationship.person1Id;
-    const person2Name = relationship.person2
-      ? `${relationship.person2.firstName} ${relationship.person2.lastName}`
+    const person2Name = person2
+      ? `${person2.firstName} ${person2.lastName}`
       : relationship.person2Id;
 
     void sendAdminAlert({

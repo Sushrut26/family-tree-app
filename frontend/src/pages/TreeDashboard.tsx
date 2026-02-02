@@ -42,7 +42,8 @@ import { z } from 'zod';
 import { useAuthStore } from '../stores/authStore';
 import { useTreeStore } from '../stores/treeStore';
 import { useUIStore } from '../stores/uiStore';
-import type { Person, Relationship, RelationshipType, BulkImportEntry, BulkRelationshipType } from '../types';
+import { RelationshipType } from '../types';
+import type { Person, Relationship, BulkImportEntry, BulkRelationshipType } from '../types';
 
 // Schemas
 const personSchema = z.object({
@@ -188,9 +189,9 @@ const edgeTypes = {
   parentChild: ParentChildEdge,
 };
 
-const NODE_X_SPACING = 260;
-const NODE_Y_SPACING = 210;
-const GROUP_GAP = 0.6;
+const NODE_X_SPACING = 250;
+const NODE_Y_SPACING = 180;
+const GROUP_GAP = 0.3;
 
 const computeHierarchyPositions = (
   persons: Person[],
@@ -597,6 +598,9 @@ export function TreeDashboard() {
   const [searchQuery, setSearchQuery] = useState('');
   const [editingPerson, setEditingPerson] = useState<Person | null>(null);
   const [deletingPerson, setDeletingPerson] = useState<Person | null>(null);
+  const [matchingPerson, setMatchingPerson] = useState<Person | null>(null);
+  const [showDuplicateDialog, setShowDuplicateDialog] = useState(false);
+  const [pendingPersonData, setPendingPersonData] = useState<PersonFormData | null>(null);
   const editablePersons = useMemo(
     () =>
       user?.role === 'ADMIN'
@@ -711,7 +715,7 @@ export function TreeDashboard() {
           id: rel.id,
           source: rel.person1Id,
           target: rel.person2Id,
-          type: 'straight',
+          type: 'smoothstep',
           animated: false,
           style,
           sourceHandle: 'bottom',
@@ -731,7 +735,7 @@ export function TreeDashboard() {
         id: rel.id,
         source: rel.person1Id,
         target: rel.person2Id,
-        type: 'straight',
+        type: 'smoothstep',
         animated: false,
         style,
         sourceHandle: 'right',
@@ -780,8 +784,28 @@ export function TreeDashboard() {
     );
   }, [normalizeRelationships, setNodes, showToast]);
 
+  // Find existing person with same name (case-insensitive)
+  const findExistingPerson = (firstName: string, lastName: string): Person | undefined => {
+    const normalizedFirst = firstName.trim().toLowerCase();
+    const normalizedLast = lastName.trim().toLowerCase();
+    return persons.find(
+      (p) =>
+        p.firstName.toLowerCase() === normalizedFirst &&
+        p.lastName.toLowerCase() === normalizedLast
+    );
+  };
+
   // Handle add person
   const handleAddPerson = async (data: PersonFormData) => {
+    // Check for existing person with same name
+    const existing = findExistingPerson(data.firstName, data.lastName);
+    if (existing) {
+      setMatchingPerson(existing);
+      setPendingPersonData(data);
+      setShowDuplicateDialog(true);
+      return;
+    }
+
     try {
       await addPerson(data);
       showToast('Person added successfully!', 'success');
@@ -789,6 +813,33 @@ export function TreeDashboard() {
       personForm.reset();
     } catch {
       showToast('Failed to add person', 'error');
+    }
+  };
+
+  // Handle choosing to use existing person (just close dialogs)
+  const handleUseExistingPerson = () => {
+    showToast(`Using existing person: ${matchingPerson?.firstName} ${matchingPerson?.lastName}`, 'success');
+    setShowDuplicateDialog(false);
+    setShowAddPersonDialog(false);
+    setMatchingPerson(null);
+    setPendingPersonData(null);
+    personForm.reset();
+  };
+
+  // Handle creating new person anyway
+  const handleCreateNewAnyway = async () => {
+    if (!pendingPersonData) return;
+    setShowDuplicateDialog(false);
+    try {
+      await addPerson(pendingPersonData);
+      showToast('Person added successfully!', 'success');
+      setShowAddPersonDialog(false);
+      personForm.reset();
+    } catch {
+      showToast('Failed to add person', 'error');
+    } finally {
+      setMatchingPerson(null);
+      setPendingPersonData(null);
     }
   };
 
@@ -1553,6 +1604,46 @@ export function TreeDashboard() {
                   )}
                 </button>
               </div>
+            </div>
+          </div>
+        </div>
+      )}
+
+      {/* Duplicate Person Dialog */}
+      {showDuplicateDialog && matchingPerson && (
+        <div className="fixed inset-0 bg-black/50 z-50 flex items-center justify-center px-4">
+          <div className="bg-white rounded-2xl shadow-xl p-6 max-w-md w-full">
+            <h2 className="text-xl font-bold text-gray-900 mb-2">Person Already Exists</h2>
+            <p className="text-gray-600 mb-4">
+              A person named <strong>{matchingPerson.firstName} {matchingPerson.lastName}</strong> already exists in the family tree.
+            </p>
+            <p className="text-gray-600 mb-6">
+              Would you like to use the existing person, or create a new one with the same name?
+            </p>
+            <div className="flex gap-3">
+              <button
+                onClick={() => {
+                  setShowDuplicateDialog(false);
+                  setMatchingPerson(null);
+                  setPendingPersonData(null);
+                }}
+                className="flex-1 px-4 py-2 border border-gray-300 rounded-lg hover:bg-gray-50"
+              >
+                Cancel
+              </button>
+              <button
+                onClick={handleUseExistingPerson}
+                className="flex-1 px-4 py-2 bg-emerald-600 text-white rounded-lg hover:bg-emerald-700"
+              >
+                Use Existing
+              </button>
+              <button
+                onClick={handleCreateNewAnyway}
+                disabled={isLoading}
+                className="flex-1 px-4 py-2 bg-amber-600 text-white rounded-lg hover:bg-amber-700 disabled:opacity-50"
+              >
+                {isLoading ? 'Creating...' : 'Create New'}
+              </button>
             </div>
           </div>
         </div>

@@ -11,7 +11,8 @@
     "prisma:migrate": "prisma migrate dev",
     "prisma:studio": "prisma studio",
     "seed": "ts-node prisma/seed.ts",
-    "test": "vitest run"
+    "test": "vitest run",
+    "backup": "ts-node scripts/backup.ts"
   },
   "prisma": {
     "seed": "ts-node prisma/seed.ts"

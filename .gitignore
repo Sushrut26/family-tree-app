@@ -55,3 +55,6 @@ backend/prisma/*.db-journal
 # Temp files
 .tmp/
 tmp/
+
+# Backups (contain sensitive data)
+backend/backups/

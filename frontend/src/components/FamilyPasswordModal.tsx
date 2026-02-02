@@ -5,6 +5,7 @@ import { z } from 'zod';
 import { Eye, EyeOff, Lock, Loader2 } from 'lucide-react';
 import { useAuthStore } from '../stores/authStore';
 import { useUIStore } from '../stores/uiStore';
+import { useTreeStore } from '../stores/treeStore';
 
 const familyPasswordSchema = z.object({
   password: z.string().min(1, 'Family password is required'),
@@ -14,6 +15,7 @@ type FamilyPasswordFormData = z.infer<typeof familyPasswordSchema>;
 
 export function FamilyPasswordModal() {
   const { showFamilyPasswordModal, verifyFamilyPassword, isLoading, error, clearError, logout } = useAuthStore();
+  const { fetchTree } = useTreeStore();
   const { showToast } = useUIStore();
   const [showPassword, setShowPassword] = useState(false);
 
@@ -32,6 +34,9 @@ export function FamilyPasswordModal() {
     clearError();
     try {
       await verifyFamilyPassword(data.password);
+      await fetchTree().catch(() => {
+        // Tree fetch errors handled elsewhere
+      });
       showToast('Family access granted!', 'success');
       reset();
     } catch {

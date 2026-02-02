@@ -36,12 +36,34 @@ const getAuthCookieMaxAge = () => {
   return parseDurationMs(config.jwt.expiry) ?? 7 * 24 * 60 * 60 * 1000;
 };
 
+// Password strength requirements for production
+const PASSWORD_MIN_LENGTH = 8;
+const PASSWORD_REGEX = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).+$/;
+const BCRYPT_ROUNDS = 12;
+
+const validatePassword = (password: string): string | null => {
+  if (password.length < PASSWORD_MIN_LENGTH) {
+    return `Password must be at least ${PASSWORD_MIN_LENGTH} characters`;
+  }
+  if (!PASSWORD_REGEX.test(password)) {
+    return 'Password must contain at least one uppercase letter, one lowercase letter, and one number';
+  }
+  return null;
+};
+
 export const register = async (req: Request, res: Response): Promise<void> => {
   try {
     const { email, password, firstName, lastName } = req.body;
 
     if (!email || !password || !firstName || !lastName) {
       res.status(400).json({ error: 'Email, password, first name, and last name are required' });
+      return;
+    }
+
+    // Validate password strength
+    const passwordError = validatePassword(password);
+    if (passwordError) {
+      res.status(400).json({ error: passwordError });
       return;
     }
 
@@ -55,8 +77,8 @@ export const register = async (req: Request, res: Response): Promise<void> => {
       return;
     }
 
-    // Hash password
-    const passwordHash = await bcrypt.hash(password, 10);
+    // Hash password with strong cost factor
+    const passwordHash = await bcrypt.hash(password, BCRYPT_ROUNDS);
 
     // Create user
     const user = await prisma.user.create({

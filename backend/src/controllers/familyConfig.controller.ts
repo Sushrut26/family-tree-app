@@ -51,6 +51,12 @@ export const verifyFamilyPassword = async (
     const sessionId = randomUUID();
     await createFamilySession(sessionId, req);
 
+    console.log(
+      `[FamilySession] Setting cookie. origin=${req.headers.origin || 'none'} ` +
+      `ua=${req.headers['user-agent'] || 'unknown'} secure=${cookieOptions.secure} ` +
+      `sameSite=${cookieOptions.sameSite} maxAgeMs=${cookieOptions.maxAge}`
+    );
+
     res.cookie('family_session_id', sessionId, cookieOptions);
     res.json({
       success: true,

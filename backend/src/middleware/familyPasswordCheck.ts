@@ -52,6 +52,12 @@ export const familyPasswordCheck = async (
     getCookie(req, 'family_session_id');
 
   if (!familySessionId) {
+    const cookieHeader = req.headers.cookie || 'none';
+    const headerSession = (req.headers['x-family-session'] as string) || 'none';
+    console.warn(
+      `[FamilySession] Missing session. path=${req.path} origin=${req.headers.origin || 'none'} ` +
+      `cookieHeader=${cookieHeader} x-family-session=${headerSession}`
+    );
     res.status(403).json({
       error: 'Family password verification required',
       code: 'FAMILY_PASSWORD_REQUIRED',
@@ -66,6 +72,8 @@ export const familyPasswordCheck = async (
     });
 
     if (!session) {
+      const tokenPreview = `${familySessionId.slice(0, 6)}...${familySessionId.slice(-4)}`;
+      console.warn(`[FamilySession] Invalid session token ${tokenPreview} path=${req.path}`);
       res.status(403).json({
         error: 'Invalid family session',
         code: 'FAMILY_PASSWORD_REQUIRED',
@@ -76,6 +84,7 @@ export const familyPasswordCheck = async (
     // Check if session is expired
     const now = new Date();
     if (now > session.expiresAt) {
+      console.warn(`[FamilySession] Expired session id=${session.id} path=${req.path}`);
       // Session expired, remove it from database
       await prisma.familySession.delete({
         where: { id: session.id },

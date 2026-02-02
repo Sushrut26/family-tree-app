@@ -2,12 +2,25 @@ import dotenv from 'dotenv';
 
 dotenv.config();
 
+// Validate required environment variables
+const requiredEnvVars = ['JWT_SECRET', 'DATABASE_URL'];
+for (const envVar of requiredEnvVars) {
+  if (!process.env[envVar]) {
+    throw new Error(`Missing required environment variable: ${envVar}`);
+  }
+}
+
+// Validate JWT_SECRET strength (minimum 32 characters)
+if (process.env.JWT_SECRET!.length < 32) {
+  throw new Error('JWT_SECRET must be at least 32 characters long');
+}
+
 export const config = {
   port: parseInt(process.env.PORT || '3000', 10),
   nodeEnv: process.env.NODE_ENV || 'development',
-  databaseUrl: process.env.DATABASE_URL || '',
+  databaseUrl: process.env.DATABASE_URL!,
   jwt: {
-    secret: process.env.JWT_SECRET || 'fallback-secret',
+    secret: process.env.JWT_SECRET!,
     expiry: process.env.JWT_EXPIRY || '7d',
   },
   google: {

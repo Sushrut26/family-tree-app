@@ -94,9 +94,10 @@ const authLimiter = rateLimit({
 });
 
 // Rate limiting for family password verification
+// Note: In production, set to max: 5 per hour. For development/testing, use max: 20
 const familyPasswordLimiter = rateLimit({
   windowMs: 60 * 60 * 1000, // 1 hour
-  max: 5, // 5 attempts per hour
+  max: config.nodeEnv === 'production' ? 5 : 20, // 5 per hour in prod, 20 in dev
   message: { error: 'Too many family password attempts, please try again later' },
   standardHeaders: true,
   legacyHeaders: false,

@@ -15,13 +15,20 @@ if (process.env.JWT_SECRET!.length < 32) {
   throw new Error('JWT_SECRET must be at least 32 characters long');
 }
 
+// Log JWT_EXPIRY for debugging
+const jwtExpiry = process.env.JWT_EXPIRY || '7d';
+console.log('JWT_EXPIRY raw value:', JSON.stringify(jwtExpiry));
+console.log('JWT_EXPIRY length:', jwtExpiry.length);
+console.log('JWT_EXPIRY charCodes:', jwtExpiry.split('').map(c => c.charCodeAt(0)));
+console.log('JWT_EXPIRY trimmed:', JSON.stringify(jwtExpiry.trim()));
+
 export const config = {
   port: parseInt(process.env.PORT || '3000', 10),
   nodeEnv: process.env.NODE_ENV || 'development',
   databaseUrl: process.env.DATABASE_URL!,
   jwt: {
     secret: process.env.JWT_SECRET!,
-    expiry: process.env.JWT_EXPIRY || '7d',
+    expiry: jwtExpiry.trim(),
   },
   google: {
     clientId: process.env.GOOGLE_CLIENT_ID || '',

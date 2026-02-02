@@ -172,7 +172,8 @@ export class BranchOwnershipService {
           select: {
             id: true,
             email: true,
-            fullName: true,
+            firstName: true,
+          lastName: true,
           },
         },
       },
@@ -190,7 +191,8 @@ export class BranchOwnershipService {
           select: {
             id: true,
             email: true,
-            fullName: true,
+            firstName: true,
+          lastName: true,
           },
         },
         person: true,
@@ -208,7 +210,8 @@ export class BranchOwnershipService {
           select: {
             id: true,
             email: true,
-            fullName: true,
+            firstName: true,
+          lastName: true,
           },
         },
         person: true,

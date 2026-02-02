@@ -6,7 +6,8 @@ export interface ExportData {
   exportedBy: {
     id: string;
     email: string;
-    fullName: string;
+    firstName: string;
+    lastName: string;
   };
   persons: any[];
   relationships: any[];
@@ -29,7 +30,8 @@ export class ExportService {
       select: {
         id: true,
         email: true,
-        fullName: true,
+        firstName: true,
+          lastName: true,
       },
     });
 
@@ -44,7 +46,8 @@ export class ExportService {
           select: {
             id: true,
             email: true,
-            fullName: true,
+            firstName: true,
+          lastName: true,
           },
         },
       },
@@ -60,7 +63,6 @@ export class ExportService {
           select: {
             id: true,
             firstName: true,
-            middleName: true,
             lastName: true,
           },
         },
@@ -68,7 +70,6 @@ export class ExportService {
           select: {
             id: true,
             firstName: true,
-            middleName: true,
             lastName: true,
           },
         },
@@ -76,7 +77,8 @@ export class ExportService {
           select: {
             id: true,
             email: true,
-            fullName: true,
+            firstName: true,
+          lastName: true,
           },
         },
       },
@@ -100,11 +102,8 @@ export class ExportService {
       persons: persons.map((person) => ({
         id: person.id,
         firstName: person.firstName,
-        middleName: person.middleName,
         lastName: person.lastName,
-        fullName: [person.firstName, person.middleName, person.lastName]
-          .filter(Boolean)
-          .join(' '),
+        fullName: [person.firstName, person.lastName].join(' '),
         createdBy: person.createdBy,
         createdAt: person.createdAt.toISOString(),
         updatedAt: person.updatedAt.toISOString(),
@@ -146,7 +145,8 @@ export class ExportService {
       select: {
         id: true,
         email: true,
-        fullName: true,
+        firstName: true,
+          lastName: true,
       },
     });
 
@@ -164,7 +164,8 @@ export class ExportService {
               select: {
                 id: true,
                 email: true,
-                fullName: true,
+                firstName: true,
+          lastName: true,
               },
             },
           },
@@ -188,7 +189,6 @@ export class ExportService {
           select: {
             id: true,
             firstName: true,
-            middleName: true,
             lastName: true,
           },
         },
@@ -196,7 +196,6 @@ export class ExportService {
           select: {
             id: true,
             firstName: true,
-            middleName: true,
             lastName: true,
           },
         },
@@ -204,7 +203,8 @@ export class ExportService {
           select: {
             id: true,
             email: true,
-            fullName: true,
+            firstName: true,
+          lastName: true,
           },
         },
       },
@@ -221,11 +221,8 @@ export class ExportService {
       persons: persons.map((person) => ({
         id: person.id,
         firstName: person.firstName,
-        middleName: person.middleName,
         lastName: person.lastName,
-        fullName: [person.firstName, person.middleName, person.lastName]
-          .filter(Boolean)
-          .join(' '),
+        fullName: [person.firstName, person.lastName].join(' '),
         createdBy: person.createdBy,
         createdAt: person.createdAt.toISOString(),
         updatedAt: person.updatedAt.toISOString(),

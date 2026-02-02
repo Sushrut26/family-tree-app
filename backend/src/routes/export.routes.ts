@@ -1,13 +1,11 @@
 import { Router } from 'express';
 import { exportTree, getExportPreview } from '../controllers/export.controller';
 import { authenticate } from '../middleware/auth';
-import { familyPasswordCheck } from '../middleware/familyPasswordCheck';
 
 const router = Router();
 
-// All export routes require authentication and family password verification
+// All export routes require authentication
 router.use(authenticate);
-router.use(familyPasswordCheck);
 
 // Get export preview (metadata and sample data)
 router.get('/preview', getExportPreview);

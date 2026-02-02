@@ -105,11 +105,17 @@ if (config.google.clientId && config.google.clientSecret) {
 
           // Create new user
           if (email) {
+            const displayName = profile.displayName || email.split('@')[0];
+            const nameParts = displayName.split(' ');
+            const firstName = nameParts[0] || 'User';
+            const lastName = nameParts.slice(1).join(' ') || firstName;
+
             user = await prisma.user.create({
               data: {
                 email: email.toLowerCase(),
                 googleId: profile.id,
-                fullName: profile.displayName || email.split('@')[0],
+                firstName,
+                lastName,
                 role: 'USER',
               },
             });

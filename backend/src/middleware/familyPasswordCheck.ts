@@ -15,6 +15,7 @@ const EXEMPT_ROUTES = [
   '/api/auth/me',
   '/api/family-config/verify',
   '/api/health',
+  '/health',
 ];
 
 export const familyPasswordCheck = (
@@ -22,6 +23,11 @@ export const familyPasswordCheck = (
   res: Response,
   next: NextFunction
 ): void => {
+  // Allow preflight requests through
+  if (req.method === 'OPTIONS') {
+    return next();
+  }
+
   // Check if route is exempt
   if (EXEMPT_ROUTES.some(route => req.path.startsWith(route))) {
     return next();

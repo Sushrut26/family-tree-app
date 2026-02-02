@@ -1,6 +1,6 @@
 import { Response } from 'express';
 import { AuthRequest } from '../middleware/auth';
-import { personService, CreatePersonDto, UpdatePersonDto } from '../services/person.service';
+import { personService, CreatePersonDto, UpdatePersonDto, BulkImportEntry } from '../services/person.service';
 import { getStringParam } from '../utils/requestHelpers';
 
 export const getAllPersons = async (
@@ -46,7 +46,7 @@ export const createPerson = async (
       return;
     }
 
-    const { firstName, middleName, lastName } = req.body;
+    const { firstName, lastName } = req.body;
 
     if (!firstName || !lastName) {
       res.status(400).json({ error: 'First name and last name are required' });
@@ -55,7 +55,6 @@ export const createPerson = async (
 
     const createPersonDto: CreatePersonDto = {
       firstName,
-      middleName,
       lastName,
     };
 
@@ -82,11 +81,10 @@ export const updatePerson = async (
     }
 
     const id = getStringParam(req.params.id);
-    const { firstName, middleName, lastName } = req.body;
+    const { firstName, lastName } = req.body;
 
     const updatePersonDto: UpdatePersonDto = {
       firstName,
-      middleName,
       lastName,
     };
 
@@ -182,5 +180,55 @@ export const checkEditPermission = async (
   } catch (error) {
     console.error('Check edit permission error:', error);
     res.status(500).json({ error: 'Failed to check permission' });
+  }
+};
+
+export const bulkImport = async (
+  req: AuthRequest,
+  res: Response
+): Promise<void> => {
+  try {
+    if (!req.user) {
+      res.status(401).json({ error: 'Authentication required' });
+      return;
+    }
+
+    const { entries } = req.body as { entries: BulkImportEntry[] };
+
+    if (!entries || !Array.isArray(entries) || entries.length === 0) {
+      res.status(400).json({ error: 'Entries array is required and must not be empty' });
+      return;
+    }
+
+    // Validate each entry
+    for (let i = 0; i < entries.length; i++) {
+      const entry = entries[i];
+      if (!entry.firstName || !entry.lastName) {
+        res.status(400).json({ error: `Entry ${i + 1}: First name and last name are required` });
+        return;
+      }
+      // If relationship info is partially filled, validate all are present
+      if ((entry.relatedFirstName || entry.relatedLastName || entry.relationshipType) &&
+          (!entry.relatedFirstName || !entry.relatedLastName || !entry.relationshipType)) {
+        res.status(400).json({
+          error: `Entry ${i + 1}: If specifying a relationship, all fields (related first name, related last name, relationship type) are required`
+        });
+        return;
+      }
+    }
+
+    const result = await personService.bulkCreatePersonsWithRelationships(
+      entries,
+      req.user.id
+    );
+
+    res.status(201).json({
+      message: `Successfully created ${result.persons.length} persons and ${result.relationshipsCreated} relationships`,
+      persons: result.persons,
+      relationshipsCreated: result.relationshipsCreated,
+    });
+  } catch (error) {
+    console.error('Bulk import error:', error);
+    res.status(500).json({ error: 'Failed to bulk import persons' });
   }
 };

@@ -8,13 +8,11 @@ import {
   getRelationshipStats,
 } from '../controllers/relationship.controller';
 import { authenticate } from '../middleware/auth';
-import { familyPasswordCheck } from '../middleware/familyPasswordCheck';
 
 const router = Router();
 
-// All relationship routes require authentication and family password verification
+// All relationship routes require authentication
 router.use(authenticate);
-router.use(familyPasswordCheck);
 
 // Get all relationships
 router.get('/', getAllRelationships);

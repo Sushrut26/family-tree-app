@@ -91,7 +91,8 @@ export const createRelationship = async (
 
     const relationship = await relationshipService.createRelationship(
       createRelationshipDto,
-      req.user.id
+      req.user.id,
+      req.user.role === 'ADMIN'
     );
 
     res.status(201).json(relationship);
@@ -101,9 +102,10 @@ export const createRelationship = async (
         error.message.includes('not found') ||
         error.message.includes('already exists') ||
         error.message.includes('cycle') ||
-        error.message.includes('themselves')
+        error.message.includes('themselves') ||
+        error.message.includes('permission')
       ) {
-        res.status(400).json({ error: error.message });
+        res.status(error.message.includes('permission') ? 403 : 400).json({ error: error.message });
         return;
       }
     }
@@ -117,15 +119,30 @@ export const deleteRelationship = async (
   res: Response
 ): Promise<void> => {
   try {
+    if (!req.user) {
+      res.status(401).json({ error: 'Authentication required' });
+      return;
+    }
+
     const id = getStringParam(req.params.id);
 
-    await relationshipService.deleteRelationship(id);
+    await relationshipService.deleteRelationship(
+      id,
+      req.user.id,
+      req.user.role === 'ADMIN'
+    );
 
     res.json({ message: 'Relationship deleted successfully' });
   } catch (error) {
-    if (error instanceof Error && error.message.includes('not found')) {
-      res.status(404).json({ error: error.message });
-      return;
+    if (error instanceof Error) {
+      if (error.message.includes('not found')) {
+        res.status(404).json({ error: error.message });
+        return;
+      }
+      if (error.message.includes('permission')) {
+        res.status(403).json({ error: error.message });
+        return;
+      }
     }
     console.error('Delete relationship error:', error);
     res.status(500).json({ error: 'Failed to delete relationship' });

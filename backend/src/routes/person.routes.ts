@@ -7,15 +7,14 @@ import {
   deletePerson,
   getUserEditablePersons,
   checkEditPermission,
+  bulkImport,
 } from '../controllers/person.controller';
 import { authenticate } from '../middleware/auth';
-import { familyPasswordCheck } from '../middleware/familyPasswordCheck';
 
 const router = Router();
 
-// All person routes require authentication and family password verification
+// All person routes require authentication
 router.use(authenticate);
-router.use(familyPasswordCheck);
 
 // Get all persons (visible to all authenticated users)
 router.get('/', getAllPersons);
@@ -31,6 +30,9 @@ router.get('/:id/can-edit', checkEditPermission);
 
 // Create a new person (auto-creates branch ownership)
 router.post('/', createPerson);
+
+// Bulk import persons with relationships
+router.post('/bulk-import', bulkImport);
 
 // Update a person (ownership check applies)
 router.put('/:id', updatePerson);

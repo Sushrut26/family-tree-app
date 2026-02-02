@@ -22,7 +22,8 @@ async function main() {
       data: {
         email: adminEmail,
         passwordHash: adminPasswordHash,
-        fullName: 'Admin User',
+        firstName: 'Admin',
+        lastName: 'User',
         role: 'ADMIN',
       },
     });

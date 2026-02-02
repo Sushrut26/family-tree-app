@@ -7,10 +7,10 @@ import { AuthRequest } from '../middleware/auth';
 
 export const register = async (req: Request, res: Response): Promise<void> => {
   try {
-    const { email, password, fullName } = req.body;
+    const { email, password, firstName, lastName } = req.body;
 
-    if (!email || !password || !fullName) {
-      res.status(400).json({ error: 'Email, password, and full name are required' });
+    if (!email || !password || !firstName || !lastName) {
+      res.status(400).json({ error: 'Email, password, first name, and last name are required' });
       return;
     }
 
@@ -32,13 +32,15 @@ export const register = async (req: Request, res: Response): Promise<void> => {
       data: {
         email: email.toLowerCase(),
         passwordHash,
-        fullName,
+        firstName,
+        lastName,
         role: 'USER',
       },
       select: {
         id: true,
         email: true,
-        fullName: true,
+        firstName: true,
+        lastName: true,
         role: true,
         createdAt: true,
       },
@@ -112,7 +114,8 @@ export const login = async (req: Request, res: Response): Promise<void> => {
       user: {
         id: user.id,
         email: user.email,
-        fullName: user.fullName,
+        firstName: user.firstName,
+        lastName: user.lastName,
         role: user.role,
       },
       token,
@@ -135,7 +138,8 @@ export const getCurrentUser = async (req: AuthRequest, res: Response): Promise<v
       select: {
         id: true,
         email: true,
-        fullName: true,
+        firstName: true,
+        lastName: true,
         role: true,
         createdAt: true,
         lastLogin: true,
@@ -182,5 +186,80 @@ export const googleCallback = async (req: Request, res: Response): Promise<void>
   } catch (error) {
     console.error('Google callback error:', error);
     res.redirect(`${config.frontendUrl}/login?error=auth_failed`);
+  }
+};
+
+// Admin-only endpoint: Get all users
+export const getAllUsers = async (req: AuthRequest, res: Response): Promise<void> => {
+  try {
+    if (!req.user || req.user.role !== 'ADMIN') {
+      res.status(403).json({ error: 'Admin access required' });
+      return;
+    }
+
+    const users = await prisma.user.findMany({
+      select: {
+        id: true,
+        email: true,
+        firstName: true,
+        lastName: true,
+        role: true,
+        createdAt: true,
+        lastLogin: true,
+      },
+      orderBy: {
+        createdAt: 'desc',
+      },
+    });
+
+    res.json(users);
+  } catch (error) {
+    console.error('Get all users error:', error);
+    res.status(500).json({ error: 'Failed to get users' });
+  }
+};
+
+// Admin-only endpoint: Update user role
+export const updateUserRole = async (req: AuthRequest, res: Response): Promise<void> => {
+  try {
+    if (!req.user || req.user.role !== 'ADMIN') {
+      res.status(403).json({ error: 'Admin access required' });
+      return;
+    }
+
+    const userId = req.params.id as string;
+    const { role } = req.body;
+
+    if (!role || !['USER', 'ADMIN'].includes(role)) {
+      res.status(400).json({ error: 'Valid role is required (USER or ADMIN)' });
+      return;
+    }
+
+    // Prevent self-demotion
+    if (userId === req.user.id && role === 'USER') {
+      res.status(400).json({ error: 'Cannot demote yourself' });
+      return;
+    }
+
+    const user = await prisma.user.update({
+      where: { id: userId },
+      data: { role },
+      select: {
+        id: true,
+        email: true,
+        firstName: true,
+        lastName: true,
+        role: true,
+        createdAt: true,
+      },
+    });
+
+    res.json({
+      message: 'User role updated successfully',
+      user,
+    });
+  } catch (error) {
+    console.error('Update user role error:', error);
+    res.status(500).json({ error: 'Failed to update user role' });
   }
 };

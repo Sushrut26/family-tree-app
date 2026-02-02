@@ -73,8 +73,15 @@ const familyPasswordLimiter = rateLimit({
 app.use(generalLimiter);
 
 // CORS configuration
+// Log CORS config at startup for debugging
+console.log('CORS Config - Frontend URL:', config.frontendUrl);
+console.log('CORS Config - Node ENV:', config.nodeEnv);
+
 app.use(cors({
   origin: function(origin, callback) {
+    // Log every CORS request for debugging
+    console.log('CORS Request - Origin:', origin, '| Expected:', config.frontendUrl, '| Match:', origin === config.frontendUrl);
+
     // In development, allow localhost origins
     if (config.nodeEnv === 'development') {
       if (!origin || origin.startsWith('http://localhost:')) {
@@ -87,6 +94,12 @@ app.use(cors({
       return callback(null, true);
     }
 
+    // Also allow requests with no origin (like health checks, Postman, etc.)
+    if (!origin) {
+      return callback(null, true);
+    }
+
+    console.log('CORS Rejected - Origin:', origin);
     callback(new Error('Not allowed by CORS'));
   },
   credentials: true,

@@ -12,7 +12,7 @@ export const exportTree = async (
       return;
     }
 
-    const { format = 'json', scope = 'full' } = req.query;
+    const { format = 'json', scope = 'user-only' } = req.query;
 
     if (format !== 'json') {
       res.status(400).json({
@@ -23,12 +23,18 @@ export const exportTree = async (
 
     let exportData;
 
-    if (scope === 'user-only') {
-      // Export only user's owned branches
-      exportData = await exportService.exportUserBranches(req.user.id);
-    } else {
-      // Export entire tree (default)
+    if (scope === 'full') {
+      // Full export restricted to admins only
+      if (req.user.role !== 'ADMIN') {
+        res.status(403).json({
+          error: 'Full tree export is restricted to administrators',
+        });
+        return;
+      }
       exportData = await exportService.exportAsJSON(req.user.id);
+    } else {
+      // Default: export only user's owned branches
+      exportData = await exportService.exportUserBranches(req.user.id);
     }
 
     const filename = exportService.generateFilename(format as string);
@@ -54,18 +60,29 @@ export const getExportPreview = async (
       return;
     }
 
-    // Get basic stats for export preview
-    const exportData = await exportService.exportAsJSON(req.user.id);
+    // Non-admins only see their own data in preview
+    const exportData = req.user.role === 'ADMIN'
+      ? await exportService.exportAsJSON(req.user.id)
+      : await exportService.exportUserBranches(req.user.id);
 
     // Return just metadata without full data
     res.json({
       metadata: exportData.metadata,
       version: exportData.version,
-      exportedBy: exportData.exportedBy,
+      exportedBy: {
+        id: exportData.exportedBy.id,
+        firstName: exportData.exportedBy.firstName,
+        lastName: exportData.exportedBy.lastName,
+        // Don't expose email in preview
+      },
       preview: {
         personsCount: exportData.persons.length,
         relationshipsCount: exportData.relationships.length,
-        samplePersons: exportData.persons.slice(0, 5),
+        samplePersons: exportData.persons.slice(0, 5).map(p => ({
+          id: p.id,
+          firstName: p.firstName,
+          lastName: p.lastName,
+        })),
         sampleRelationships: exportData.relationships.slice(0, 5),
       },
     });

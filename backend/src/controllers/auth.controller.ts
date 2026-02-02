@@ -110,6 +110,11 @@ export const register = async (req: Request, res: Response): Promise<void> => {
       ...getAuthCookieOptions(),
       maxAge: getAuthCookieMaxAge(),
     });
+    console.log(
+      `[Auth] Set auth_token cookie. origin=${req.headers.origin || 'none'} ` +
+      `ua=${req.headers['user-agent'] || 'unknown'} secure=${getAuthCookieOptions().secure} ` +
+      `sameSite=${getAuthCookieOptions().sameSite} maxAgeMs=${getAuthCookieMaxAge()}`
+    );
 
     res.status(201).json({
       message: 'User registered successfully',

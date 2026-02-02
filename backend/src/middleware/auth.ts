@@ -29,6 +29,11 @@ export const authenticate = async (
     const token = bearerToken || cookieToken;
 
     if (!token) {
+      const cookieHeader = req.headers.cookie || 'none';
+      const origin = req.headers.origin || 'none';
+      console.warn(
+        `[Auth] Missing token. path=${req.path} origin=${origin} cookieHeader=${cookieHeader}`
+      );
       res.status(401).json({ error: 'No token provided' });
       return;
     }
@@ -46,6 +51,7 @@ export const authenticate = async (
     });
 
     if (!user) {
+      console.warn(`[Auth] Token valid but user not found. path=${req.path}`);
       res.status(401).json({ error: 'Invalid token' });
       return;
     }
@@ -54,6 +60,7 @@ export const authenticate = async (
     next();
   } catch (error) {
     if (error instanceof jwt.JsonWebTokenError) {
+      console.warn(`[Auth] Invalid token. path=${req.path}`);
       res.status(401).json({ error: 'Invalid token' });
       return;
     }

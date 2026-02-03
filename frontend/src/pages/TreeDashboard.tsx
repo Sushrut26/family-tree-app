@@ -601,13 +601,6 @@ export function TreeDashboard() {
   const [matchingPerson, setMatchingPerson] = useState<Person | null>(null);
   const [showDuplicateDialog, setShowDuplicateDialog] = useState(false);
   const [pendingPersonData, setPendingPersonData] = useState<PersonFormData | null>(null);
-  const editablePersons = useMemo(
-    () =>
-      user?.role === 'ADMIN'
-        ? persons
-        : persons.filter((person) => person.createdById === user?.id),
-    [persons, user]
-  );
   const relationshipPersons = useMemo(() => persons, [persons]);
   const sidebarButtonClass =
     'w-full flex items-center gap-3 px-4 py-3 text-left bg-emerald-600 text-white rounded-lg hover:bg-emerald-700 transition-colors disabled:opacity-50 disabled:cursor-not-allowed';

@@ -14,6 +14,7 @@ interface AuthState {
   // State
   user: User | null;
   token: string | null;
+  familySessionId: string | null;
   showFamilyPasswordModal: boolean;
   isLoading: boolean;
   error: string | null;
@@ -33,6 +34,7 @@ export const useAuthStore = create<AuthState>()(
       // Initial state
       user: null,
       token: null,
+      familySessionId: null,
       showFamilyPasswordModal: false,
       isLoading: false,
       error: null,
@@ -89,6 +91,7 @@ export const useAuthStore = create<AuthState>()(
         set({
           user: null,
           token: null,
+          familySessionId: null,
           showFamilyPasswordModal: false,
           error: null,
         });
@@ -100,7 +103,7 @@ export const useAuthStore = create<AuthState>()(
 
         try {
           const request: FamilyPasswordRequest = { password };
-          await api.post<FamilyPasswordResponse>(
+          const response = await api.post<FamilyPasswordResponse>(
             '/family-config/verify',
             request
           );
@@ -108,6 +111,7 @@ export const useAuthStore = create<AuthState>()(
           set({
             showFamilyPasswordModal: false,
             isLoading: false,
+            familySessionId: response.data.sessionId || null,
           });
         } catch (error) {
           const message = getErrorMessage(error);
@@ -132,6 +136,7 @@ export const useAuthStore = create<AuthState>()(
       partialize: (state) => ({
         user: state.user,
         token: state.token,
+        familySessionId: state.familySessionId,
       }),
     }
   )

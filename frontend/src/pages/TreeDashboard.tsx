@@ -608,6 +608,7 @@ export function TreeDashboard() {
         : persons.filter((person) => person.createdById === user?.id),
     [persons, user]
   );
+  const relationshipPersons = useMemo(() => persons, [persons]);
   const sidebarButtonClass =
     'w-full flex items-center gap-3 px-4 py-3 text-left bg-emerald-600 text-white rounded-lg hover:bg-emerald-700 transition-colors disabled:opacity-50 disabled:cursor-not-allowed';
 
@@ -1104,7 +1105,7 @@ export function TreeDashboard() {
                 relationshipForm.reset();
                 setShowAddRelationshipDialog(true);
               }}
-              disabled={editablePersons.length < 2}
+              disabled={relationshipPersons.length < 2}
               className={sidebarButtonClass}
             >
               <LinkIcon size={20} />
@@ -1410,7 +1411,7 @@ export function TreeDashboard() {
                   className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-emerald-500 focus:border-transparent"
                 >
                   <option value="">Select a person</option>
-                  {editablePersons.map((person) => (
+                  {relationshipPersons.map((person) => (
                     <option key={person.id} value={person.id}>
                       {person.firstName} {person.lastName}
                     </option>
@@ -1438,7 +1439,7 @@ export function TreeDashboard() {
                   className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-emerald-500 focus:border-transparent"
                 >
                   <option value="">Select a person</option>
-                  {editablePersons.map((person) => (
+                  {relationshipPersons.map((person) => (
                     <option key={person.id} value={person.id}>
                       {person.firstName} {person.lastName}
                     </option>

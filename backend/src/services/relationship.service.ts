@@ -72,19 +72,15 @@ export class RelationshipService {
       const [parent, child] = await Promise.all([
         prisma.person.findUnique({
           where: { id: parentId },
-          select: { createdById: true },
+          select: { id: true },
         }),
         prisma.person.findUnique({
           where: { id: childId },
-          select: { createdById: true },
+          select: { id: true },
         }),
       ]);
 
       if (!parent || !child) {
-        return;
-      }
-
-      if (parent.createdById !== userId || child.createdById !== userId) {
         return;
       }
     }
@@ -239,11 +235,8 @@ export class RelationshipService {
     }
 
     if (!isAdmin) {
-      const createdPerson1 = person1.createdById === userId;
-      const createdPerson2 = person2.createdById === userId;
-      if (!createdPerson1 || !createdPerson2) {
-        throw new Error('You do not have permission to relate these persons. You must have created both of them.');
-      }
+      // Non-admins can create relationships between any existing persons.
+      // Edit/delete permissions remain restricted to creator via deleteRelationship.
     }
 
     // Prevent self-relationships

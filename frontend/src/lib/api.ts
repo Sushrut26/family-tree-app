@@ -22,10 +22,16 @@ api.interceptors.request.use(
       try {
         const raw = localStorage.getItem('auth-storage');
         if (raw) {
-          const parsed = JSON.parse(raw) as { state?: { token?: string | null } };
+          const parsed = JSON.parse(raw) as {
+            state?: { token?: string | null; familySessionId?: string | null };
+          };
           const token = parsed?.state?.token;
+          const familySessionId = parsed?.state?.familySessionId;
           if (token && !config.headers.Authorization) {
             config.headers.Authorization = `Bearer ${token}`;
+          }
+          if (familySessionId && !config.headers['X-Family-Session']) {
+            config.headers['X-Family-Session'] = familySessionId;
           }
         }
       } catch {

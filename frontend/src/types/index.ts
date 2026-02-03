@@ -41,6 +41,7 @@ export interface FamilyPasswordRequest {
 export interface FamilyPasswordResponse {
   success: boolean;
   message: string;
+  sessionId?: string;
 }
 
 export interface UpdateFamilyPasswordRequest {

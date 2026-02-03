@@ -61,6 +61,7 @@ export const verifyFamilyPassword = async (
     res.json({
       success: true,
       message: 'Family password verified',
+      sessionId,
     });
   } catch (error) {
     console.error('Family password verification error:', error);

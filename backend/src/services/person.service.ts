@@ -293,19 +293,15 @@ export class PersonService {
           const [parent, child] = await Promise.all([
             tx.person.findUnique({
               where: { id: parentId },
-              select: { createdById: true },
+              select: { id: true },
             }),
             tx.person.findUnique({
               where: { id: childId },
-              select: { createdById: true },
+              select: { id: true },
             }),
           ]);
 
           if (!parent || !child) {
-            return;
-          }
-
-          if (parent.createdById !== userId || child.createdById !== userId) {
             return;
           }
         }
@@ -335,7 +331,6 @@ export class PersonService {
 
       // First, get all existing persons to check for matches
       const existingPersons = await tx.person.findMany({
-        where: isAdmin ? undefined : { createdById: userId },
         select: { id: true, firstName: true, lastName: true },
       });
 

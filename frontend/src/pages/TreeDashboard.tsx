@@ -54,15 +54,27 @@ const personSchema = z.object({
 const relationshipSchema = z.object({
   person1Id: z.string().min(1, 'Select the first person'),
   person2Id: z.string().min(1, 'Select the second person'),
-  type: z.enum(['PARENT', 'SPOUSE', 'SIBLING']),
+  type: z.enum(['PARENT', 'SPOUSE', 'SIBLING', 'CHILD']),
 });
 
 type PersonFormData = z.infer<typeof personSchema>;
 type RelationshipFormData = z.infer<typeof relationshipSchema>;
 
 // Custom node component for persons
-function PersonNode({ data }: { data: { person: Person; onEdit: () => void; onDelete: () => void; canEdit: boolean } }) {
-  const { person, onEdit, onDelete, canEdit } = data;
+function PersonNode({
+  data,
+}: {
+  data: {
+    person: Person;
+    onEdit: () => void;
+    onDelete: () => void;
+    canEdit: boolean;
+    canCollapse: boolean;
+    isCollapsed: boolean;
+    onToggleCollapse: () => void;
+  };
+}) {
+  const { person, onEdit, onDelete, canEdit, canCollapse, isCollapsed, onToggleCollapse } = data;
 
   return (
     <div className="bg-white rounded-xl shadow-lg border-2 border-emerald-200 p-4 min-w-[180px] hover:shadow-xl transition-shadow">
@@ -81,6 +93,15 @@ function PersonNode({ data }: { data: { person: Person; onEdit: () => void; onDe
             {person.firstName} {person.lastName}
           </p>
         </div>
+        {canCollapse && (
+          <button
+            onClick={onToggleCollapse}
+            className="flex items-center justify-center w-6 h-6 rounded-full text-emerald-700 hover:bg-emerald-100"
+            title={isCollapsed ? 'Expand branch' : 'Collapse branch'}
+          >
+            {isCollapsed ? <Plus size={14} /> : <Minus size={14} />}
+          </button>
+        )}
       </div>
       {canEdit && (
         <div className="flex gap-2 mt-3 pt-3 border-t border-gray-100">
@@ -195,7 +216,8 @@ const GROUP_GAP = 0.3;
 
 const computeHierarchyPositions = (
   persons: Person[],
-  relationships: Relationship[]
+  relationships: Relationship[],
+  rootId?: string | null
 ): Map<string, { x: number; y: number }> => {
   const positions = new Map<string, { x: number; y: number }>();
   if (persons.length === 0) return positions;
@@ -557,7 +579,78 @@ const computeHierarchyPositions = (
     }
   }
 
+  if (positions.size > 0) {
+    const xs = [...positions.values()].map((pos) => pos.x);
+    const minX = Math.min(...xs);
+    const maxX = Math.max(...xs);
+    const centerX = rootId && positions.has(rootId)
+      ? positions.get(rootId)!.x
+      : (minX + maxX) / 2;
+    const shiftX = -centerX;
+    for (const [id, pos] of positions.entries()) {
+      positions.set(id, { x: pos.x + shiftX, y: pos.y });
+    }
+  }
+
   return positions;
+};
+
+const buildChildMap = (relationships: Relationship[]) => {
+  const map = new Map<string, Set<string>>();
+  for (const rel of relationships) {
+    if (rel.relationshipType !== 'PARENT') continue;
+    const set = map.get(rel.person1Id) || new Set<string>();
+    set.add(rel.person2Id);
+    map.set(rel.person1Id, set);
+  }
+  return map;
+};
+
+const collectDescendants = (
+  childMap: Map<string, Set<string>>,
+  rootId: string
+): Set<string> => {
+  const descendants = new Set<string>();
+  const queue: string[] = [...(childMap.get(rootId) || [])];
+  while (queue.length > 0) {
+    const current = queue.shift()!;
+    if (descendants.has(current)) continue;
+    descendants.add(current);
+    const children = childMap.get(current);
+    if (children) {
+      for (const child of children) {
+        if (!descendants.has(child)) queue.push(child);
+      }
+    }
+  }
+  return descendants;
+};
+
+const computeVisibleGraph = (
+  persons: Person[],
+  relationships: Relationship[],
+  collapsedIds: Set<string>
+) => {
+  if (collapsedIds.size === 0) {
+    return { visiblePersons: persons, visibleRelationships: relationships };
+  }
+
+  const childMap = buildChildMap(relationships);
+  const hidden = new Set<string>();
+  for (const id of collapsedIds) {
+    const descendants = collectDescendants(childMap, id);
+    for (const d of descendants) hidden.add(d);
+  }
+
+  const visiblePersons = persons.filter((p) => !hidden.has(p.id));
+  const visiblePersonIds = new Set(visiblePersons.map((p) => p.id));
+  const visibleRelationships = relationships.filter(
+    (rel) =>
+      visiblePersonIds.has(rel.person1Id) &&
+      visiblePersonIds.has(rel.person2Id)
+  );
+
+  return { visiblePersons, visibleRelationships };
 };
 
 export function TreeDashboard() {
@@ -601,7 +694,18 @@ export function TreeDashboard() {
   const [matchingPerson, setMatchingPerson] = useState<Person | null>(null);
   const [showDuplicateDialog, setShowDuplicateDialog] = useState(false);
   const [pendingPersonData, setPendingPersonData] = useState<PersonFormData | null>(null);
+  const [collapsedIds, setCollapsedIds] = useState<Set<string>>(new Set());
+  const [rootFocusId, setRootFocusId] = useState<string | null>(null);
   const relationshipPersons = useMemo(() => persons, [persons]);
+  const childMap = useMemo(() => buildChildMap(relationships), [relationships]);
+  const { visiblePersons, visibleRelationships } = useMemo(
+    () => computeVisibleGraph(persons, relationships, collapsedIds),
+    [persons, relationships, collapsedIds]
+  );
+  const positionMap = useMemo(
+    () => computeHierarchyPositions(visiblePersons, visibleRelationships, rootFocusId),
+    [visiblePersons, visibleRelationships, rootFocusId]
+  );
   const sidebarButtonClass =
     'w-full flex items-center gap-3 px-4 py-3 text-left bg-emerald-600 text-white rounded-lg hover:bg-emerald-700 transition-colors disabled:opacity-50 disabled:cursor-not-allowed';
 
@@ -634,15 +738,26 @@ export function TreeDashboard() {
 
   // Convert persons and relationships to nodes and edges
   useEffect(() => {
-    const positionMap = computeHierarchyPositions(persons, relationships);
-
-    const newNodes: Node[] = persons.map((person) => ({
+    const newNodes: Node[] = visiblePersons.map((person) => ({
       id: person.id,
       type: 'person',
       position: positionMap.get(person.id) || { x: 0, y: 0 },
       data: {
         person,
         canEdit: person.createdById === user?.id || user?.role === 'ADMIN',
+        canCollapse: (childMap.get(person.id)?.size || 0) > 0,
+        isCollapsed: collapsedIds.has(person.id),
+        onToggleCollapse: () => {
+          setCollapsedIds((prev) => {
+            const next = new Set(prev);
+            if (next.has(person.id)) {
+              next.delete(person.id);
+            } else {
+              next.add(person.id);
+            }
+            return next;
+          });
+        },
         onEdit: () => {
           setEditingPerson(person);
           personForm.reset({
@@ -659,7 +774,7 @@ export function TreeDashboard() {
     }));
 
     const parentRelsByChild = new Map<string, Relationship[]>();
-    for (const rel of relationships) {
+    for (const rel of visibleRelationships) {
       if (rel.relationshipType === 'PARENT') {
         const list = parentRelsByChild.get(rel.person2Id) || [];
         list.push(rel);
@@ -670,7 +785,7 @@ export function TreeDashboard() {
     const mergedChildren = new Set<string>();
     const newEdges: Edge[] = [];
 
-    for (const rel of relationships) {
+    for (const rel of visibleRelationships) {
       if (rel.relationshipType === 'PARENT') {
         const parentRels = parentRelsByChild.get(rel.person2Id) || [];
         if (parentRels.length === 2) {
@@ -729,7 +844,7 @@ export function TreeDashboard() {
         id: rel.id,
         source: rel.person1Id,
         target: rel.person2Id,
-        type: 'smoothstep',
+        type: rel.relationshipType === 'SPOUSE' || rel.relationshipType === 'SIBLING' ? 'straight' : 'smoothstep',
         animated: false,
         style,
         sourceHandle: 'right',
@@ -739,7 +854,19 @@ export function TreeDashboard() {
 
     setNodes(newNodes);
     setEdges(newEdges);
-  }, [persons, relationships, user, setNodes, setEdges, personForm, setShowEditPersonDialog, setShowDeleteConfirmDialog]);
+  }, [
+    visiblePersons,
+    visibleRelationships,
+    positionMap,
+    user,
+    childMap,
+    collapsedIds,
+    setNodes,
+    setEdges,
+    personForm,
+    setShowEditPersonDialog,
+    setShowDeleteConfirmDialog,
+  ]);
 
   // Filter nodes by search
   const filteredNodes = useMemo(() => {
@@ -769,14 +896,27 @@ export function TreeDashboard() {
     }
 
     const { persons: latestPersons, relationships: latestRelationships } = useTreeStore.getState();
-    const positionMap = computeHierarchyPositions(latestPersons, latestRelationships);
+    const targetRoot = latestPersons.find(
+      (person) =>
+        `${person.firstName} ${person.lastName}`.trim().toLowerCase() ===
+        'saksham khirwadkar'
+    );
+    setRootFocusId(targetRoot?.id ?? null);
+
+    const { visiblePersons: latestVisiblePersons, visibleRelationships: latestVisibleRelationships } =
+      computeVisibleGraph(latestPersons, latestRelationships, collapsedIds);
+    const positionMap = computeHierarchyPositions(
+      latestVisiblePersons,
+      latestVisibleRelationships,
+      targetRoot?.id ?? null
+    );
     setNodes((currentNodes) =>
       currentNodes.map((node) => ({
         ...node,
         position: positionMap.get(node.id) || node.position,
       }))
     );
-  }, [normalizeRelationships, setNodes, showToast]);
+  }, [normalizeRelationships, setNodes, showToast, collapsedIds]);
 
   // Find existing person with same name (case-insensitive)
   const findExistingPerson = (firstName: string, lastName: string): Person | undefined => {
@@ -867,40 +1007,49 @@ export function TreeDashboard() {
   // Handle add relationship
   const handleAddRelationship = async (data: RelationshipFormData) => {
     try {
+      const isChild = data.type === 'CHILD';
+      const childId = isChild ? data.person1Id : data.person2Id;
+      const parentCandidateId = isChild ? data.person2Id : data.person1Id;
+
       const existingParents = relationships
         .filter(
           (rel) =>
-            rel.relationshipType === 'PARENT' && rel.person2Id === data.person2Id
+            rel.relationshipType === 'PARENT' && rel.person2Id === childId
         )
         .map((rel) => rel.person1Id);
       const otherParentId =
-        data.type === 'PARENT'
-          ? existingParents.find((id) => id !== data.person1Id)
+        (data.type === 'PARENT' || isChild)
+          ? existingParents.find((id) => id !== parentCandidateId)
           : undefined;
       const alreadySpouses =
         !!otherParentId &&
         relationships.some(
           (rel) =>
             rel.relationshipType === 'SPOUSE' &&
-            ((rel.person1Id === data.person1Id &&
+            ((rel.person1Id === parentCandidateId &&
               rel.person2Id === otherParentId) ||
-              (rel.person2Id === data.person1Id &&
+              (rel.person2Id === parentCandidateId &&
                 rel.person1Id === otherParentId))
         );
 
+      const relationshipType: RelationshipType =
+        isChild ? RelationshipType.PARENT : (data.type as RelationshipType);
+      const person1Id = isChild ? data.person2Id : data.person1Id;
+      const person2Id = isChild ? data.person1Id : data.person2Id;
+
       await addRelationship({
-        person1Id: data.person1Id,
-        person2Id: data.person2Id,
-        relationshipType: data.type as RelationshipType,
+        person1Id,
+        person2Id,
+        relationshipType,
       });
 
       if (
-        data.type === 'PARENT' &&
+        (data.type === 'PARENT' || isChild) &&
         otherParentId &&
         !alreadySpouses &&
         existingParents.length === 1
       ) {
-        const parent1 = persons.find((person) => person.id === data.person1Id);
+        const parent1 = persons.find((person) => person.id === parentCandidateId);
         const parent2 = persons.find((person) => person.id === otherParentId);
         const parent1Name = parent1 ? `${parent1.firstName} ${parent1.lastName}` : 'Parent 1';
         const parent2Name = parent2 ? `${parent2.firstName} ${parent2.lastName}` : 'Parent 2';
@@ -909,7 +1058,7 @@ export function TreeDashboard() {
         );
         if (shouldLink) {
           await addRelationship({
-            person1Id: data.person1Id,
+            person1Id: parentCandidateId,
             person2Id: otherParentId,
             relationshipType: RelationshipType.SPOUSE,
           });
@@ -1421,6 +1570,7 @@ export function TreeDashboard() {
                   className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-emerald-500 focus:border-transparent"
                 >
                   <option value="PARENT">is parent of</option>
+                  <option value="CHILD">is child of</option>
                   <option value="SPOUSE">is spouse of</option>
                   <option value="SIBLING">is sibling of</option>
                 </select>

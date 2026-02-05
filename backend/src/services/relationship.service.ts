@@ -58,6 +58,35 @@ export class RelationshipService {
     );
   }
 
+  private async createSiblingLinkIfMissing(
+    personA: string,
+    personB: string,
+    userId: string
+  ): Promise<void> {
+    if (personA === personB) return;
+
+    const existingSibling = await prisma.relationship.findFirst({
+      where: {
+        relationshipType: 'SIBLING',
+        OR: [
+          { person1Id: personA, person2Id: personB },
+          { person1Id: personB, person2Id: personA },
+        ],
+      },
+    });
+
+    if (existingSibling) return;
+
+    await prisma.relationship.create({
+      data: {
+        person1Id: personA,
+        person2Id: personB,
+        relationshipType: 'SIBLING',
+        createdById: userId,
+      },
+    });
+  }
+
   private async createParentLinkIfMissing(
     parentId: string,
     childId: string,
@@ -322,6 +351,13 @@ export class RelationshipService {
       for (const spouseId of spouseIds) {
         await this.createParentLinkIfMissing(spouseId, person2Id, userId, isAdmin);
       }
+
+      // Link siblings when a child shares a parent
+      const existingChildren = await this.getChildIds(person1Id);
+      for (const childId of existingChildren) {
+        if (childId === person2Id) continue;
+        await this.createSiblingLinkIfMissing(person2Id, childId, userId);
+      }
     }
 
     await Promise.all([
@@ -370,6 +406,27 @@ export class RelationshipService {
 
     for (const person of persons) {
       await this.syncDerivedRelationships(person.id, userId, isAdmin);
+    }
+
+    // Auto-link siblings that share a parent
+    const parentRelations = await prisma.relationship.findMany({
+      where: { relationshipType: 'PARENT' },
+      select: { person1Id: true, person2Id: true },
+    });
+
+    const childrenByParent = new Map<string, string[]>();
+    for (const rel of parentRelations) {
+      const list = childrenByParent.get(rel.person1Id) || [];
+      list.push(rel.person2Id);
+      childrenByParent.set(rel.person1Id, list);
+    }
+
+    for (const children of childrenByParent.values()) {
+      for (let i = 0; i < children.length; i += 1) {
+        for (let j = i + 1; j < children.length; j += 1) {
+          await this.createSiblingLinkIfMissing(children[i], children[j], userId);
+        }
+      }
     }
   }
 

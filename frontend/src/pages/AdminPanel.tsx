@@ -140,6 +140,41 @@ export function AdminPanel() {
     return new Date(dateString).toLocaleString();
   };
 
+  const formatAuditDetails = (log: AuditLog) => {
+    const data = log.actionType === 'DELETE' ? log.oldData : log.newData;
+    if (!data) return '-';
+
+    if (log.entityType === 'PERSON') {
+      const firstName = data.firstName as string | undefined;
+      const lastName = data.lastName as string | undefined;
+      const label = [firstName, lastName].filter(Boolean).join(' ').trim();
+      return label || '-';
+    }
+
+    if (log.entityType === 'RELATIONSHIP') {
+      const relationshipType = data.relationshipType as string | undefined;
+      const person1Id = data.person1Id as string | undefined;
+      const person2Id = data.person2Id as string | undefined;
+      const short1 = person1Id ? `${person1Id.slice(0, 6)}...` : 'n/a';
+      const short2 = person2Id ? `${person2Id.slice(0, 6)}...` : 'n/a';
+      if (relationshipType) {
+        return `${relationshipType} (${short1} → ${short2})`;
+      }
+      return `${short1} → ${short2}`;
+    }
+
+    if (log.entityType === 'USER') {
+      const role = data.role as string | undefined;
+      if (role) return `role=${role}`;
+    }
+
+    try {
+      return JSON.stringify(data);
+    } catch {
+      return '-';
+    }
+  };
+
   const getActionColor = (action: string) => {
     switch (action) {
       case 'CREATE':
@@ -369,6 +404,9 @@ export function AdminPanel() {
                           Entity
                         </th>
                         <th className="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase">
+                          Details
+                        </th>
+                        <th className="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase">
                           IP Address
                         </th>
                       </tr>
@@ -402,6 +440,9 @@ export function AdminPanel() {
                             <span className="text-gray-400 text-xs ml-1">
                               ({log.entityId.slice(0, 8)}...)
                             </span>
+                          </td>
+                          <td className="px-4 py-3 text-sm text-gray-600">
+                            {formatAuditDetails(log)}
                           </td>
                           <td className="px-4 py-3 text-sm text-gray-500">
                             {log.ipAddress || '-'}

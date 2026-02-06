@@ -156,7 +156,7 @@ function ParentChildEdge({
   const strokeWidth = (style?.strokeWidth as number) ?? 2;
   const strokeDasharray = style?.strokeDasharray as string | undefined;
 
-  const midY = sourceY + (targetY - sourceY) * 0.5;
+  const midY = sourceY + (targetY - sourceY) * 0.6;
 
   if (!otherParent) {
     return (
@@ -202,9 +202,9 @@ const edgeTypes = {
   parentChild: ParentChildEdge,
 };
 
-const NODE_X_SPACING = 250;
-const NODE_Y_SPACING = 180;
-const GROUP_GAP = 0.3;
+const NODE_X_SPACING = 300;
+const NODE_Y_SPACING = 240;
+const GROUP_GAP = 0.5;
 
 const computeHierarchyPositions = (
   persons: Person[],
@@ -216,6 +216,7 @@ const computeHierarchyPositions = (
 
   const personMap = new Map(persons.map((person) => [person.id, person]));
   const parentIdsByChild = new Map<string, string[]>();
+  const childrenByParent = new Map<string, string[]>();
   const spouseLinks = new Map<string, Set<string>>();
   const siblingLinks = new Map<string, Set<string>>();
 
@@ -228,6 +229,9 @@ const computeHierarchyPositions = (
   for (const rel of relationships) {
     if (rel.relationshipType === 'PARENT') {
       parentIdsByChild.get(rel.person2Id)?.push(rel.person1Id);
+      const list = childrenByParent.get(rel.person1Id) || [];
+      list.push(rel.person2Id);
+      childrenByParent.set(rel.person1Id, list);
     } else if (rel.relationshipType === 'SPOUSE') {
       spouseLinks.get(rel.person1Id)?.add(rel.person2Id);
       spouseLinks.get(rel.person2Id)?.add(rel.person1Id);
@@ -322,17 +326,8 @@ const computeHierarchyPositions = (
     }
   }
 
-  for (const [id, spouses] of spouseLinks.entries()) {
-    for (const spouseId of spouses) {
-      const parentsA = parentIdsByChild.get(id) || [];
-      const parentsB = parentIdsByChild.get(spouseId) || [];
-      for (const parentA of parentsA) {
-        for (const parentB of parentsB) {
-          generationUnion(parentA, parentB);
-        }
-      }
-    }
-  }
+  // NOTE: Do not union parents of spouses here; it can pull unrelated parents
+  // into the same generation group and shift rows unexpectedly.
 
   const generationGroups = new Map<string, string[]>();
   for (const person of persons) {
@@ -399,7 +394,7 @@ const computeHierarchyPositions = (
     return `${person.firstName} ${person.lastName}`.toLowerCase();
   };
 
-  const sortedDepths = [...groupsByDepth.keys()].sort((a, b) => a - b);
+  const sortedDepths = [...groupsByDepth.keys()].sort((a, b) => b - a);
   for (const level of sortedDepths) {
     const groupIds = groupsByDepth.get(level) || [];
 
@@ -420,6 +415,22 @@ const computeHierarchyPositions = (
       const members = spouseGroups.get(groupId) || [];
       const xs = members
         .map((member) => positions.get(member)?.x)
+        .filter((value): value is number => typeof value === 'number');
+      if (xs.length === 0) return undefined;
+      return xs.reduce((sum, value) => sum + value, 0) / xs.length;
+    };
+
+    const getChildCenter = (groupId: string): number | undefined => {
+      const members = spouseGroups.get(groupId) || [];
+      const childIds: string[] = [];
+      for (const member of members) {
+        const children = childrenByParent.get(member) || [];
+        for (const childId of children) {
+          childIds.push(childId);
+        }
+      }
+      const xs = childIds
+        .map((childId) => positions.get(childId)?.x)
         .filter((value): value is number => typeof value === 'number');
       if (xs.length === 0) return undefined;
       return xs.reduce((sum, value) => sum + value, 0) / xs.length;
@@ -449,8 +460,9 @@ const computeHierarchyPositions = (
       }
 
       const parentCenter = parentGroupId ? getGroupCenter(parentGroupId) : undefined;
+      const childCenter = getChildCenter(groupId);
       const fallbackCenter = (index + 0.5) * NODE_X_SPACING;
-      const desiredCenter = parentCenter ?? fallbackCenter;
+      const desiredCenter = childCenter ?? parentCenter ?? fallbackCenter;
       const width = members.length * NODE_X_SPACING;
       const labelKey = members.map(getLabel).sort()[0] || '';
 

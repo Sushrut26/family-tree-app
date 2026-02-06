@@ -156,10 +156,12 @@ function ParentChildEdge({
   const strokeWidth = (style?.strokeWidth as number) ?? 2;
   const strokeDasharray = style?.strokeDasharray as string | undefined;
 
+  const midY = sourceY + (targetY - sourceY) * 0.5;
+
   if (!otherParent) {
     return (
       <path
-        d={`M ${sourceX},${sourceY} L ${targetX},${targetY}`}
+        d={`M ${sourceX},${sourceY} L ${sourceX},${midY} L ${targetX},${midY} L ${targetX},${targetY}`}
         fill="none"
         stroke={stroke}
         strokeWidth={strokeWidth}
@@ -175,27 +177,20 @@ function ParentChildEdge({
   const otherY =
     (otherParent.positionAbsolute?.y ?? otherParent.position.y) +
     (otherParent.height ?? 0);
-  const mergeX = (sourceX + otherX) / 2;
-  const mergeY = sourceY + (targetY - sourceY) * 0.5;
+  const leftX = Math.min(sourceX, otherX);
+  const rightX = Math.max(sourceX, otherX);
 
   return (
     <g className="react-flow__edge">
       <path
-        d={`M ${sourceX},${sourceY} L ${mergeX},${mergeY}`}
+        d={`M ${leftX},${sourceY} L ${rightX},${sourceY}`}
         fill="none"
         stroke={stroke}
         strokeWidth={strokeWidth}
         strokeDasharray={strokeDasharray}
       />
       <path
-        d={`M ${otherX},${otherY} L ${mergeX},${mergeY}`}
-        fill="none"
-        stroke={stroke}
-        strokeWidth={strokeWidth}
-        strokeDasharray={strokeDasharray}
-      />
-      <path
-        d={`M ${mergeX},${mergeY} L ${targetX},${targetY}`}
+        d={`M ${(leftX + rightX) / 2},${sourceY} L ${(leftX + rightX) / 2},${midY} L ${targetX},${midY} L ${targetX},${targetY}`}
         fill="none"
         stroke={stroke}
         strokeWidth={strokeWidth}
@@ -824,7 +819,7 @@ export function TreeDashboard() {
           id: rel.id,
           source: rel.person1Id,
           target: rel.person2Id,
-          type: 'smoothstep',
+          type: 'step',
           animated: false,
           style,
           sourceHandle: 'bottom',
@@ -889,12 +884,6 @@ export function TreeDashboard() {
   );
 
   const handleFormatTree = useCallback(async () => {
-    try {
-      await normalizeRelationships();
-    } catch {
-      showToast('Failed to normalize relationships', 'error');
-    }
-
     const { persons: latestPersons, relationships: latestRelationships } = useTreeStore.getState();
     const targetRoot = latestPersons.find(
       (person) =>
@@ -916,7 +905,7 @@ export function TreeDashboard() {
         position: positionMap.get(node.id) || node.position,
       }))
     );
-  }, [normalizeRelationships, setNodes, showToast, collapsedIds]);
+  }, [setNodes, collapsedIds]);
 
   // Find existing person with same name (case-insensitive)
   const findExistingPerson = (firstName: string, lastName: string): Person | undefined => {

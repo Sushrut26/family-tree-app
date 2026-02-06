@@ -174,9 +174,6 @@ function ParentChildEdge({
   const otherX =
     (otherParent.positionAbsolute?.x ?? otherParent.position.x) +
     (otherParent.width ?? 0) / 2;
-  const otherY =
-    (otherParent.positionAbsolute?.y ?? otherParent.position.y) +
-    (otherParent.height ?? 0);
   const leftX = Math.min(sourceX, otherX);
   const rightX = Math.max(sourceX, otherX);
 

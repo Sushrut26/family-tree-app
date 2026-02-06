@@ -659,7 +659,6 @@ export function TreeDashboard() {
     deletePerson,
     addRelationship,
     bulkImport,
-    normalizeRelationships,
     exportRelationshipsPdf,
     isLoading,
     error,

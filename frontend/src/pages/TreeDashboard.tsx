@@ -260,6 +260,29 @@ const edgeTypes = {
       />
     );
   },
+  familyLink: ({
+    sourceX,
+    sourceY,
+    targetX,
+    targetY,
+    data,
+    style,
+  }: EdgeProps<{ offset?: number }>) => {
+    const stroke = (style?.stroke as string) ?? '#059669';
+    const strokeWidth = (style?.strokeWidth as number) ?? 3;
+    const strokeDasharray = style?.strokeDasharray as string | undefined;
+    const offset = data?.offset ?? 0;
+    const midY = sourceY + 10 + offset;
+    return (
+      <path
+        d={`M ${sourceX},${sourceY} L ${sourceX},${midY} L ${targetX},${midY} L ${targetX},${targetY}`}
+        fill="none"
+        stroke={stroke}
+        strokeWidth={strokeWidth}
+        strokeDasharray={strokeDasharray}
+      />
+    );
+  },
 };
 
 const NODE_X_SPACING = 300;
@@ -1012,17 +1035,19 @@ export function TreeDashboard() {
     const newEdges: Edge[] = [];
 
     for (const [barId, meta] of barMeta.entries()) {
+      const offset = (hashString(barId) % 3 - 1) * 6; // -6, 0, 6 to separate horizontal runs
       for (const childId of meta.children) {
         const style = { stroke: meta.color, strokeWidth: 3 };
         newEdges.push({
           id: `bar-link:${barId}:${childId}`,
           source: barId,
           target: childId,
-          type: 'step',
+          type: 'familyLink',
           animated: false,
           style,
           sourceHandle: 'bottom',
           targetHandle: 'top',
+          data: { offset },
           markerEnd: {
             type: MarkerType.ArrowClosed,
             color: style.stroke,

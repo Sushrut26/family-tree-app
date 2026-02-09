@@ -3,14 +3,12 @@ import ReactFlow, {
   type Node,
   type Edge,
   type EdgeProps,
-  type NodeChange,
   Background,
   Controls,
   MiniMap,
   useNodesState,
   useEdgesState,
   type Connection,
-  applyNodeChanges,
   addEdge,
   type NodeTypes,
   MarkerType,
@@ -130,35 +128,8 @@ function PersonNode({
   );
 }
 
-function CoupleBarNode({
-  data,
-}: {
-  data: {
-    color: string;
-    width: number;
-    dimmed?: boolean;
-  };
-}) {
-  return (
-    <div
-      className={`${data.dimmed ? 'opacity-20' : ''}`}
-      style={{
-        width: data.width,
-        height: 6,
-        backgroundColor: data.color,
-        borderRadius: 999,
-        boxShadow: '0 0 0 1px rgba(0,0,0,0.06)',
-      }}
-    >
-      <Handle type="source" position={Position.Bottom} id="bottom" className="opacity-0 pointer-events-none" />
-      <Handle type="target" position={Position.Top} id="top" className="opacity-0 pointer-events-none" />
-    </div>
-  );
-}
-
 const nodeTypes: NodeTypes = {
   person: PersonNode,
-  coupleBar: CoupleBarNode,
 };
 
 // Edge styles by relationship type
@@ -239,32 +210,6 @@ function ParentChildEdge({
   );
 }
 
-function FamilyLinkEdge({
-  sourceX,
-  sourceY,
-  targetX,
-  targetY,
-  data,
-  style,
-}: EdgeProps<{ offset?: number }>) {
-  const stroke = (style?.stroke as string) ?? '#059669';
-  const strokeWidth = (style?.strokeWidth as number) ?? 3;
-  const strokeDasharray = style?.strokeDasharray as string | undefined;
-  const offset = data?.offset ?? 0;
-  const midY = sourceY + 10 + offset;
-  return (
-    <g className="react-flow__edge">
-      <path
-        d={`M ${sourceX},${sourceY} L ${sourceX},${midY} L ${targetX},${midY} L ${targetX},${targetY}`}
-        fill="none"
-        stroke={stroke}
-        strokeWidth={strokeWidth}
-        strokeDasharray={strokeDasharray}
-      />
-    </g>
-  );
-}
-
 function SpouseEdge({
   sourceX,
   sourceY,
@@ -292,14 +237,11 @@ function SpouseEdge({
 const edgeTypes = {
   parentChild: ParentChildEdge,
   spouseEdge: SpouseEdge,
-  familyLink: FamilyLinkEdge,
 };
 
 const NODE_X_SPACING = 300;
 const NODE_Y_SPACING = 240;
 const GROUP_GAP = 0.5;
-const NODE_WIDTH = 180;
-const NODE_HEIGHT = 70;
 
 const FAMILY_COLORS = [
   '#0ea5e9',
@@ -332,7 +274,6 @@ const pickFamilyColor = (key: string) => {
 
 const buildHighlightIds = (
   hoveredNodeId: string | null,
-  barMeta: Map<string, { parents: string[]; children: string[]; color: string }>,
   parentIdsByChild: Map<string, string[]>,
   childrenByParent: Map<string, string[]>,
   visibleRelationships: Relationship[]
@@ -341,14 +282,6 @@ const buildHighlightIds = (
   if (!hoveredNodeId) return highlightIds;
 
   highlightIds.add(hoveredNodeId);
-  if (hoveredNodeId.startsWith('bar:')) {
-    const meta = barMeta.get(hoveredNodeId);
-    if (meta) {
-      meta.parents.forEach((id) => highlightIds.add(id));
-      meta.children.forEach((id) => highlightIds.add(id));
-    }
-    return highlightIds;
-  }
 
   const parents = parentIdsByChild.get(hoveredNodeId) || [];
   parents.forEach((id) => highlightIds.add(id));
@@ -381,18 +314,6 @@ const buildHighlightIds = (
     siblings.forEach((sib) => siblingSet.add(sib));
   }
   siblingSet.forEach((sib) => highlightIds.add(sib));
-
-  const barKeyTwo = parents.length >= 2 ? `bar:${[...parents].sort().join(':')}` : undefined;
-  const barKeyOne = parents.length === 1 ? `bar:${parents[0]}` : undefined;
-  if (barKeyTwo) highlightIds.add(barKeyTwo);
-  if (barKeyOne) highlightIds.add(barKeyOne);
-
-  for (const [barId, meta] of barMeta.entries()) {
-    if (meta.parents.includes(hoveredNodeId)) {
-      highlightIds.add(barId);
-      meta.children.forEach((child) => highlightIds.add(child));
-    }
-  }
 
   for (const rel of visibleRelationships) {
     if (rel.person1Id === hoveredNodeId) {
@@ -888,7 +809,7 @@ export function TreeDashboard() {
     toggleSidebar,
   } = useUIStore();
 
-  const [nodes, setNodes] = useNodesState([]);
+  const [nodes, setNodes, onNodesChange] = useNodesState([]);
   const [edges, setEdges, onEdgesChange] = useEdgesState([]);
   const [searchQuery, setSearchQuery] = useState('');
   const [editingPerson, setEditingPerson] = useState<Person | null>(null);
@@ -945,101 +866,6 @@ export function TreeDashboard() {
     return map;
   }, [visibleRelationships]);
 
-  const barMeta = useMemo(() => {
-    const bars = new Map<string, { parents: string[]; children: string[]; color: string }>();
-    for (const [childId, parents] of parentIdsByChild.entries()) {
-      if (parents.length >= 2) {
-        const [a, b] = [...parents].sort();
-        const key = `bar:${a}:${b}`;
-        const entry = bars.get(key) || {
-          parents: [a, b],
-          children: [],
-          color: pickFamilyColor(key),
-        };
-        entry.children.push(childId);
-        bars.set(key, entry);
-      } else if (parents.length === 1) {
-        const key = `bar:${parents[0]}`;
-        const entry = bars.get(key) || {
-          parents: [parents[0]],
-          children: [],
-          color: pickFamilyColor(key),
-        };
-        entry.children.push(childId);
-        bars.set(key, entry);
-      }
-    }
-    return bars;
-  }, [parentIdsByChild]);
-
-  const syncCoupleBarsWithParents = useCallback(
-    (currentNodes: Node[]) => {
-      const personPositions = new Map<string, { x: number; y: number }>();
-      currentNodes.forEach((node) => {
-        if (node.type === 'person') {
-          personPositions.set(node.id, node.position);
-        }
-      });
-
-      return currentNodes.map((node) => {
-        if (node.type !== 'coupleBar') return node;
-        const meta = barMeta.get(node.id);
-        if (!meta) return node;
-
-        let centerX = 0;
-        let barWidth = 60;
-        let barY = 0;
-
-        if (meta.parents.length >= 2) {
-          const p1 = personPositions.get(meta.parents[0]);
-          const p2 = personPositions.get(meta.parents[1]);
-          if (!p1 || !p2) return node;
-
-          const p1Center = p1.x + NODE_WIDTH / 2;
-          const p2Center = p2.x + NODE_WIDTH / 2;
-          centerX = (p1Center + p2Center) / 2;
-          barWidth = Math.max(Math.abs(p1Center - p2Center), 80);
-          barY = p1.y + NODE_HEIGHT + 12;
-        } else {
-          const p1 = personPositions.get(meta.parents[0]);
-          if (!p1) return node;
-
-          centerX = p1.x + NODE_WIDTH / 2;
-          barWidth = 60;
-          barY = p1.y + NODE_HEIGHT + 12;
-        }
-
-        const nextPosition = { x: centerX - barWidth / 2, y: barY };
-        if (
-          node.position.x === nextPosition.x &&
-          node.position.y === nextPosition.y &&
-          node.data.width === barWidth
-        ) {
-          return node;
-        }
-
-        return {
-          ...node,
-          position: nextPosition,
-          data: {
-            ...node.data,
-            width: barWidth,
-          },
-        };
-      });
-    },
-    [barMeta]
-  );
-
-  const onNodesChange = useCallback(
-    (changes: NodeChange[]) => {
-      setNodes((currentNodes) => {
-        const nextNodes = applyNodeChanges(changes, currentNodes);
-        return syncCoupleBarsWithParents(nextNodes);
-      });
-    },
-    [setNodes, syncCoupleBarsWithParents]
-  );
   const sidebarButtonClass =
     'w-full flex items-center gap-3 px-4 py-3 text-left bg-emerald-600 text-white rounded-lg hover:bg-emerald-700 transition-colors disabled:opacity-50 disabled:cursor-not-allowed';
 
@@ -1107,59 +933,70 @@ export function TreeDashboard() {
       },
     }));
 
-    const barNodes: Node[] = [];
-    for (const [barId, meta] of barMeta.entries()) {
-      const parents = meta.parents;
-      let centerX = 0;
-      let barWidth = 60;
-      let barY = 0;
-      if (parents.length >= 2) {
-        const p1 = nodePositionRef.current.get(parents[0]) || positionMap.get(parents[0]);
-        const p2 = nodePositionRef.current.get(parents[1]) || positionMap.get(parents[1]);
-        if (!p1 || !p2) continue;
-        const p1Center = p1.x + NODE_WIDTH / 2;
-        const p2Center = p2.x + NODE_WIDTH / 2;
-        centerX = (p1Center + p2Center) / 2;
-        barWidth = Math.max(Math.abs(p1Center - p2Center), 80);
-        barY = p1.y + NODE_HEIGHT + 12;
-      } else {
-        const p1 = nodePositionRef.current.get(parents[0]) || positionMap.get(parents[0]);
-        if (!p1) continue;
-        centerX = p1.x + NODE_WIDTH / 2;
-        barWidth = 60;
-        barY = p1.y + NODE_HEIGHT + 12;
-      }
-
-      barNodes.push({
-        id: barId,
-        type: 'coupleBar',
-        position: { x: centerX - barWidth / 2, y: barY },
-        data: {
-          color: meta.color,
-          width: barWidth,
-          dimmed: false,
-        },
-        draggable: false,
-        selectable: false,
-      });
-    }
-
     const newEdges: Edge[] = [];
 
-    for (const [barId, meta] of barMeta.entries()) {
-      const offset = (hashString(barId) % 3 - 1) * 6; // -6, 0, 6 to separate horizontal runs
-      for (const childId of meta.children) {
-        const style = { stroke: meta.color, strokeWidth: 3 };
+    for (const [childId, parentIds] of parentIdsByChild.entries()) {
+      const sortedParents = [...new Set(parentIds)].sort();
+      if (sortedParents.length === 0) continue;
+      const familyKey = `pc:${sortedParents.join(':')}`;
+      const style = { stroke: pickFamilyColor(familyKey), strokeWidth: 3 };
+
+      if (sortedParents.length === 1) {
+        const [parentId] = sortedParents;
         newEdges.push({
-          id: `bar-link:${barId}:${childId}`,
-          source: barId,
+          id: `pc:${parentId}:${childId}`,
+          source: parentId,
           target: childId,
-          type: 'familyLink',
+          type: 'parentChild',
           animated: false,
           style,
           sourceHandle: 'bottom',
           targetHandle: 'top',
-          data: { offset },
+          markerEnd: {
+            type: MarkerType.ArrowClosed,
+            color: style.stroke,
+            width: 18,
+            height: 18,
+          },
+        });
+        continue;
+      }
+
+      if (sortedParents.length === 2) {
+        const [primaryParentId, otherParentId] = sortedParents;
+        newEdges.push({
+          id: `pc:${primaryParentId}:${otherParentId}:${childId}`,
+          source: primaryParentId,
+          target: childId,
+          type: 'parentChild',
+          animated: false,
+          style,
+          sourceHandle: 'bottom',
+          targetHandle: 'top',
+          data: {
+            otherParentId,
+          },
+          markerEnd: {
+            type: MarkerType.ArrowClosed,
+            color: style.stroke,
+            width: 18,
+            height: 18,
+          },
+        });
+        continue;
+      }
+
+      // Fallback: if data contains more than two parents, render one direct edge per parent.
+      for (const parentId of sortedParents) {
+        newEdges.push({
+          id: `pc:${parentId}:${childId}`,
+          source: parentId,
+          target: childId,
+          type: 'parentChild',
+          animated: false,
+          style,
+          sourceHandle: 'bottom',
+          targetHandle: 'top',
           markerEnd: {
             type: MarkerType.ArrowClosed,
             color: style.stroke,
@@ -1196,7 +1033,7 @@ export function TreeDashboard() {
       return rank(aRel) - rank(bRel);
     });
 
-    setNodes([...newNodes, ...barNodes]);
+    setNodes(newNodes);
     setEdges(newEdges);
   }, [
     visiblePersons,
@@ -1206,7 +1043,6 @@ export function TreeDashboard() {
     user,
     childMap,
     collapsedIds,
-    barMeta,
     parentIdsByChild,
     setNodes,
     setEdges,
@@ -1219,7 +1055,6 @@ export function TreeDashboard() {
   useEffect(() => {
     const highlightIds = buildHighlightIds(
       hoveredNodeId,
-      barMeta,
       parentIdsByChild,
       childrenByParent,
       visibleRelationships
@@ -1251,7 +1086,6 @@ export function TreeDashboard() {
     );
   }, [
     hoveredNodeId,
-    barMeta,
     parentIdsByChild,
     childrenByParent,
     visibleRelationships,

@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useMemo, useState } from 'react';
+import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import ReactFlow, {
   type Node,
   type Edge,
@@ -814,6 +814,7 @@ export function TreeDashboard() {
   const [collapsedIds, setCollapsedIds] = useState<Set<string>>(new Set());
   const [rootFocusId, setRootFocusId] = useState<string | null>(null);
   const [hoveredNodeId, setHoveredNodeId] = useState<string | null>(null);
+  const hoverTimeoutRef = useRef<number | null>(null);
   const relationshipPersons = useMemo(() => persons, [persons]);
   const childMap = useMemo(() => buildChildMap(relationships), [relationships]);
   const { visiblePersons, visibleRelationships } = useMemo(
@@ -1638,8 +1639,23 @@ export function TreeDashboard() {
               onNodesChange={onNodesChange}
               onEdgesChange={onEdgesChange}
               onConnect={onConnect}
-              onNodeMouseEnter={(_event, node) => setHoveredNodeId(node.id)}
-              onNodeMouseLeave={() => setHoveredNodeId(null)}
+              onNodeMouseEnter={(_event, node) => {
+                if (hoverTimeoutRef.current) {
+                  window.clearTimeout(hoverTimeoutRef.current);
+                  hoverTimeoutRef.current = null;
+                }
+                if (node.type !== 'person') return;
+                setHoveredNodeId(node.id);
+              }}
+              onNodeMouseLeave={(_event, node) => {
+                if (node.type !== 'person') return;
+                if (hoverTimeoutRef.current) {
+                  window.clearTimeout(hoverTimeoutRef.current);
+                }
+                hoverTimeoutRef.current = window.setTimeout(() => {
+                  setHoveredNodeId((current) => (current === node.id ? null : current));
+                }, 120);
+              }}
               nodeTypes={nodeTypes}
               edgeTypes={edgeTypes}
               fitView

@@ -900,6 +900,15 @@ export function TreeDashboard() {
     () => computeHierarchyPositions(visiblePersons, visibleRelationships, rootFocusId),
     [visiblePersons, visibleRelationships, rootFocusId]
   );
+  const nodePositionById = useMemo(() => {
+    const map = new Map<string, { x: number; y: number }>();
+    nodes.forEach((node) => {
+      if (node.type === 'person') {
+        map.set(node.id, node.position);
+      }
+    });
+    return map;
+  }, [nodes]);
 
   const parentIdsByChild = useMemo(() => {
     const map = new Map<string, string[]>();
@@ -984,7 +993,7 @@ export function TreeDashboard() {
     const newNodes: Node[] = visiblePersons.map((person) => ({
       id: person.id,
       type: 'person',
-      position: positionMap.get(person.id) || { x: 0, y: 0 },
+      position: nodePositionById.get(person.id) || positionMap.get(person.id) || { x: 0, y: 0 },
       data: {
         person,
         canEdit: person.createdById === user?.id || user?.role === 'ADMIN',
@@ -1023,8 +1032,8 @@ export function TreeDashboard() {
       let barWidth = 60;
       let barY = 0;
       if (parents.length >= 2) {
-        const p1 = positionMap.get(parents[0]);
-        const p2 = positionMap.get(parents[1]);
+        const p1 = nodePositionById.get(parents[0]) || positionMap.get(parents[0]);
+        const p2 = nodePositionById.get(parents[1]) || positionMap.get(parents[1]);
         if (!p1 || !p2) continue;
         const p1Center = p1.x + NODE_WIDTH / 2;
         const p2Center = p2.x + NODE_WIDTH / 2;
@@ -1032,7 +1041,7 @@ export function TreeDashboard() {
         barWidth = Math.max(Math.abs(p1Center - p2Center), 80);
         barY = p1.y + NODE_HEIGHT + 12;
       } else {
-        const p1 = positionMap.get(parents[0]);
+        const p1 = nodePositionById.get(parents[0]) || positionMap.get(parents[0]);
         if (!p1) continue;
         centerX = p1.x + NODE_WIDTH / 2;
         barWidth = 60;
@@ -1111,6 +1120,7 @@ export function TreeDashboard() {
     visiblePersons,
     visibleRelationships,
     positionMap,
+    nodePositionById,
     user,
     childMap,
     collapsedIds,

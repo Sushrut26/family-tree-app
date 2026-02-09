@@ -3,12 +3,14 @@ import ReactFlow, {
   type Node,
   type Edge,
   type EdgeProps,
+  type NodeChange,
   Background,
   Controls,
   MiniMap,
   useNodesState,
   useEdgesState,
   type Connection,
+  applyNodeChanges,
   addEdge,
   type NodeTypes,
   MarkerType,
@@ -886,7 +888,7 @@ export function TreeDashboard() {
     toggleSidebar,
   } = useUIStore();
 
-  const [nodes, setNodes, onNodesChange] = useNodesState([]);
+  const [nodes, setNodes] = useNodesState([]);
   const [edges, setEdges, onEdgesChange] = useEdgesState([]);
   const [searchQuery, setSearchQuery] = useState('');
   const [editingPerson, setEditingPerson] = useState<Person | null>(null);
@@ -969,6 +971,75 @@ export function TreeDashboard() {
     }
     return bars;
   }, [parentIdsByChild]);
+
+  const syncCoupleBarsWithParents = useCallback(
+    (currentNodes: Node[]) => {
+      const personPositions = new Map<string, { x: number; y: number }>();
+      currentNodes.forEach((node) => {
+        if (node.type === 'person') {
+          personPositions.set(node.id, node.position);
+        }
+      });
+
+      return currentNodes.map((node) => {
+        if (node.type !== 'coupleBar') return node;
+        const meta = barMeta.get(node.id);
+        if (!meta) return node;
+
+        let centerX = 0;
+        let barWidth = 60;
+        let barY = 0;
+
+        if (meta.parents.length >= 2) {
+          const p1 = personPositions.get(meta.parents[0]);
+          const p2 = personPositions.get(meta.parents[1]);
+          if (!p1 || !p2) return node;
+
+          const p1Center = p1.x + NODE_WIDTH / 2;
+          const p2Center = p2.x + NODE_WIDTH / 2;
+          centerX = (p1Center + p2Center) / 2;
+          barWidth = Math.max(Math.abs(p1Center - p2Center), 80);
+          barY = p1.y + NODE_HEIGHT + 12;
+        } else {
+          const p1 = personPositions.get(meta.parents[0]);
+          if (!p1) return node;
+
+          centerX = p1.x + NODE_WIDTH / 2;
+          barWidth = 60;
+          barY = p1.y + NODE_HEIGHT + 12;
+        }
+
+        const nextPosition = { x: centerX - barWidth / 2, y: barY };
+        if (
+          node.position.x === nextPosition.x &&
+          node.position.y === nextPosition.y &&
+          node.data.width === barWidth
+        ) {
+          return node;
+        }
+
+        return {
+          ...node,
+          position: nextPosition,
+          data: {
+            ...node.data,
+            width: barWidth,
+          },
+        };
+      });
+    },
+    [barMeta]
+  );
+
+  const onNodesChange = useCallback(
+    (changes: NodeChange[]) => {
+      setNodes((currentNodes) => {
+        const nextNodes = applyNodeChanges(changes, currentNodes);
+        return syncCoupleBarsWithParents(nextNodes);
+      });
+    },
+    [setNodes, syncCoupleBarsWithParents]
+  );
   const sidebarButtonClass =
     'w-full flex items-center gap-3 px-4 py-3 text-left bg-emerald-600 text-white rounded-lg hover:bg-emerald-700 transition-colors disabled:opacity-50 disabled:cursor-not-allowed';
 

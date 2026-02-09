@@ -130,7 +130,7 @@ const nodeTypes: NodeTypes = {
 // Edge styles by relationship type
 const edgeStyles: Record<string, { stroke: string; strokeWidth: number; strokeDasharray?: string }> = {
   PARENT: { stroke: '#059669', strokeWidth: 3 }, // Solid emerald line with arrow
-  SPOUSE: { stroke: '#dc2626', strokeWidth: 2, strokeDasharray: '5,5' }, // Dashed red line (hearts/love)
+  SPOUSE: { stroke: '#dc2626', strokeWidth: 3, strokeDasharray: '5,5' }, // Stronger red line
   SIBLING: { stroke: '#2563eb', strokeWidth: 2, strokeDasharray: '2,4' }, // Dotted blue line
 };
 
@@ -157,6 +157,7 @@ function ParentChildEdge({
   const strokeDasharray = style?.strokeDasharray as string | undefined;
 
   const midY = sourceY + (targetY - sourceY) * 0.6;
+  const barHalf = 18;
 
   if (!otherParent) {
     return (
@@ -179,6 +180,12 @@ function ParentChildEdge({
 
   return (
     <g className="react-flow__edge">
+      <path
+        d={`M ${targetX - barHalf},${midY} L ${targetX + barHalf},${midY}`}
+        fill="none"
+        stroke={stroke}
+        strokeWidth={strokeWidth + 0.5}
+      />
       <path
         d={`M ${leftX},${sourceY} L ${rightX},${sourceY}`}
         fill="none"
@@ -776,52 +783,10 @@ export function TreeDashboard() {
       },
     }));
 
-    const parentRelsByChild = new Map<string, Relationship[]>();
-    for (const rel of visibleRelationships) {
-      if (rel.relationshipType === 'PARENT') {
-        const list = parentRelsByChild.get(rel.person2Id) || [];
-        list.push(rel);
-        parentRelsByChild.set(rel.person2Id, list);
-      }
-    }
-
-    const mergedChildren = new Set<string>();
     const newEdges: Edge[] = [];
 
     for (const rel of visibleRelationships) {
       if (rel.relationshipType === 'PARENT') {
-        const parentRels = parentRelsByChild.get(rel.person2Id) || [];
-        if (parentRels.length === 2) {
-          if (mergedChildren.has(rel.person2Id)) {
-            continue;
-          }
-          mergedChildren.add(rel.person2Id);
-          const [primary, secondary] = [...parentRels].sort((a, b) =>
-            a.person1Id.localeCompare(b.person1Id)
-          );
-          const style = edgeStyles.PARENT;
-          newEdges.push({
-            id: `parent-merge-${primary.person2Id}-${primary.person1Id}-${secondary.person1Id}`,
-            source: primary.person1Id,
-            target: primary.person2Id,
-            type: 'parentChild',
-            animated: false,
-            style,
-            sourceHandle: 'bottom',
-            targetHandle: 'top',
-            markerEnd: {
-              type: MarkerType.ArrowClosed,
-              color: style.stroke,
-              width: 20,
-              height: 20,
-            },
-            data: {
-              otherParentId: secondary.person1Id,
-            },
-          });
-          continue;
-        }
-
         const style = edgeStyles.PARENT;
         newEdges.push({
           id: rel.id,
@@ -854,6 +819,14 @@ export function TreeDashboard() {
         targetHandle: 'left',
       });
     }
+
+    // Render spouse edges last so they sit on top of sibling lines.
+    newEdges.sort((a, b) => {
+      const aRel = relationships.find((rel) => rel.id === a.id)?.relationshipType;
+      const bRel = relationships.find((rel) => rel.id === b.id)?.relationshipType;
+      const rank = (type?: string) => (type === 'SPOUSE' ? 2 : type === 'SIBLING' ? 1 : 0);
+      return rank(aRel) - rank(bRel);
+    });
 
     setNodes(newNodes);
     setEdges(newEdges);

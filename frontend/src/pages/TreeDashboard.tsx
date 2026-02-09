@@ -162,7 +162,6 @@ function ParentChildEdge({
   const strokeDasharray = style?.strokeDasharray as string | undefined;
 
   const midY = sourceY + (targetY - sourceY) * 0.6;
-  const barHalf = 18;
 
   if (!otherParent) {
     return (
@@ -180,26 +179,30 @@ function ParentChildEdge({
   const otherX =
     (otherParent.positionAbsolute?.x ?? otherParent.position.x) +
     (otherParent.width ?? 0) / 2;
-  const leftX = Math.min(sourceX, otherX);
-  const rightX = Math.max(sourceX, otherX);
+  const otherY =
+    (otherParent.positionAbsolute?.y ?? otherParent.position.y) +
+    (otherParent.height ?? 0);
+  const mergeX = (sourceX + otherX) / 2;
+  const mergeY = Math.min(sourceY, otherY) + 24;
+  const childJoinY = mergeY + Math.max((targetY - mergeY) * 0.6, 24);
 
   return (
     <g className="react-flow__edge">
       <path
-        d={`M ${targetX - barHalf},${midY} L ${targetX + barHalf},${midY}`}
+        d={`M ${sourceX},${sourceY} L ${mergeX},${mergeY}`}
         fill="none"
         stroke={stroke}
-        strokeWidth={strokeWidth + 0.5}
+        strokeWidth={strokeWidth}
       />
       <path
-        d={`M ${leftX},${sourceY} L ${rightX},${sourceY}`}
+        d={`M ${otherX},${otherY} L ${mergeX},${mergeY}`}
         fill="none"
         stroke={stroke}
         strokeWidth={strokeWidth}
         strokeDasharray={strokeDasharray}
       />
       <path
-        d={`M ${(leftX + rightX) / 2},${sourceY} L ${(leftX + rightX) / 2},${midY} L ${targetX},${midY} L ${targetX},${targetY}`}
+        d={`M ${mergeX},${mergeY} L ${mergeX},${childJoinY} L ${targetX},${childJoinY} L ${targetX},${targetY}`}
         fill="none"
         stroke={stroke}
         strokeWidth={strokeWidth}

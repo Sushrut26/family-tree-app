@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { z } from 'zod';
@@ -66,22 +66,22 @@ export function AdminPanel() {
   });
 
   // Fetch users
-  const fetchUsers = async () => {
+  const fetchUsers = useCallback(async () => {
     setUsersLoading(true);
     try {
       const response = await api.get<User[]>('/auth/users');
       setUsers(response.data);
-    } catch (error) {
+    } catch {
       // If endpoint doesn't exist, just set empty
       setUsers([]);
       console.log('Users endpoint not available');
     } finally {
       setUsersLoading(false);
     }
-  };
+  }, []);
 
   // Fetch audit logs
-  const fetchAuditLogs = async (page = 1) => {
+  const fetchAuditLogs = useCallback(async (page = 1) => {
     setAuditLoading(true);
     try {
       const response = await api.get<AuditLogResponse>('/audit', {
@@ -90,13 +90,13 @@ export function AdminPanel() {
       setAuditLogs(response.data.logs || []);
       setAuditTotalPages(Math.max(1, Math.ceil(response.data.total / auditPageSize)));
       setAuditPage(page);
-    } catch (error) {
+    } catch {
       showToast('Failed to load audit logs', 'error');
       setAuditLogs([]);
     } finally {
       setAuditLoading(false);
     }
-  };
+  }, [showToast]);
 
   // Handle family password change
   const handleFamilyPasswordChange = async (data: FamilyPasswordFormData) => {
@@ -134,7 +134,7 @@ export function AdminPanel() {
     } else if (activeTab === 'audit') {
       fetchAuditLogs(1);
     }
-  }, [activeTab]);
+  }, [activeTab, fetchUsers, fetchAuditLogs]);
 
   const formatDate = (dateString: string) => {
     return new Date(dateString).toLocaleString();
@@ -217,7 +217,7 @@ export function AdminPanel() {
           <div className="flex items-center gap-2">
             <div className="w-8 h-8 bg-emerald-100 rounded-full flex items-center justify-center">
               <span className="text-emerald-700 text-sm font-semibold">
-                {user?.firstName[0]}{user?.lastName[0]}
+                {user?.firstName?.[0]}{user?.lastName?.[0]}
               </span>
             </div>
             <span className="hidden sm:inline text-sm text-gray-700">
@@ -319,7 +319,7 @@ export function AdminPanel() {
                           <div className="flex items-center gap-3">
                             <div className="w-8 h-8 bg-emerald-100 rounded-full flex items-center justify-center">
                               <span className="text-emerald-700 text-sm font-semibold">
-                                {u.firstName[0]}{u.lastName[0]}
+                                {u.firstName?.[0]}{u.lastName?.[0]}
                               </span>
                             </div>
                             <span className="font-medium text-gray-900">

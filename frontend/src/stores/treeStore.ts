@@ -46,7 +46,7 @@ interface TreeState {
   reset: () => void;
 }
 
-export const useTreeStore = create<TreeState>((set, _get) => ({
+export const useTreeStore = create<TreeState>((set) => ({
   // Initial state
   persons: [],
   relationships: [],

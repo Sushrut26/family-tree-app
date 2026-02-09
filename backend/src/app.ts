@@ -1,3 +1,4 @@
+import crypto from 'crypto';
 import express from 'express';
 import cors from 'cors';
 import helmet from 'helmet';
@@ -31,7 +32,7 @@ app.use((req, res, next) => {
   const start = Date.now();
   const origin = req.headers.origin || 'none';
   const userAgent = req.headers['user-agent'] || 'unknown';
-  const reqId = Math.random().toString(36).slice(2, 10);
+  const reqId = crypto.randomUUID().slice(0, 8);
   (req as any)._reqId = reqId;
   console.log(`[${new Date().toISOString()}] [${reqId}] ${req.method} ${req.path} - Origin: ${origin}`);
   console.log(`[${new Date().toISOString()}] [${reqId}] UA: ${userAgent}`);

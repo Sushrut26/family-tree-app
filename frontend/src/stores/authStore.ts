@@ -30,7 +30,7 @@ interface AuthState {
 
 export const useAuthStore = create<AuthState>()(
   persist(
-    (set, _get) => ({
+    (set) => ({
       // Initial state
       user: null,
       token: null,
@@ -132,7 +132,7 @@ export const useAuthStore = create<AuthState>()(
     }),
     {
       name: 'auth-storage',
-      // Only persist user data, not sensitive tokens or states
+      // Persist user info, auth token, and family session for page reloads
       partialize: (state) => ({
         user: state.user,
         token: state.token,

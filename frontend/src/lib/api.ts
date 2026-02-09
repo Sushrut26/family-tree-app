@@ -90,8 +90,7 @@ api.interceptors.response.use(
         if (
           errorCode === 'FAMILY_PASSWORD_REQUIRED' ||
           errorMessage.includes('family password') ||
-          errorMessage.includes('family session') ||
-          errorMessage.includes('session')
+          errorMessage.includes('family session')
         ) {
           // Dispatch custom event to trigger family password modal
           window.dispatchEvent(new CustomEvent('family-password-required'));

@@ -90,7 +90,7 @@ function PersonNode({
       <div className="flex items-center gap-3 mb-2">
         <div className="w-10 h-10 bg-emerald-100 rounded-full flex items-center justify-center">
           <span className="text-emerald-700 font-semibold">
-            {person.firstName[0]}{person.lastName[0]}
+            {person.firstName?.[0]}{person.lastName?.[0]}
           </span>
         </div>
         <div className="flex-1 min-w-0">
@@ -900,14 +900,17 @@ export function TreeDashboard() {
     () => computeHierarchyPositions(visiblePersons, visibleRelationships, rootFocusId),
     [visiblePersons, visibleRelationships, rootFocusId]
   );
-  const nodePositionById = useMemo(() => {
+  const nodePositionRef = useRef(new Map<string, { x: number; y: number }>());
+
+  // Keep the ref in sync whenever nodes change (e.g. after drag)
+  useEffect(() => {
     const map = new Map<string, { x: number; y: number }>();
     nodes.forEach((node) => {
       if (node.type === 'person') {
         map.set(node.id, node.position);
       }
     });
-    return map;
+    nodePositionRef.current = map;
   }, [nodes]);
 
   const parentIdsByChild = useMemo(() => {
@@ -993,7 +996,7 @@ export function TreeDashboard() {
     const newNodes: Node[] = visiblePersons.map((person) => ({
       id: person.id,
       type: 'person',
-      position: nodePositionById.get(person.id) || positionMap.get(person.id) || { x: 0, y: 0 },
+      position: nodePositionRef.current.get(person.id) || positionMap.get(person.id) || { x: 0, y: 0 },
       data: {
         person,
         canEdit: person.createdById === user?.id || user?.role === 'ADMIN',
@@ -1032,8 +1035,8 @@ export function TreeDashboard() {
       let barWidth = 60;
       let barY = 0;
       if (parents.length >= 2) {
-        const p1 = nodePositionById.get(parents[0]) || positionMap.get(parents[0]);
-        const p2 = nodePositionById.get(parents[1]) || positionMap.get(parents[1]);
+        const p1 = nodePositionRef.current.get(parents[0]) || positionMap.get(parents[0]);
+        const p2 = nodePositionRef.current.get(parents[1]) || positionMap.get(parents[1]);
         if (!p1 || !p2) continue;
         const p1Center = p1.x + NODE_WIDTH / 2;
         const p2Center = p2.x + NODE_WIDTH / 2;
@@ -1041,7 +1044,7 @@ export function TreeDashboard() {
         barWidth = Math.max(Math.abs(p1Center - p2Center), 80);
         barY = p1.y + NODE_HEIGHT + 12;
       } else {
-        const p1 = nodePositionById.get(parents[0]) || positionMap.get(parents[0]);
+        const p1 = nodePositionRef.current.get(parents[0]) || positionMap.get(parents[0]);
         if (!p1) continue;
         centerX = p1.x + NODE_WIDTH / 2;
         barWidth = 60;
@@ -1119,8 +1122,8 @@ export function TreeDashboard() {
   }, [
     visiblePersons,
     visibleRelationships,
+    relationships,
     positionMap,
-    nodePositionById,
     user,
     childMap,
     collapsedIds,
@@ -1505,7 +1508,7 @@ export function TreeDashboard() {
             <div className="flex items-center gap-2">
               <div className="w-8 h-8 bg-emerald-100 rounded-full flex items-center justify-center">
                 <span className="text-emerald-700 text-sm font-semibold">
-                  {user?.firstName[0]}{user?.lastName[0]}
+                  {user?.firstName?.[0]}{user?.lastName?.[0]}
                 </span>
               </div>
               <span className="hidden sm:inline text-sm text-gray-700">

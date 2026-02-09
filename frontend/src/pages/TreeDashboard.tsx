@@ -3,6 +3,7 @@ import ReactFlow, {
   type Node,
   type Edge,
   type EdgeProps,
+  type ReactFlowInstance,
   Background,
   Controls,
   MiniMap,
@@ -242,9 +243,9 @@ const edgeTypes = {
   spouseEdge: SpouseEdge,
 };
 
-const NODE_X_SPACING = 300;
-const NODE_Y_SPACING = 240;
-const GROUP_GAP = 0.5;
+const NODE_X_SPACING = 250;
+const NODE_Y_SPACING = 220;
+const GROUP_GAP = 0.35;
 
 const FAMILY_COLORS = [
   '#0ea5e9',
@@ -327,6 +328,45 @@ const buildHighlightIds = (
   }
 
   return highlightIds;
+};
+
+const buildHoverFocusIds = (
+  hoveredNodeId: string | null,
+  parentIdsByChild: Map<string, string[]>,
+  childrenByParent: Map<string, string[]>,
+  visibleRelationships: Relationship[]
+) => {
+  const focusIds = new Set<string>();
+  if (!hoveredNodeId) return focusIds;
+
+  focusIds.add(hoveredNodeId);
+
+  const parents = parentIdsByChild.get(hoveredNodeId) || [];
+  parents.forEach((id) => focusIds.add(id));
+
+  const children = childrenByParent.get(hoveredNodeId) || [];
+  children.forEach((id) => focusIds.add(id));
+
+  for (const parentId of parents) {
+    const siblings = childrenByParent.get(parentId) || [];
+    siblings.forEach((id) => focusIds.add(id));
+  }
+
+  for (const rel of visibleRelationships) {
+    if (
+      rel.relationshipType !== 'SPOUSE' &&
+      rel.relationshipType !== 'SIBLING'
+    ) {
+      continue;
+    }
+    if (rel.person1Id === hoveredNodeId) {
+      focusIds.add(rel.person2Id);
+    } else if (rel.person2Id === hoveredNodeId) {
+      focusIds.add(rel.person1Id);
+    }
+  }
+
+  return focusIds;
 };
 
 const computeHierarchyPositions = (
@@ -638,7 +678,10 @@ const computeHierarchyPositions = (
     const gap = NODE_X_SPACING * GROUP_GAP;
     const clusterLayouts: ClusterLayout[] = clusterOrder.map((cluster) => {
       const list = clusters.get(cluster.id) || [];
-      const sorted = [...list].sort((a, b) => a.labelKey.localeCompare(b.labelKey));
+      const sorted = [...list].sort((a, b) => {
+        if (a.desiredCenter !== b.desiredCenter) return a.desiredCenter - b.desiredCenter;
+        return a.labelKey.localeCompare(b.labelKey);
+      });
       const width = sorted.reduce((sum, item) => sum + item.width, 0) + gap * Math.max(0, sorted.length - 1);
       const center = cluster.center;
       return {
@@ -824,6 +867,8 @@ export function TreeDashboard() {
   const [rootFocusId, setRootFocusId] = useState<string | null>(null);
   const [hoveredNodeId, setHoveredNodeId] = useState<string | null>(null);
   const hoverTimeoutRef = useRef<number | null>(null);
+  const hoverFitTimeoutRef = useRef<number | null>(null);
+  const reactFlowRef = useRef<ReactFlowInstance | null>(null);
   const relationshipPersons = useMemo(() => persons, [persons]);
   const childMap = useMemo(() => buildChildMap(relationships), [relationships]);
   const { visiblePersons, visibleRelationships } = useMemo(
@@ -868,6 +913,28 @@ export function TreeDashboard() {
     }
     return map;
   }, [visibleRelationships]);
+
+  const highlightIds = useMemo(
+    () =>
+      buildHighlightIds(
+        hoveredNodeId,
+        parentIdsByChild,
+        childrenByParent,
+        visibleRelationships
+      ),
+    [hoveredNodeId, parentIdsByChild, childrenByParent, visibleRelationships]
+  );
+
+  const hoverFocusIds = useMemo(
+    () =>
+      buildHoverFocusIds(
+        hoveredNodeId,
+        parentIdsByChild,
+        childrenByParent,
+        visibleRelationships
+      ),
+    [hoveredNodeId, parentIdsByChild, childrenByParent, visibleRelationships]
+  );
 
   const sidebarButtonClass =
     'w-full flex items-center gap-3 px-4 py-3 text-left bg-emerald-600 text-white rounded-lg hover:bg-emerald-700 transition-colors disabled:opacity-50 disabled:cursor-not-allowed';
@@ -1056,13 +1123,6 @@ export function TreeDashboard() {
 
   // Hover highlighting without resetting positions
   useEffect(() => {
-    const highlightIds = buildHighlightIds(
-      hoveredNodeId,
-      parentIdsByChild,
-      childrenByParent,
-      visibleRelationships
-    );
-
     setNodes((current) =>
       current.map((node) => ({
         ...node,
@@ -1088,13 +1148,37 @@ export function TreeDashboard() {
       }))
     );
   }, [
+    highlightIds,
     hoveredNodeId,
-    parentIdsByChild,
-    childrenByParent,
-    visibleRelationships,
     setNodes,
     setEdges,
   ]);
+
+  // Keep immediate family context in view while hovering a person.
+  useEffect(() => {
+    const reactFlow = reactFlowRef.current;
+    if (!reactFlow || !hoveredNodeId || hoverFocusIds.size <= 1) return;
+
+    if (hoverFitTimeoutRef.current) {
+      window.clearTimeout(hoverFitTimeoutRef.current);
+    }
+
+    hoverFitTimeoutRef.current = window.setTimeout(() => {
+      reactFlow.fitView({
+        nodes: [...hoverFocusIds].map((id) => ({ id })),
+        padding: 0.4,
+        duration: 220,
+        maxZoom: 1.2,
+      });
+    }, 100);
+
+    return () => {
+      if (hoverFitTimeoutRef.current) {
+        window.clearTimeout(hoverFitTimeoutRef.current);
+        hoverFitTimeoutRef.current = null;
+      }
+    };
+  }, [hoveredNodeId, hoverFocusIds]);
 
   // Filter nodes by search
   const filteredNodes = useMemo(() => {
@@ -1614,6 +1698,9 @@ export function TreeDashboard() {
             <ReactFlow
               nodes={filteredNodes}
               edges={edges}
+              onInit={(instance) => {
+                reactFlowRef.current = instance;
+              }}
               onNodesChange={onNodesChange}
               onEdgesChange={onEdgesChange}
               onConnect={onConnect}
@@ -1637,6 +1724,9 @@ export function TreeDashboard() {
               nodeTypes={nodeTypes}
               edgeTypes={edgeTypes}
               fitView
+              fitViewOptions={{ padding: 0.35, maxZoom: 1.1 }}
+              minZoom={0.03}
+              maxZoom={2}
               className="bg-gray-50"
             >
               <Background color="#e5e7eb" gap={20} />

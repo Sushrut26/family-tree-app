@@ -237,52 +237,60 @@ function ParentChildEdge({
   );
 }
 
+function FamilyLinkEdge({
+  sourceX,
+  sourceY,
+  targetX,
+  targetY,
+  data,
+  style,
+}: EdgeProps<{ offset?: number }>) {
+  const stroke = (style?.stroke as string) ?? '#059669';
+  const strokeWidth = (style?.strokeWidth as number) ?? 3;
+  const strokeDasharray = style?.strokeDasharray as string | undefined;
+  const offset = data?.offset ?? 0;
+  const midY = sourceY + 10 + offset;
+  return (
+    <g className="react-flow__edge">
+      <path
+        d={`M ${sourceX},${sourceY} L ${sourceX},${midY} L ${targetX},${midY} L ${targetX},${targetY}`}
+        fill="none"
+        stroke={stroke}
+        strokeWidth={strokeWidth}
+        strokeDasharray={strokeDasharray}
+      />
+    </g>
+  );
+}
+
+function SpouseEdge({
+  sourceX,
+  sourceY,
+  targetX,
+  targetY,
+  style,
+}: EdgeProps) {
+  const stroke = (style?.stroke as string) ?? '#dc2626';
+  const strokeWidth = (style?.strokeWidth as number) ?? 3;
+  const strokeDasharray = style?.strokeDasharray as string | undefined;
+  const midY = Math.min(sourceY, targetY) - 12;
+  return (
+    <g className="react-flow__edge">
+      <path
+        d={`M ${sourceX},${sourceY} L ${sourceX},${midY} L ${targetX},${midY} L ${targetX},${targetY}`}
+        fill="none"
+        stroke={stroke}
+        strokeWidth={strokeWidth}
+        strokeDasharray={strokeDasharray}
+      />
+    </g>
+  );
+}
+
 const edgeTypes = {
   parentChild: ParentChildEdge,
-  spouseEdge: ({
-    sourceX,
-    sourceY,
-    targetX,
-    targetY,
-    style,
-  }: EdgeProps) => {
-    const stroke = (style?.stroke as string) ?? '#dc2626';
-    const strokeWidth = (style?.strokeWidth as number) ?? 3;
-    const strokeDasharray = style?.strokeDasharray as string | undefined;
-    const midY = Math.min(sourceY, targetY) - 12;
-    return (
-      <path
-        d={`M ${sourceX},${sourceY} L ${sourceX},${midY} L ${targetX},${midY} L ${targetX},${targetY}`}
-        fill="none"
-        stroke={stroke}
-        strokeWidth={strokeWidth}
-        strokeDasharray={strokeDasharray}
-      />
-    );
-  },
-  familyLink: ({
-    sourceX,
-    sourceY,
-    targetX,
-    targetY,
-    data,
-    style,
-  }: EdgeProps<{ offset?: number }>) => {
-    const stroke = (style?.stroke as string) ?? '#059669';
-    const strokeWidth = (style?.strokeWidth as number) ?? 3;
-    const strokeDasharray = style?.strokeDasharray as string | undefined;
-    const offset = data?.offset ?? 0;
-    const midY = sourceY + 10 + offset;
-    return (
-      <path
-        d={`M ${sourceX},${sourceY} L ${sourceX},${midY} L ${targetX},${midY} L ${targetX},${targetY}`}
-        fill="none"
-        stroke={stroke}
-        strokeWidth={strokeWidth}
-        strokeDasharray={strokeDasharray}
-      />
-    );
-  },
+  spouseEdge: SpouseEdge,
+  familyLink: FamilyLinkEdge,
 };
 
 const NODE_X_SPACING = 300;

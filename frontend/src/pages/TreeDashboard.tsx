@@ -147,7 +147,10 @@ function CoupleBarNode({
         borderRadius: 999,
         boxShadow: '0 0 0 1px rgba(0,0,0,0.06)',
       }}
-    />
+    >
+      <Handle type="source" position={Position.Bottom} id="bottom" className="opacity-0 pointer-events-none" />
+      <Handle type="target" position={Position.Top} id="top" className="opacity-0 pointer-events-none" />
+    </div>
   );
 }
 
@@ -236,6 +239,27 @@ function ParentChildEdge({
 
 const edgeTypes = {
   parentChild: ParentChildEdge,
+  spouseEdge: ({
+    sourceX,
+    sourceY,
+    targetX,
+    targetY,
+    style,
+  }: EdgeProps) => {
+    const stroke = (style?.stroke as string) ?? '#dc2626';
+    const strokeWidth = (style?.strokeWidth as number) ?? 3;
+    const strokeDasharray = style?.strokeDasharray as string | undefined;
+    const midY = Math.min(sourceY, targetY) - 12;
+    return (
+      <path
+        d={`M ${sourceX},${sourceY} L ${sourceX},${midY} L ${targetX},${midY} L ${targetX},${targetY}`}
+        fill="none"
+        stroke={stroke}
+        strokeWidth={strokeWidth}
+        strokeDasharray={strokeDasharray}
+      />
+    );
+  },
 };
 
 const NODE_X_SPACING = 300;
@@ -789,6 +813,17 @@ export function TreeDashboard() {
     return map;
   }, [visibleRelationships]);
 
+  const childrenByParent = useMemo(() => {
+    const map = new Map<string, string[]>();
+    for (const rel of visibleRelationships) {
+      if (rel.relationshipType !== 'PARENT') continue;
+      const list = map.get(rel.person1Id) || [];
+      list.push(rel.person2Id);
+      map.set(rel.person1Id, list);
+    }
+    return map;
+  }, [visibleRelationships]);
+
   const barMeta = useMemo(() => {
     const bars = new Map<string, { parents: string[]; children: string[]; color: string }>();
     for (const [childId, parents] of parentIdsByChild.entries()) {
@@ -859,17 +894,39 @@ export function TreeDashboard() {
       } else {
         const parents = parentIdsByChild.get(hoveredNodeId) || [];
         parents.forEach((id) => highlightIds.add(id));
+        const queueUp = [...parents];
+        while (queueUp.length > 0) {
+          const current = queueUp.shift()!;
+          if (highlightIds.has(current)) continue;
+          highlightIds.add(current);
+          const nextParents = parentIdsByChild.get(current) || [];
+          nextParents.forEach((id) => {
+            if (!highlightIds.has(id)) queueUp.push(id);
+          });
+        }
+
+        const queueDown = [...(childrenByParent.get(hoveredNodeId) || [])];
+        while (queueDown.length > 0) {
+          const current = queueDown.shift()!;
+          if (highlightIds.has(current)) continue;
+          highlightIds.add(current);
+          const nextChildren = childrenByParent.get(current) || [];
+          nextChildren.forEach((id) => {
+            if (!highlightIds.has(id)) queueDown.push(id);
+          });
+        }
+
+        const siblingSet = new Set<string>();
+        for (const parentId of parents) {
+          const siblings = childrenByParent.get(parentId) || [];
+          siblings.forEach((sib) => siblingSet.add(sib));
+        }
+        siblingSet.forEach((sib) => highlightIds.add(sib));
+
         const barKeyTwo = parents.length >= 2 ? `bar:${[...parents].sort().join(':')}` : undefined;
         const barKeyOne = parents.length === 1 ? `bar:${parents[0]}` : undefined;
         if (barKeyTwo) highlightIds.add(barKeyTwo);
         if (barKeyOne) highlightIds.add(barKeyOne);
-        for (const rel of visibleRelationships) {
-          if (rel.person1Id === hoveredNodeId) {
-            highlightIds.add(rel.person2Id);
-          } else if (rel.person2Id === hoveredNodeId) {
-            highlightIds.add(rel.person1Id);
-          }
-        }
         for (const [barId, meta] of barMeta.entries()) {
           if (meta.parents.includes(hoveredNodeId)) {
             highlightIds.add(barId);
@@ -986,7 +1043,7 @@ export function TreeDashboard() {
         id: rel.id,
         source: rel.person1Id,
         target: rel.person2Id,
-        type: rel.relationshipType === 'SPOUSE' || rel.relationshipType === 'SIBLING' ? 'straight' : 'smoothstep',
+        type: rel.relationshipType === 'SPOUSE' ? 'spouseEdge' : rel.relationshipType === 'SIBLING' ? 'straight' : 'smoothstep',
         animated: false,
         style,
         sourceHandle: 'right',
@@ -1026,6 +1083,7 @@ export function TreeDashboard() {
     collapsedIds,
     barMeta,
     parentIdsByChild,
+    childrenByParent,
     hoveredNodeId,
     setNodes,
     setEdges,

@@ -72,12 +72,17 @@ function PersonNode({
     canCollapse: boolean;
     isCollapsed: boolean;
     onToggleCollapse: () => void;
+    dimmed?: boolean;
   };
 }) {
-  const { person, onEdit, onDelete, canEdit, canCollapse, isCollapsed, onToggleCollapse } = data;
+  const { person, onEdit, onDelete, canEdit, canCollapse, isCollapsed, onToggleCollapse, dimmed } = data;
 
   return (
-    <div className="bg-white rounded-xl shadow-lg border-2 border-emerald-200 p-4 min-w-[180px] hover:shadow-xl transition-shadow">
+    <div
+      className={`bg-white rounded-xl shadow-lg border-2 border-emerald-200 p-4 min-w-[180px] hover:shadow-xl transition-shadow ${
+        dimmed ? 'opacity-20' : ''
+      }`}
+    >
       <Handle type="target" position={Position.Top} id="top" className="opacity-0 pointer-events-none" />
       <Handle type="source" position={Position.Bottom} id="bottom" className="opacity-0 pointer-events-none" />
       <Handle type="target" position={Position.Left} id="left" className="opacity-0 pointer-events-none" />
@@ -123,8 +128,32 @@ function PersonNode({
   );
 }
 
+function CoupleBarNode({
+  data,
+}: {
+  data: {
+    color: string;
+    width: number;
+    dimmed?: boolean;
+  };
+}) {
+  return (
+    <div
+      className={`${data.dimmed ? 'opacity-20' : ''}`}
+      style={{
+        width: data.width,
+        height: 6,
+        backgroundColor: data.color,
+        borderRadius: 999,
+        boxShadow: '0 0 0 1px rgba(0,0,0,0.06)',
+      }}
+    />
+  );
+}
+
 const nodeTypes: NodeTypes = {
   person: PersonNode,
+  coupleBar: CoupleBarNode,
 };
 
 // Edge styles by relationship type
@@ -212,6 +241,37 @@ const edgeTypes = {
 const NODE_X_SPACING = 300;
 const NODE_Y_SPACING = 240;
 const GROUP_GAP = 0.5;
+const NODE_WIDTH = 180;
+const NODE_HEIGHT = 70;
+
+const FAMILY_COLORS = [
+  '#0ea5e9',
+  '#10b981',
+  '#f97316',
+  '#8b5cf6',
+  '#ef4444',
+  '#14b8a6',
+  '#f59e0b',
+  '#22c55e',
+  '#06b6d4',
+  '#a855f7',
+  '#f43f5e',
+  '#84cc16',
+];
+
+const hashString = (value: string) => {
+  let hash = 0;
+  for (let i = 0; i < value.length; i += 1) {
+    hash = (hash << 5) - hash + value.charCodeAt(i);
+    hash |= 0;
+  }
+  return Math.abs(hash);
+};
+
+const pickFamilyColor = (key: string) => {
+  const index = hashString(key) % FAMILY_COLORS.length;
+  return FAMILY_COLORS[index];
+};
 
 const computeHierarchyPositions = (
   persons: Person[],
@@ -706,6 +766,7 @@ export function TreeDashboard() {
   const [pendingPersonData, setPendingPersonData] = useState<PersonFormData | null>(null);
   const [collapsedIds, setCollapsedIds] = useState<Set<string>>(new Set());
   const [rootFocusId, setRootFocusId] = useState<string | null>(null);
+  const [hoveredNodeId, setHoveredNodeId] = useState<string | null>(null);
   const relationshipPersons = useMemo(() => persons, [persons]);
   const childMap = useMemo(() => buildChildMap(relationships), [relationships]);
   const { visiblePersons, visibleRelationships } = useMemo(
@@ -716,6 +777,44 @@ export function TreeDashboard() {
     () => computeHierarchyPositions(visiblePersons, visibleRelationships, rootFocusId),
     [visiblePersons, visibleRelationships, rootFocusId]
   );
+
+  const parentIdsByChild = useMemo(() => {
+    const map = new Map<string, string[]>();
+    for (const rel of visibleRelationships) {
+      if (rel.relationshipType !== 'PARENT') continue;
+      const list = map.get(rel.person2Id) || [];
+      list.push(rel.person1Id);
+      map.set(rel.person2Id, list);
+    }
+    return map;
+  }, [visibleRelationships]);
+
+  const barMeta = useMemo(() => {
+    const bars = new Map<string, { parents: string[]; children: string[]; color: string }>();
+    for (const [childId, parents] of parentIdsByChild.entries()) {
+      if (parents.length >= 2) {
+        const [a, b] = [...parents].sort();
+        const key = `bar:${a}:${b}`;
+        const entry = bars.get(key) || {
+          parents: [a, b],
+          children: [],
+          color: pickFamilyColor(key),
+        };
+        entry.children.push(childId);
+        bars.set(key, entry);
+      } else if (parents.length === 1) {
+        const key = `bar:${parents[0]}`;
+        const entry = bars.get(key) || {
+          parents: [parents[0]],
+          children: [],
+          color: pickFamilyColor(key),
+        };
+        entry.children.push(childId);
+        bars.set(key, entry);
+      }
+    }
+    return bars;
+  }, [parentIdsByChild]);
   const sidebarButtonClass =
     'w-full flex items-center gap-3 px-4 py-3 text-left bg-emerald-600 text-white rounded-lg hover:bg-emerald-700 transition-colors disabled:opacity-50 disabled:cursor-not-allowed';
 
@@ -748,6 +847,38 @@ export function TreeDashboard() {
 
   // Convert persons and relationships to nodes and edges
   useEffect(() => {
+    const highlightIds = new Set<string>();
+    if (hoveredNodeId) {
+      highlightIds.add(hoveredNodeId);
+      if (hoveredNodeId.startsWith('bar:')) {
+        const meta = barMeta.get(hoveredNodeId);
+        if (meta) {
+          meta.parents.forEach((id) => highlightIds.add(id));
+          meta.children.forEach((id) => highlightIds.add(id));
+        }
+      } else {
+        const parents = parentIdsByChild.get(hoveredNodeId) || [];
+        parents.forEach((id) => highlightIds.add(id));
+        const barKeyTwo = parents.length >= 2 ? `bar:${[...parents].sort().join(':')}` : undefined;
+        const barKeyOne = parents.length === 1 ? `bar:${parents[0]}` : undefined;
+        if (barKeyTwo) highlightIds.add(barKeyTwo);
+        if (barKeyOne) highlightIds.add(barKeyOne);
+        for (const rel of visibleRelationships) {
+          if (rel.person1Id === hoveredNodeId) {
+            highlightIds.add(rel.person2Id);
+          } else if (rel.person2Id === hoveredNodeId) {
+            highlightIds.add(rel.person1Id);
+          }
+        }
+        for (const [barId, meta] of barMeta.entries()) {
+          if (meta.parents.includes(hoveredNodeId)) {
+            highlightIds.add(barId);
+            meta.children.forEach((child) => highlightIds.add(child));
+          }
+        }
+      }
+    }
+
     const newNodes: Node[] = visiblePersons.map((person) => ({
       id: person.id,
       type: 'person',
@@ -757,6 +888,7 @@ export function TreeDashboard() {
         canEdit: person.createdById === user?.id || user?.role === 'ADMIN',
         canCollapse: (childMap.get(person.id)?.size || 0) > 0,
         isCollapsed: collapsedIds.has(person.id),
+        dimmed: hoveredNodeId ? !highlightIds.has(person.id) : false,
         onToggleCollapse: () => {
           setCollapsedIds((prev) => {
             const next = new Set(prev);
@@ -783,15 +915,52 @@ export function TreeDashboard() {
       },
     }));
 
+    const barNodes: Node[] = [];
+    for (const [barId, meta] of barMeta.entries()) {
+      const parents = meta.parents;
+      let centerX = 0;
+      let barWidth = 60;
+      let barY = 0;
+      if (parents.length >= 2) {
+        const p1 = positionMap.get(parents[0]);
+        const p2 = positionMap.get(parents[1]);
+        if (!p1 || !p2) continue;
+        const p1Center = p1.x + NODE_WIDTH / 2;
+        const p2Center = p2.x + NODE_WIDTH / 2;
+        centerX = (p1Center + p2Center) / 2;
+        barWidth = Math.max(Math.abs(p1Center - p2Center), 80);
+        barY = p1.y + NODE_HEIGHT + 12;
+      } else {
+        const p1 = positionMap.get(parents[0]);
+        if (!p1) continue;
+        centerX = p1.x + NODE_WIDTH / 2;
+        barWidth = 60;
+        barY = p1.y + NODE_HEIGHT + 12;
+      }
+
+      barNodes.push({
+        id: barId,
+        type: 'coupleBar',
+        position: { x: centerX - barWidth / 2, y: barY },
+        data: {
+          color: meta.color,
+          width: barWidth,
+          dimmed: hoveredNodeId ? !highlightIds.has(barId) : false,
+        },
+        draggable: false,
+        selectable: false,
+      });
+    }
+
     const newEdges: Edge[] = [];
 
-    for (const rel of visibleRelationships) {
-      if (rel.relationshipType === 'PARENT') {
-        const style = edgeStyles.PARENT;
+    for (const [barId, meta] of barMeta.entries()) {
+      for (const childId of meta.children) {
+        const style = { stroke: meta.color, strokeWidth: 3 };
         newEdges.push({
-          id: rel.id,
-          source: rel.person1Id,
-          target: rel.person2Id,
+          id: `bar-link:${barId}:${childId}`,
+          source: barId,
+          target: childId,
           type: 'step',
           animated: false,
           style,
@@ -800,10 +969,15 @@ export function TreeDashboard() {
           markerEnd: {
             type: MarkerType.ArrowClosed,
             color: style.stroke,
-            width: 20,
-            height: 20,
+            width: 18,
+            height: 18,
           },
         });
+      }
+    }
+
+    for (const rel of visibleRelationships) {
+      if (rel.relationshipType === 'PARENT') {
         continue;
       }
 
@@ -828,8 +1002,21 @@ export function TreeDashboard() {
       return rank(aRel) - rank(bRel);
     });
 
-    setNodes(newNodes);
-    setEdges(newEdges);
+    const styledEdges = newEdges.map((edge) => ({
+      ...edge,
+      style: {
+        ...edge.style,
+        opacity:
+          hoveredNodeId &&
+          !highlightIds.has(edge.source) &&
+          !highlightIds.has(edge.target)
+            ? 0.15
+            : 1,
+      },
+    }));
+
+    setNodes([...newNodes, ...barNodes]);
+    setEdges(styledEdges);
   }, [
     visiblePersons,
     visibleRelationships,
@@ -837,6 +1024,9 @@ export function TreeDashboard() {
     user,
     childMap,
     collapsedIds,
+    barMeta,
+    parentIdsByChild,
+    hoveredNodeId,
     setNodes,
     setEdges,
     personForm,
@@ -849,6 +1039,7 @@ export function TreeDashboard() {
     if (!searchQuery.trim()) return nodes;
     const query = searchQuery.toLowerCase();
     return nodes.filter((node) => {
+      if (node.type !== 'person') return false;
       const person = node.data.person as Person;
       return (
         person.firstName.toLowerCase().includes(query) ||
@@ -1364,6 +1555,8 @@ export function TreeDashboard() {
               onNodesChange={onNodesChange}
               onEdgesChange={onEdgesChange}
               onConnect={onConnect}
+              onNodeMouseEnter={(_event, node) => setHoveredNodeId(node.id)}
+              onNodeMouseLeave={() => setHoveredNodeId(null)}
               nodeTypes={nodeTypes}
               edgeTypes={edgeTypes}
               fitView

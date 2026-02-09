@@ -320,6 +320,81 @@ const pickFamilyColor = (key: string) => {
   return FAMILY_COLORS[index];
 };
 
+const buildHighlightIds = (
+  hoveredNodeId: string | null,
+  barMeta: Map<string, { parents: string[]; children: string[]; color: string }>,
+  parentIdsByChild: Map<string, string[]>,
+  childrenByParent: Map<string, string[]>,
+  visibleRelationships: Relationship[]
+) => {
+  const highlightIds = new Set<string>();
+  if (!hoveredNodeId) return highlightIds;
+
+  highlightIds.add(hoveredNodeId);
+  if (hoveredNodeId.startsWith('bar:')) {
+    const meta = barMeta.get(hoveredNodeId);
+    if (meta) {
+      meta.parents.forEach((id) => highlightIds.add(id));
+      meta.children.forEach((id) => highlightIds.add(id));
+    }
+    return highlightIds;
+  }
+
+  const parents = parentIdsByChild.get(hoveredNodeId) || [];
+  parents.forEach((id) => highlightIds.add(id));
+
+  const queueUp = [...parents];
+  while (queueUp.length > 0) {
+    const current = queueUp.shift()!;
+    if (highlightIds.has(current)) continue;
+    highlightIds.add(current);
+    const nextParents = parentIdsByChild.get(current) || [];
+    nextParents.forEach((id) => {
+      if (!highlightIds.has(id)) queueUp.push(id);
+    });
+  }
+
+  const queueDown = [...(childrenByParent.get(hoveredNodeId) || [])];
+  while (queueDown.length > 0) {
+    const current = queueDown.shift()!;
+    if (highlightIds.has(current)) continue;
+    highlightIds.add(current);
+    const nextChildren = childrenByParent.get(current) || [];
+    nextChildren.forEach((id) => {
+      if (!highlightIds.has(id)) queueDown.push(id);
+    });
+  }
+
+  const siblingSet = new Set<string>();
+  for (const parentId of parents) {
+    const siblings = childrenByParent.get(parentId) || [];
+    siblings.forEach((sib) => siblingSet.add(sib));
+  }
+  siblingSet.forEach((sib) => highlightIds.add(sib));
+
+  const barKeyTwo = parents.length >= 2 ? `bar:${[...parents].sort().join(':')}` : undefined;
+  const barKeyOne = parents.length === 1 ? `bar:${parents[0]}` : undefined;
+  if (barKeyTwo) highlightIds.add(barKeyTwo);
+  if (barKeyOne) highlightIds.add(barKeyOne);
+
+  for (const [barId, meta] of barMeta.entries()) {
+    if (meta.parents.includes(hoveredNodeId)) {
+      highlightIds.add(barId);
+      meta.children.forEach((child) => highlightIds.add(child));
+    }
+  }
+
+  for (const rel of visibleRelationships) {
+    if (rel.person1Id === hoveredNodeId) {
+      highlightIds.add(rel.person2Id);
+    } else if (rel.person2Id === hoveredNodeId) {
+      highlightIds.add(rel.person1Id);
+    }
+  }
+
+  return highlightIds;
+};
+
 const computeHierarchyPositions = (
   persons: Person[],
   relationships: Relationship[],
@@ -906,60 +981,6 @@ export function TreeDashboard() {
 
   // Convert persons and relationships to nodes and edges
   useEffect(() => {
-    const highlightIds = new Set<string>();
-    if (hoveredNodeId) {
-      highlightIds.add(hoveredNodeId);
-      if (hoveredNodeId.startsWith('bar:')) {
-        const meta = barMeta.get(hoveredNodeId);
-        if (meta) {
-          meta.parents.forEach((id) => highlightIds.add(id));
-          meta.children.forEach((id) => highlightIds.add(id));
-        }
-      } else {
-        const parents = parentIdsByChild.get(hoveredNodeId) || [];
-        parents.forEach((id) => highlightIds.add(id));
-        const queueUp = [...parents];
-        while (queueUp.length > 0) {
-          const current = queueUp.shift()!;
-          if (highlightIds.has(current)) continue;
-          highlightIds.add(current);
-          const nextParents = parentIdsByChild.get(current) || [];
-          nextParents.forEach((id) => {
-            if (!highlightIds.has(id)) queueUp.push(id);
-          });
-        }
-
-        const queueDown = [...(childrenByParent.get(hoveredNodeId) || [])];
-        while (queueDown.length > 0) {
-          const current = queueDown.shift()!;
-          if (highlightIds.has(current)) continue;
-          highlightIds.add(current);
-          const nextChildren = childrenByParent.get(current) || [];
-          nextChildren.forEach((id) => {
-            if (!highlightIds.has(id)) queueDown.push(id);
-          });
-        }
-
-        const siblingSet = new Set<string>();
-        for (const parentId of parents) {
-          const siblings = childrenByParent.get(parentId) || [];
-          siblings.forEach((sib) => siblingSet.add(sib));
-        }
-        siblingSet.forEach((sib) => highlightIds.add(sib));
-
-        const barKeyTwo = parents.length >= 2 ? `bar:${[...parents].sort().join(':')}` : undefined;
-        const barKeyOne = parents.length === 1 ? `bar:${parents[0]}` : undefined;
-        if (barKeyTwo) highlightIds.add(barKeyTwo);
-        if (barKeyOne) highlightIds.add(barKeyOne);
-        for (const [barId, meta] of barMeta.entries()) {
-          if (meta.parents.includes(hoveredNodeId)) {
-            highlightIds.add(barId);
-            meta.children.forEach((child) => highlightIds.add(child));
-          }
-        }
-      }
-    }
-
     const newNodes: Node[] = visiblePersons.map((person) => ({
       id: person.id,
       type: 'person',
@@ -969,7 +990,6 @@ export function TreeDashboard() {
         canEdit: person.createdById === user?.id || user?.role === 'ADMIN',
         canCollapse: (childMap.get(person.id)?.size || 0) > 0,
         isCollapsed: collapsedIds.has(person.id),
-        dimmed: hoveredNodeId ? !highlightIds.has(person.id) : false,
         onToggleCollapse: () => {
           setCollapsedIds((prev) => {
             const next = new Set(prev);
@@ -1026,7 +1046,7 @@ export function TreeDashboard() {
         data: {
           color: meta.color,
           width: barWidth,
-          dimmed: hoveredNodeId ? !highlightIds.has(barId) : false,
+          dimmed: false,
         },
         draggable: false,
         selectable: false,
@@ -1085,21 +1105,8 @@ export function TreeDashboard() {
       return rank(aRel) - rank(bRel);
     });
 
-    const styledEdges = newEdges.map((edge) => ({
-      ...edge,
-      style: {
-        ...edge.style,
-        opacity:
-          hoveredNodeId &&
-          !highlightIds.has(edge.source) &&
-          !highlightIds.has(edge.target)
-            ? 0.15
-            : 1,
-      },
-    }));
-
     setNodes([...newNodes, ...barNodes]);
-    setEdges(styledEdges);
+    setEdges(newEdges);
   }, [
     visiblePersons,
     visibleRelationships,
@@ -1109,13 +1116,55 @@ export function TreeDashboard() {
     collapsedIds,
     barMeta,
     parentIdsByChild,
-    childrenByParent,
-    hoveredNodeId,
     setNodes,
     setEdges,
     personForm,
     setShowEditPersonDialog,
     setShowDeleteConfirmDialog,
+  ]);
+
+  // Hover highlighting without resetting positions
+  useEffect(() => {
+    const highlightIds = buildHighlightIds(
+      hoveredNodeId,
+      barMeta,
+      parentIdsByChild,
+      childrenByParent,
+      visibleRelationships
+    );
+
+    setNodes((current) =>
+      current.map((node) => ({
+        ...node,
+        data: {
+          ...node.data,
+          dimmed: hoveredNodeId ? !highlightIds.has(node.id) : false,
+        },
+      }))
+    );
+
+    setEdges((current) =>
+      current.map((edge) => ({
+        ...edge,
+        style: {
+          ...edge.style,
+          opacity:
+            hoveredNodeId &&
+            !highlightIds.has(edge.source) &&
+            !highlightIds.has(edge.target)
+              ? 0.15
+              : 1,
+        },
+      }))
+    );
+  }, [
+    hoveredNodeId,
+    barMeta,
+    parentIdsByChild,
+    childrenByParent,
+    visibleRelationships,
+    setNodes,
+    setEdges,
   ]);
 
   // Filter nodes by search

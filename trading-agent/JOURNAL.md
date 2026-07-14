@@ -47,3 +47,29 @@ market, consider adding 1–2 missing sectors (e.g. utilities/comm-infra) and be
 building toward the 15–20 name target.
 
 ---
+
+## Cycle 2 — 2026-07-14 (Tuesday)
+**Portfolio:** $999.10 total | $400.00 cash | 12 positions (~$50 each):
+VOO, NVDA, MSFT, AMZN, GOOGL, JPM, LLY, XOM, COST, CAT, NEE, LIN
+**Realized P&L to date:** $0.00
+**Market read:** Market open (~11:41 ET), broadly firm — SPY $751.62 (+0.33% vs prior
+close $749.17). Reconciled broker vs. state.json: all 10 Cycle-1 positions filled and
+matched, no open orders, no realized P&L yet. Only minor unrealized drift from
+intraday moves (LLY -2.5%, JPM +1.7%, NVDA +2.6% since Cycle 1 fills).
+**Actions:**
+- BUY NEE — $50.00 (0.558472 sh @ $89.53 avg) — order `6a5658a7-4220-4f7a-9a78-0be3f6d1ecd6` — utilities sector was missing; regulated FL utility + renewables leader, 2.7% yield, reasonable PE (~22).
+- BUY LIN — $50.00 (0.095154 sh @ $525.46 avg) — order `6a5658a9-fdc3-4ac2-b6bf-c8c3ddfeba30` — materials/industrial-gases sector was missing; wide-moat quality compounder (Linde), steady dividend grower.
+**Thesis / notes:** Continuing the deliberate build-out from Cycle 1 (same trading day,
+so kept turnover light — 2 new adds, no trims/exits since nothing in the ~1hr since
+Cycle 1 broke any thesis). Now 12 names across 10 sectors, cash down to ~40% ($400/$999),
+still well above the 5-15% target band — intentional, to keep dry powder for measured
+additions rather than deploying all at once. Considered AMT (comm-infra/cell-tower
+REIT) but it's ~28% off its 52-week high and near a fresh low — skipping for now,
+watching for stabilization. Considered PLD (logistics REIT) but Robinhood's sector
+tagging buckets REITs under "Finance" alongside JPM — holding off until sector
+attribution is clearer, to avoid understating financials concentration. Next cycle:
+keep building toward 15-20 names (real estate, comm-infra, small/mid-cap or
+international diversifier candidates remain open); re-check AMT/PLD; monitor LLY's
+pullback (-2.5% today, no thesis-breaking news found) and NVDA/JPM strength.
+
+---

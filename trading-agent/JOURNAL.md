@@ -73,3 +73,32 @@ international diversifier candidates remain open); re-check AMT/PLD; monitor LLY
 pullback (-2.5% today, no thesis-breaking news found) and NVDA/JPM strength.
 
 ---
+
+## Cycle 3 — 2026-07-16 (Thursday)
+**Portfolio:** $1,004.30 total | $400.00 cash (pre-trade) | 12 positions (~$50 each):
+VOO, NVDA, MSFT, AMZN, GOOGL, JPM, LLY, XOM, COST, CAT, NEE, LIN
+**Realized P&L to date:** $0.00 (confirmed via broker — zero closed trades all-time)
+**Market read:** Market open (~11:04 ET). SPY $753.90 (-0.12% vs prior close $754.81),
+broadly flat/quiet session. Reconciled broker vs. state.json: all 12 positions,
+cash ($400.00), and buying power matched exactly — no discrepancies. No open/resting
+orders found. Position weights all ~4.7-5.2% of portfolio (VOO/NVDA/MSFT/AMZN/GOOGL/
+JPM/LLY/XOM/COST/CAT/NEE/LIN) — nowhere near the 10-15% single-name ceiling, and no
+sector near the 25-30% cap. No thesis breaks identified: CAT is down ~5% from cost
+(892.44 vs 939.99 avg) on no specific negative news found, NVDA roughly flat, LLY up
+~2.8% since purchase — holding all 12 as-is, no trims/exits this cycle.
+**Actions:**
+- BUY PLD — $50.00 (0.335296 sh @ $149.12 avg, filled) — order `6a58f30d-a901-46e9-88ea-379b5e06614d` — Prologis, logistics/industrial REIT; clean uptrend off the June 30 low ($135.47) to near 52-wk highs ($149-150 range), fills the still-missing real-estate sector. Note: Robinhood tags PLD "Finance" alongside JPM, but combined weight is only ~10% of portfolio, well under the 25-30% sector cap, so proceeding despite the tagging ambiguity flagged in Cycle 2.
+- BUY VXUS — $50.00 (0.593824 sh @ $84.20 avg, filled) — order `6a58f30e-8d98-4813-a16c-15afc346ff38` — Vanguard Total International ex-US ETF; portfolio had zero international exposure, adds broad developed+emerging-market diversification per the diversification mandate.
+**Thesis / notes:** Re-checked AMT (comm-infra REIT, on watchlist since Cycle 1):
+price has been choppy/basing between ~$162-170 for three weeks, still below its 50-day
+SMA (~178) with RSI a neutral 43 — no clear stabilization signal yet, so skipped again
+in favor of PLD which has a cleaner uptrend. Now 14 positions across 11 sectors
+(added Real Estate, International). Cash ~$300/$1,004 (~30%), still above the 5-15%
+target band but continuing the intentional gradual build toward 15-20 names —
+expect 1-2 more small/mid-cap or additional diversifier adds over the next couple
+cycles before cash normalizes into the target band. Watch next cycle: re-check AMT
+for stabilization, monitor CAT's -5% drawdown for any fundamental deterioration
+(vs. just noise), consider a dedicated small/mid-cap ETF (e.g. IJR) to round out the
+market-cap spectrum.
+
+---

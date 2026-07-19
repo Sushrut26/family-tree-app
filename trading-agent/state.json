@@ -1,9 +1,9 @@
 {
-  "last_cycle": 3,
-  "last_run": "2026-07-16T15:05Z",
+  "last_cycle": 4,
+  "last_run": "2026-07-19T15:10Z",
   "account_masked": "••••6885",
-  "cash_target_note": "14 positions built at ~$50 each; ~$300 (~30%) cash held as dry powder, still above the 5-15% target band intentionally while building out toward 15-20 names over coming cycles.",
-  "portfolio_snapshot": {"total_value": "1004.30", "cash_pre_trade": "400.00", "cash_post_trade_est": "300.00", "equity_value_pre_trade": "604.30"},
+  "cash_target_note": "14 positions at ~$50 each; ~$300 (~30%) cash held as dry powder, still above the 5-15% target band intentionally while building out toward 15-20 names. No trades this cycle (market closed, Sunday) - resume build-out next cycle when market is open.",
+  "portfolio_snapshot": {"total_value": "996.05", "cash": "300.00", "equity_value": "696.05", "buying_power": "300.00"},
   "holdings": [
     {"ticker": "VOO", "sector": "Broad ETF", "thesis": "S&P 500 core / ballast", "opened_cycle": 1, "avg_cost": "690.55"},
     {"ticker": "NVDA", "sector": "Tech/Semis", "thesis": "AI/semiconductor leader", "opened_cycle": 1, "avg_cost": "207.84"},
@@ -14,17 +14,17 @@
     {"ticker": "LLY", "sector": "Healthcare", "thesis": "Pharma growth", "opened_cycle": 1, "avg_cost": "1147.97"},
     {"ticker": "XOM", "sector": "Energy", "thesis": "Energy diversifier", "opened_cycle": 1, "avg_cost": "144.52"},
     {"ticker": "COST", "sector": "Cons. Staples", "thesis": "Retail quality compounder", "opened_cycle": 1, "avg_cost": "926.23"},
-    {"ticker": "CAT", "sector": "Industrials", "thesis": "Industrial cyclical", "opened_cycle": 1, "avg_cost": "939.99"},
+    {"ticker": "CAT", "sector": "Industrials", "thesis": "Industrial cyclical; -6.4% from cost as of Cycle 4, watching closely for thesis break vs. noise", "opened_cycle": 1, "avg_cost": "939.99"},
     {"ticker": "NEE", "sector": "Utilities", "thesis": "Regulated FL utility + renewables leader, 2.7% yield", "opened_cycle": 2, "avg_cost": "89.53"},
     {"ticker": "LIN", "sector": "Materials", "thesis": "Industrial gases wide-moat compounder", "opened_cycle": 2, "avg_cost": "525.46"},
     {"ticker": "PLD", "sector": "Real Estate (Robinhood tags 'Finance')", "thesis": "Logistics/industrial REIT in clean uptrend near 52wk highs; fills real-estate diversifier slot", "opened_cycle": 3, "avg_cost": "149.12"},
     {"ticker": "VXUS", "sector": "International Equity", "thesis": "Total international ex-US ETF; portfolio had zero non-US exposure", "opened_cycle": 3, "avg_cost": "84.20"}
   ],
   "watchlist": [
-    {"ticker": "AMT", "why": "Comm-infra/cell-tower REIT; still choppy/basing $162-170 for 3 weeks, below 50-day SMA (~178), RSI neutral 43 as of Cycle 3 - watch for a clear break above the 50-day SMA before buying."},
+    {"ticker": "AMT", "why": "Comm-infra/cell-tower REIT; still choppy/basing $162-170 for 3 weeks as of Cycle 3, below 50-day SMA (~178), RSI neutral 43 - watch for a clear break above the 50-day SMA before buying."},
     {"ticker": "IJR", "why": "Small-cap ETF (iShares Core S&P Small-Cap) - portfolio is entirely large-cap/mega-cap; consider adding for market-cap diversification."},
     {"ticker": "consider", "why": "Still building toward 15-20 names; small/mid-cap now the main remaining gap after adding real estate (PLD) and international (VXUS) in Cycle 3."}
   ],
   "open_orders": [],
-  "notes": "Cycle 3 complete: broker reconciled cleanly against state.json (no discrepancies). Added PLD (real estate) and VXUS (international) - both filled at market, ~$50 each. Now 14 names across 11 sectors/geographies. No trims or exits - no thesis broken on any of the 12 existing holdings (CAT down ~5% from cost but no negative news found, treated as noise not a thesis break). Cash ~30% ($300/$1,004), still above the 5-15% target band, intentionally, while completing the build-out. Realized P&L confirmed $0.00 all-time via broker. Follow money-management rules in STRATEGY.md. Account number is supplied via the scheduled run prompt (not stored here)."
+  "notes": "Cycle 4: market closed (Sunday, no session since Friday 2026-07-17 close). Broker reconciled cleanly against state.json - no discrepancies (14 positions, $300 cash, $300 buying power, $0 realized P&L all-time). No trades placed - dollar-based/fractional orders require regular market hours, so deferred to next cycle rather than queue whole-share limit orders that would break the account's standard ~$50 fractional sizing. SPY fell -1.0% Friday (broad pullback, no stock-specific news found). CAT now -6.4% from cost (was -5% at Cycle 3) and GOOGL -3.3% (new since Cycle 3, was near flat) - both flagged for a closer look next cycle to confirm noise vs. thesis break; no action taken yet as evidence is inconclusive. Cash still ~30% ($300/$996), above the 5-15% target band - resume build-out toward 15-20 names (AMT re-check, IJR) once market reopens. Account number is supplied via the scheduled run prompt (not stored here)."
 }

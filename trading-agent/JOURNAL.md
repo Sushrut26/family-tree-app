@@ -130,3 +130,44 @@ band; the build-out toward 15-20 names (AMT re-check, IJR small-cap diversifier)
 back up next cycle once the market is open for fractional buys.
 
 ---
+
+## Cycle 5 — 2026-07-22 (Wednesday)
+**Portfolio:** $998.998 total pre-trade | $300.00 cash | 14 positions: VOO -0.37%,
+NVDA +1.27%, MSFT +0.87%, AMZN -0.64%, GOOGL -2.71%, JPM +0.95%, LLY +1.35%,
+XOM +6.92%, COST -0.38%, CAT -4.63%, NEE -0.54%, LIN -3.46%, PLD -1.03%, VXUS +0.46%
+(all vs. avg cost, intraday prices)
+**Realized P&L to date:** $0.00 (confirmed via broker, all-time span, zero closing trades)
+**Market read:** Market open (~11:08 ET). SPY $748.51, roughly flat vs. Friday's close
+(prior session $748.28). Reconciled broker vs. state.json: all 14 positions, cash
+($300.00), buying power ($300.00), and $0 realized P&L matched exactly — no
+discrepancies, no open/resting orders. No thesis breaks: CAT's -4.6% drawdown checked
+against news — Board just raised the dividend 8% (to $1.63/sh) and multiple analysts
+lifted price targets (fair value ~$970 vs ~$913 prior) on strong construction/energy/
+data-center demand; stock is +64% YTD, today's dip reads as pre-earnings (Aug 4) noise,
+not deterioration. LIN's -3.5% also checked — RBC/BofA/Citi all raised price targets
+mid-July on tight helium supply (a tailwind for Linde's gas business); Q2 earnings
+July 31, no negative catalyst found. Holding both, no trims/exits this cycle.
+**Actions:**
+- BUY IJR — $50.00 (0.342635 sh @ $145.9276 avg, filled) — order
+  `6a60dcec-60fb-473a-9fc1-08edba8259a5` — iShares Core S&P Small-Cap ETF; portfolio
+  was entirely large/mega-cap, this fills the small-cap market-cap gap flagged since
+  Cycle 3/4. Technically healthy: $145.96 vs. 50-day SMA $141.63, near 52-wk high
+  ($149.35, hit July 1), clean uptrend off the Aug-2025 low ($107.09) — not chasing a
+  blowoff top.
+- Re-checked AMT (comm-infra REIT, watchlist since Cycle 1): still below its 50-day SMA
+  ($165.65 vs. $177.28) with RSI 37.5 (down from 43 at Cycle 3) — trend has gotten
+  *weaker*, not stabilized. Skipping again; will keep watching but this name is
+  looking less attractive each cycle, may drop from watchlist if no turn soon.
+**Thesis / notes:** Now 15 positions across 12 sectors/categories (added small-cap
+market-cap tier via IJR). Cash ~$249/$999 (~25%), still above the 5-15% target band but
+trending down as planned — one measured add this cycle, keeping turnover low per the
+minimize-turnover rule since no position needed trimming/exiting. All 14 legacy
+positions still within thesis, no single name or sector near the concentration caps
+(all individual weights ~4.7-5.4% of portfolio). Watch next cycle: continue monitoring
+CAT/LIN into their upcoming earnings (CAT Aug 4, LIN Jul 31) for any real thesis shift
+post-print; re-check AMT for a turn (may retire from watchlist if it keeps deteriorating);
+continue gradual build toward 15-20 names and the cash target band — 1 more diversifier
+add (e.g. a comm-infra/REIT alternative to AMT, or a dividend-quality ETF) would round
+out the roster nicely over the next cycle or two.
+
+---

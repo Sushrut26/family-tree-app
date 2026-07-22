@@ -1,9 +1,9 @@
 {
-  "last_cycle": 4,
-  "last_run": "2026-07-19T15:10Z",
+  "last_cycle": 5,
+  "last_run": "2026-07-22T15:08Z",
   "account_masked": "••••6885",
-  "cash_target_note": "14 positions at ~$50 each; ~$300 (~30%) cash held as dry powder, still above the 5-15% target band intentionally while building out toward 15-20 names. No trades this cycle (market closed, Sunday) - resume build-out next cycle when market is open.",
-  "portfolio_snapshot": {"total_value": "996.05", "cash": "300.00", "equity_value": "696.05", "buying_power": "300.00"},
+  "cash_target_note": "15 positions at ~$50 each; ~$249 (~25%) cash held as dry powder, still above the 5-15% target band but trending down as planned. One measured add this cycle (IJR); continue gradual build toward 15-20 names and the target cash band over the next few cycles.",
+  "portfolio_snapshot": {"total_value": "998.998 (pre-trade)", "cash_pre_trade": "300.00", "cash_post_trade_est": "249.00", "equity_value_pre_trade": "698.998", "buying_power_pre_trade": "300.00"},
   "holdings": [
     {"ticker": "VOO", "sector": "Broad ETF", "thesis": "S&P 500 core / ballast", "opened_cycle": 1, "avg_cost": "690.55"},
     {"ticker": "NVDA", "sector": "Tech/Semis", "thesis": "AI/semiconductor leader", "opened_cycle": 1, "avg_cost": "207.84"},
@@ -14,17 +14,17 @@
     {"ticker": "LLY", "sector": "Healthcare", "thesis": "Pharma growth", "opened_cycle": 1, "avg_cost": "1147.97"},
     {"ticker": "XOM", "sector": "Energy", "thesis": "Energy diversifier", "opened_cycle": 1, "avg_cost": "144.52"},
     {"ticker": "COST", "sector": "Cons. Staples", "thesis": "Retail quality compounder", "opened_cycle": 1, "avg_cost": "926.23"},
-    {"ticker": "CAT", "sector": "Industrials", "thesis": "Industrial cyclical; -6.4% from cost as of Cycle 4, watching closely for thesis break vs. noise", "opened_cycle": 1, "avg_cost": "939.99"},
+    {"ticker": "CAT", "sector": "Industrials", "thesis": "Industrial cyclical; +64% YTD, dividend hiked 8% (to $1.63/sh) and analyst targets raised (fair value ~$970) as of Cycle 5 on strong construction/energy/data-center demand. Q2 earnings Aug 4 - watch for real thesis shift post-print.", "opened_cycle": 1, "avg_cost": "939.99"},
     {"ticker": "NEE", "sector": "Utilities", "thesis": "Regulated FL utility + renewables leader, 2.7% yield", "opened_cycle": 2, "avg_cost": "89.53"},
-    {"ticker": "LIN", "sector": "Materials", "thesis": "Industrial gases wide-moat compounder", "opened_cycle": 2, "avg_cost": "525.46"},
+    {"ticker": "LIN", "sector": "Materials", "thesis": "Industrial gases wide-moat compounder; RBC/BofA/Citi raised price targets mid-July on tight helium supply (tailwind). Q2 earnings Jul 31 - watch for real thesis shift post-print.", "opened_cycle": 2, "avg_cost": "525.46"},
     {"ticker": "PLD", "sector": "Real Estate (Robinhood tags 'Finance')", "thesis": "Logistics/industrial REIT in clean uptrend near 52wk highs; fills real-estate diversifier slot", "opened_cycle": 3, "avg_cost": "149.12"},
-    {"ticker": "VXUS", "sector": "International Equity", "thesis": "Total international ex-US ETF; portfolio had zero non-US exposure", "opened_cycle": 3, "avg_cost": "84.20"}
+    {"ticker": "VXUS", "sector": "International Equity", "thesis": "Total international ex-US ETF; portfolio had zero non-US exposure", "opened_cycle": 3, "avg_cost": "84.20"},
+    {"ticker": "IJR", "sector": "Small-Cap ETF", "thesis": "iShares Core S&P Small-Cap; portfolio was entirely large/mega-cap, fills the small-cap market-cap tier. Technically healthy: near 52-wk high, above 50-day SMA.", "opened_cycle": 5, "avg_cost": "145.9276"}
   ],
   "watchlist": [
-    {"ticker": "AMT", "why": "Comm-infra/cell-tower REIT; still choppy/basing $162-170 for 3 weeks as of Cycle 3, below 50-day SMA (~178), RSI neutral 43 - watch for a clear break above the 50-day SMA before buying."},
-    {"ticker": "IJR", "why": "Small-cap ETF (iShares Core S&P Small-Cap) - portfolio is entirely large-cap/mega-cap; consider adding for market-cap diversification."},
-    {"ticker": "consider", "why": "Still building toward 15-20 names; small/mid-cap now the main remaining gap after adding real estate (PLD) and international (VXUS) in Cycle 3."}
+    {"ticker": "AMT", "why": "Comm-infra/cell-tower REIT; deteriorating further as of Cycle 5 - now below 50-day SMA ($165.65 vs $177.28), RSI 37.5 (down from 43 at Cycle 3). No stabilization signal in 3+ cycles; consider dropping from watchlist if no turn soon."},
+    {"ticker": "consider", "why": "Main remaining gaps after Cycle 5: cash still ~25% (above 5-15% target band, needs 2-4 more measured adds to normalize); a comm-infra/REIT alternative to AMT, or a dividend-quality ETF (e.g. SCHD), would round out the 15-20 name target."}
   ],
   "open_orders": [],
-  "notes": "Cycle 4: market closed (Sunday, no session since Friday 2026-07-17 close). Broker reconciled cleanly against state.json - no discrepancies (14 positions, $300 cash, $300 buying power, $0 realized P&L all-time). No trades placed - dollar-based/fractional orders require regular market hours, so deferred to next cycle rather than queue whole-share limit orders that would break the account's standard ~$50 fractional sizing. SPY fell -1.0% Friday (broad pullback, no stock-specific news found). CAT now -6.4% from cost (was -5% at Cycle 3) and GOOGL -3.3% (new since Cycle 3, was near flat) - both flagged for a closer look next cycle to confirm noise vs. thesis break; no action taken yet as evidence is inconclusive. Cash still ~30% ($300/$996), above the 5-15% target band - resume build-out toward 15-20 names (AMT re-check, IJR) once market reopens. Account number is supplied via the scheduled run prompt (not stored here)."
+  "notes": "Cycle 5: market open (~11:08 ET), SPY roughly flat. Broker reconciled cleanly pre-trade against state.json (14 positions, $300 cash, $300 buying power, $0 realized P&L all-time) - no discrepancies. Checked CAT (-4.6% from cost) and LIN (-3.5% from cost) news: both have positive catalysts (CAT dividend hike + analyst upgrades; LIN analyst upgrades on helium supply tightness), no thesis breaks, holding both into their upcoming earnings (LIN Jul 31, CAT Aug 4). Placed one buy this cycle: IJR $50 (small-cap ETF), filled at $145.9276/sh, order 6a60dcec-60fb-473a-9fc1-08edba8259a5. Now 15 positions across 12 sectors/categories, ~$249 cash (~25%). Kept turnover low per strategy (one measured add, no trims) since no position broke thesis. Account number is supplied via the scheduled run prompt (not stored here)."
 }

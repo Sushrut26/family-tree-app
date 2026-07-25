@@ -171,3 +171,38 @@ add (e.g. a comm-infra/REIT alternative to AMT, or a dividend-quality ETF) would
 out the roster nicely over the next cycle or two.
 
 ---
+
+## Cycle 6 — 2026-07-25 (Saturday)
+**Portfolio:** $992.97 total | $250.09 cash | 15 positions: VOO -1.66%, NVDA -0.42%,
+MSFT -1.16%, AMZN -5.51%, GOOGL -10.75%, JPM +2.82%, LLY +4.21%, XOM +8.59%,
+COST +0.98%, CAT -5.44%, NEE +0.28%, LIN -2.48%, PLD -1.01%, VXUS -0.95%,
+IJR -0.72% (all vs. avg cost, using Friday 7/24 close)
+**Realized P&L to date:** $0.00 (confirmed via broker, all-time span, zero closing trades)
+**Market read:** Market closed — Saturday, no session since Friday 2026-07-24 close.
+SPY closed Friday $738.85, down from $748.51 at Cycle 5 (Wed 7/22), a ~-1.3% pullback
+over the week. Reconciled broker vs. state.json: all 15 positions, cash, and $0
+realized P&L matched (cash $250.09 vs. the $249.00 post-trade estimate logged at
+Cycle 5 — a $1.09 gap, immaterial, likely a small accrual/rounding). No open/resting
+orders.
+**Actions:**
+- None. Market closed; dollar-based/fractional orders (the account's standard sizing)
+  require regular trading hours, so no new buys or trims were placed. Per
+  STRATEGY.md's discretion on closed-market cycles and the minimize-turnover rule,
+  deferring to the next cycle when the market is open.
+**Thesis / notes:** Checked the two largest laggards for a thesis break: GOOGL
+(-10.75% from cost) reported Q2 on 7/22 with a strong beat — revenue +24% to $119.8B,
+Google Cloud +82% to $24.8B, EPS $9.11 vs. $2.88 consensus — but sold off ~7% after
+guiding 2026 capex to $195-205B, pushing free cash flow negative for the first time
+ever; shares are now below their 200-day SMA. AMZN (-5.5%) fell on the same
+sector-wide AI-capex-jitters rotation (peers' capex hikes, ~$200B 2026 capex plan of
+its own reported) plus a new Senate marketplace inquiry, ahead of its own earnings
+7/30. Read this as a sector-wide repricing of AI infrastructure spend, not
+company-specific deterioration — both companies beat/are executing, not broken
+theses — so holding both, no trim. Position sizes remain well within caps (GOOGL
+~4.5%, AMZN ~4.8% of portfolio). CAT (-5.44%) and LIN (-2.48%) unchanged from Cycle 5
+read (positive catalysts, earnings CAT 8/4). Cash still ~25% ($250/$993), above the
+5-15% target band. Watch next cycle: AMZN earnings 7/30 and CAT earnings 8/4 for real
+thesis tests; re-check AMT for a turn; resume the gradual build toward 15-20 names
+and the cash target band once the market is open for fractional buys.
+
+---

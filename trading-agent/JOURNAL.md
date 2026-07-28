@@ -206,3 +206,53 @@ thesis tests; re-check AMT for a turn; resume the gradual build toward 15-20 nam
 and the cash target band once the market is open for fractional buys.
 
 ---
+
+## Cycle 7 — 2026-07-28 (Tuesday)
+**Portfolio:** $995.24 total | $244.19 cash (post-trade) | 15 positions: VOO -1.68%,
+NVDA -5.63%, MSFT +2.87%, AMZN -6.68%, GOOGL -8.10%, JPM +3.51%, LLY +6.47%,
+XOM +7.53%, COST +5.96%, NEE +0.60%, LIN -1.21%, PLD -0.52%, VXUS -1.40%,
+IJR -0.23%, SCHD flat (new) (all vs. avg cost, intraday prices)
+**Realized P&L to date:** -$5.90 (CAT closed this cycle; $0 realized all prior cycles,
+confirmed via broker)
+**Market read:** Market open (~11:13 ET). SPY $738.72, roughly flat vs. Monday's close
+($739.09). Reconciled broker vs. state.json cleanly before trading: all 15 positions,
+$250.09 cash, $0 realized P&L, no open orders — matched exactly, no discrepancies.
+**Actions:**
+- SELL CAT — 0.053192 sh @ $829.05 avg (filled), full exit — order
+  `6a68c706-49c4-4b87-bd75-c11c3a970058` — realized loss -$5.90. Thesis break, not
+  noise: position had deteriorated from -5.44% (Cycle 5) to -11.97% from cost in three
+  days. Web research found real fundamental cracks ahead of the Aug 4 print — Resource
+  Industries operating margin down ~700bps YoY (segment profit -39%), Power & Energy
+  margin down 170bps sequentially, full-year tariff/import-compliance cost guided to
+  $2.2-2.4B, total sales -4% YoY missing consensus, and an analyst downgrade to Hold
+  (from Buy) on 7/27 explicitly cited as pressuring shares ahead of earnings. RSI a
+  neutral 40 (not a panic/oversold bounce setup) and stock is ~23% off its June 30
+  52-wk high ($1073.46). This is margin/tariff-driven deterioration, not market noise —
+  cutting per the "cut losers" rule rather than holding into an increasingly risky
+  earnings print.
+- BUY SCHD — $50.00 (1.465850 sh @ $34.1099 avg, filled) — order
+  `6a68c70f-84df-42f5-8040-94081765471f` — Schwab US Dividend Equity ETF; fills the
+  Industrials gap left by the CAT exit with a diversified, quality-first dividend
+  compounder instead of another single-name cyclical bet. Trading at a fresh 52-wk
+  high ($34.24), 3.27% SEC yield, PE ~17.6x, ~$20M avg daily volume (liquid) — a
+  candidate flagged since Cycle 5 as a good round-out name.
+- Checked NVDA (-5.63% from cost, worsened from -0.42% at Cycle 6): web research shows
+  this is a broad AI-sector pullback (NVDA -18% off its June high, sector-wide
+  de-rating amid OpenAI-related headlines), not a company-specific break — 37-analyst
+  consensus remains Buy with a $302 average target vs. $196 spot. Holding, no action.
+- Re-checked GOOGL (-8.10%, improved from -10.75%) and AMZN (-6.68%, roughly flat vs.
+  -5.51%): no new negative catalysts found; AMZN reports Q2 earnings 7/30 (in 2 days) —
+  the real test of the Cycle 6 thesis is still ahead. Holding both, no trims.
+**Thesis / notes:** Still 15 positions but now 11 sectors (Industrials slot emptied by
+the CAT exit; SCHD adds a diversified dividend-ETF sleeve rather than refilling
+Industrials with another single cyclical name — will watch for a higher-quality
+industrial/cyclical replacement over future cycles, but in no rush). Cash $244.19/
+$995.24 (~24.5%), still above the 5-15% target band — continuing the deliberate,
+gradual glide down (was ~25.1% pre-trade). No position or sector near the
+concentration caps (largest single names ~5.4%, XOM/LLY/COST cluster). Watch next
+cycle: AMZN earnings 7/30 (real thesis test), broader AI-sector sentiment for NVDA/
+GOOGL, and continue building toward the 15-20 name target / cash normalization —
+a genuine higher-quality industrials name (or another sector-filling ETF) is the
+next natural add once one screens well.
+
+---

@@ -256,3 +256,66 @@ a genuine higher-quality industrials name (or another sector-filling ETF) is the
 next natural add once one screens well.
 
 ---
+
+## Cycle 8 — 2026-07-31 (Friday)
+**Portfolio:** $1,000.40 total | $144.27 cash (post-trade) | 17 positions: VOO -1.20%,
+NVDA -4.93%, MSFT +16.87%, AMZN +10.01%, GOOGL -1.68%, JPM +2.96%, LLY -1.19%,
+XOM +6.30%, COST +2.26%, NEE -2.38%, LIN -9.37%, PLD -3.56%, VXUS +0.46%, IJR -0.62%,
+SCHD -2.45%, XLI 0.00% (new), XLV 0.00% (new) (all vs. avg cost, intraday prices)
+**vs SPY since inception:** portfolio +0.04% | SPY -1.17% (SPY $742.25 vs. inception
+$751.07 on 2026-07-14)
+**Realized P&L to date:** -$5.90 (CAT, Cycle 7; confirmed via broker, all-time, one
+closing trade)
+**Lesson from last cycle:** Cycle 7 correctly held NVDA/GOOGL/AMZN through the
+AI-capex-jitters sell-off on the read that beats + execution outweigh sector-wide
+repricing fear — vindicated this cycle by AMZN's post-earnings +14.7% pop and GOOGL's
++3% AI-optimism rally. Reflexively trimming winners-turned-laggards would have been
+the wrong call; research-based conviction was the edge.
+**Market read:** Market open (~11:10 ET). SPY $742.25, roughly flat vs. Thursday's
+close ($741.69). Reconciled broker vs. state.json: 15 positions, cash $244.27 (vs.
+$244.19 logged — $0.08 immaterial drift), $0 open orders, -$5.90 realized P&L
+all-time — all matched cleanly, no real discrepancies. Two big overnight moves
+investigated: AMZN +14.7% on a Q2 blowout (AWS +37% — fastest pace in 18 quarters,
+revenue/EPS crushed estimates) confirming the Cycle 6/7 thesis that AI-capex jitters
+were sentiment, not substance; LIN -9.4% from cost (was -1.2% at Cycle 7) despite
+*beating* Q2 estimates ($4.50 adj. EPS vs. $4.49 est., revenue beat) — the drop is
+guidance-driven multiple compression (Q3/FY26 guide of $4.45-4.55 landed slightly
+below the $4.59 consensus), not a broken business (29.5% adj. operating margin, sales
++9%); reading this as noise on a premium multiple, not deterioration. XOM also
+reported Q2 this morning: EPS $3.52 missed the $3.68-3.76 estimate range by ~2.7%,
+but revenue beat (+42% YoY to $116B) with strong FCF ($17.2B) and $9.4B of shareholder
+returns — a modest, explainable miss, not a thesis break. No exits this cycle.
+**Actions:**
+- BUY XLI — $50.00 (0.279376 sh @ $178.9699 avg, filled) — order
+  `6a6cbafe-e952-43de-bb9a-4090209be294` — Industrial Select Sector SPDR ETF; refills
+  the Industrials slot left empty since the Cycle 7 CAT exit with diversified quality
+  exposure instead of a single cyclical name (the exact lesson from the CAT round-trip).
+  Basing right at its 50-day SMA ($178.22 vs. $179.03 spot), neutral RSI 46 — not
+  chasing, not broken. Spread ~0.02%, liquid. Score: quality 4, valuation 3, trend 4,
+  catalyst 3, fit 5 = 19/25.
+- BUY XLV — $50.00 (0.308966 sh @ $161.8299 avg, filled) — order
+  `6a6cbaff-85d8-45bf-a2b8-c5f86e9bdd89` — Health Care Select Sector SPDR ETF;
+  diversifies healthcare exposure beyond the single-name LLY concentration (portfolio's
+  only prior healthcare holding). Healthy uptrend (price $161.75 vs. 50-day SMA
+  $156.02), RSI 57 (not overbought), near 52-wk highs without being extended. Spread
+  ~0.01%, liquid. Score: quality 5, valuation 4, trend 4, catalyst 3, fit 5 = 21/25.
+- Re-checked AMT (comm-infra REIT, watchlist since Cycle 1): RSI improved to 54.6 (from
+  37.5 at Cycle 5) but price ($172.47) still below its 50-day SMA ($176.57) — momentum
+  is turning but hasn't confirmed a break above the average yet. Keeping on watchlist
+  one more cycle rather than buying or dropping; will act on a decisive move above the
+  50-day SMA.
+- Completed the STRATEGY.md-mandated migration: every holding now has an explicit
+  invalidation trigger and next-earnings date recorded in `state.json` (see that file).
+**Thesis / notes:** Now 17 positions across 12+ sector slots (Industrials refilled via
+XLI, Healthcare diversified via XLV) — within the 15-20 target range for the first
+time. Cash $144.27/$1,000.40 (~14.4%) — now inside the 5-15% target band for the first
+time since the build-out began; future cycles should be genuinely selective adds only,
+not routine glide-down buys. No position or sector near concentration caps (largest
+single name MSFT ~5.8%, JPM+PLD "Finance"-tagged combined ~10.0%). Watch next cycle:
+LLY earnings 2026-08-05 (5 days out) and CAT earnings 2026-08-04 (watchlist re-check
+post-print, still not a reflexive re-buy per Cycle 7's exit reasoning) are the two
+near-term catalysts; keep tracking LIN's guide-vs-consensus gap for signs of real
+(not just multiple-driven) deceleration; re-check AMT for a confirmed break above its
+50-day SMA before considering a buy.
+
+---

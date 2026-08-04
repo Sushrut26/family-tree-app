@@ -362,3 +362,58 @@ near-term catalysts; keep tracking LIN's guide-vs-consensus gap for signs of rea
 50-day SMA before considering a buy.
 
 ---
+
+## Cycle 10 — 2026-08-04 (Tuesday)
+**Portfolio:** $1,018.77 total | $144.27 cash (14.2%) | 17 positions: VOO +2.05%,
+NVDA +0.97%, MSFT +28.51%, AMZN +12.78%, GOOGL +5.25%, JPM +5.25%, LLY -1.95%,
+XOM +6.13%, COST +1.73%, NEE -3.80%, LIN -8.20%, PLD -5.57%, VXUS +2.25%, IJR +2.34%,
+SCHD -1.61%, XLI +3.20%, XLV -0.19% (all vs. avg cost, intraday prices)
+**vs SPY since inception:** portfolio +1.88% | SPY +2.07% (SPY $766.62 vs. inception
+$751.07 on 2026-07-14)
+**Realized P&L to date:** -$5.90 (CAT, Cycle 7; confirmed via broker, all-time, one
+closing trade)
+**Lesson from last cycle:** Cycle 9's hold-everything call (market closed) cost
+nothing — the account gained further into today's open on continued mega-cap
+strength, confirming that deferring trades on closed-market cycles rather than
+forcing action is the correct default when nothing is broken.
+**Market read:** Market open (~11:10 ET). SPY $766.62, +1.2% vs. Monday's close
+($757.67) — a firm, broadly risk-on session. Reconciled broker vs. state.json: all 17
+positions, $144.27 cash, $144.27 buying power, -$5.90 realized P&L all-time — matched
+exactly, no discrepancies, no open/resting orders. Biggest single-name mover in the
+market: CAT (not held) reported Q2 pre-market — EPS $8.17 vs. $6.17 est. (+32% beat),
+record $20.5B quarterly revenue, operating margin 20.9% (+360bps YoY), record $72B
+backlog on data-center-equipment demand — shares opened +11%, now +5.7% on the day
+after fading off the open. This is a genuine reversal of the Cycle 7 exit thesis
+(margin compression/tariff drag) — but per the execution rule against chasing >5%
+intraday spikes, and with CAT's PE now ~40.5x (rich vs. history), not re-buying today;
+watching for the move to consolidate before reconsidering. Checked the two largest
+laggards for thesis breaks: LIN (-8.2% from cost) — confirmed via broker earnings data
+the 7/31 print was a real beat (EPS $4.50 vs $4.48 est.) with a record $8.1B backlog
+(+$1B of new electronics wins); Bernstein raised its PT to $564 post-dip calling it a
+buying opportunity. Fundamentals intact, but technicals argue against adding now:
+price $482 is ~6% below its 50-day SMA ($514) and RSI is 31.2 — a confirmed downtrend,
+not a basing/turning setup (scored trend 1/5, see below). PLD (-5.6%) announced a
+recommended $18.8B acquisition of UK's SEGRO plc (47% European footprint expansion,
+~neutral-to-minimally-dilutive to FFO, closes H1 2027) alongside a $2.1B/15M-share
+stock offering pricing 8/5 — the offering is pressuring shares near-term (dilution),
+but this is a strategic growth move, not deteriorating logistics demand; invalidation
+trigger (occupancy/rent rollover) has not fired. Holding both, no trims.
+**Actions:**
+- No trades — cash is within the 5-15% target band (14.2%), no existing holding's
+  invalidation trigger fired, and the two candidates reviewed (CAT re-buy, LIN add)
+  both failed the process: CAT would be chasing a same-day >5% spike into a rich
+  ~40.5x PE; LIN scored 16/25 (quality 5, valuation 3, trend 1 — confirmed downtrend
+  below its 50-day SMA, catalyst 3, fit 4) and a trend score of 1 disqualifies a buy
+  regardless of total per STRATEGY.md. AMT re-checked: still below its 50-day SMA
+  ($173.63 vs. $176.16) — no buy signal, stays on watchlist.
+**Thesis / notes:** Still 17 positions, cash $144.27/$1,018.77 (~14.2%, inside target
+band) — portfolio +1.88% since inception vs. SPY +2.07%, essentially tracking the
+index with slight lag, not a drawdown situation. No position or sector near
+concentration caps (largest single name MSFT ~6.3%). Watch next cycle: LLY earnings
+2026-08-05 (tomorrow, held — GLP-1 pipeline trajectory is the test); CAT for
+consolidation after today's spike (a legitimate re-entry candidate once the move
+settles, given the reversed margin thesis); LIN for a close above its 50-day SMA
+before considering adding to the existing position; PLD's SEGRO deal and 8/5 stock
+offering for any sign of investor pushback beyond the immediate dilution reaction.
+
+---

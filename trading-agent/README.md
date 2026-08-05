@@ -51,8 +51,18 @@ Full discretion on *what* to trade, but two user-set portfolio rules:
 
 ## Watching along
 
+- **[`STATUS.md`](STATUS.md) — start here.** A one-page dashboard the agent rewrites
+  every cycle: account value, vs-SPY, last/next run, recent runs, and any alerts.
+  Bookmark it on GitHub — the web view always shows the latest push.
 - [`JOURNAL.md`](JOURNAL.md) — the running log of every cycle, in plain English.
-- The git history of this branch — every commit is one trading cycle.
+- [`HEALTH.log`](HEALTH.log) — one line per run; a quick way to spot a died-mid-run
+  cycle (`START` line with no matching `OK`).
+- The git history of this branch — every cycle is a heartbeat commit + a result commit.
+- A **watchdog Routine** independently cross-checks broker records against the journal
+  after trading days and raises alerts in `STATUS.md` if anything is off.
+
+> If checking from a local clone, run `git fetch` first — a stale clone can make a
+> perfectly healthy agent look dead.
 
 ## Stopping it
 

@@ -106,23 +106,57 @@ your edge accumulating over time.
 
 ## The cycle (run these steps every time you wake up)
 
-1. **Load memory.** Branch `claude/autonomous-trading-agent-r1s6y2`, `git pull`; read
-   this file, `JOURNAL.md`, `state.json`.
-2. **Check reality.** Portfolio (cash + buying power), positions, open orders,
+1. **Load memory.** Branch `claude/autonomous-trading-agent-r1s6y2`, `git pull`
+   (**always pull/fetch before reading — a stale checkout lies**); read this file,
+   `JOURNAL.md`, `state.json`, `HEALTH.log`.
+2. **Heartbeat first.** Immediately append one line to `HEALTH.log`:
+   `<UTC time> | cycle=N | START | trades=- | value=- | run started`, then
+   `git commit -m "Cycle N heartbeat" && git push`. This must happen **before any
+   research or trading** so that even a run that dies mid-way leaves a visible trace.
+   (At the end of the cycle, the final line for the run replaces `START` semantics —
+   append a matching `OK` line with trades/value/note.)
+3. **Check reality.** Portfolio (cash + buying power), positions, open orders,
    realized P&L from the broker. Broker beats `state.json` on any conflict; note
-   discrepancies.
-3. **Self-review.** Grade last cycle's calls (playbook F). Update `lessons`.
-4. **Market state.** Quote SPY; confirm tradability; note the tape. Update the
+   discrepancies. **Also verify the last cycle's work is actually in git**: if the
+   broker shows agent-placed orders that `JOURNAL.md` doesn't mention, a previous run
+   failed to commit — write a catch-up entry (clearly marked *reconstructed from
+   broker records*) before doing anything else.
+4. **Self-review.** Grade last cycle's calls (playbook F). Update `lessons`.
+5. **Market state.** Quote SPY; confirm tradability; note the tape. Update the
    benchmark comparison (playbook E).
-5. **Manage holdings first** (playbook A) — check each invalidation trigger.
-6. **Research new ideas** (playbook B–D), max ~2–4 buys, ~$50 each.
-7. **Execute** per the execution rules. Verify fills.
-8. **Record.** Append the `JOURNAL.md` entry (scores, reasons, order IDs); rewrite
-   `state.json` (holdings + theses + invalidation triggers + earnings dates,
-   watchlist, lessons, benchmark).
-9. **Commit & push** as `Claude <noreply@anthropic.com>`:
+6. **Manage holdings first** (playbook A) — check each invalidation trigger.
+7. **Research new ideas** (playbook B–D), max ~2–4 buys, ~$50 each.
+8. **Execute** per the execution rules. Verify fills. **If you placed any order,
+   commit a minimal journal note + state update immediately after fills confirm** —
+   never let executed trades sit unrecorded while you write longer analysis.
+9. **Record.** Append the `JOURNAL.md` entry — **always at the very END of the file,
+   in cycle-number order** (Cycle 9 was once inserted before Cycle 8; don't repeat
+   that). Rewrite `state.json` (holdings + theses + invalidation triggers + earnings
+   dates, watchlist, lessons, benchmark). Rewrite `STATUS.md` (current state table,
+   recent-runs table, next scheduled run, alerts). Append the final `OK` line for
+   this run to `HEALTH.log`.
+10. **Commit & push** as `Claude <noreply@anthropic.com>`:
    `git add trading-agent && git commit -m "Cycle N: <summary>" && git push origin claude/autonomous-trading-agent-r1s6y2`.
-   **Mandatory** — an un-committed cycle is a lost cycle.
+   **Mandatory** — an un-committed cycle is a lost cycle. If the push fails, retry up
+   to 4 times with exponential backoff (2s/4s/8s/16s); if it still fails, keep
+   retrying after a pause — never end the run with unpushed commits.
+
+## Reliability & monitoring (added 2026-08-05)
+
+- **Every fire leaves a trace.** Two commits per cycle minimum: the heartbeat (step 2)
+  and the result (step 10). Market-closed and no-trade cycles are NOT exceptions —
+  they still journal, still update `STATUS.md`/`HEALTH.log`, still commit.
+- **`STATUS.md` is the owner's dashboard.** Keep it truthful and current every cycle;
+  it is how a human checks on you without reading the whole journal. Put anything
+  that needs owner attention in its **Alerts** row.
+- **`HEALTH.log` is the machine-readable heartbeat.** One `START` and one `OK` line
+  per run, append-only. A `START` without an `OK` = that run died mid-way.
+- **A separate watchdog may also run** on this branch (it reconciles broker records
+  vs the journal and writes alerts into `STATUS.md`). If you find a watchdog commit
+  or an alert it left, read it and act on it first.
+- **Schedule quirk:** the current cron (`0 15 */3 * *`) resets at month boundaries
+  and can fire on weekends or two days in a row — treat unexpected timing as normal,
+  reconcile, and carry on.
 
 ## JOURNAL.md entry format
 

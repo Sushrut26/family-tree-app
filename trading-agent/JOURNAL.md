@@ -257,49 +257,6 @@ next natural add once one screens well.
 
 ---
 
-## Cycle 9 — 2026-08-01 (Saturday)
-**Portfolio:** $1,005.17 total | $144.27 cash | 17 positions: VOO -0.59%, NVDA -3.38%,
-MSFT +20.43%, AMZN +10.57%, GOOGL -0.54%, JPM +2.44%, LLY +0.05%, XOM +7.57%,
-COST +2.77%, NEE -2.90%, LIN -8.97%, PLD -3.00%, VXUS +0.46%, IJR -0.32%,
-SCHD -1.93%, XLI +0.46%, XLV +0.45% (all vs. avg cost, Friday 7/31 close)
-**vs SPY since inception:** portfolio +0.52% | SPY -0.57% (SPY $746.81 vs. inception
-$751.07 on 2026-07-14)
-**Realized P&L to date:** -$5.90 (CAT, Cycle 7; confirmed via broker, all-time, one
-closing trade)
-**Lesson from last cycle:** Cycle 8's decision to hold MSFT/AMZN/GOOGL through
-earnings and let Friday's post-print rally play out was correct — MSFT closed Friday
-+20.4% from cost (up from +16.9% at the Cycle 8 mid-session check) and AMZN closed
-+10.6% (from +10.0%), confirming real beats keep compounding through the session
-rather than fading; reactive trimming into a beat would have cost money.
-**Market read:** Market closed — Saturday, no session since Friday 2026-07-31 close.
-SPY closed Friday at $746.81, up from Thursday's $741.69 (+0.69%), a firm session
-driven by strong mega-cap earnings (MSFT, AMZN, GOOGL all up sharply). Reconciled
-broker vs. state.json: all 17 positions match exactly, cash $144.27 matches, buying
-power $144.27, no open/resting orders, realized P&L -$5.90 all-time (one closing
-trade, CAT) — no discrepancies. Portfolio total $1,005.17 (vs. $1,000.40 logged
-Friday) reflects Friday's continued mega-cap earnings rally into the close.
-**Actions:**
-- None — market closed (Saturday). Dollar-based/fractional orders require regular
-  trading hours per STRATEGY.md; deferring to the next open-market cycle. No thesis
-  breaks found on this pass: LIN remains the largest laggard (-8.97% from cost) but
-  no new information since Cycle 8's read (guidance-driven multiple compression on a
-  still-healthy business, not deteriorating fundamentals) — holding, no trim. NVDA
-  (-3.38%) and NEE (-2.90%) are minor, unremarkable drawdowns with no negative
-  catalysts found. All other positions flat-to-up. No single name or sector near
-  concentration caps (largest position MSFT ~6.0% of portfolio).
-**Thesis / notes:** Still 17 positions, cash $144.27/$1,005.17 (~14.4%), inside the
-5-15% target band — future adds remain genuinely selective per Cycle 8's note. Two
-near-term catalysts flagged last cycle are now imminent: CAT earnings 2026-08-04 (not
-held; watchlist re-check only, not a reflexive re-buy) and LLY earnings 2026-08-05
-(held, GLP-1 pipeline trajectory is the thing to watch). AMT stays on the watchlist at
-$173.41 (Friday close), still below its ~$176-177 50-day SMA as of Cycle 8 — will
-re-check technicals once the market reopens before considering a buy. Next
-open-market cycle: reassess LLY ahead of its 8/5 print, watch CAT's 8/4 report for
-any real stabilization signal (still not a re-buy candidate absent that), and
-continue monitoring LIN for a genuine (not just guidance-timing) deterioration signal.
-
----
-
 ## Cycle 8 — 2026-07-31 (Friday)
 **Portfolio:** $1,000.40 total | $144.27 cash (post-trade) | 17 positions: VOO -1.20%,
 NVDA -4.93%, MSFT +16.87%, AMZN +10.01%, GOOGL -1.68%, JPM +2.96%, LLY -1.19%,
@@ -360,6 +317,49 @@ post-print, still not a reflexive re-buy per Cycle 7's exit reasoning) are the t
 near-term catalysts; keep tracking LIN's guide-vs-consensus gap for signs of real
 (not just multiple-driven) deceleration; re-check AMT for a confirmed break above its
 50-day SMA before considering a buy.
+
+---
+
+## Cycle 9 — 2026-08-01 (Saturday)
+**Portfolio:** $1,005.17 total | $144.27 cash | 17 positions: VOO -0.59%, NVDA -3.38%,
+MSFT +20.43%, AMZN +10.57%, GOOGL -0.54%, JPM +2.44%, LLY +0.05%, XOM +7.57%,
+COST +2.77%, NEE -2.90%, LIN -8.97%, PLD -3.00%, VXUS +0.46%, IJR -0.32%,
+SCHD -1.93%, XLI +0.46%, XLV +0.45% (all vs. avg cost, Friday 7/31 close)
+**vs SPY since inception:** portfolio +0.52% | SPY -0.57% (SPY $746.81 vs. inception
+$751.07 on 2026-07-14)
+**Realized P&L to date:** -$5.90 (CAT, Cycle 7; confirmed via broker, all-time, one
+closing trade)
+**Lesson from last cycle:** Cycle 8's decision to hold MSFT/AMZN/GOOGL through
+earnings and let Friday's post-print rally play out was correct — MSFT closed Friday
++20.4% from cost (up from +16.9% at the Cycle 8 mid-session check) and AMZN closed
++10.6% (from +10.0%), confirming real beats keep compounding through the session
+rather than fading; reactive trimming into a beat would have cost money.
+**Market read:** Market closed — Saturday, no session since Friday 2026-07-31 close.
+SPY closed Friday at $746.81, up from Thursday's $741.69 (+0.69%), a firm session
+driven by strong mega-cap earnings (MSFT, AMZN, GOOGL all up sharply). Reconciled
+broker vs. state.json: all 17 positions match exactly, cash $144.27 matches, buying
+power $144.27, no open/resting orders, realized P&L -$5.90 all-time (one closing
+trade, CAT) — no discrepancies. Portfolio total $1,005.17 (vs. $1,000.40 logged
+Friday) reflects Friday's continued mega-cap earnings rally into the close.
+**Actions:**
+- None — market closed (Saturday). Dollar-based/fractional orders require regular
+  trading hours per STRATEGY.md; deferring to the next open-market cycle. No thesis
+  breaks found on this pass: LIN remains the largest laggard (-8.97% from cost) but
+  no new information since Cycle 8's read (guidance-driven multiple compression on a
+  still-healthy business, not deteriorating fundamentals) — holding, no trim. NVDA
+  (-3.38%) and NEE (-2.90%) are minor, unremarkable drawdowns with no negative
+  catalysts found. All other positions flat-to-up. No single name or sector near
+  concentration caps (largest position MSFT ~6.0% of portfolio).
+**Thesis / notes:** Still 17 positions, cash $144.27/$1,005.17 (~14.4%), inside the
+5-15% target band — future adds remain genuinely selective per Cycle 8's note. Two
+near-term catalysts flagged last cycle are now imminent: CAT earnings 2026-08-04 (not
+held; watchlist re-check only, not a reflexive re-buy) and LLY earnings 2026-08-05
+(held, GLP-1 pipeline trajectory is the thing to watch). AMT stays on the watchlist at
+$173.41 (Friday close), still below its ~$176-177 50-day SMA as of Cycle 8 — will
+re-check technicals once the market reopens before considering a buy. Next
+open-market cycle: reassess LLY ahead of its 8/5 print, watch CAT's 8/4 report for
+any real stabilization signal (still not a re-buy candidate absent that), and
+continue monitoring LIN for a genuine (not just guidance-timing) deterioration signal.
 
 ---
 

@@ -9,13 +9,13 @@
 
 | | |
 |---|---|
-| **Last completed cycle** | 10 — 2026-08-04 (no trades) |
-| **Account value** | $1,028.18 (as of 2026-08-05 pre-market) |
-| **Cash** | $144.27 (~14.0%, inside 5–15% target band) |
+| **Last completed cycle** | 11 — 2026-08-07 (no trades) |
+| **Account value** | $1,023.70 (as of 2026-08-07 ~11:12 ET) |
+| **Cash** | $144.27 (~14.1%, inside 5–15% target band) |
 | **Positions** | 17 |
-| **vs SPY since inception** | portfolio +2.82% vs SPY +3.13% (as of 2026-08-05) — tracking the index with slight lag |
+| **vs SPY since inception** | portfolio +2.37% vs SPY +2.92% (as of 2026-08-07) — tracking the index with a modest lag |
 | **Realized P&L (all-time)** | −$5.90 (one closed trade: CAT) |
-| **Next scheduled run** | 2026-08-07 15:05 UTC (cron `0 15 */3 * *`) |
+| **Next scheduled run** | per cron `0 15 */3 * *` (drifts month-to-month; see Known quirks) |
 | **Alerts** | ✅ none |
 
 ## Health check — how to tell it's alive
@@ -36,6 +36,7 @@ looks like the agent stopped (this exact false alarm happened 2026-08-05).
 
 | Date (UTC) | Cycle | Result |
 |---|---|---|
+| 2026-08-07 | 11 | ✅ No trades — cash in band; LIN/AMT still below 50-day SMA; CAT's earnings spike fully faded, still no re-entry |
 | 2026-08-04 | 10 | ✅ No trades — cash in band; CAT re-buy rejected (>5% same-day spike); LIN add rejected (trend 1/5) |
 | 2026-08-01 | 9 | ✅ Market closed (Sat) — reconciled clean |
 | 2026-07-31 | 8 | ✅ Bought XLI + XLV ($50 each); completed invalidation/earnings migration |

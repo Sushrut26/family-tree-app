@@ -417,3 +417,64 @@ before considering adding to the existing position; PLD's SEGRO deal and 8/5 sto
 offering for any sign of investor pushback beyond the immediate dilution reaction.
 
 ---
+
+## Cycle 11 — 2026-08-07 (Friday)
+**Portfolio:** $1,023.70 total | $144.27 cash (14.1%) | 17 positions: VOO +2.91%,
+NVDA +7.62%, MSFT +30.08%, AMZN +12.66%, GOOGL -0.30%, JPM +3.72%, LLY +2.87%,
+XOM +5.64%, COST +2.07%, NEE -5.50%, LIN -6.57%, PLD -6.23%, VXUS +3.36%, IJR +2.12%,
+SCHD -1.01%, XLI +3.57%, XLV +1.84% (all vs. avg cost, intraday prices)
+**vs SPY since inception:** portfolio +2.37% | SPY +2.92% (SPY $773.03 vs. inception
+$751.07 on 2026-07-14)
+**Realized P&L to date:** -$5.90 (CAT, Cycle 7; confirmed via broker, all-time, one
+closing trade)
+**Lesson from last cycle:** Cycle 10 was right not to chase CAT's same-day post-earnings
+spike (+5.7% that day, PE ~40.5x) — price has since fully round-tripped, now $846.79
+and *below* its 50-day SMA ($918.23), confirming a hot intraday pop needs to consolidate
+before it's a legitimate entry, not just fade.
+**Market read:** Market open (~11:12 ET). SPY $773.03, +0.58% vs. Thursday's close
+($768.56) — firm tape, new highs. Reconciled broker vs. state.json: all 17 positions,
+$144.27 cash, $144.27 buying power, -$5.90 realized P&L all-time (one closing trade)
+— matched exactly, no discrepancies, no open/resting orders. This is the first cycle
+since the 2026-08-05 STRATEGY.md reliability upgrade; `HEALTH.log` did not yet exist
+in this checkout, so it was created this cycle (also required un-ignoring it in the
+repo's root `.gitignore`, which had a blanket `*.log` rule blocking it — added a
+`!trading-agent/HEALTH.log` exception since nothing else in `trading-agent/` should be
+gitignored).
+**Actions:**
+- No trades. Cash (14.1%) is inside the 5-15% target band, no invalidation trigger
+  fired on any of the 17 holdings, and every live candidate failed the process:
+  - LLY reported Q2 on 8/5: EPS $8.38 actual vs. $6.01 estimate, a ~39% beat — thesis
+    strong, no action needed (already held).
+  - LIN (-6.57% from cost, improved from -8.2% at Cycle 10): RSI ticked up to 39.2
+    (from 31.2) but price ($490.96) is still ~4.2% below its 50-day SMA ($512.35) —
+    stabilizing, not yet a confirmed turn. Not adding.
+  - AMT (watchlist): RSI 48.0 (neutral, up from 43 in July) but price ($172.76) still
+    ~1.5% below its 50-day SMA ($175.40). No buy signal yet, stays on watchlist.
+  - CAT (watchlist, exited Cycle 7): fell from the Cycle 10 earnings-day spike back to
+    $846.79 — now ~7.8% *below* its 50-day SMA ($918.23), RSI a neutral 46.1, PE still
+    rich at ~41.3x (fundamentals data confirms). The reversed-margin thesis from Cycle
+    10 is intact, but the technical setup has gotten worse, not better, since the
+    spike faded — not a re-entry yet.
+  - NEE (-5.50%, largest % laggard): checked web news — Q2 adj. EPS $1.15 beat, FY26
+    guidance reaffirmed, plus a new $100B AI-data-center project (Paducah, KY, with
+    Brookfield) as a fresh growth catalyst; a regulatory intervention was filed in the
+    pending Dominion Energy combination review, procedural noise, not a NEE thesis
+    issue. Holding, no trim — this reads as valuation drift on a still-strong business,
+    not deterioration.
+  - PLD (-6.23%): the SEGRO acquisition's $2.1B/15M-share offering priced 8/5 as
+    planned (~-3.5% reaction that day, in line with dilution math); SEGRO's own offer
+    deadline was extended to 8/12 (deal process, not a red flag). Strategic-growth
+    thesis intact, holding.
+**Thesis / notes:** Still 17 positions across 12+ sector/style slots, no single name
+or sector near the concentration caps (largest MSFT ~6.4%; combined "Finance"-tagged
+JPM+PLD ~9.6%; combined Healthcare LLY+XLV ~10.0%). Portfolio +2.37% since inception
+vs. SPY +2.92% — tracking with a modest, explainable lag (concentrated large-cap
+tech/AI rally has favored cap-weighted SPY slightly more than our diversified sleeve).
+Watch next cycle: LIN and AMT for a confirmed close above their 50-day SMAs before
+reconsidering; CAT for the technical setup to actually improve (not just the
+fundamental thesis) before a re-entry; NVDA earnings 2026-08-26 is the next real
+catalyst on the calendar. No genuinely new buy candidate was sourced this cycle
+(scanners/screens not run — existing watchlist review consumed the research budget);
+worth running a scan next cycle if cash drifts toward the top of the target band.
+
+---

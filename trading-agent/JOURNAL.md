@@ -478,3 +478,62 @@ catalyst on the calendar. No genuinely new buy candidate was sourced this cycle
 worth running a scan next cycle if cash drifts toward the top of the target band.
 
 ---
+
+## Cycle 12 — 2026-08-11 (Tuesday)
+**Portfolio:** $1,028.10 total | $144.27 cash (14.0%) | 17 positions: VOO +2.87%,
+NVDA +5.48%, MSFT +30.29%, AMZN +11.25%, GOOGL -1.67%, JPM +4.95%, LLY +6.64%,
+XOM +11.58%, COST +1.44%, NEE -5.10%, LIN -6.26%, PLD -7.04%, VXUS +3.43%,
+IJR +1.74%, SCHD +0.34%, XLI +3.81%, XLV +3.90% (all vs. avg cost, intraday prices)
+**vs SPY since inception:** portfolio +2.81% | SPY +2.89% (SPY $772.78 vs. inception
+$751.07 on 2026-07-14)
+**Realized P&L to date:** -$5.90 (CAT, Cycle 7; confirmed via broker, all-time, one
+closing trade)
+**Lesson from last cycle:** Cycle 11's hold-everything call cost nothing — the
+account continued higher to $1,028.10 today, and LIN's fresh Q2 details (record
+$11.1B backlog, FY26 EPS guidance raised to $17.70-$17.90) confirm the
+fundamentals-strong/technicals-weak read was correct; waiting for a confirmed close
+above the 50-day SMA rather than averaging down into a laggard remains the right
+discipline.
+**Market read:** Market open (~11:09 ET). SPY $772.78, roughly flat vs. Monday's
+close ($773.03, -0.03%) — quiet tape. Reconciled broker vs. state.json: all 17
+positions, $144.27 cash, $144.27 buying power, -$5.90 realized P&L all-time (one
+closing trade) — matched exactly, no discrepancies, no open/resting orders. No
+watchdog commits or alerts found since Cycle 11.
+**Actions:**
+- No trades — cash (14.0%) is inside the 5-15% target band, no invalidation trigger
+  fired on any of the 17 holdings, and no watchlist candidate cleared the technical
+  bar:
+  - LIN (-6.26% from cost, improved from -6.57% at Cycle 11): confirmed record
+    Q2 order book ($11.1B backlog) and a raised FY26 EPS guide ($17.70-$17.90); a
+    few analysts trimmed price targets slightly (Citi/Goldman to $580, BMO to $546)
+    but all remain well above the $492 spot. RSI ticked up to 41.1 (from 39.2),
+    price still ~3.7% below its 50-day SMA ($511.80). Fundamentals continue to
+    strengthen while the chart lags — not yet a confirmed turn, not adding.
+  - AMT (watchlist): RSI 47.2 (neutral, roughly flat vs. 48.0 at Cycle 11), price
+    ($170.28) still ~2.6% below its 50-day SMA ($174.80). No buy signal, stays on
+    watchlist.
+  - CAT (watchlist, exited Cycle 7): $848.33, essentially flat vs. Cycle 11's
+    $846.79, still ~7.4% below its 50-day SMA ($915.88), RSI a neutral 42.2. The
+    reversed margin thesis is intact but the technical setup still hasn't turned —
+    not a re-entry.
+  - PLD (-7.04%, largest % laggard): confirmed the SEGRO acquisition is a signed,
+    board-recommended deal (not just a proposal) — $18.8B / 47% European footprint
+    expansion, on track to close H1 2027, no shareholder pushback or red flags found.
+    Strategic-growth thesis intact, holding.
+  - NEE (-5.10%): the Dominion Energy merger review saw a formal regulatory
+    intervention filed by Virginia's governor (procedural scrutiny of a $67B deal,
+    not a rejection) and the Paducah AI-data-center project remains on track.
+    Reads as valuation drift on a still-healthy business, not deterioration —
+    holding, no trim.
+**Thesis / notes:** Still 17 positions across 12+ sector/style slots, no single name
+or sector near the concentration caps (largest position MSFT ~6.3% of portfolio).
+Portfolio +2.81% since inception vs. SPY +2.89% — essentially tracking the index.
+No saved scanners exist on this account yet (checked via get_scans); with cash near
+the top of the 5-15% band and the existing roster already at 17 names across 12+
+sectors, priority stays on watching LIN/AMT/CAT for a confirmed technical turn
+rather than sourcing brand-new names. Watch next cycle: NVDA earnings 2026-08-26 is
+the next real catalyst; LIN/AMT for a close above their 50-day SMAs; CAT's technical
+setup for improvement; NEE's Dominion merger regulatory process for any real
+setback (vs. procedural noise).
+
+---

@@ -9,11 +9,11 @@
 
 | | |
 |---|---|
-| **Last completed cycle** | 11 — 2026-08-07 (no trades) |
-| **Account value** | $1,023.70 (as of 2026-08-07 ~11:12 ET) |
-| **Cash** | $144.27 (~14.1%, inside 5–15% target band) |
+| **Last completed cycle** | 12 — 2026-08-11 (no trades) |
+| **Account value** | $1,028.10 (as of 2026-08-11 ~11:09 ET) |
+| **Cash** | $144.27 (~14.0%, inside 5–15% target band) |
 | **Positions** | 17 |
-| **vs SPY since inception** | portfolio +2.37% vs SPY +2.92% (as of 2026-08-07) — tracking the index with a modest lag |
+| **vs SPY since inception** | portfolio +2.81% vs SPY +2.89% (as of 2026-08-11) — tracking the index closely |
 | **Realized P&L (all-time)** | −$5.90 (one closed trade: CAT) |
 | **Next scheduled run** | per cron `0 15 */3 * *` (drifts month-to-month; see Known quirks) |
 | **Alerts** | ✅ none |
@@ -36,13 +36,12 @@ looks like the agent stopped (this exact false alarm happened 2026-08-05).
 
 | Date (UTC) | Cycle | Result |
 |---|---|---|
+| 2026-08-11 | 12 | ✅ No trades — cash near top of band; LIN fundamentals strengthened (record backlog, raised guide) but still below 50-day SMA; AMT/CAT unchanged, no re-entry |
 | 2026-08-07 | 11 | ✅ No trades — cash in band; LIN/AMT still below 50-day SMA; CAT's earnings spike fully faded, still no re-entry |
 | 2026-08-04 | 10 | ✅ No trades — cash in band; CAT re-buy rejected (>5% same-day spike); LIN add rejected (trend 1/5) |
 | 2026-08-01 | 9 | ✅ Market closed (Sat) — reconciled clean |
 | 2026-07-31 | 8 | ✅ Bought XLI + XLV ($50 each); completed invalidation/earnings migration |
 | 2026-07-28 | 7 | ✅ Sold CAT (thesis break), bought SCHD |
-| 2026-07-25 | 6 | ✅ Market closed (Sat) — reconciled clean |
-| 2026-07-22 | 5 | ✅ Bought IJR; held CAT through dip |
 
 ## Known quirks
 

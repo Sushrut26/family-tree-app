@@ -9,15 +9,15 @@
 
 | | |
 |---|---|
-| **Last completed cycle** | 12 — 2026-08-11 (no trades) |
-| **Account value** | $1,028.10 (as of 2026-08-11 ~11:09 ET) |
-| **Cash** | $144.27 (~14.0%, inside 5–15% target band) |
-| **Positions** | 17 |
-| **vs SPY since inception** | portfolio +2.81% vs SPY +2.89% (as of 2026-08-11) — tracking the index closely |
-| **Realized P&L (all-time)** | −$5.90 (one closed trade: CAT) |
+| **Last completed cycle** | 13 — 2026-08-14 (restructure executed: 7 sells, 2 buys) |
+| **Account value** | $1,027.68 (as of 2026-08-14 ~11:26 ET) |
+| **Cash** | $363.01 (~35.3% — but ~$362.73 is unsettled Cycle-13 sale proceeds, not idle by choice; settled buying power was $0.27 after trades) |
+| **Positions** | 11 (VOO core + 10 single names, down from 17) |
+| **vs SPY since inception** | portfolio +2.77% vs SPY +3.32% (as of 2026-08-14) — -0.55pt gap, safety valve not tripped |
+| **Realized P&L (all-time)** | +$6.84 (8 closed trades; Cycle 13's restructure sells netted +$12.74) |
 | **Next scheduled run** | per cron `0 15 */3 * *` (drifts month-to-month; see Known quirks) |
 | **Strategy** | 🔄 **Changed 2026-08-14** — moderately aggressive, research-driven. Target: **8–10 single names + a `VOO` core (15–20%)**, ~9–11% per name, cash 2–5%, correlated-theme cap 40%. Every holding must justify itself against just buying `VOO`. |
-| **Alerts** | ⚠️ **Restructure pending** — the portfolio is still in the old 17-position shape. Cycle 13 executes the change (sell `SCHD`/`XLI`/`XLV`, re-underwrite the single names, top up `VOO`), staged across Cycles 13–14. |
+| **Alerts** | ℹ️ **Restructure in progress** — Cycle 13 sold `SCHD`/`XLI`/`XLV`/`VXUS`/`IJR`/`JPM`/`COST` and bought `V`, topping up `VOO` to 14.8%. Only $144.27 was settled/spendable same-day (cash-account T+1 settlement); the rest (~$362.73) deploys in Cycle 14 to finish the `VOO` top-up and single-name sizing. `AMT` confirmed a technical breakout this cycle — top new-buy candidate next cycle. |
 
 ## Health check — how to tell it's alive
 
@@ -37,12 +37,12 @@ looks like the agent stopped (this exact false alarm happened 2026-08-05).
 
 | Date (UTC) | Cycle | Result |
 |---|---|---|
+| 2026-08-14 | 13 | ✅ Restructure: sold `SCHD`/`XLI`/`XLV`/`VXUS`/`IJR`/`JPM`/`COST` (7), bought `VOO` top-up + new `V` position (2). 17→11 positions. `AMT` confirmed SMA breakout. |
 | 2026-08-11 | 12 | ✅ No trades — cash near top of band; LIN fundamentals strengthened (record backlog, raised guide) but still below 50-day SMA; AMT/CAT unchanged, no re-entry |
 | 2026-08-07 | 11 | ✅ No trades — cash in band; LIN/AMT still below 50-day SMA; CAT's earnings spike fully faded, still no re-entry |
 | 2026-08-04 | 10 | ✅ No trades — cash in band; CAT re-buy rejected (>5% same-day spike); LIN add rejected (trend 1/5) |
 | 2026-08-01 | 9 | ✅ Market closed (Sat) — reconciled clean |
 | 2026-07-31 | 8 | ✅ Bought XLI + XLV ($50 each); completed invalidation/earnings migration |
-| 2026-07-28 | 7 | ✅ Sold CAT (thesis break), bought SCHD |
 
 ## What changed on 2026-08-14 (and why)
 

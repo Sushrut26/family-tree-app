@@ -601,3 +601,104 @@ near SPY. What genuinely changes is that research now drives the result instead 
 being decorative.
 
 ---
+
+## Cycle 13 — 2026-08-14 (Friday) — RESTRUCTURE MANDATE EXECUTED
+
+**Portfolio:** $1,027.68 total | $363.01 cash (35.3% — see note) | 11 positions:
+VOO 14.8% (+1.1%), NVDA 5.3% (+8.3%), MSFT 6.3% (+29.0%), AMZN 5.2% (+7.6%),
+GOOGL 4.7% (-3.6%), LLY 5.0% (+3.1%), XOM 5.4% (+11.1%), NEE 4.7% (-3.6%),
+LIN 4.4% (-8.5%), PLD 4.6% (-5.3%), V 4.3% (new, ~flat) — all vs. avg cost,
+intraday prices.
+**vs SPY since inception:** portfolio +2.77% | SPY +3.32% (SPY $776.01 vs. inception
+$751.07 on 2026-07-14) | 10-cycle gap: -0.55 pts (valve: ok, not tripped — trailing
+gaps were +1.21/-0.19/-0.55/-0.08/-0.55 pts at cycles 8/10/11/12/13)
+**Realized P&L to date:** +$6.84 (confirmed via broker, all-time, 8 closing trades —
+today's 7 restructure sells netted +$12.74, more than offsetting the CAT loss)
+**Lesson from last cycle:** Cycle 12's individual no-trade call was fine, but the
+owner's 2026-08-14 review found the deeper problem: the old money-management rules
+(15-20 names, always hold an ETF core, 5-15% cash) mandated closet indexing
+regardless of how sound any single cycle's judgment was. A good process running on a
+self-contradicting brief still produces the wrong shape.
+**Market read:** Market open (~11:26 ET). SPY $776.01, -0.24% vs. Wednesday's close
+($777.88) — quiet, marginally softer tape. No holding or candidate moved >2.5%
+intraday, so no execution-rule (>5% chase) conflicts today. All spreads checked
+pre-trade were ≤0.14% (LLY widest at 0.14%, most <0.03%) — clear to use market orders.
+Reconciled broker vs. state.json before trading: all 17 legacy positions, $144.27
+cash/buying power, -$5.90 realized P&L all-time — matched cleanly, no discrepancies,
+no watchdog alerts found since Cycle 12.
+**Candidates screened this cycle:**
+- **V (Visa)** — quality 5, valuation 3, trend 4 (price $364.49, 4.9% above its
+  50-day SMA $347.44, RSI 57.4), catalyst 3, fit 4 = **19/25 — BUY.** Payments
+  duopoly with structurally expanding operating margins (opex scales slower than
+  transaction volume) as cashless payments keep taking global share.
+- **WM (Waste Management)** — quality 5, valuation 2.5 (PE 32x, rich vs. its own
+  24-28x history), trend 2 (price $225.34 slightly below its 50-day SMA $227.33, RSI
+  41.7), catalyst 2.5 (no confirmed near-term catalyst beyond "quality business"),
+  fit 4 = **16/25 — declined.** Good business, but doesn't clear the bar this cycle;
+  keeping on the watchlist in case valuation/trend improve.
+- **RTX (RTX Corp)** — quality 4, valuation 2 (PE 39.2x, rich vs. history), trend 2
+  (RSI 67.5, price at a 52-wk high set just 4 days ago — extended), catalyst 3
+  (defense spending tailwind, but widely known/priced), fit 4 = **15/25 —
+  declined,** and technically extended regardless of score. Not added to watchlist.
+**Actions — restructure_mandate steps 1-4 executed:**
+- SELL SCHD — 1.465850 sh @ $34.4704 avg (filled) — order `6a7f3385-6a2f-4c8f-81ce-11d04d8276f1`
+  — mandatory VOO-duplicate exit per the 2026-08-14 owner review.
+- SELL XLI — 0.279376 sh @ $186.4401 avg (filled) — order `6a7f3387-395f-4c2b-a7d4-5e9886a7fe85`
+  — mandatory VOO-duplicate exit.
+- SELL XLV — 0.308966 sh @ $167.4201 avg (filled) — order `6a7f3388-39bf-4347-91cd-04c5650bd6f4`
+  — mandatory VOO-duplicate exit (also duplicated the LLY holding).
+- SELL VXUS — 0.593824 sh @ $87.6129 avg (filled) — order `6a7f338a-a83f-4d08-bf33-50d673658464`
+  — discretionary call (restructure_mandate step 2): consolidating to a single
+  permitted index core (`VOO`) is more consistent with "every dollar must express a
+  view" than keeping a second index-style ETF sleeve; redeploying into researched
+  names (`V`) and the `VOO` core instead.
+- SELL IJR — 0.342635 sh @ $150.1201 avg (filled) — order `6a7f338a-7757-42c8-8b3c-f82ecc315862`
+  — same reasoning as VXUS: one ETF core, not three.
+- SELL JPM — 0.145582 sh @ $364.4401 avg (filled) — order `6a7f338c-bf9b-41c1-bcb8-9a1a07d5ff01`
+  — re-underwriting cut (restructure_mandate step 3): thesis was "banking bellwether,"
+  which fails the beat-the-index test — no specific mispricing or catalyst named, and
+  JPM is already a top-10 `VOO` constituent. Weakest `why_not_voo` of the 11 single
+  names.
+- SELL COST — 0.053982 sh @ $960.6401 avg (filled) — order `6a7f338d-1c4a-4c44-b882-d8891f4898e2`
+  — re-underwriting cut: thesis was "retail quality compounder," the exact "good
+  company" reasoning STRATEGY.md says is insufficient. Second-weakest `why_not_voo`.
+- BUY VOO — $100.00 (0.140203 sh @ $713.2499 avg, filled) — order `6a7f33b2-a912-41e2-b6b6-8d29077607d5`
+  — partial top-up toward the 15-20% core target (mandate step 4); brings VOO from
+  5.0% to 14.8% of the account. Only partially completed this cycle — see cash note.
+- BUY V — $44.00 (0.120700 sh @ $364.5391 avg, filled) — order `6a7f33b4-366f-4be5-803e-35c6663e45f6`
+  — new researched single name (score 19/25, see above), starter size; replaces the
+  JPM slot with a more specific, defensible thesis.
+- **Cash/settlement note:** the 7 sells generated ~$362.73 in proceeds, but this is a
+  **cash account — proceeds settle T+1 and were not spendable today.** Buying power
+  after the sells was only $144.27 (the pre-existing settled cash), which is what
+  funded the VOO + V buys above ($144.00 combined, $0.27 left over). The remaining
+  ~$362.73 will be settled and available at the next cycle. This is a bigger driver
+  of "staging across Cycles 13-14" than a stylistic choice — it's mechanically
+  enforced by settlement. **No margin/limited-margin upgrade was used or considered
+  — margin is a hard constraint violation per STRATEGY.md, cash-account settlement
+  is the correct behavior here.**
+**Thesis / notes:** Restructure mandate steps 1-4 substantially executed: down from
+17 positions (6 ETFs) to **11 positions (1 ETF)** — `VOO` core plus 10 single names
+(`NVDA MSFT AMZN GOOGL LLY XOM NEE LIN PLD V`), within the 8-10 single-name target at
+the top of the range. Every surviving holding now carries a specific `why_not_voo`
+line and a `theme` tag in `state.json` (mandate step 7). Concentration check:
+largest single name MSFT at 6.3% (nowhere near the 15% trim trigger — plenty of room
+to add), correlated AI/cloud theme (NVDA+MSFT+AMZN+GOOGL) at 21.5% (well under the
+40% cap), no sector above ~15%, 10 distinct sector tags (well above the 4-sector
+floor). `VOO` at 14.8%, just under the 15-20% target — finishing the top-up is
+Cycle 14's first job. **Watchlist alert: AMT's price ($176.02) closed above its
+50-day SMA ($173.88) for the first time since it entered the watchlist at Cycle 1 —
+RSI 54.4, a genuine technical turn after 6+ cycles of waiting.** This is now the
+top new-position candidate for Cycle 14 alongside finishing the top-ups on the 10
+existing single names (all still below the $90-110 target — LIN excluded from any
+add until its trend confirms, per the standing rule, RSI fell further to 33.96 and
+price is now 6.1% below its 50-day SMA, worse than Cycle 12). CAT re-checked: still
+~6.1% below its 50-day SMA ($913.93 vs. $858.47 spot), RSI neutral 45.9 — technical
+setup still hasn't turned, stays on watchlist only. Next cycle: deploy the ~$362.73
+of now-settled cash — finish `VOO` to 15-20%, add to the 9 non-LIN singles toward
+$90-110 each (prioritizing MSFT/AMZN as working winners per the add-to-winners
+rule), seriously evaluate AMT as a new buy given the confirmed SMA break, and keep
+LIN on hold until its own chart turns. NVDA earnings 2026-08-26 is the next
+real catalyst on the calendar.
+
+---

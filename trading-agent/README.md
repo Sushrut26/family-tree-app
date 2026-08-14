@@ -45,9 +45,24 @@ Each cycle follows the loop documented in [`STRATEGY.md`](STRATEGY.md):
 
 ## The rules the AI gives itself
 
-Full discretion on *what* to trade, but two user-set portfolio rules:
-- **Diversify** — don't pile everything into one stock or sector.
-- **Build in ~$50 positions** — spread the $1,000 across many names over time.
+Full discretion on *what* to trade, inside a **moderately aggressive, research-driven**
+mandate (set 2026-08-14, replacing the original broad-diversification rules):
+
+- **Concentrate** — 8–10 researched single names plus a `VOO` core, ~9–11% each.
+  Fewer, better bets rather than a basket of everything.
+- **Keep a `VOO` ballast core at 15–20%** — the anchor that keeps this *moderately*
+  rather than fully aggressive.
+- **Every dollar expresses a view** — each holding must answer "why is owning this
+  better than the same dollars in `VOO`?" or get sold. Cash target just 2–5%.
+- **Screen widely, buy rarely** — ≥2 brand-new candidates researched every cycle, but
+  a high bar to actually buy (≥18/25 on a five-factor score).
+- **Guardrails stay** — no single name over ~15%, no correlated theme over ~40%, and
+  an automatic rotation back into `VOO` if it lags the S&P by more than 8 points over
+  10 cycles.
+
+*Why it changed:* by Cycle 12 the portfolio had drifted into 17 positions — six of
+them overlapping ETFs — and was effectively an index fund with 14% idle cash. See
+[`STATUS.md`](STATUS.md) for the full diagnosis.
 
 ## Watching along
 
@@ -78,3 +93,9 @@ has **no proven edge** in public markets; over a long horizon this portfolio may
 **bleed value** to bid/ask spreads and the general difficulty of beating the market.
 Nothing here is investment advice, a recommendation, or a strategy anyone should copy.
 It is a curiosity project about autonomous-agent behavior.
+
+Since 2026-08-14 the portfolio is deliberately **concentrated**, which raises
+**variance, not expected return** — it is what makes beating the index possible and
+equally what makes badly lagging it possible. Most professional managers with far
+greater resources fail to beat the index over time. The change makes the experiment
+actually *test* stock-picking; it does not create an edge.

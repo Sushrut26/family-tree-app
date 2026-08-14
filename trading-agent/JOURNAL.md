@@ -537,3 +537,67 @@ setup for improvement; NEE's Dominion merger regulatory process for any real
 setback (vs. procedural noise).
 
 ---
+
+## Strategy change — 2026-08-14 (owner-directed, between Cycles 12 and 13)
+
+Not a trading cycle — a change to the standing brief, recorded here so the reasoning
+lives in the log alongside the trades.
+
+**The diagnosis.** An owner review found the portfolio had become a **closet index
+fund**. By Cycle 12 it held 17 positions, six of them ETFs: `SCHD`, `XLI`, and `XLV`
+are subsets of `VOO` (with `XLV` also duplicating the `LLY` holding), while the eleven
+single names were all large-cap S&P constituents `VOO` already owns. Counting the
+$144.27 of idle cash (14.0%) alongside ~$253 of duplicate ETFs, roughly **39% of the
+account expressed no research view at all**. The result was exactly what that shape
+predicts: **+2.81% vs SPY +2.89%** — tracking the index and losing to it slightly,
+with no trades placed in four consecutive cycles.
+
+**The root cause** was a self-contradicting brief. `STRATEGY.md` said "maximize
+long-term profit" while its money-management rules — 15–20 names, ≥6 sectors, always
+hold an ETF core, keep 5–15% cash — mandated becoming the index. Those are
+variance-minimization rules; you cannot sit at both ends of the risk/return frontier.
+When the mandate and the rules conflicted, the rules won silently.
+
+**A second, separate finding:** the four-cycle no-trade stretch was *not* caused by
+too strict a scoring bar. Each individual no-trade call was defensible (CAT's spike
+genuinely did round-trip within three days). The real failure was a **funnel of only
+three stale candidates** — LIN, AMT, CAT — re-checked cycle after cycle, with zero new
+names screened and no scanners ever built. An early draft of this change proposed
+lowering the bar from 18/25 to 16/25; that was rejected as backwards. In a
+concentrated book each position carries more weight, so the bar must stay high and the
+*funnel* must widen instead.
+
+**What changed** (see `STRATEGY.md` for the full text):
+- **Concentrate** to 8–10 single names plus a `VOO` core at 15–20% — 9–11 positions
+  total, ~9–11% (~$90–110) each, instead of 17 positions at ~$50.
+- **Cash target 2–5%**, down from 5–15%.
+- **The beat-the-index test:** every single-name holding carries a required
+  `why_not_voo` line. If it can't be answered specifically, sell it and hold `VOO`.
+  No more sector/style ETFs that duplicate `VOO`.
+- **Correlated-theme cap ~40%**, which binds harder than the sector cap — the
+  NVDA/MSFT/AMZN/GOOGL cluster is one AI/cloud bet wearing four sector tags.
+- **≥2 brand-new candidates screened and scored every cycle**, with saved scanners
+  built via `create_scan` (none existed as of Cycle 12).
+- **Adding to winners is now explicitly permitted** — the mirror of the existing
+  no-averaging-down rule.
+- **Safety valve:** a new `benchmark_history` array in `state.json` makes it
+  mechanically checkable — if the portfolio lags SPY by >8 points over a trailing 10
+  cycles, at least half the active book rotates into `VOO` and `STATUS.md` alerts.
+
+**Deliberately left unchanged:** the ≥18/25 scoring bar, the >5% no-chase rule (its
+Cycle 11 lesson documents a real save), per-name trim at ~15%, invalidation triggers,
+next-earnings tracking, spread checks, the quality/liquidity filter, equities-only,
+and all heartbeat/commit reliability rules.
+
+**Next:** Cycle 13 executes the `restructure_mandate` in `state.json` as its first
+task — sell the three duplicate ETFs, re-underwrite all eleven single names down to
+8–10, top up the `VOO` core — with the single-name buys staged across Cycles 13–14
+rather than deployed at one moment's prices.
+
+**Honest note for the record:** concentration raises *variance*, not expected return.
+It is what makes beating the index possible and equally what makes badly lagging it
+possible. The most likely single outcome remains a bumpier portfolio that still lands
+near SPY. What genuinely changes is that research now drives the result instead of
+being decorative.
+
+---

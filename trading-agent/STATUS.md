@@ -9,15 +9,15 @@
 
 | | |
 |---|---|
-| **Last completed cycle** | 13 — 2026-08-14 (restructure executed: 7 sells, 2 buys) |
-| **Account value** | $1,027.68 (as of 2026-08-14 ~11:26 ET) |
-| **Cash** | $363.01 (~35.3% — but ~$362.73 is unsettled Cycle-13 sale proceeds, not idle by choice; settled buying power was $0.27 after trades) |
-| **Positions** | 11 (VOO core + 10 single names, down from 17) |
-| **vs SPY since inception** | portfolio +2.77% vs SPY +3.32% (as of 2026-08-14) — -0.55pt gap, safety valve not tripped |
-| **Realized P&L (all-time)** | +$6.84 (8 closed trades; Cycle 13's restructure sells netted +$12.74) |
+| **Last completed cycle** | 14 — 2026-08-18 (deployed settled cash: 6 buys, 2 new names) |
+| **Account value** | $1,024.30 (as of 2026-08-18 ~11:14 ET) |
+| **Cash** | $35.01 (~3.4% — inside the 2-5% target band; the Cycle 13 T+1 proceeds fully settled and were deployed this cycle) |
+| **Positions** | 13 (VOO core + 12 single names — added `AMT` + `UNP`, topped up `VOO`/`MSFT`/`AMZN`/`NVDA`) |
+| **vs SPY since inception** | portfolio +2.43% vs SPY +2.22% (as of 2026-08-18) — +0.21pt gap, safety valve not tripped |
+| **Realized P&L (all-time)** | +$6.84 (8 closed trades; unchanged this cycle — no sells) |
 | **Next scheduled run** | per cron `0 15 */3 * *` (drifts month-to-month; see Known quirks) |
-| **Strategy** | 🔄 **Changed 2026-08-14** — moderately aggressive, research-driven. Target: **8–10 single names + a `VOO` core (15–20%)**, ~9–11% per name, cash 2–5%, correlated-theme cap 40%. Every holding must justify itself against just buying `VOO`. |
-| **Alerts** | ℹ️ **Restructure in progress** — Cycle 13 sold `SCHD`/`XLI`/`XLV`/`VXUS`/`IJR`/`JPM`/`COST` and bought `V`, topping up `VOO` to 14.8%. Only $144.27 was settled/spendable same-day (cash-account T+1 settlement); the rest (~$362.73) deploys in Cycle 14 to finish the `VOO` top-up and single-name sizing. `AMT` confirmed a technical breakout this cycle — top new-buy candidate next cycle. |
+| **Strategy** | Moderately aggressive, research-driven (changed 2026-08-14). Target: **8–10 single names + a `VOO` core (15–20%)**, ~9–11% per name, cash 2–5%, correlated-theme cap 40%. Every holding must justify itself against just buying `VOO`. |
+| **Alerts** | ℹ️ **Restructure deployment complete** — Cycle 14 finished deploying the Cycle-13 sale proceeds: bought `UNP` (new, 22/25) and `AMT` (new, 19/25, the confirmed-breakout name), topped up `VOO`/`MSFT`/`AMZN`/`NVDA`. Now 13 positions (one over the 8-10 single-name band — will normalize via ordinary trims, not forced). AI/cloud theme at 32.1% (under the 40% cap but climbing — favor other names next cycle). |
 
 ## Health check — how to tell it's alive
 
@@ -37,6 +37,7 @@ looks like the agent stopped (this exact false alarm happened 2026-08-05).
 
 | Date (UTC) | Cycle | Result |
 |---|---|---|
+| 2026-08-18 | 14 | ✅ Deployed settled cash: bought `UNP` (new, 22/25) + `AMT` (new, 19/25), topped up `VOO`/`MSFT`/`AMZN`/`NVDA`. 11→13 positions, cash to 3.4%. |
 | 2026-08-14 | 13 | ✅ Restructure: sold `SCHD`/`XLI`/`XLV`/`VXUS`/`IJR`/`JPM`/`COST` (7), bought `VOO` top-up + new `V` position (2). 17→11 positions. `AMT` confirmed SMA breakout. |
 | 2026-08-11 | 12 | ✅ No trades — cash near top of band; LIN fundamentals strengthened (record backlog, raised guide) but still below 50-day SMA; AMT/CAT unchanged, no re-entry |
 | 2026-08-07 | 11 | ✅ No trades — cash in band; LIN/AMT still below 50-day SMA; CAT's earnings spike fully faded, still no re-entry |

@@ -702,3 +702,113 @@ LIN on hold until its own chart turns. NVDA earnings 2026-08-26 is the next
 real catalyst on the calendar.
 
 ---
+
+## Cycle 14 — 2026-08-18 (Tuesday)
+**Portfolio:** $1,024.30 total | $35.01 cash (3.4%) | 13 positions: VOO 17.6% (+0.02%),
+NVDA 7.9% (+3.6%), MSFT 10.0% (+13.7%), AMZN 9.6% (+3.2%), GOOGL 4.7% (-4.4%),
+LLY 5.2% (+5.7%), XOM 5.5% (+13.5%), NEE 4.8% (-2.6%), LIN 4.5% (-8.3%),
+PLD 4.6% (-5.6%), V 4.3% (+0.3%), AMT 9.3% (new, ~flat), UNP 8.8% (new, ~flat)
+— all vs. avg cost, intraday prices.
+**vs SPY since inception:** portfolio +2.43% | SPY +2.22% (SPY $767.73 vs. inception
+$751.07 on 2026-07-14) | 10-cycle gap: +0.21 pts (valve: ok, not tripped — trailing
+gaps were +1.21/-0.19/-0.55/-0.08/-0.55/+0.21 pts at cycles 8/10/11/12/13/14)
+**Realized P&L to date:** +$6.84 (confirmed via broker, all-time, 8 closing trades;
+unchanged this cycle — no sells)
+**Lesson from last cycle:** Cycle 13's restructure correctly prioritized settled
+buying power over gross cash — the ~$362.73 that looked like "idle cash" at 35.3%
+was mechanically unspendable T+1 proceeds, not a real allocation problem, and it
+settled cleanly by this cycle with zero drift (buying power == cash exactly, no
+watchdog alerts). The lesson held: check buying_power specifically, don't panic at
+a high cash % right after a sell-heavy cycle.
+**Market read:** Market open (~11:14 ET). SPY $767.73, -0.64% vs. Monday's close
+($772.67) — a soft, broadly red tape (NVDA -2.7%, GOOGL -0.4%, VOO -0.6% intraday),
+with CAT (not held) down a sharp -4.9% continuing a six-week slide despite its
+genuine Aug-4 earnings beat — a reminder the market can stay skeptical of a reversed
+thesis for a long time; still not a re-entry (technicals never confirmed). Reconciled
+broker vs. state.json before trading: all 11 legacy positions matched exactly, and
+critically the ~$362.73 that was unsettled T+1 cash at Cycle 13 had fully settled —
+buying power was $363.01, equal to cash, with zero unsettled_funds per get_accounts.
+No open orders, no watchdog alerts. This is the deployment cycle flagged since
+Cycle 13: cash was 35.3% only because of settlement lag, not a real allocation call,
+so today's job was to put it to work per the restructure_mandate's step 5.
+**Candidates screened this cycle:**
+- **UNP (Union Pacific)** — quality 5, valuation 4, trend 4 (price $302.43, +6.7%
+  above its 50-day SMA $283.56, RSI 60.0 — healthy, not overbought, ~4% off its
+  52-wk high), catalyst 4 (Q2 revenue +12% to $6.9B, adj. EPS $3.41 beat $3.16 est.,
+  management raised full-year guidance to high-single-digit EPS growth citing
+  freight volume gains outpacing broad US GDP; some risk noted — hazardous-cargo
+  safety scrutiny and transcontinental-merger regulatory uncertainty), fit 5 (zero
+  prior industrials/transportation exposure) = **22/25 — BUY.** Rail duopoly with
+  structural pricing power and a genuine raised-guidance beat, exactly the playbook B
+  "earnings beat with raised guidance" angle.
+- **HD (Home Depot)** — quality 4, valuation 3 (PE 24.1x for ~flat-to-4% FY26 EPS
+  growth guide isn't cheap), trend 3 (price $337-344 basically sitting right at its
+  50-day SMA $338.25, RSI 47 neutral — a base, not a confirmed uptrend), catalyst 2
+  (Q2 beat on top/bottom line but management only *reaffirmed* FY26 guidance, not
+  raised, and explicitly flagged "frozen housing market conditions" as an ongoing
+  headwind), fit 4 (would diversify into consumer discretionary/retail) =
+  **16/25 — declined.** A real beat but no raised guidance and a specific,
+  named demand headwind — doesn't clear the bar. Added to watchlist: would
+  reconsider on a guidance raise or a cleaner technical breakout.
+**Actions:**
+- BUY UNP — $90.00 (0.297471 sh @ $302.5499 avg, filled) — order
+  `6a8476dc-da63-4614-afeb-e78268ed63c7` — new position, score 22/25 (see above) +
+  why_not_voo: rail duopoly EPS growth trajectory beating the index, raised guidance
+  specific to freight-share gains.
+- BUY AMT — $95.00 (0.544600 sh @ $174.4399 avg, filled) — order
+  `6a8476db-5be6-41e0-9794-51a45d02fd53` — re-scored 19/25 (quality 4, valuation 4,
+  trend 3 — price $174.21 just 0.5% above its 50-day SMA $173.31, a real but fragile
+  confirmation after 13 cycles of waiting; catalyst 4 — 5 of last 7 quarters beat EPS
+  estimates, 4.05% dividend yield; fit 4) — the top watchlist candidate flagged at
+  Cycle 13, now bought. why_not_voo: tower-leasing REIT with a specific 5G/data-center
+  infrastructure tailwind and a technical turn VOO's tiny REIT weight doesn't isolate.
+- BUY VOO — $30.00 (0.042512 sh @ $705.6799 avg, filled) — order
+  `6a8476dd-d6ba-49d1-bfef-c6382ff15596` — finishes the Cycle 13 top-up; VOO now
+  17.6% of the account, solidly inside the 15-20% core target.
+- BUY MSFT — $40.00 (0.083026 sh @ $481.775 avg, filled) — order
+  `6a8476de-c2aa-45c7-aafe-8d3c76319bec` — add-to-winner (Azure/Copilot thesis intact,
+  +13.7% from cost); brings MSFT to ~10.0% of the account, right at the $90-110/
+  9-11% target for the first time since the restructure.
+- BUY AMZN — $45.00 (0.172707 sh @ $260.5559 avg, filled) — order
+  `6a8476e0-cea7-429d-92b1-fad6ff681b93` — add-to-winner (AWS reacceleration thesis
+  intact); brings AMZN to ~9.6% of the account, near the target band.
+- BUY NVDA — $28.00 (0.127640 sh @ $219.3667 avg, filled) — order
+  `6a8476e0-dcff-4b56-b247-279a10155770` — smaller top-up (AI/semis leader, bought
+  the day's -2.7% dip, not a chase); brings NVDA to ~7.9%, still below target but
+  the AI/cloud theme cluster was managed deliberately (see concentration check below).
+  NVDA reports earnings 2026-08-26 (8 days out) — a real catalyst/risk ahead.
+- Re-checked LIN: RSI fell further to 33.7 (from 33.96 at Cycle 13), price $481.82 is
+  now ~5.5% below its 50-day SMA ($509.78) — technicals still weak, fundamentals
+  (record backlog, raised FY26 guide) unchanged. Not adding, per the standing rule
+  (wait for a confirmed close back above the 50-day SMA).
+- Re-checked CAT (watchlist, exited Cycle 7): down another -4.9% today, now $838.75,
+  continuing a six-week slide despite the genuine Aug-4 earnings beat and reversed
+  margin thesis — still no technical confirmation. Not a re-entry.
+- Built two durable scanners (`create_scan`, none existed before this cycle):
+  "Quality compounders near highs" (market cap >$10B, ROE >12%, RSI 45-70) and
+  "Quality post-move momentum" (market cap >$5B, 1-day % change 2-5%, RSI <70) — both
+  saved for reuse in future cycles per the playbook B scanner mandate. Today's runs
+  returned thin/no results (broadly red tape), which is expected and not a signal to
+  loosen the filters.
+**Thesis / notes:** Now **13 positions** (VOO core + 12 single names — one over the
+8-10 single-name target band, driven by adding 2 new names in one cycle rather than
+staging one per cycle; not a concern at this size, will let normal trims/exits bring
+it back in range rather than force a sell). Cash $35.01/$1,024.30 (3.4%), solidly
+inside the 2-5% target — **the Cycle 13 restructure's deployment phase is
+substantially complete.** Concentration check: largest single name MSFT at 10.0%
+(right at target, nowhere near the 15% trim trigger); correlated AI/cloud theme
+(NVDA+MSFT+AMZN+GOOGL) now 32.1% of the account (up from 21.5% at Cycle 13) — still
+under the 40% cap but climbing with today's adds, worth watching rather than adding
+further to this cluster next cycle; "Finance"-tagged REIT/payments cluster
+(PLD+V+AMT) at 18.2%, well under the 35% sector cap; UNP opens a genuinely new
+Transportation sector with zero prior overlap. Remaining single names still below
+the $90-110 target — GOOGL, LLY, XOM, NEE, LIN, PLD, V (all ~$44-57, 4.3-5.5%) — are
+candidates for gradual top-up in future cycles (LIN excluded until its chart turns),
+but minimize-turnover argues against forcing all of them to target in one more
+big cycle. Watch next cycle: NVDA earnings 2026-08-26 (real catalyst); LIN for a
+close above its 50-day SMA; CAT for the technical setup to finally turn (fundamentals
+already support a reversal); AMT/UNP for their first post-buy earnings prints
+(2026-10-27 and 2026-10-22 respectively); AI/cloud theme concentration (32.1%) as a
+soft ceiling — favor non-AI/cloud names for the next round of adds.
+
+---

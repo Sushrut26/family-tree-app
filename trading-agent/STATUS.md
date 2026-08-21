@@ -9,15 +9,15 @@
 
 | | |
 |---|---|
-| **Last completed cycle** | 14 — 2026-08-18 (deployed settled cash: 6 buys, 2 new names) |
-| **Account value** | $1,024.30 (as of 2026-08-18 ~11:14 ET) |
-| **Cash** | $35.01 (~3.4% — inside the 2-5% target band; the Cycle 13 T+1 proceeds fully settled and were deployed this cycle) |
-| **Positions** | 13 (VOO core + 12 single names — added `AMT` + `UNP`, topped up `VOO`/`MSFT`/`AMZN`/`NVDA`) |
-| **vs SPY since inception** | portfolio +2.43% vs SPY +2.22% (as of 2026-08-18) — +0.21pt gap, safety valve not tripped |
+| **Last completed cycle** | 15 — 2026-08-21 (no trades; cash already in target band) |
+| **Account value** | $1,029.32 (as of 2026-08-21 ~11:08 ET) |
+| **Cash** | $35.45 (~3.4% — inside the 2-5% target band, unchanged this cycle) |
+| **Positions** | 13 (VOO core + 12 single names — unchanged from Cycle 14) |
+| **vs SPY since inception** | portfolio +2.93% vs SPY +2.01% (as of 2026-08-21) — +0.92pt gap, safety valve not tripped |
 | **Realized P&L (all-time)** | +$6.84 (8 closed trades; unchanged this cycle — no sells) |
 | **Next scheduled run** | per cron `0 15 */3 * *` (drifts month-to-month; see Known quirks) |
 | **Strategy** | Moderately aggressive, research-driven (changed 2026-08-14). Target: **8–10 single names + a `VOO` core (15–20%)**, ~9–11% per name, cash 2–5%, correlated-theme cap 40%. Every holding must justify itself against just buying `VOO`. |
-| **Alerts** | ℹ️ **Restructure deployment complete** — Cycle 14 finished deploying the Cycle-13 sale proceeds: bought `UNP` (new, 22/25) and `AMT` (new, 19/25, the confirmed-breakout name), topped up `VOO`/`MSFT`/`AMZN`/`NVDA`. Now 13 positions (one over the 8-10 single-name band — will normalize via ordinary trims, not forced). AI/cloud theme at 32.1% (under the 40% cap but climbing — favor other names next cycle). |
+| **Alerts** | ℹ️ **New watchlist name: `CQP`** (Cheniere Energy Partners LP, 20/25) screened this cycle but not bought — cash is already mid-band (3.4%) with no clean funding source without breaching the 2% floor. Top candidate for next available cash. AI/cloud theme at 31.9% (under the 40% cap). NVDA earnings 2026-08-26 is the next real catalyst. |
 
 ## Health check — how to tell it's alive
 
@@ -37,6 +37,7 @@ looks like the agent stopped (this exact false alarm happened 2026-08-05).
 
 | Date (UTC) | Cycle | Result |
 |---|---|---|
+| 2026-08-21 | 15 | ✅ No trades — cash already in the 2-5% target band. Screened `CQP` (new, 20/25, watchlisted — no clean funding source) and `ADI` (new, 14/25, declined). |
 | 2026-08-18 | 14 | ✅ Deployed settled cash: bought `UNP` (new, 22/25) + `AMT` (new, 19/25), topped up `VOO`/`MSFT`/`AMZN`/`NVDA`. 11→13 positions, cash to 3.4%. |
 | 2026-08-14 | 13 | ✅ Restructure: sold `SCHD`/`XLI`/`XLV`/`VXUS`/`IJR`/`JPM`/`COST` (7), bought `VOO` top-up + new `V` position (2). 17→11 positions. `AMT` confirmed SMA breakout. |
 | 2026-08-11 | 12 | ✅ No trades — cash near top of band; LIN fundamentals strengthened (record backlog, raised guide) but still below 50-day SMA; AMT/CAT unchanged, no re-entry |

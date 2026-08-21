@@ -812,3 +812,91 @@ already support a reversal); AMT/UNP for their first post-buy earnings prints
 soft ceiling — favor non-AI/cloud names for the next round of adds.
 
 ---
+
+## Cycle 15 — 2026-08-21 (Friday)
+**Portfolio:** $1,029.32 total | $35.45 cash (3.4%) | 13 positions: VOO 17.4%
+(-0.2%), NVDA 7.7% (+1.7%), MSFT 10.0% (+14.6%), AMZN 9.5% (+3.1%), GOOGL 4.7%
+(-3.8%), LLY 5.4% (+10.3%), XOM 5.6% (+14.6%), NEE 4.6% (-5.4%), LIN 4.5% (-6.8%),
+PLD 4.6% (-5.6%), V 4.3% (+1.5%), AMT 9.4% (+1.7%), UNP 8.8% (+0.8%) — all vs. avg
+cost, intraday prices.
+**vs SPY since inception:** portfolio +2.93% | SPY +2.01% (SPY $766.20 vs. inception
+$751.07 on 2026-07-14) | this-cycle gap: +0.92 pts (valve: ok, not tripped — trailing
+gaps were +1.21/-0.19/-0.55/-0.08/-0.55/+0.21/+0.92 pts at cycles 8/10/11/12/13/14/15,
+averaging comfortably positive, nowhere near the -8pt trigger)
+**Realized P&L to date:** +$6.84 (confirmed via broker, all-time, 8 closing trades;
+unchanged this cycle — no sells)
+**Lesson from last cycle:** Cycle 14's deployment (UNP+AMT new, VOO/MSFT/AMZN/NVDA
+top-ups) was the right call while ~$363 of settled cash was sitting idle; it also
+pushed cash straight into the 2-5% target band, so this cycle's real lesson is that
+"cash is now genuinely scarce" — with $35 of buying power, a strong new idea can no
+longer be funded without either breaching the cash floor or trimming something, so
+future adds need a deliberate funding decision, not just leftover cash.
+**Market read:** Market open (~11:08 ET). SPY $766.20, +0.47% vs. Thursday's close
+($762.60) — firm, broadly green tape (MSFT +0.86%, GOOGL +1.21%, LIN +1.75%, AMT
++1.03% intraday). Reconciled broker vs. state.json before trading: all 13 positions
+matched exactly, cash $35.45 (vs. $35.01 logged at Cycle 14 — $0.44 immaterial drift,
+likely a dividend accrual), $0 open orders, +$6.84 realized P&L all-time — no
+discrepancies, no watchdog alerts found since Cycle 14.
+**Candidates screened this cycle:**
+- **CQP (Cheniere Energy Partners LP)** — quality 4 (Sabine Pass LNG export
+  terminal, long-term take-or-pay contracted cash flows; LP structure carries K-1
+  tax-form complexity and single-asset-cluster concentration risk, noted as a bear
+  case), valuation 4 (PE 12.4x, 4.8% distribution yield — cheap for the cash-flow
+  quality), trend 4 (price $69.44 intraday high, comfortably above its 50-day SMA
+  $63.87, RSI 58 per the scan — healthy uptrend, not overbought, near its 52-wk high
+  $70.64 set 3/24), catalyst 4 (Q2 2026: adjusted EBITDA +35% YoY to $983M, LNG
+  volumes +13% to 396 TBtu, FY26 distribution guidance of $3.10-3.40/unit
+  reconfirmed 8/6), fit 4 (genuinely new economic exposure — contracted LNG-export
+  infrastructure cash flows are a different driver than XOM's integrated-oil/FCF
+  thesis, and VOO's tiny midstream-MLP weight doesn't isolate it) = **20/25 — clears
+  the bar, but not bought this cycle (see Actions).** Surfaced by the "Quality
+  compounders near highs" saved scanner (built Cycle 14) — its first real hit.
+- **ADI (Analog Devices)** — quality 4 (established analog/mixed-signal
+  semiconductor leader, auto/industrial diversification beyond pure AI-training
+  silicon), valuation 2 (PE 43.9x, rich), trend 2 (price ~$375 vs. 50-day SMA $389 —
+  below the average, RSI 43.7 neutral-weak; stock is ~16% off its June 22 52-wk high
+  of $445.91 despite a real Q3 beat-and-raise print per web research — a "beat but
+  faded" chart, not a clean setup), catalyst 3 (real beat, but the move already
+  faded), fit 3 (adds semis diversification but still correlates meaningfully with
+  the existing AI/cloud/tech cluster) = **14/25 — declined,** doesn't clear the bar.
+**Actions:**
+- No trades — cash ($35.45, 3.4%) is already inside the 2-5% target band, not above
+  it, so there is no idle-cash mandate to deploy this cycle. CQP scored 20/25 and
+  would be a genuine buy, but funding a standard ~$50-90 position would spend nearly
+  all remaining buying power and push cash toward ~0%, breaching the cash floor with
+  no invalidation trigger or overweight position providing a clean funding source.
+  Minimize-turnover argues against trimming an in-target, thesis-intact holding
+  (e.g. V, GOOGL, PLD — all still below their own $90-110 target) just to manufacture
+  cash for a new name. **Adding CQP to the watchlist instead** — a durable, high-score
+  candidate to fund with either fresh dividend-accrued cash or a deliberate
+  trim-and-rotate decision next cycle, not this one.
+  - LIN (-6.8% from cost): RSI improved to 39.8 (from 33.7 at Cycle 14), price
+    $489.71 still ~3.6% below its 50-day SMA ($508.10) — technicals improving but
+    not yet confirmed. Not adding, per the standing rule.
+  - CAT (watchlist, exited Cycle 7): $818.06, still ~9.7% below its 50-day SMA
+    ($906.11) — the six-week slide has continued rather than stabilized. Not a
+    re-entry.
+  - NEE: Dominion Energy merger confirmed progressing on schedule — regulatory
+    filings made with Virginia SCC, NC, SC, FERC, and NRC in July; special
+    shareholder meetings expected early September; deal still targeted for H2 2027
+    close. No setback found, thesis intact, holding.
+  - PLD: SEGRO acquisition confirmed on track — terms finalized 8/4 (0.0920 PLD
+    shares + partial cash alternative per SEGRO share), a minor agreement amendment
+    on 8/12 with financial terms unchanged. No shareholder pushback found, thesis
+    intact, holding.
+**Thesis / notes:** Still 13 positions, cash $35.45/$1,029.32 (3.4%), inside the 2-5%
+target band — this is now a genuinely constrained-cash environment, a real change
+from the post-restructure deployment cycles. No invalidation trigger fired on any
+holding. Concentration check: largest single name MSFT at 10.0% (nowhere near the
+15% trim trigger); AI/cloud theme (NVDA+MSFT+AMZN+GOOGL) at 31.9% (essentially flat
+vs. 32.1% at Cycle 14, still under the 40% cap); "Finance"-tagged REIT/payments
+cluster (PLD+V+AMT) at 18.3%, well under the 35% sector cap. Watchlist now 4 names:
+CQP (new, 20/25, top candidate for next available cash), CAT (15 cycles watched,
+technicals still broken despite a reversed fundamental thesis), WM (3 cycles, still
+rich on valuation), HD (2 cycles, reaffirmed-not-raised guidance). Watch next cycle:
+NVDA earnings 2026-08-26 (5 days out, real catalyst/risk on the largest AI/cloud
+sleeve); LIN for a confirmed close above its 50-day SMA; CQP as the top new-buy
+candidate if cash allows (via dividend accrual or a deliberate funding decision);
+CAT for the technical setup to finally turn.
+
+---

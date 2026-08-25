@@ -9,15 +9,15 @@
 
 | | |
 |---|---|
-| **Last completed cycle** | 15 — 2026-08-21 (no trades; cash already in target band) |
-| **Account value** | $1,029.32 (as of 2026-08-21 ~11:08 ET) |
-| **Cash** | $35.45 (~3.4% — inside the 2-5% target band, unchanged this cycle) |
+| **Last completed cycle** | 16 — 2026-08-25 (no trades; cash still in target band, 2nd straight cycle) |
+| **Account value** | $1,030.29 (as of 2026-08-25 ~11:07 ET) |
+| **Cash** | $35.64 (~3.5% — inside the 2-5% target band, essentially unchanged this cycle) |
 | **Positions** | 13 (VOO core + 12 single names — unchanged from Cycle 14) |
-| **vs SPY since inception** | portfolio +2.93% vs SPY +2.01% (as of 2026-08-21) — +0.92pt gap, safety valve not tripped |
+| **vs SPY since inception** | portfolio +3.03% vs SPY +1.80% (as of 2026-08-25) — +1.23pt gap, safety valve not tripped |
 | **Realized P&L (all-time)** | +$6.84 (8 closed trades; unchanged this cycle — no sells) |
 | **Next scheduled run** | per cron `0 15 */3 * *` (drifts month-to-month; see Known quirks) |
 | **Strategy** | Moderately aggressive, research-driven (changed 2026-08-14). Target: **8–10 single names + a `VOO` core (15–20%)**, ~9–11% per name, cash 2–5%, correlated-theme cap 40%. Every holding must justify itself against just buying `VOO`. |
-| **Alerts** | ℹ️ **New watchlist name: `CQP`** (Cheniere Energy Partners LP, 20/25) screened this cycle but not bought — cash is already mid-band (3.4%) with no clean funding source without breaching the 2% floor. Top candidate for next available cash. AI/cloud theme at 31.9% (under the 40% cap). NVDA earnings 2026-08-26 is the next real catalyst. |
+| **Alerts** | ⚠️ **NVDA reports earnings 2026-08-26 after the close** — the single largest near-term catalyst/risk on the book (AI/cloud theme 31.8%, under the 40% cap but the name to watch). ℹ️ New watchlist name `DE` (Deere, 18/25, borderline on valuation) screened but not bought — `CQP` (20/25, watchlisted Cycle 15) remains the stronger unfunded candidate; cash (3.5%) still has no clean funding source without breaching the 2% floor or trimming a healthy holding. |
 
 ## Health check — how to tell it's alive
 
@@ -37,6 +37,7 @@ looks like the agent stopped (this exact false alarm happened 2026-08-05).
 
 | Date (UTC) | Cycle | Result |
 |---|---|---|
+| 2026-08-25 | 16 | ✅ No trades — cash still in the 2-5% target band. Screened `DE` (new, 18/25, watchlisted — CQP is the stronger unfunded candidate) and `ROST` (new, 16/25, declined). NVDA earnings 8/26 flagged. |
 | 2026-08-21 | 15 | ✅ No trades — cash already in the 2-5% target band. Screened `CQP` (new, 20/25, watchlisted — no clean funding source) and `ADI` (new, 14/25, declined). |
 | 2026-08-18 | 14 | ✅ Deployed settled cash: bought `UNP` (new, 22/25) + `AMT` (new, 19/25), topped up `VOO`/`MSFT`/`AMZN`/`NVDA`. 11→13 positions, cash to 3.4%. |
 | 2026-08-14 | 13 | ✅ Restructure: sold `SCHD`/`XLI`/`XLV`/`VXUS`/`IJR`/`JPM`/`COST` (7), bought `VOO` top-up + new `V` position (2). 17→11 positions. `AMT` confirmed SMA breakout. |

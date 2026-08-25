@@ -900,3 +900,104 @@ candidate if cash allows (via dividend accrual or a deliberate funding decision)
 CAT for the technical setup to finally turn.
 
 ---
+
+## Cycle 16 — 2026-08-25 (Tuesday)
+**Portfolio:** $1,030.29 total | $35.64 cash (3.5%) | 13 positions: VOO 17.4%
+(-0.4%), NVDA 7.5% (-0.6%), MSFT 10.1% (+15.5%), AMZN 9.5% (+3.3%), GOOGL 4.7%
+(-3.4%), LLY 5.3% (+10.1%), XOM 5.4% (+11.9%), NEE 4.5% (-6.4%), LIN 4.5% (-7.4%),
+PLD 4.6% (-4.2%), V 4.5% (+4.9%), AMT 9.4% (+1.9%), UNP 9.0% (+2.4%) — all vs. avg
+cost, intraday prices.
+**vs SPY since inception:** portfolio +3.03% | SPY +1.80% (SPY $764.61 vs. inception
+$751.07 on 2026-07-14) | this-cycle gap: +1.23 pts (valve: ok, not tripped — trailing
+gaps were +1.21/-0.19/-0.55/-0.08/-0.55/+0.21/+0.92/+1.23 pts at cycles
+8/10/11/12/13/14/15/16, comfortably positive, nowhere near the -8pt trigger)
+**Realized P&L to date:** +$6.84 (confirmed via broker, all-time, 8 closing trades;
+unchanged this cycle — no sells)
+**Lesson from last cycle:** Cycle 15's read held: with cash genuinely scarce (~3.4%,
+inside the target band rather than piled up), a high-scoring new idea (CQP, 20/25)
+still needs a deliberate funding decision, not leftover cash — and this cycle
+confirms that's now a recurring state, not a one-off.
+**Market read:** Market open (~11:07 ET, SPY $764.61 vs. Monday's close $763.47,
++0.15% — quiet, mixed tape ahead of NVDA's print tomorrow after the close). NVDA
+-0.6% from cost today but the real test is 2026-08-26 earnings (confirmed via
+`get_earnings_calendar`, PM release) — the largest single risk on the calendar for
+the AI/cloud sleeve (31.8% of the account). Reconciled broker vs. state.json before
+trading: all 13 positions, cash $35.64 (vs. $35.45 logged at Cycle 15 — $0.19
+immaterial drift), $0 open orders, +$6.84 realized P&L all-time — matched cleanly,
+no discrepancies, no watchdog alerts found since Cycle 15.
+**Candidates screened this cycle:**
+- **DE (Deere & Co.)** — quality 5 (dominant ag/construction-equipment franchise,
+  captive financing arm, wide moat), valuation 2 (PE ~36x — rich even accounting for
+  the market's re-rating of precision-ag/autonomy optionality; historically traded
+  well below this), trend 4 (price $633 vs. 50-day SMA $606.86, +4.3% above, RSI
+  62.5 — uptrend intact, though today is a -2.4% giveback five days after the
+  post-earnings pop faded from the $650s), catalyst 4 (confirmed via web search:
+  Q3 EPS $5.10 beat $4.72 est., **FY2026 net income guidance raised** to $4.75-5.00B
+  on cost discipline, even as large-ag equipment sales are still guided down
+  15-20% — a genuine raised-guidance beat, not a gimme), fit 3 (adds a second
+  industrial/heavy-equipment name alongside `UNP`; correlates moderately on
+  industrial-cycle sentiment, a real but partial overlap) = **18/25 — clears the bar,
+  but not bought (see Actions).**
+- **ROST (Ross Stores)** — quality 4 (well-run off-price retailer, but competitive/
+  commoditized vs. TJX/Burlington), valuation 2 (PE ~29x, and confirmed via web
+  search that ~$0.60 of the $2.66 EPS beat was a one-time IEEPA tariff refund —
+  roughly 23% of the beat was non-recurring, a less clean print than the headline
+  suggests), trend 2 (price $238 barely above its 50-day SMA $234.52, +1.5%, RSI
+  50.2 neutral, down -1.4% today three weeks past its 52-wk high with no real
+  follow-through despite a "beat and raise" headline), catalyst 3 (real beat +
+  raised FY26 EPS guide to $8.61-8.77, but partly inflated by the tariff-refund
+  one-off), fit 5 (genuinely new sector — off-price retail/consumer discretionary,
+  zero prior overlap) = **16/25 — declined,** doesn't clear the bar.
+**Actions:**
+- No trades. Cash ($35.64, 3.5%) is inside the 2-5% target band, not piled up above
+  it — the same genuinely-scarce-cash situation as Cycle 15, now in its second
+  cycle. DE cleared the bar at 18/25, but only barely, on a rich valuation as the
+  weak link; `CQP` (20/25, watchlisted Cycle 15) is still unbought and is the
+  stronger candidate in the queue. Buying a marginal 18/25 name — or forcing a trim
+  of a healthy, in-target, thesis-intact holding to fund it — ahead of a
+  higher-conviction 20/25 idea already waiting would be poor prioritization, not
+  discipline. Adding DE to the watchlist instead.
+  - LIN (-7.4% from cost): RSI $486.76 vs. 50-day SMA $507.16 (-4.0%), RSI 48.6
+    (up from 39.8 at Cycle 15) — technicals continuing to improve gradually but
+    still not a confirmed close above the SMA. Not adding, per the standing rule.
+  - AMT (+1.9%): price $177.71 vs. 50-day SMA $171.73 (+3.5% above) — uptrend
+    holding up well since the Cycle 14 buy. No action needed, already near target
+    size.
+  - CAT (watchlist, exited Cycle 7): $810.84, still ~10.3% below its 50-day SMA
+    ($903.82) — the slide continues, now into its 9th week since the reversed
+    Aug-4 earnings thesis. Not a re-entry.
+  - NEE (-6.4%): confirmed via web search the Dominion Energy merger remains on
+    schedule — SCPSC adopted a procedural schedule in early August, filings are in
+    with Virginia/NC/SC/FERC/NRC, and NextEra executives reiterated a late-2027
+    close target on the Q2 call. No setback, thesis intact, holding.
+  - PLD (-4.2%): confirmed via web search the SEGRO acquisition and the related
+    $2.1B/15M-share stock offering (which funds it) both closed as planned in
+    early August — no new developments, no pushback found. Thesis intact, holding.
+  - HD (watchlist, Cycle 14): reported Q2 on 8/18 — EPS $4.92 beat $4.73 est., but
+    (confirmed via web search) FY26 guidance was **reaffirmed, not raised** for the
+    second straight report (comp sales flat-to-2%, op margin 12.4-12.6%) — the
+    exact Cycle 14 concern repeating. Still doesn't clear the bar; stays on
+    watchlist, not dropped (only 3 cycles watched, inside the stale-name threshold).
+**Thesis / notes:** Still 13 positions, cash $35.64/$1,030.29 (3.5%), inside the 2-5%
+target band. No invalidation trigger fired on any holding. Concentration check:
+largest single name MSFT at 10.1% (nowhere near the 15% trim trigger, no clean trim
+candidate exists this cycle); AI/cloud theme (NVDA+MSFT+AMZN+GOOGL) at 31.8%
+(essentially flat vs. 31.9% at Cycle 15, still under the 40% cap) — this is now the
+single biggest near-term risk given NVDA reports tomorrow; "Finance"-tagged
+REIT/payments cluster (PLD+V+AMT) at 18.5%, well under the 35% sector cap.
+Watchlist now 5 names: CQP (2 cycles, 20/25, still the top unfunded candidate), CAT
+(16 cycles, technicals still broken), WM (4 cycles, not re-checked since Cycle 13 —
+due for a fresh look or a drop next cycle), HD (3 cycles, reaffirmed guidance again),
+DE (new, 18/25, borderline on valuation). Honest read: the account has now run two
+straight cycles in a genuinely cash-constrained regime where almost any new idea
+requires either a dividend-accrual window or trimming a healthy position — at this
+account size that tension is real and worth naming rather than glossing over, but
+manufacturing a trim just to stay "active" would be turnover for its own sake, which
+STRATEGY.md explicitly warns against. Watch next cycle: **NVDA earnings 2026-08-26
+after the close — the single largest near-term catalyst/risk on the book,** given
+NVDA+MSFT+AMZN+GOOGL sit just under the 40% theme cap; LIN for a confirmed SMA
+close; CQP and DE as the queued candidates if a deliberate funding decision
+(dividend accrual or a trim-and-rotate call) becomes appropriate; WM for a
+re-check or drop.
+
+---

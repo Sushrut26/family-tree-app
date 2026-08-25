@@ -8,3 +8,4 @@
 2026-08-18T15:18:51Z | cycle=14 | OK | trades=6 | value=1024.30 | bought UNP+AMT (new), topped up VOO/MSFT/AMZN/NVDA; cash to 3.4%, restructure deployment complete
 2026-08-21T15:08:14Z | cycle=15 | START | trades=- | value=- | run started
 2026-08-21T15:30:00Z | cycle=15 | OK | trades=0 | value=1029.32 | reconciled clean, no trades — cash already in 2-5% target band; CQP (20/25) screened+watchlisted, ADI (14/25) declined; no invalidation triggers
+2026-08-25T15:07:46Z | cycle=16 | START | trades=- | value=- | run started

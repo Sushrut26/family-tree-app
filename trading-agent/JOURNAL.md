@@ -1001,3 +1001,125 @@ close; CQP and DE as the queued candidates if a deliberate funding decision
 re-check or drop.
 
 ---
+
+## Cycle 17 — 2026-08-28 (Friday)
+
+**Portfolio:** $1,036.65 total | $35.64 cash (3.4%) | 13 positions: VOO +0.89%,
+NVDA +6.22%, MSFT +21.52%, AMZN +5.31%, GOOGL -2.76%, LLY +2.52%, XOM +8.03%,
+NEE -8.05%, LIN -7.11%, PLD -5.12%, V +4.89%, AMT +0.99%, UNP +1.55% (all vs.
+avg cost, intraday prices)
+**vs SPY since inception:** portfolio +3.67% | SPY +3.08% (SPY $774.23 vs.
+inception $751.07 on 2026-07-14) | 10-cycle gap: +0.58 pts (valve: ok, not
+tripped — trailing gaps were +1.21/-0.19/-0.55/-0.08/-0.55/+0.21/+0.92/+1.23/+0.58
+pts at cycles 8/10/11/12/13/14/15/16/17)
+**Realized P&L to date:** +$6.84 (confirmed via broker, all-time, 8 closing trades,
+unchanged this cycle)
+**Lesson from last cycle:** Cycle 16's prioritization of the already-vetted CQP
+(20/25) over the newly-screened DE (18/25) remains sound with hindsight — neither
+got funded, and this cycle's fresh screen surfaced a third idea (PGR, 20/25) that
+also clears the bar and also can't be funded. Three straight cycles confirm the
+persistent constraint is the funding queue, not the scoring bar, and — new this
+cycle — not just the cash *percentage* but the absolute dollar amount: $35.64 of
+buying power can't fund any properly-sized (~$90-110) position regardless of what
+% of the account it represents.
+**Market read:** Market open (~11:10 ET). SPY $774.23, +0.41% vs. Thursday's close
+($771.10) — firm, broad-based tech-led rally (GOOGL +2.27%, AMZN +3.76%, MSFT
++1.92% intraday). Reconciled broker vs. state.json before trading: all 13
+positions, $35.64 cash, $35.64 buying power, +$6.84 realized P&L all-time — matched
+cleanly, no discrepancies, no open/resting orders, no watchdog alerts found since
+Cycle 16.
+**Candidates screened this cycle:**
+- **PGR (Progressive Corp)** — quality 5 (dominant direct-to-consumer + commercial
+  auto/property insurer, net margin expanded to 14.0% in Q2 from 12.7% in Q1 on
+  steadily growing premium revenue), valuation 5 (PE just 10.9x — genuinely cheap
+  for an insurer compounding underwriting profit at this rate; note the fundamentals
+  feed's 6.4% "dividend yield" is a data artifact — PGR's real trailing yield is
+  ~0.18%, confirmed via news, the ordinary quarterly dividend only), trend 3 (price
+  $219.07 barely above its 50-day SMA $216.45, RSI a neutral 53, still ~12% off its
+  Sept-2025 52-wk high but up ~16% from the May low), catalyst 3 (KBW upgraded to
+  Outperform 8/20 with PT raised $226→$250; BMO/UBS raised targets slightly this
+  week too but kept Hold/Market-Perform — mixed-to-positive, not a slam dunk), fit 4
+  (genuinely distinct insurance sub-industry vs. V's payments-network thesis,
+  diversifies the "Finance"-tagged cluster beyond payments/REITs) = **20/25 —
+  clears the bar, but unfunded** (buying power $35.64, nowhere near a $90-110
+  position). Added to watchlist alongside CQP as a queued candidate.
+- **SYK (Stryker)** — quality 5 (leading MedSurg/orthopedics medtech franchise),
+  valuation 2 (PE 33.4x, rich), trend 2 (price $327.56 essentially flat at its
+  50-day SMA $328.07, RSI 42.7 — below neutral, no confirmed uptrend), catalyst 3
+  (Q2 net margin jumped to 19.4% from 12.4% in Q1, a real improvement, but no
+  dated forward catalyst found beyond that), fit 3 (would be a second healthcare
+  name alongside LLY, but a genuinely distinct sub-theme — medtech devices vs.
+  GLP-1 pharma) = **15/25 — declined**, valuation and trend both too weak. Not
+  added to watchlist.
+**Actions:**
+- No trades — cash ($35.64, 3.4%) is inside the 2-5% target band by percentage,
+  but in absolute terms is well short of a sensible ~$90-110 position; no holding
+  is above the 15% trim trigger (largest is MSFT at 10.6%, in-target) so there is
+  no clean funding source without a discretionary trim of a healthy, thesis-intact
+  position, which the minimize-turnover rule counsels against absent a real reason.
+  Portfolio-first review found no invalidation trigger fired on any of the 13
+  holdings:
+  - **NVDA** reported Q2 (FY2027) on 8/26 after the close: adjusted EPS $2.22 vs.
+    $2.10 est. (beat), revenue $96.22B vs. $92.37B est. (beat), and Q3 guidance of
+    $108B came in above consensus. Amazon and Nvidia jointly announced AWS will buy
+    2 million Nvidia GPUs plus Nvidia's new Vera CPU — a fresh demand data point
+    that also reinforces the AMZN/AWS thesis. YoY revenue growth decelerated from
+    106% to a still-guided high-80s% for Q3, which caused some initial share
+    softness (stock -1.3% today, $225.00 vs. Wednesday's $227.98) — read this as
+    normal deceleration off a triple-digit base with guidance still raised in
+    absolute dollar terms, not the "clearly rolls over" scenario the invalidation
+    trigger specifies. Thesis strengthened, not broken. Holding, no action (and not
+    a chase candidate to add to today given the stock is down, not up, post-print).
+  - **LIN** (-7.1% from cost): price $488.08 still ~3.4% below its 50-day SMA
+    ($505.15), RSI 44.3 (down slightly from 48.6 at Cycle 16) — technicals have not
+    confirmed a turn; fundamentals unchanged since the Cycle 16 read (record
+    backlog, raised FY26 guide). Not adding, per the standing rule.
+  - **CAT** (watchlist, exited Cycle 7): $805.62, still ~10.2% below its 50-day SMA
+    ($897.02) — the slide is now in its 10th week since the reversed Aug-4 earnings
+    thesis. Not a re-entry.
+  - **AMT** (+1.0% from cost): price $176.17 vs. 50-day SMA $171.15 (+2.9% above) —
+    breakout still holding since the Cycle 14 buy. No action needed.
+  - **NEE** (-8.1%, largest laggard): confirmed via web news the drawdown reads as
+    sector-wide, not company-specific — utilities broadly have softened this month
+    as the 10-year Treasury pushed to a 20-month high (~4.75%), and a Benzinga
+    screen this week flagged NEE among 118 mega-caps yielding less than the 10-year
+    (routine for a growth utility, not new information). Positively, a fresh
+    Benzinga piece (8/24) on the AI power-demand buildout named NEE as a top
+    holding in a new AI-ecosystem ETF (DEPW) alongside Google and Broadcom,
+    reinforcing the Paducah/data-center-power thesis; Morgan Stanley kept
+    Overweight (PT trimmed slightly $116→$114), DBS raised its target ($85→$90).
+    No setback, thesis intact — this is rate-driven valuation drift, not
+    deterioration. Holding, no trim.
+  - **PLD** (-5.1%): no new developments found since Cycle 16 (SEGRO deal and its
+    funding offering both already closed as planned). Thesis intact, holding.
+  - **HD** (watchlist, Cycle 14): no new report since the 8/18 print reviewed last
+    cycle (reaffirmed-not-raised FY26 guidance for a second straight quarter).
+    Still doesn't clear the bar; stays on watchlist (4 cycles watched).
+  - **WM** (watchlist, Cycle 13): not re-checked since Cycle 13 — now 4 cycles of
+    inactivity with no thesis change. Per the stale-watchlist rule, **dropped from
+    the watchlist this cycle.**
+**Thesis / notes:** Still 13 positions, cash $35.64/$1,036.65 (3.4%), inside the
+2-5% target band but genuinely too small in dollar terms to fund a new position —
+the third straight cash-constrained cycle. No earnings due on any holding in the
+next 10 days (checked via the market-wide calendar). Concentration check: largest
+single name MSFT at 10.6% (in-target, nowhere near the 15% trim trigger); AI/cloud
+theme (NVDA+MSFT+AMZN+GOOGL) at 32.9% (up modestly from 31.8% on today's tech
+rally, still under the 40% cap — the thing to keep watching given NVDA's guide
+just reinforced the theme rather than cooling it); "Finance"-tagged REIT/payments
+cluster (PLD+V+AMT) at 18.3%, well under the 35% sector cap. Watchlist now 5 names:
+CQP (3 cycles, 20/25, top unfunded candidate), PGR (new, 20/25, joins CQP as an
+equally-qualified unfunded candidate), CAT (17 cycles, technicals still broken), HD
+(4 cycles, reaffirmed guidance twice running), DE (2 cycles, 18/25, weaker of the
+three funded-quality candidates). Honest read: the unfunded-candidate backlog is
+now two names deep at the same 20/25 score (CQP, PGR) with no over-cap position to
+trim — if a fourth or fifth cycle passes the same way, the deliberate choice next
+time should be a small, reasoned trim of the *weakest* `why_not_voo` among the
+sub-target singles (candidates: GOOGL's already-priced-in AI optimism, or NEE's
+rate-driven drift) to fund the stronger of the two queued ideas, rather than
+letting a growing backlog of good, scored ideas sit idle indefinitely — but that is
+a call for a future cycle with fresh eyes, not a forced decision today. Watch next
+cycle: whether cash finally clears enough (via dividend accruals — PGR and several
+holdings pay quarterly) to fund CQP or PGR; LIN for a confirmed SMA close; CAT for
+the slide to finally stop; AI/cloud theme drift toward the 40% cap.
+
+---

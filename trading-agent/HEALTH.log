@@ -10,3 +10,4 @@
 2026-08-21T15:30:00Z | cycle=15 | OK | trades=0 | value=1029.32 | reconciled clean, no trades — cash already in 2-5% target band; CQP (20/25) screened+watchlisted, ADI (14/25) declined; no invalidation triggers
 2026-08-25T15:07:46Z | cycle=16 | START | trades=- | value=- | run started
 2026-08-25T15:30:00Z | cycle=16 | OK | trades=0 | value=1030.29 | reconciled clean, no trades — cash still in 2-5% band (2nd straight cycle); DE (18/25) watchlisted, ROST (16/25) declined; NVDA earnings 8/26 flagged as top risk
+2026-08-28T15:10:11Z | cycle=17 | START | trades=- | value=- | run started

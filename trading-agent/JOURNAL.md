@@ -1123,3 +1123,109 @@ holdings pay quarterly) to fund CQP or PGR; LIN for a confirmed SMA close; CAT f
 the slide to finally stop; AI/cloud theme drift toward the 40% cap.
 
 ---
+
+## Cycle 18 — 2026-09-01 (Tuesday)
+**Portfolio:** $1,019.33 total | $35.64 cash (3.5%) | 13 positions: VOO 17.6% (-0.6%),
+NVDA 7.9% (+2.8%), MSFT 10.4% (+18.1%), AMZN 9.4% (+0.7%), GOOGL 4.6% (-6.1%),
+LLY 5.0% (+2.0%), XOM 5.5% (+12.8%), NEE 4.5% (-7.4%), LIN 4.5% (-7.7%),
+PLD 4.6% (-6.7%), V 4.5% (+3.4%), AMT 9.4% (+0.5%), UNP 8.6% (-2.2%) (all vs. avg
+cost, intraday prices)
+**vs SPY since inception:** portfolio +1.93% | SPY +1.57% (SPY $762.88 vs. inception
+$751.07 on 2026-07-14) | gap +0.36 pts (valve: ok, not tripped — nowhere near the
+-8pt trigger; 10 logged cycles all within a roughly -0.6/+1.2pt band)
+**Realized P&L to date:** +$6.84 (confirmed via broker, all-time, 8 closing trades,
+unchanged — no sells this cycle)
+**Lesson from last cycle:** Cycle 17 flagged GOOGL's "already-priced-in AI
+optimism" and NEE's "rate-driven drift" as the most likely trim-to-fund candidates
+if the cash-constrained streak continued. Checking both closely this cycle, neither
+holds up: GOOGL remains inside the intact, working AI/cloud thesis, and NEE's
+drift was actively reinforced this week (Morgan Stanley/DBS price-target raises, a
+new Benzinga power-bottleneck piece naming NEE alongside CEG/VST as a structural
+AI-power-demand beneficiary). The real lesson: the backlog isn't a cash problem to
+solve by trimming *any* laggard — it needs an actual broken thesis, and there
+wasn't one to find.
+**Market read:** Market open (~11:10 ET). SPY $762.88, -0.55% vs. Friday's close
+($767.05, Monday 8/31 was Labor-Day-eve but a normal session; no session Mon-Tue
+gap issue) — a broad, macro-driven risk-off session, not stock-specific: the 10-year
+Treasury yield hit a 20-month high (~4.79%), Brent crude +4.8% and WTI +2.8% on
+inflation/geopolitical concerns (Strait of Hormuz shipping incident), and Nasdaq
+futures were down ~1.2% pre-bell vs. S&P's ~0.6% — tech/semis bore the brunt
+(NVDA -1.5%, AMZN -1.6%, Micron -2%+) of a rates/commodities move, not an
+AI-demand or company-specific issue. Reconciled broker vs. state.json before
+trading: all 13 positions, $35.64 cash, $35.64 buying power, +$6.84 realized P&L
+all-time — matched exactly, no discrepancies, no open/resting orders, no watchdog
+alerts found since Cycle 17.
+**Candidates screened this cycle:**
+- **CEG (Constellation Energy)** — quality 4 (largest U.S. nuclear fleet, structurally
+  advantaged for AI/data-center power PPAs), valuation 4 (PE ~26.8x but ~34% off its
+  Oct-2025 52-wk high of $412.70, de-rated on power-market/regulatory jitters),
+  trend 3.5 (price ~$271 vs. 50-day SMA $264.98, +2.3% above, RSI 53.2 — a fragile
+  early uptrend off the July low, not confirmed), catalyst 4 (named today alongside
+  NEE in BlackRock's "AI bottleneck" power thesis and in a fresh Benzinga
+  power-demand piece — AI electricity demand projected +1,100% by 2033), fit 2
+  (this is the same Utilities/AI-power-demand theme the portfolio already owns via
+  NEE, and NEE has actually outperformed CEG this year — +3.36% YTD vs. CEG's
+  -25.49% YTD — while capturing the identical catalyst with a more diversified,
+  regulated-utility risk profile) = **17.5/25 — declined,** primarily on fit:
+  redundant exposure to an already-held theme, not a genuinely new view.
+- **MU (Micron)** — quality 4 (essential HBM supplier to Nvidia's Vera Rubin
+  platform, oligopoly memory market with Samsung/SK Hynix, all three at capacity),
+  valuation 4 (PE ~21.7x trailing against guided Q4 revenue ~$50.8B, up from $11.3B
+  a year ago — the growth-adjusted multiple looks cheap), trend 3 (price ~$940-958
+  vs. 50-day SMA $951.50 — roughly flat/rangebound, down ~25% off its June 52-wk
+  high of $1,255 on tariff/macro jitters, RSI 53.5 neutral, no confirmed breakout),
+  catalyst 4 (Sept-30 earnings expected to show explosive AI-memory-driven growth;
+  a Taiwan union strike threat over bonus pay is a near-term supply-tightening risk
+  that could support pricing further), fit 3 (a genuinely distinct
+  memory/HBM-scarcity angle vs. NVDA's compute thesis, but still squarely inside
+  the AI-infrastructure trade the portfolio is already at 32.3% theme exposure to)
+  = **18/25 — clears the bar on score alone, but declined on portfolio-construction
+  grounds:** the book already holds 13 positions (12 single names), two over the
+  8-10 single-name target band, so a new buy needs a vacated slot, not just a
+  passing score — and MU would push AI-adjacent theme concentration higher still.
+**Actions:**
+- No trades. Reconciliation was clean and no invalidation trigger fired on any of
+  the 13 holdings — today's -0.55% SPY move and the outsized tech/semis weakness
+  (NVDA/AMZN/MSFT/GOOGL all down 1-3% intraday) reads as a broad rates/commodities
+  repricing (20-month-high 10Y yield, surging oil), not a break in any single
+  thesis. Re-checked the four largest laggards: GOOGL (-6.1%, AI/cloud thesis
+  intact, no new negative catalyst), NEE (-7.4%, reinforced this week by analyst PT
+  raises and a fresh AI-power-bottleneck feature naming it a structural
+  beneficiary), LIN (-7.7%, price $484.74 still ~3.9% below its 50-day SMA $504.17,
+  RSI 46.5 — fundamentals-strong/technicals-lagging pattern unchanged, not adding),
+  PLD (-6.7%, RBC reiterated its post-SEGRO data-center-platform upgrade, Wells
+  Fargo held Overweight today — thesis intact). No holding reports earnings in the
+  next ~3 weeks (checked the market-wide calendar).
+- **Resolving the cash-constrained-backlog question raised at Cycle 17:** explicitly
+  decided **not** to force a trim-to-fund swap this cycle. The correct diagnosis,
+  on inspection, isn't "too little cash" — it's that position count (13, 12 single
+  names) is already **two above** the 8-10 single-name target band from the
+  restructure mandate. Buying CQP or PGR without an offsetting exit would push
+  further from the concentration target, not closer to it, regardless of how the
+  cash percentage reads. And the specific trim candidates Cycle 17 floated (GOOGL,
+  NEE) both checked out fine this cycle — no broken thesis to justify cutting
+  either just to make room. The rule ("cut losers, don't average down, exit when
+  thesis breaks") doesn't authorize selling a healthy holding purely to fund a new
+  idea. CQP and PGR stay queued on the watchlist, genuinely qualified (both 20/25)
+  and waiting for either (a) an actual invalidation trigger freeing a slot, or (b)
+  cash building further via dividend accruals/appreciation toward a real
+  ~$90-110 tranche without breaching the 2-5% floor.
+**Thesis / notes:** Still 13 positions, cash $35.64/$1,019.33 (3.5%, inside the
+2-5% target band). Concentration check: largest single name MSFT at 10.4%
+(in-target, well under the 15% trim trigger); AI/cloud theme (NVDA+MSFT+AMZN+GOOGL)
+at 32.3% (down slightly from 32.9% on today's tech-led pullback, still under the
+40% cap); "Finance"-tagged REIT/payments cluster (PLD+V+AMT) at 18.4%, well under
+sector caps. Watchlist: CQP (4 cycles, 20/25), PGR (2 cycles, 20/25), CAT (18
+cycles, still ~10%+ below its 50-day SMA), HD (5 cycles, twice-reaffirmed
+guidance), DE (3 cycles, 18/25, valuation the weak link). Honest read: the backlog
+is not evidence of indecision — it's what a genuinely full, at-target book looks
+like when good ideas keep clearing the bar faster than slots open up. The right
+next move is patience for a real trigger (an invalidation firing, or organic cash
+buildup), not manufacturing one. Watch next cycle: whether the 10-year yield/oil
+move here is the start of a sustained macro headwind (worth re-checking bond
+yields and the AI/cloud theme's resilience) or a one-day blip; LIN for a confirmed
+SMA close; CAT's now-18-week slide for any sign of stopping; PGR's/several
+holdings' upcoming dividend accruals as the more organic path to funding the
+backlog.
+
+---

@@ -9,15 +9,15 @@
 
 | | |
 |---|---|
-| **Last completed cycle** | 17 — 2026-08-28 (no trades; cash in band but $ amount too small to fund a position, 3rd straight cycle) |
-| **Account value** | $1,036.65 (as of 2026-08-28 ~11:10 ET) |
-| **Cash** | $35.64 (~3.4% — inside the 2-5% target band, but too few dollars for a ~$90-110 buy) |
+| **Last completed cycle** | 18 — 2026-09-01 (no trades; broad macro pullback, cash-backlog question resolved — see Alerts) |
+| **Account value** | $1,019.33 (as of 2026-09-01 ~11:10 ET) |
+| **Cash** | $35.64 (~3.5% — inside the 2-5% target band, but too few dollars for a ~$90-110 buy) |
 | **Positions** | 13 (VOO core + 12 single names — unchanged from Cycle 14) |
-| **vs SPY since inception** | portfolio +3.67% vs SPY +3.08% (as of 2026-08-28) — +0.58pt gap, safety valve not tripped |
+| **vs SPY since inception** | portfolio +1.93% vs SPY +1.57% (as of 2026-09-01) — +0.36pt gap, safety valve not tripped |
 | **Realized P&L (all-time)** | +$6.84 (8 closed trades; unchanged this cycle — no sells) |
 | **Next scheduled run** | per cron `0 15 */3 * *` (drifts month-to-month; see Known quirks) |
 | **Strategy** | Moderately aggressive, research-driven (changed 2026-08-14). Target: **8–10 single names + a `VOO` core (15–20%)**, ~9–11% per name, cash 2–5%, correlated-theme cap 40%. Every holding must justify itself against just buying `VOO`. |
-| **Alerts** | ℹ️ Unfunded-candidate backlog now 2 deep at the same top score: `CQP` (20/25, watchlisted since Cycle 15) and new `PGR` (Progressive, 20/25, screened Cycle 17) both cleared the bar but buying power ($35.64) can't fund either; no holding is above the 15% trim trigger, so there's no clean funding source without a discretionary trim. NVDA reported Q2 on 8/26 — beat + raised guidance + new AWS GPU deal, thesis strengthened (AI/cloud theme now 32.9%, still under the 40% cap). |
+| **Alerts** | ℹ️ Resolved the multi-cycle unfunded-candidate backlog question (`CQP`/`PGR`, both 20/25): it's not a cash problem — position count (13) is already 2 over the 8-10 single-name target, so a new buy needs a vacated slot (an invalidation trigger), not more cash. Both stay queued. Today was a broad macro-driven pullback (10Y yield at a 20-month high, oil +3-5%) — tech hit hardest (NVDA/AMZN/MSFT/GOOGL down 1-3%) but no thesis break found on any holding. |
 
 ## Health check — how to tell it's alive
 
@@ -37,6 +37,7 @@ looks like the agent stopped (this exact false alarm happened 2026-08-05).
 
 | Date (UTC) | Cycle | Result |
 |---|---|---|
+| 2026-09-01 | 18 | ✅ No trades — broad macro pullback (10Y yield 20-mo high, oil surge), no thesis breaks. Screened `CEG` (new, 17.5/25, declined — redundant with NEE) and `MU` (new, 18/25, clears bar but declined — no open slot). Resolved cash-backlog question: book is over-target on position count, not cash-starved. |
 | 2026-08-28 | 17 | ✅ No trades — cash in band % but buying power too small in dollars. Screened `PGR` (new, 20/25, ties CQP as top unfunded candidate) and `SYK` (new, 15/25, declined). NVDA Q2 beat + raised guidance confirmed 8/26. Dropped stale `WM` from watchlist. |
 | 2026-08-25 | 16 | ✅ No trades — cash still in the 2-5% target band. Screened `DE` (new, 18/25, watchlisted — CQP is the stronger unfunded candidate) and `ROST` (new, 16/25, declined). NVDA earnings 8/26 flagged. |
 | 2026-08-21 | 15 | ✅ No trades — cash already in the 2-5% target band. Screened `CQP` (new, 20/25, watchlisted — no clean funding source) and `ADI` (new, 14/25, declined). |

@@ -1336,3 +1336,91 @@ PLD for a confirmed SMA close; whether cash builds further via dividend accruals
 and — the more consequential open question — whether the owner wants to revisit
 the 8-10 single-name band now that three straight 20+/25 ideas are queued against
 a full, healthy book with no natural exit in sight.
+
+## Cycle 20 — 2026-09-08 (Tuesday)
+**Portfolio:** $1,019.22 total | $36.41 cash (3.6%) | positions: VOO (0.2551 @ $705.55,
++0.0%), NVDA (0.3682 @ $211.83, +7.4%), MSFT (0.2125 @ $423.55, +16.3%), AMZN (0.3763
+@ $252.48, +1.6%), GOOGL (0.1396 @ $358.28, -5.8%), LLY (0.0436 @ $1147.97, -1.5%),
+XOM (0.3460 @ $144.52, +10.9%), NEE (0.5585 @ $89.53, -6.2%), LIN (0.0952 @ $525.46,
+-10.3%), PLD (0.3353 @ $149.12, -7.6%), V (0.1207 @ $364.54, +1.6%), AMT (0.5446 @
+$174.44, +2.1%), UNP (0.2975 @ $302.55, -4.0%)
+**vs SPY since inception:** portfolio +1.92% | SPY +2.21% | 10-cycle gap: -0.29 pts
+(valve: ok, well inside the -8pt threshold)
+**Realized P&L to date:** $6.84
+**Lesson from last cycle:** Cycle 19's flag-and-hold call was validated by a quiet
+week — no thesis breaks, no forced errors — but the backlog kept growing instead of
+resolving, which is itself informative (see this cycle's lesson below).
+**Market read:** Broad, mild pullback the first trading day back from the Labor Day
+holiday — SPY $767.64 (-0.33% vs. Friday's $770.19), most AI/mega-cap names (NVDA,
+MSFT, LLY, V, LIN) down 1-2% intraday with no single identifiable catalyst; reads as
+routine consolidation after last week's jobs-report/Fed-hold rally rather than a
+regime change. Reconciled clean before trading: 13 positions, $36.41 cash, $36.41
+buying power, +$6.84 realized P&L all-time, zero orders since Cycle 18 (9/1) —
+broker matched state.json exactly, no discrepancies, no watchdog alerts.
+**Candidates screened this cycle:**
+- **ABBV (AbbVie)** — quality 4 (post-Humira growth engine Skyrizi+Rinvoq scaling
+  well past a combined $20B run-rate; active pipeline replenishment via M&A, incl.
+  the $10.9B Apogee Therapeutics acquisition that closed 9/3, adding immunology/
+  dermatology assets), valuation 3 (headline GAAP PE ~72.5x looks rich but is
+  distorted by one-time acquired-IPR&D charges — Q1 net margin dropped to 4.6% vs.
+  Q2's 21.3% purely on the Apogee charge; 2.66% dividend yield; a clean forward/
+  adjusted-EPS multiple needs verification next time this name is revisited),
+  trend 4 (price ~$253, only ~5.4% below its 7/29 52-wk high of $267.47; BofA
+  raised its PT to $282 from $276 today, part of a string of recent PT raises),
+  catalyst 4 (positive Phase 3 CERVINO data for multiple myeloma drug etentamig —
+  74% objective response rate vs. 45.7% for standard-of-care; the closed Apogee
+  deal expands the pipeline), fit 4 (genuinely new pharma sub-thesis — zero overlap
+  with LLY's GLP-1/incretin franchise, first immunology/oncology exposure in the
+  book) = **19/25 — clears the bar, but declined on portfolio-construction
+  grounds:** no open slot (13 positions, 12 singles, still 2 over the 8-10 target
+  band), no invalidation trigger freed one this cycle. Added to the watchlist.
+- **COST (Costco)** — quality 5 (best-in-class membership-warehouse flywheel,
+  exceptional customer loyalty, no debate on business quality), valuation 2 (PE
+  ~46.1x, near the high end of its historical range for a low-single-digit-margin
+  retailer), trend 2 (price ~$914, ~16.6% below its 5/19 52-wk high of $1096.50;
+  UBS this week described sentiment toward hardline retailers, Costco included, as
+  "apathy, caution, and chagrin" amid a live debate over comp-sales deceleration
+  vs. stabilization), catalyst 2 (next earnings 9/24 could resolve the debate
+  either way, but no clear positive catalyst exists today — Bernstein just trimmed
+  its PT to $1,144 from $1,194), fit 3 (would be genuinely new consumer-staples
+  exposure, a sector gap in the book, but sector-gap-filling is a tiebreaker, not
+  a reason to buy per STRATEGY.md) = **14/25 — declined:** valuation is stretched
+  precisely where the growth debate is live and unresolved; revisit only if the
+  9/24 print delivers a clean re-acceleration or the multiple compresses further.
+**Actions:**
+- No trades. Reconciliation was clean and no invalidation trigger fired on any of
+  the 13 holdings. NEE: Dominion Energy shareholders also gave formal consent to
+  proceed with the $67B merger (per 9/4 filings, alongside NEE's own 99.47%
+  approval already logged at Cycle 19); separately NEE and the DOE agreed to a
+  combined conditional commitment of up to $1.9B to restart the 615MW Duane Arnold
+  nuclear plant in Iowa by Q1 2029 — an unrelated but reinforcing power-generation-
+  growth data point. LIN got a Deutsche Bank Buy reiteration ($575 PT, calling for
+  a return to 10%+ EPS growth starting 2027) but price ($471.43) is still ~6.0%
+  below its 50-day SMA ($501.51), a bit wider than Cycle 19's -4.2% gap — not
+  adding, thesis intact but technicals not yet confirmed. PLD held its $1.07/share
+  dividend; Wells Fargo trimmed its PT by $1 to $166 (immaterial), price ~3.0%
+  below its 50-day SMA. CAT remains ~5.3% below its 50-day SMA, still no confirmed
+  turn — not a re-entry. GOOGL thesis intact, no new negative catalyst.
+- **The unfunded-candidate backlog is now four names deep** (MDT 22/25, ABBV
+  19/25, CQP 20/25, PGR 20/25) — the fourth consecutive cycle this has been
+  flagged. The construction math hasn't changed: every one of the 12 current
+  single-name holdings sits at or below its ~9-11% target weight with an intact
+  thesis, so there is no over-cap position to trim and no broken thesis to exit —
+  only a full exit of a healthy holding would free a slot, which this agent
+  continues to decline to do unilaterally (STRATEGY.md rule 7 authorizes exits on
+  broken theses, not on a better idea appearing elsewhere). This is flagged again
+  in STATUS.md Alerts, now explicitly as a repeat, standing issue for owner
+  attention rather than a fresh finding.
+**Thesis / notes:** Still 13 positions, cash $36.41/$1,019.22 (3.6%, inside the
+2-5% target band but too few dollars to fund anything). Concentration check:
+largest single name MSFT ~10.3% (in-target, well under the 15% trim trigger);
+AI/cloud theme (NVDA+MSFT+AMZN+GOOGL) ~32.6% (roughly flat vs. Cycle 19's 32.75%,
+still under the 40% cap); Finance-tagged (PLD+V+AMT) cluster ~18.4%, well under
+sector caps. Watchlist now 7 names: MDT (2 cycles, 22/25, top of queue), ABBV (new,
+19/25), CQP (6 cycles, 20/25), PGR (4 cycles, 20/25), CAT (20 cycles, still below
+its 50-day SMA), HD (7 cycles, twice-reaffirmed guidance), DE (5 cycles, 18/25,
+valuation the weak link). Watch next cycle: whether LIN or PLD confirm a close back
+above their 50-day SMAs; whether NEE's merger clears remaining regulatory approvals;
+whether cash builds via dividend accruals; and the now-standing question of whether
+the owner wants to revisit the 8-10 single-name band given four straight cycles of
+qualified candidates piling up against a full, healthy book.

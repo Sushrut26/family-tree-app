@@ -1,0 +1,20 @@
+2026-08-07T15:11:31Z | cycle=11 | START | trades=- | value=- | run started
+2026-08-07T15:25:00Z | cycle=11 | OK | trades=0 | value=1023.70 | reconciled clean, no trades, cash in band, LIN/AMT/CAT still below technical bar
+2026-08-11T15:09:21Z | cycle=12 | START | trades=- | value=- | run started
+2026-08-11T15:30:00Z | cycle=12 | OK | trades=0 | value=1028.10 | reconciled clean, no trades, cash near top of band, LIN/AMT/CAT still below 50-day SMA
+2026-08-14T15:21:30Z | cycle=13 | START | trades=- | value=- | run started (RESTRUCTURE MANDATE cycle)
+2026-08-14T15:30:29Z | cycle=13 | OK | trades=9 | value=1027.68 | restructure executed: sold SCHD/XLI/XLV/VXUS/IJR/JPM/COST, bought VOO+V; 17->11 positions, AMT breakout flagged
+2026-08-18T15:09:37Z | cycle=14 | START | trades=- | value=- | run started
+2026-08-18T15:18:51Z | cycle=14 | OK | trades=6 | value=1024.30 | bought UNP+AMT (new), topped up VOO/MSFT/AMZN/NVDA; cash to 3.4%, restructure deployment complete
+2026-08-21T15:08:14Z | cycle=15 | START | trades=- | value=- | run started
+2026-08-21T15:30:00Z | cycle=15 | OK | trades=0 | value=1029.32 | reconciled clean, no trades — cash already in 2-5% target band; CQP (20/25) screened+watchlisted, ADI (14/25) declined; no invalidation triggers
+2026-08-25T15:07:46Z | cycle=16 | START | trades=- | value=- | run started
+2026-08-25T15:30:00Z | cycle=16 | OK | trades=0 | value=1030.29 | reconciled clean, no trades — cash still in 2-5% band (2nd straight cycle); DE (18/25) watchlisted, ROST (16/25) declined; NVDA earnings 8/26 flagged as top risk
+2026-08-28T15:10:11Z | cycle=17 | START | trades=- | value=- | run started
+2026-08-28T15:16:34Z | cycle=17 | OK | trades=0 | value=1036.65 | reconciled clean, no trades — cash in 2-5% band but too few dollars to fund a position; PGR (20/25) screened+watchlisted, SYK (15/25) declined; NVDA Q2 beat+raised guidance confirmed; WM dropped (stale)
+2026-09-01T15:10:39Z | cycle=18 | START | trades=- | value=- | run started
+2026-09-01T15:17:11Z | cycle=18 | OK | trades=0 | value=1019.33 | reconciled clean, no trades — broad macro pullback (10Y yield 20-mo high, oil surge), no thesis breaks; CEG (17.5/25) and MU (18/25) screened+declined; resolved cash-backlog as position-count-over-target, not cash-starved
+2026-09-04T15:08:54Z | cycle=19 | START | trades=- | value=- | run started
+2026-09-04T15:34:00Z | cycle=19 | OK | trades=0 | value=1024.22 | reconciled clean, no trades — no thesis breaks; MDT (22/25, new high-water mark) and CRWD (15/25) screened; NEE/Dominion merger shareholder-approved; flagged growing 3-deep unfunded backlog (MDT/CQP/PGR) for owner attention
+2026-09-08T15:08:30Z | cycle=20 | START | trades=- | value=- | run started
+2026-09-08T15:14:19Z | cycle=20 | OK | trades=0 | value=1019.22 | reconciled clean, no trades — broad mild pullback, no thesis breaks; ABBV (19/25) and COST (14/25) screened; NEE/Dominion further merger consent + Duane Arnold DOE commitment; backlog now 4 deep (MDT/ABBV/CQP/PGR), flagged as standing 4th-cycle owner decision point

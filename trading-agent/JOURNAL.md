@@ -1424,3 +1424,98 @@ above their 50-day SMAs; whether NEE's merger clears remaining regulatory approv
 whether cash builds via dividend accruals; and the now-standing question of whether
 the owner wants to revisit the 8-10 single-name band given four straight cycles of
 qualified candidates piling up against a full, healthy book.
+
+## Cycle 21 — 2026-09-11 (Friday)
+**Portfolio:** $1,013.43 total | $36.59 cash (3.6%) | positions: VOO (0.2551 @ $705.55,
+-0.3%), NVDA (0.3682 @ $211.83, +4.0%), MSFT (0.2125 @ $423.55, +16.7%), AMZN (0.3763
+@ $252.48, +1.3%), GOOGL (0.1396 @ $358.28, -4.7%), LLY (0.0436 @ $1147.97, -2.5%),
+XOM (0.3460 @ $144.52, +13.9%), NEE (0.5585 @ $89.53, -8.0%), LIN (0.0952 @ $525.46,
+-11.6%), PLD (0.3353 @ $149.12, -9.2%), V (0.1207 @ $364.54, +1.5%), AMT (0.5446 @
+$174.44, +2.0%), UNP (0.2975 @ $302.55, -6.2%)
+**vs SPY since inception:** portfolio +1.34% | SPY +1.87% | gap: -0.53 pts
+(valve: ok, well inside the -8pt threshold)
+**Realized P&L to date:** $6.84
+**Lesson from last cycle:** Cycle 20's flag-and-hold call was validated again, and
+the repeat-flag pattern itself needed a check: is the agent re-litigating the same
+finding without new information? This cycle answers that directly (see below).
+**Market read:** SPY $765.11, up +0.96% intraday but still below Tuesday's $767.64
+close — a Wed/Thu risk-off wobble (Adobe's soft FQ4 revenue guide despite an EPS
+beat, a broad Nasdaq/S&P selloff Thursday per multiple names' technical write-ups)
+partly reversed today. Most AI-theme holdings were up strongly intraday (NVDA +3.9%,
+GOOGL +2.7% on a Blackstone-expands-Google-TPU-spend report, AMZN +1.5%, AMT +2.9% on
+a Barclays upgrade carried over from 8/20 plus a routine $1.6B notes offering).
+Reconciled clean before trading: 13 positions, $36.59 cash (up only $0.18 from
+Cycle 20 — minor dividend accrual, no trades since 9/1), $36.59 buying power, +$6.84
+realized P&L all-time, broker matched state.json exactly on every ticker/quantity/
+avg-cost with zero discrepancies, no watchdog alerts.
+**Candidates screened this cycle:**
+- **WMT (Walmart)** — quality 5 (dominant retail/membership flywheel, resilient
+  business), valuation 2 (PE ~38.3x, near the high end of its historical range for a
+  low-single-digit-margin retailer), trend 2 (price ~$106.5 below its 50-day SMA
+  $110.36, RSI 42.5 neutral-bearish; Kroger cut its FY26 comp-sales outlook this
+  morning citing industry-wide softness, and last month's WMT print itself showed
+  comps decelerating more than expected on a pharmacy headwind), catalyst 2 (no
+  positive catalyst identified — a minor Papa John's delivery partnership is not
+  thesis-moving), fit 3 (would add genuine consumer-staples exposure, a real sector
+  gap, but STRATEGY.md treats sector-gap-filling as a tiebreaker, not a reason to
+  buy) = **14/25 — declined:** rich valuation precisely where industry-wide comp
+  growth is decelerating, weak trend, no catalyst.
+- **UNH (UnitedHealth)** — quality 3 (historically a managed-care leader, but 2026
+  has been turbulent — sold an Optum Health Florida asset interest to TPG this week,
+  continued post-guidance-reset uncertainty), valuation 4 (PE ~25.0x, well off its own
+  historical highs and ~15% below its 52-wk high $461.62, 2.3% dividend yield —
+  genuinely cheap by its own history), trend 1 (price ~$385-391, well below its
+  50-day SMA $410.12, RSI 40.5, a wide intraday range today consistent with continued
+  selling pressure), catalyst 2 (asset divestitures read as defensive restructuring,
+  not a clear positive), fit 4 (would be genuinely new managed-care/health-services
+  exposure, distinct from LLY's GLP-1 pharma thesis) = **14/25 — declined:** even
+  under the contrarian-entry exception (trend=1 doesn't auto-veto if quality>=4 AND
+  valuation>=4 AND total>=18), quality here is only 3 — fails that bar too, not just
+  the ordinary 18/25 threshold.
+**Actions:**
+- No trades. Reconciliation was clean and no invalidation trigger fired on any of the
+  13 holdings; reviewed news for all 13 plus CAT. LLY completed its small AtaiBeckley
+  bolt-on acquisition (mental-health neuroplastogen pipeline, incremental to but not
+  central to the GLP-1 thesis). V, Mastercard, and Ant International announced a
+  "Know-Your-Agent" interoperability framework to verify AI agents in payments —
+  reinforces the network-effect payments-moat thesis as agentic commerce scales; an
+  insider sale (General Counsel, ~$688K) was routine and immaterial. LIN's technical
+  gap to its 50-day SMA widened again (-6.8% vs. Cycle 20's -6.0%; Benzinga flagged
+  it among the most oversold materials names this week, RSI ~29) even as Deutsche
+  Bank's Buy/$575 PT reiteration (9/4) stands — fundamentals intact, chart still not
+  confirmed, not adding. PLD's gap also widened slightly (-4.6% vs. -3.0%); SEGRO
+  deal progressing normally (a Benzinga structural piece on post-merger dividend
+  coverage math raised no red flag — Prologis itself expects broadly neutral-to-
+  minimally-dilutive per-share impact). CAT improved slightly (-4.7% vs. -5.3%) but
+  still no confirmed close above its 50-day SMA — not a re-entry. NVDA's CEO publicly
+  rebutted "circular financing" concerns at a Goldman conference (a live bear-case
+  debate to keep watching, not new information this cycle). GOOGL got a incremental
+  positive (Blackstone reportedly expanding Google TPU purchases well beyond its
+  initial $5B JV commitment). No holding reports earnings through 2026-10-01.
+- **The unfunded-candidate queue held steady at four names** (MDT 22/25, ABBV 19/25,
+  CQP 20/25, PGR 20/25) — the fifth consecutive cycle this has been flagged, but for
+  the first time since Cycle 17 the queue didn't grow: both fresh candidates screened
+  this cycle (WMT, UNH) declined outright on their own merits (rich valuation and weak
+  trend for WMT; cheap-but-mediocre-quality for UNH, failing even the contrarian bar),
+  so this cycle never reached the trim-vs-hold construction question at all. The
+  construction math is unchanged from Cycles 18-20: every one of the 12 current
+  single-name holdings sits at or below its ~9-11% target weight with an intact
+  thesis, so there is still no over-cap position to trim and no broken thesis to
+  exit. Flagged again in STATUS.md Alerts as a standing issue, but kept brief — no new
+  information this cycle means no new argument to make; the discipline holds by
+  default until either an invalidation trigger opens a real slot or the owner
+  revisits the position-count band.
+**Thesis / notes:** Still 13 positions, cash $36.59/$1,013.43 (3.6%, inside the 2-5%
+target band but too few dollars to fund anything). Concentration check: largest
+single name MSFT ~10.4% (in-target, well under the 15% trim trigger); AI/cloud theme
+(NVDA+MSFT+AMZN+GOOGL) ~32.6% (flat vs. Cycle 20, still under the 40% cap);
+Finance-tagged (PLD+V+AMT) cluster ~18.5%, well under sector caps. Watchlist still 7
+names: MDT (3 cycles, 22/25, top of queue), ABBV (2 cycles, 19/25), CQP (7 cycles,
+20/25), PGR (5 cycles, 20/25), CAT (21 cycles, still below its 50-day SMA), HD (8
+cycles, twice-reaffirmed guidance), DE (6 cycles, 18/25, valuation the weak link).
+Watch next cycle: whether LIN or PLD confirm a close back above their 50-day SMAs
+(LIN's gap is now wide enough, and RSI low enough, to be worth checking for a
+bounce); whether NEE's merger clears remaining regulatory approvals; and the
+still-standing question of whether the owner wants to revisit the 8-10 single-name
+band — unchanged from Cycle 20, just not urgent this particular cycle since nothing
+new joined the queue.

@@ -1519,3 +1519,103 @@ bounce); whether NEE's merger clears remaining regulatory approvals; and the
 still-standing question of whether the owner wants to revisit the 8-10 single-name
 band — unchanged from Cycle 20, just not urgent this particular cycle since nothing
 new joined the queue.
+
+---
+
+## Cycle 22 — 2026-09-15 (Tuesday)
+**Portfolio:** $1,009.37 total | $36.68 cash (3.6%) | 13 positions: VOO -1.4%,
+NVDA +0.2%, MSFT +18.3%, AMZN -1.5%, GOOGL -3.9%, LLY -0.6%, XOM +16.2%,
+NEE -9.3%, LIN -12.2%, PLD -9.4%, V +2.5%, AMT +2.1%, UNP -6.1% (all vs. avg cost,
+intraday prices)
+**vs SPY since inception:** portfolio +0.94% | SPY +0.79% (SPY $757.02 vs. inception
+$751.07 on 2026-07-14) | gap: +0.15 pts (valve: ok, not tripped — trailing gaps were
+-0.19/-0.55/-0.08/-0.55/+1.24/+2.14/+0.57/+0.79/-0.29/-0.53/+0.15 pts at cycles
+10-22)
+**Realized P&L to date:** +$6.84 (confirmed via broker, all-time, 8 closing trades,
+unchanged this cycle)
+**Lesson from last cycle:** Cycle 21's discipline (declining `WMT`/`UNH` outright,
+no chase, no forced trim) meant no fresh capital was sitting in tech when Monday's
+(9/14) AI-safety-driven selloff hit — Anthropic's CEO called for slowing AI model
+development, OpenAI's Altman confirmed no 2026 IPO, and semis fell ~5-6% intraday.
+The diversified non-AI sleeve (XOM +1.8% today, AMT +0.6%, UNP roughly flat)
+cushioned the portfolio through that session — confirms the correlated-theme cap
+is doing real work, not just a paperwork constraint.
+**Market read:** Market open (~11:07 ET). SPY $757.02, -0.51% vs. Friday's close
+($760.88) — tape still soft after Monday's broad tech/semis selloff (XLK -1.8%,
+semis -5.8% Monday) driven by AI-industry-safety headlines (Amodei call to slow
+model development, Altman's no-2026-IPO comment, hyperscalers reportedly
+restricting rival-model usage over data-security concerns) rather than any
+company-specific news. Oracle (not held) fell further on a fresh layoffs report
+(Business Insider) layered on top of the AI-capex-debt overhang. Reconciled broker
+vs. state.json before trading: all 13 positions, cash $36.68 (vs. $36.59 logged —
+$0.09 immaterial drift, likely a small dividend accrual), $0 open orders since
+9/1, +$6.84 realized P&L all-time — matched cleanly, no discrepancies, no watchdog
+alerts found since Cycle 21. No holding moved >2.5% intraday (largest: AMZN -1.9%,
+GOOGL -1.5%), so no execution-rule (>5% chase) conflicts today.
+**Candidates screened this cycle:**
+- **ORCL (Oracle)** — beat Q1 FY27 EPS ($1.92 vs. $1.67 est.) reported 9/10, but the
+  stock is down ~57% from its Sept-2025 52-wk high ($329.50) to a July-2026 low
+  ($114.50), now ~$143 — a new layoffs round (Business Insider, 9/14, "double-digit
+  percentages of certain teams") on top of heavy debt-financed OCI capacity buildout
+  points to real strategic-execution risk behind the AI-cloud backlog story, not just
+  sentiment. Scored: quality 3 (legit enterprise leader, but real execution doubt),
+  valuation 3 (PE 22.7x reasonable but reflects the risk), trend 2 (barely above the
+  50-day SMA $140.77 after a 57%-off-high round trip, no confirmed reversal, RSI a
+  neutral 46.9), catalyst 3 (beat, but layoffs are a real negative data point same
+  week), fit 2 (AI/cloud theme is already 32.3% of the book, near the 40% cap, and
+  there's no open position slot) = **13/25 — declined outright.**
+- **RH (Restoration Hardware)** — beat Q2 EPS decisively ($2.70 vs. $1.78 est.,
+  reported 9/10) but the stock is ~48% off its Sept-2025 high ($248.44), near its
+  52-wk low, price $130 vs. 50-day SMA $166 (-22%), RSI 33.1 (oversold, no confirmed
+  turn). Small-cap ($2.47B), historically leverage-heavy balance sheet, luxury home
+  furnishings exposed to a weak housing market. Scored: quality 3, valuation 3
+  (PE 23.9x, reasonable for the beat but small-cap/leverage risk), trend 1 (deeply
+  broken, well below 50-day SMA, no reversal confirmed), catalyst 3 (strong beat but
+  a real macro headwind), fit 3 (genuinely new small-cap consumer-discretionary/home
+  exposure) = **13/25 — declined**, and a trend score of 1 needs quality≥4 and
+  valuation≥4 for the contrarian exception, neither met.
+- Neither name added to the watchlist — both declined decisively on their own merits
+  (broken long-term trend riding on a single-quarter beat), not on a construction
+  technicality.
+**Actions:**
+- No trades. Cash ($36.68, 3.6%) remains inside the 2-5% band by percentage but too
+  thin in dollars to fund even a $50 half-size entry; all 13 holdings sit at or below
+  target weight with intact theses (largest, MSFT, ~10.6% — nowhere near the 15% trim
+  trigger); no invalidation trigger fired on any position. Checked each laggard for a
+  break: `LIN` (-12.2% from cost, still the largest % laggard) — Deutsche Bank
+  reiterated Buy/$575 PT on 9/4 (return to 10%+ EPS growth from 2027), Benzinga
+  flagged it among the most-oversold materials names (RSI ~29-30) this week — still
+  below its 50-day SMA, fundamentals-strong/technicals-weak thesis intact, not
+  adding. `NEE` (-9.3%) reaffirmed FY26 adjusted EPS guidance ($3.92-4.02, targeting
+  the high end) on 9/14 and expanded the Virginia customer-benefits package for the
+  Dominion merger (more credits, more jobs, still expected to close H2 2027) — no
+  setback, holding. `PLD` (-9.4%) held its $1.07 quarterly dividend (declared 9/2,
+  payable 9/30) with the SEGRO deal progressing normally — holding. `UNP` (-6.1%):
+  the Norfolk Southern merger review remains in its STB-mandated comment/briefing
+  schedule (nothing due until Nov/Dec 2026 and May 2027) — procedural, not a red
+  flag, holding. `GOOGL` (-3.9%): Google Cloud opened a new Singapore engineering
+  hub and expanded its Salesforce partnership this morning — incrementally positive,
+  holding. `CAT` (watchlist, exited Cycle 7): $779.25, now ~8.6% below its 50-day
+  SMA ($852.59) — worse than Cycle 21's -4.7% gap on this week's broad semis/AI
+  selloff spillover — still no re-entry signal.
+**Thesis / notes:** Still 13 positions, cash $36.68/$1,009.37 (3.6%, inside the 2-5%
+band but too few dollars to fund anything). Concentration check: largest single name
+MSFT ~10.6% (in-target, well under the 15% trim trigger); AI/cloud theme
+(NVDA+MSFT+AMZN+GOOGL) ~32.3% (essentially flat vs. Cycle 21, still under the 40%
+cap — and this cycle's screening pass is a live example of why the cap matters,
+since both ORCL and a look at the sector confirm how correlated an AI/cloud add
+would be to existing exposure); Finance-tagged (PLD+V+AMT) cluster ~18.6%, well
+under sector caps. Watchlist still 7 names, unchanged: MDT (4 cycles, 22/25, top of
+queue), ABBV (3 cycles, 19/25), CQP (8 cycles, 20/25), PGR (6 cycles, 20/25), CAT
+(22 cycles, still below its 50-day SMA, gap widened this week), HD (9 cycles,
+twice-reaffirmed guidance), DE (7 cycles, 18/25, valuation the weak link). Today's
+broad AI-safety-driven tech selloff (Amodei/Altman commentary, semis -5-6% Monday)
+is a sentiment/narrative rotation so far, not a company-specific break in any held
+name — matches the Cycle 6-7 pattern where AI-capex-jitters proved to be sentiment,
+not substance, though it bears watching if it persists. Watch next cycle: whether
+the AI-safety narrative extends into a real capex-guidance cut from any mega-cap
+holding (the actual thing that would break the NVDA/MSFT/AMZN/GOOGL thesis, vs. just
+sentiment); whether LIN's oversold RSI (~29-30) produces a technical bounce; the
+still-standing question of whether the owner wants to revisit the 8-10 single-name
+band — unchanged for a 6th straight cycle, still not urgent since nothing new
+cleared the bar and joined the queue this cycle.

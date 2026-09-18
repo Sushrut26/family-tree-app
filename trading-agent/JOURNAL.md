@@ -1619,3 +1619,109 @@ sentiment); whether LIN's oversold RSI (~29-30) produces a technical bounce; the
 still-standing question of whether the owner wants to revisit the 8-10 single-name
 band — unchanged for a 6th straight cycle, still not urgent since nothing new
 cleared the bar and joined the queue this cycle.
+
+---
+
+## Cycle 23 — 2026-09-18 (Friday)
+**Portfolio:** $1,008.49 total | $36.68 cash (3.6%) | 13 positions: VOO -0.7%,
+NVDA +3.6%, MSFT +16.7%, AMZN +1.1%, GOOGL -2.1%, LLY -0.4%, XOM +12.7%,
+NEE -10.0%, LIN -12.8%, PLD -9.9%, V +1.1%, AMT -0.1%, UNP -7.6% (all vs. avg cost,
+intraday prices)
+**vs SPY since inception:** portfolio +0.85% | SPY +1.19% (SPY $759.98 vs. inception
+$751.07 on 2026-07-14) | gap: -0.34 pts (valve: ok, not tripped — trailing 10-cycle
+average gap +0.23 pts, nowhere near the -8pt threshold)
+**Realized P&L to date:** +$6.84 (confirmed via broker, all-time, 8 closing trades,
+unchanged this cycle)
+**Lesson from last cycle:** Cycle 22 flagged the open question of whether the
+AI-safety narrative (Amodei/Altman commentary) would extend into a real capex cut —
+it didn't. AI names are broadly flat-to-up since (NVDA +0.05%, GOOGL +0.97%, AMZN
++1.61% day-over-day) and CAT's gap to its 50-day SMA narrowed from -8.6% to -4.9% in
+four days, matching the Cycle 6-7 pattern where sector-wide AI sentiment swings
+reversed without any company-specific break showing up. Confirms holding through
+narrative-driven selloffs (not chasing the recovery either) remains the right call.
+**Market read:** Market open (~11:07 ET). SPY $759.98, -0.10% vs. Wednesday's close
+($760.71) — quiet, marginally softer tape, a rebound week from last week's
+AI-safety-driven selloff largely holding. Reconciled broker vs. state.json before
+trading: all 13 positions, cash $36.68 (flat vs. Cycle 22, $0 drift), $0 open orders,
++$6.84 realized P&L all-time — matched exactly, no discrepancies, no watchdog alerts
+found since Cycle 22. No holding moved >2% intraday (largest: GOOGL +0.97%, AMZN
++1.61% day-over-day), so no execution-rule (>5% chase) conflicts today.
+**Candidates screened this cycle:**
+- **ADBE (Adobe)** — beat Q3 FY26 on 9/10 (adj. EPS $6.13 vs. $6.09 est., revenue
+  $6.76B vs. $6.69B est., record revenue, AI-first ARR +150% YoY crossing $650M) and
+  raised FY26 guidance (EPS $24.45-24.50, revenue $26.58-26.63B) — but the stock is
+  down ~29% over the past year, essentially flat since the print, and analyst
+  reaction is genuinely split: Goldman Sachs held a Sell rating with a $200 PT
+  (~20% *below* spot) the same week RBC reiterated Outperform at $315; core Creative
+  segment ARR growth is decelerating (a real bear-case data point, not just noise).
+  Scored: quality 4 (dominant creative/marketing-software franchise, 1B+ MAU, but
+  real growth-deceleration debate), valuation 4 (PE ~14.1x is statistically cheap for
+  this quality tier, but the dispersion in analyst targets suggests the market isn't
+  sure it's cheap for the right reason), trend 2 (price $251 essentially at its
+  50-day SMA $255.53, RSI 44.3 neutral — rangebound, no confirmed turn after a
+  year-long decline), catalyst 3 (AI-ARR growth is real and specific, but tempered by
+  core-segment deceleration and a split Street), fit 4 (genuinely new
+  enterprise/creative-software exposure, distinct from every current holding) =
+  **17/25 — declined,** just under the bar; the trend/catalyst uncertainty and the
+  live Goldman bear case are enough to wait for confirmation.
+- **ETN (Eaton)** — power-management/electrification leader supplying switchgear,
+  transformers, UPS systems and liquid-cooling (via its Boyd Thermal acquisition) for
+  AI data centers — a name that keeps surfacing in "AI infrastructure beyond GPUs"
+  coverage (Trump/Huang comments this week, Palantir AIPCon presenter). But the near-
+  term picture is the opposite of a diversifier: shares fell -5.8% and then another
+  -7.0% intraday (to $395.61) on 9/14-9/15 specifically on the Amodei/Altman
+  AI-slowdown headlines — i.e., it is *more* correlated to AI-capex sentiment than
+  some of the book's actual AI/cloud holdings, not less. Scored: quality 4 (genuine
+  diversified electrical-equipment leader, real secular power-infrastructure demand),
+  valuation 2 (PE ~41.7x, rich, pricing in continued hyperscale capex growth),
+  trend 2 (price $411-419 essentially at its 50-day SMA $415.49 after whipsawing
+  ~14% off its Aug-12 high on AI-capex-sentiment swings, RSI a neutral 49.1, no clear
+  direction), catalyst 2 (the dominant near-term catalyst this week was negative —
+  AI-slowdown chatter hit the stock hard), fit 2 (would meaningfully raise, not
+  diversify, the portfolio's effective AI-capex-sentiment exposure despite carrying a
+  different Robinhood sector tag from NVDA/MSFT/AMZN/GOOGL) = **12/25 — declined,**
+  a clear no on valuation and correlated-theme grounds.
+- Neither name added to the watchlist — both declined on their own merits (ADBE on
+  unresolved trend/analyst-dispersion grounds, ETN on rich valuation plus poor
+  diversification value), not on a construction technicality.
+**Actions:**
+- No trades. Cash ($36.68, 3.6%) remains inside the 2-5% band by percentage but too
+  thin in dollars to fund even a $50 half-size entry; all 13 holdings sit at or below
+  target weight with intact theses (largest, MSFT, ~10.4% — nowhere near the 15% trim
+  trigger); no invalidation trigger fired on any position. Checked each laggard for a
+  break: `LIN` (-12.8% from cost, still the largest % laggard) — still RSI ~28.7,
+  deeply oversold, still below its 50-day SMA ($458.09 vs. $491.00, -6.7%); no new
+  negative news, Deutsche Bank's Buy/$575 PT (return to 10%+ EPS growth from 2027)
+  still stands, Benzinga again flagged LIN among the most-oversold materials names
+  this week — fundamentals-strong/technicals-weak thesis intact, not adding. `NEE`
+  (-10.0%) reaffirmed FY26 adjusted EPS guidance ($3.92-4.02, targeting the high end)
+  on 9/14 and expanded the Virginia customer-benefits package for the Dominion
+  merger; Morgan Stanley trimmed its NEE PT slightly ($114->$111) but kept Overweight,
+  still well above spot — a CNBC "Mad Money" pundit call to sell NEE is opinion, not
+  new information, disregarded. Holding, no trim. `PLD` (-9.9%): dividend held at
+  $1.07 (paid 9/30), SEGRO deal progressing normally, Wells Fargo/RBC both maintain
+  Overweight/Outperform ratings with PTs ($166/$160) well above spot $134 — holding.
+  `UNP` (-7.6%): no new merger-review news this cycle, procedural schedule unchanged
+  — holding. `GOOGL` (-2.1%): no new negative catalysts, day-over-day +0.97% on the
+  broader tech rebound — holding. `CAT` (watchlist, exited Cycle 7): $801.71, now
+  only ~4.9% below its 50-day SMA ($842.73) — a real improvement from Cycle 22's
+  -8.6% gap, RSI a neutral 43.6 — the technical setup is finally narrowing after
+  22 cycles of watching, but still no confirmed close above the SMA, so still not a
+  re-entry this cycle; worth a close look next cycle if the gap keeps narrowing.
+**Thesis / notes:** Still 13 positions, cash $36.68/$1,008.49 (3.6%, inside the 2-5%
+band but too few dollars to fund anything). Concentration check: largest single name
+MSFT ~10.4% (in-target, well under the 15% trim trigger); AI/cloud theme
+(NVDA+MSFT+AMZN+GOOGL) ~32.8% (essentially flat vs. Cycle 22, still under the 40%
+cap — and this cycle's ETN decline is a live reminder that "AI infrastructure"
+exposure can hide in unrelated sector tags, reinforcing why the theme cap looks past
+Robinhood's own sector labels); VOO ~17.7% (mid-band); Finance-tagged (PLD+V+AMT)
+cluster ~18.3%, well under sector caps. Watchlist still 7 names: MDT (5 cycles,
+22/25, top of queue), ABBV (4 cycles, 19/25), CQP (9 cycles, 20/25), PGR (7 cycles,
+20/25), CAT (23 cycles, gap to its 50-day SMA narrowing — the first real technical
+improvement since the Cycle 10 earnings spike faded), HD (10 cycles, twice-reaffirmed
+guidance), DE (8 cycles, 18/25, valuation the weak link). Watch next cycle: whether
+CAT's narrowing SMA gap continues toward a confirmed close above it (a legitimate
+re-entry candidate if so); whether LIN's deep oversold RSI (~28-29) finally produces
+a technical bounce; the still-standing question of whether the owner wants to revisit
+the 8-10 single-name band — unchanged for a 7th straight cycle, still unresolved but
+not urgent since no new candidate cleared the bar and joined the queue this cycle.

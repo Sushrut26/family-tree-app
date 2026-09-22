@@ -1725,3 +1725,123 @@ re-entry candidate if so); whether LIN's deep oversold RSI (~28-29) finally prod
 a technical bounce; the still-standing question of whether the owner wants to revisit
 the 8-10 single-name band — unchanged for a 7th straight cycle, still unresolved but
 not urgent since no new candidate cleared the bar and joined the queue this cycle.
+
+---
+
+## Cycle 24 — 2026-09-22 (Tuesday)
+**Portfolio:** $1,015.00 total | $37.04 cash (3.6%) | 13 positions: VOO +1.1%,
+NVDA +8.0%, MSFT +17.2%, AMZN +1.2%, GOOGL +0.2%, LLY +2.3%, XOM +10.2%,
+NEE -10.9%, LIN -12.1%, PLD -9.6%, V -0.05%, AMT +0.6%, UNP -10.3% (all vs. avg
+cost, intraday prices)
+**vs SPY since inception:** portfolio +1.50% | SPY +3.00% (SPY $773.635 vs.
+inception $751.07 on 2026-07-14) | gap: -1.50 pts (valve: ok, not tripped —
+trailing 10-cycle average gap +0.05 pts, nowhere near the -8pt threshold)
+**Realized P&L to date:** +$6.84 (confirmed via broker, all-time, 8 closing trades,
+unchanged this cycle)
+**Lesson from last cycle:** Cycle 23's read that the AI-safety selloff was sentiment,
+not substance, kept holding through it rather than chasing the recovery — confirmed
+again this cycle by UBS's unprompted 9/16 upgrade on UNP (Neutral→Buy, PT
+$310→$339, citing 2027 volume/pricing tailwinds and NS-merger upside) landing on a
+position the agent had held through a -7.6%/-10.3% drawdown without ever touching
+it. Not reflexively trimming a laggard with an intact thesis keeps optionality alive
+for exactly this kind of unprompted re-rating.
+**Market read:** Market open (~11:08 ET). SPY $773.64, roughly flat vs. Monday's
+close ($773.50, +0.02%) — quiet tape, mixed under the surface (GOOGL +1.10%,
+NVDA +0.60%, UNP +0.60%, LIN +0.93% vs. MSFT -1.04%, AMZN -1.14%, V -1.51%,
+CAT -1.31% day-over-day). Reconciled broker vs. state.json before trading: all 13
+positions matched on qty/avg-cost; cash $37.04 vs. $36.68 logged ($0.36 drift,
+immaterial — a small dividend accrual, not a discrepancy); $0 open orders; +$6.84
+realized P&L all-time, unchanged — no real discrepancies, no watchdog alerts found
+since Cycle 23. No holding moved >2% intraday, so no execution-rule (>5% chase)
+conflicts today. No held name reports earnings in the next 14 days (checked the
+high-market-cap earnings calendar through 2026-10-06 — nothing from the 13-name
+book appears).
+**Candidates screened this cycle:**
+- **NTNX (Nutanix)** — sourced fresh off the "Quality compounders near highs"
+  scanner. Real business momentum (FQ4 beat 8/27: adj. EPS $0.60 vs. $0.49 est.,
+  revenue $757M vs. $738M est., FY27 revenue guide $3.18-3.23B roughly in line;
+  RBC raised its PT to $90 citing durable cloud-native/AI growth; announced the
+  Ryax Technologies acquisition today for AI-orchestration/GPU-scheduling
+  capability, financially immaterial). But technically extended: price $69.64 is
+  +10.2% above its 50-day SMA ($63.22), RSI 65 (near the scan's own 70 cap) after
+  already popping ~8% on the print and roughly doubling off its April low —
+  chasing a run that has largely already happened. PE 13.5x looks statistically
+  cheap but is distorted for a software name running on non-GAAP adjustments
+  (P/B a rich 27x); CFO sold ~$2.7M of stock 9/15 (routine Section 16 activity,
+  not weighted heavily on its own). Scored: quality 3 (genuine VMware-displacement
+  share-gainer, but a smaller-cap software name with more execution risk than the
+  book's mega-caps, GAAP profitability still murky), valuation 3 (headline PE
+  cheap but the metric is distorted; real multiple unclear), trend 3 (uptrend
+  intact but extended — not a fresh entry), catalyst 4 (VMware/Broadcom
+  displacement plus a genuine, if small, AI-orchestration bolt-on), fit 3 (new
+  market-cap tier but still cloud-infrastructure-adjacent, some correlated-theme
+  overlap with the existing AI/cloud sleeve) = **16/25 — declined,** just under
+  the bar on an extended chart.
+- **CMI (Cummins)** — power-generation/diesel-electric leader with a genuine
+  data-center-backup-power angle, screened as an industrials/power diversifier
+  distinct from UNP (rail) and not currently held. But the chart is the opposite
+  of "near highs": price ~$526 is *-13.1% below* its 50-day SMA ($605.34), RSI
+  33, and the stock is ~28.7% off its 52-week high ($737.76, set 6/18) — a real,
+  unexplained downtrend (checked recent news for a specific negative catalyst;
+  found none beyond routine options-flow chatter and a small insider sale, which
+  itself is a yellow flag — the sell-off looks more informed than the news flow
+  explains). Analyst mean price target ($781.63) is stale (last updated 9/5,
+  before most of the recent decline) and implies an improbable ~48% upside from
+  spot — a sign targets haven't caught up, not a real margin of safety. PE 27.3x
+  is rich versus Cummins' own 15-20x historical range for a name with a
+  deteriorating chart. Scored: quality 4 (diversified powertrain/power-generation
+  leader, real secular tailwind), valuation 2 (27x is not cheap given the
+  earnings-risk implied by the price action), trend 1 (confirmed, uninterrupted
+  downtrend — not a basing pattern), catalyst 2 (no clear near-term positive
+  catalyst found; mixed/bearish options flow), fit 3 (would add power-generation
+  diversification but doesn't clearly reduce correlated-theme exposure) =
+  **12/25 — declined.** Quality alone doesn't qualify for the contrarian-entry
+  exception, which requires valuation ≥4 as well as quality ≥4 — this fails on
+  valuation, so the ordinary trend-1 veto stands; not a falling-knife catch.
+- Neither name added to the watchlist — NTNX declined on being technically
+  extended (would reconsider on a pullback toward its 50-day SMA), CMI declined
+  on valuation plus an unexplained downtrend (would reconsider only if a specific
+  negative catalyst surfaces and gets priced in, or the chart genuinely bases).
+**Actions:**
+- No trades. Cash ($37.04, 3.6%) remains inside the 2-5% band by percentage but
+  is below even a $50 half-size entry in dollars; all 13 holdings sit at or below
+  target weight with intact theses (largest, MSFT, ~10.4% — nowhere near the 15%
+  trim trigger); no invalidation trigger fired on any position; and the book
+  itself is still 2 positions over the 8-10 single-name target, so a new buy needs
+  a vacated slot, not just funding. Checked each laggard for a break: `LIN`
+  (-12.1% from cost, still the largest % laggard) — RSI 29.6, still below its
+  50-day SMA ($461.76 vs. $488.26, -5.4%), no new negative news, Deutsche Bank's
+  9/4 Buy/$575 PT (return to 10%+ EPS growth from 2027) still stands — thesis
+  intact, not adding. `NEE` (-10.9%): reaffirmed FY26 adjusted EPS guidance
+  ($3.92-4.02, targeting the high end) again this week; a CNBC "Mad Money"
+  segment had Jim Cramer call it a sell on pure valuation/opinion grounds with no
+  new fact behind it — disregarded as noise, not information; Morgan Stanley
+  still Overweight (PT trimmed slightly to $111). Holding, no trim. `PLD` (-9.6%):
+  dividend held at $1.07 (paid 9/30), Wells Fargo reiterated Overweight (PT
+  trimmed slightly to $166), SEGRO deal progressing normally — holding. `UNP`
+  (-10.3%, now the second-largest % laggard): the opposite of a break — UBS
+  upgraded to Buy from Neutral on 9/16 (PT $310→$339) on 2027 volume/pricing
+  tailwinds and NS-merger upside, raising 2026/2027 EPS estimates above
+  consensus; this week's JBHT diesel-cost profit warning is a trucking-specific
+  margin story (fuel cost pass-through lag), not a rail read-through — if
+  anything, expensive diesel makes rail more cost-competitive vs. trucking, a
+  modest positive, not a negative. Holding, no trim, thesis strengthening.
+  `CAT` (watchlist, exited Cycle 7): $805.80 vs. 50-day SMA $837.42 (-3.8%,
+  narrower again vs. Cycle 23's -4.9%), RSI a neutral 49.4 — the gap keeps
+  closing but still no confirmed close above the SMA, still not a re-entry.
+**Thesis / notes:** Still 13 positions, cash $37.04/$1,015.00 (3.6%, inside the
+2-5% band but too few dollars to fund anything). Concentration check: largest
+single name MSFT ~10.4% (in-target, well under the 15% trim trigger); AI/cloud
+theme (NVDA+MSFT+AMZN+GOOGL) ~33.1% (essentially flat vs. Cycle 23, still under
+the 40% cap); VOO ~17.9% (mid-band); Finance-tagged (PLD+V+AMT) cluster ~18.2%,
+well under sector caps. Watchlist still 7 names: MDT (6 cycles, 22/25, top of
+queue), ABBV (5 cycles, 19/25), CQP (10 cycles, 20/25), PGR (8 cycles, 20/25),
+CAT (24 cycles, SMA gap narrowing further, -4.9%→-3.8%), HD (11 cycles,
+twice-reaffirmed guidance), DE (9 cycles, 18/25, valuation the weak link). Watch
+next cycle: whether CAT's narrowing SMA gap finally crosses to a confirmed close
+above it (getting close after 24 cycles of watching); whether LIN's oversold RSI
+(~28-30 for three straight cycles now) finally produces a technical bounce; the
+still-standing question of whether the owner wants to revisit the 8-10
+single-name band — unchanged for an 8th straight cycle, still unresolved but not
+urgent since neither fresh candidate this cycle (NTNX, CMI) cleared the bar
+anyway.

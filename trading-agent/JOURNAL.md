@@ -1845,3 +1845,122 @@ still-standing question of whether the owner wants to revisit the 8-10
 single-name band — unchanged for an 8th straight cycle, still unresolved but not
 urgent since neither fresh candidate this cycle (NTNX, CMI) cleared the bar
 anyway.
+
+---
+
+## Cycle 25 — 2026-09-25 (Friday)
+**Portfolio:** $1,005.97 total | $37.04 cash (3.7%) | 13 positions: VOO +0.4%,
+NVDA +5.9%, MSFT +21.5%, AMZN -1.5%, GOOGL -4.1%, LLY +1.6%, XOM +11.7%,
+NEE -15.5%, LIN -10.8%, PLD -10.8%, V +0.4%, AMT -4.2%, UNP -9.6% (all vs. avg
+cost, intraday prices)
+**vs SPY since inception:** portfolio +0.60% | SPY +2.37% (SPY $768.90 vs.
+inception $751.07 on 2026-07-14) | gap: -1.78 pts (valve: ok, not tripped —
+trailing 10-cycle average gap -0.22 pts, nowhere near the -8pt threshold)
+**Realized P&L to date:** +$6.84 (confirmed via broker, all-time, 8 closing trades,
+unchanged this cycle)
+**Lesson from last cycle:** Cycle 24 flagged LIN's persistently deep-oversold RSI
+(~28-30 for three straight cycles) as worth watching for a bounce — it bounced
+(RSI 29.6→43.65 this cycle) while price is still ~3.4% below its 50-day SMA
+($468.78 vs. $485.10). Confirms that a technical recovery in momentum terms can
+run well ahead of a confirmed SMA close-above — patience on the SMA requirement
+continues to be the right discipline rather than treating the RSI bounce alone
+as a green light.
+**Market read:** Market open (~11:14 ET). SPY $768.90, +0.22% vs. Thursday's
+close ($767.18) — quiet Friday tape, both saved scanners ("Quality post-move
+momentum," "Quality compounders near highs") returned zero matches, confirming
+the low-volatility read. MSFT was the notable single-name mover, +2.56%
+intraday on a mix of a new Copilot-app feature launch (Home/Code/Autopilot
+capabilities) and a Politico/Bloomberg report that the White House asked
+OpenAI/Anthropic to delay UK access to new AI models pending US review —
+neither is a fundamental earnings catalyst, reads as noise/sentiment, not
+addable information. Reconciled broker vs. state.json before trading: all 13
+positions matched on qty/avg-cost; cash $37.04 (unchanged from Cycle 24's
+$37.04 logged figure, no drift); $0 open orders; +$6.84 realized P&L all-time,
+unchanged — no discrepancies, no watchdog alerts found since Cycle 24. No held
+name reports earnings in the next 14 days (checked the high-market-cap calendar
+through 2026-10-09 — nothing from the 13-name book appears).
+**Candidates screened this cycle:**
+- **AZO (AutoZone)** — sourced off the earnings-beat lookback (Q4 EPS $56.05
+  vs. $53.98 est., a genuine beat) but revenue rose only 5.6% to $6.595B,
+  slightly missing the $6.681B consensus — and six sell-side analysts
+  (Guggenheim, Baird, Barclays, BMO, Mizuho, Raymond James) all cut price
+  targets same-day despite mostly maintaining ratings, a broad negative
+  re-rating wave despite the EPS beat. Stock hit a fresh 52-week low ($2,764.88)
+  two days ago and sits $2,878.60, ~3.5% below its 50-day SMA ($2,981.84), RSI a
+  neutral 44 — a real, current downtrend, not a basing pattern. PE 18.8x is
+  reasonable but not the ≥4 valuation the contrarian-entry exception requires
+  to override a broken trend. Scored: quality 4 (dominant auto-parts retailer,
+  aggressive buyback compounder, float nearly equals shares outstanding),
+  valuation 3 (reasonable but not a standout discount), trend 1 (confirmed
+  downtrend, fresh 52-wk low this week), catalyst 2 (EPS beat undercut by a
+  revenue miss and a broad wave of PT cuts), fit 4 (new specialty-retail
+  exposure, no overlap with current holdings) = **14/25 — declined.** Fails the
+  ordinary bar and fails the contrarian exception (valuation only 3, not ≥4).
+- **CTAS (Cintas)** — sourced off the same earnings-beat lookback: fiscal Q1
+  beat-and-raise reported 9/23, organic revenue growth accelerated to 8.9%
+  with broad-based gains across all four segments, and FY27 incremental-margin
+  guidance was raised to 32-34% from 30-32%. UBS reiterated Buy and raised its
+  PT to $235 from $230 citing durable customer-win/cross-sell momentum; RBC
+  stayed more cautious (Sector Perform, $206 PT) flagging peak-employment/macro
+  headwinds as a risk to future guidance. Price $198.55 is modestly (~1.9%)
+  below its 50-day SMA ($202.40), RSI a neutral 48.3 — recovering off the
+  post-earnings pop, not yet a confirmed uptrend but not broken either. PE
+  ~39.0x is rich (above Cintas' own historical 30-35x range) — the real
+  weakness in the score. Scored: quality 5 (route-density wide moat, decades of
+  consistent double-digit compounding, raised margin guidance this quarter),
+  valuation 2 (39x is genuinely rich, the weak link), trend 3 (basing just
+  below its 50-day SMA, RSI neutral, not extended, not confirmed either),
+  catalyst 4 (genuine beat-and-raise with accelerating organic growth, tempered
+  by one analyst's macro-headwind caveat), fit 4 (commercial/business-services
+  exposure, no overlap with any current holding) = **18/25 — clears the bar.**
+  Same construction constraint as MDT/ABBV/CQP/PGR: no open single-name slot
+  (book is still 13 positions, 2 over the 8-10 target) and no cash to fund it
+  regardless ($37.04). Joins the unfunded queue.
+**Actions:**
+- No trades. Cash ($37.04, 3.7%) remains inside the 2-5% band by percentage
+  but funds nothing; all 13 holdings sit at or below target weight with intact
+  theses (largest, MSFT, ~10.9% — nowhere near the 15% trim trigger); no
+  invalidation trigger fired; book is still 2 positions over the 8-10
+  single-name target, so even CTAS clearing the bar this cycle needs a vacated
+  slot, not just funding. Checked each laggard for a break: `NEE` (-15.5% from
+  cost, largest % laggard) — no new news since the 9/17 Cramer sell call
+  (opinion, already disregarded last cycle) and the 9/18 Morgan Stanley PT trim
+  to $111 (still Overweight, still well above spot $75.66); FY26 guidance
+  standing unchanged. Holding, no trim. `LIN` (-10.8%): RSI recovered
+  meaningfully to 43.65 (from ~29.6 at Cycle 24) though price is still ~3.4%
+  below its 50-day SMA; Deutsche Bank's 9/4 Buy/$575 PT stands; a Benzinga
+  screen last week (9/9) flagged LIN among oversold materials names — that
+  screen is now stale as the RSI recovery shows. Thesis intact, not adding
+  (SMA confirmation still absent). `PLD` (-10.8%): no new news this cycle
+  beyond the standing SEGRO-deal/dividend facts already logged — holding.
+  `UNP` (-9.6%): RBC trimmed its PT to $326 from $339 on 9/24 (one day after
+  UBS's 9/16 upgrade to $339) while keeping an Outperform rating — a modest,
+  not thesis-threatening, walk-back; the Surface Transportation Board denied
+  requests to dismiss the NS-merger application (9/22), keeping the merger
+  process on its normal H2-2027 timeline; UNP also began testing its first two
+  battery-electric locomotives this week (incremental operational news, not a
+  thesis driver). Holding, no trim. `CAT` (watchlist, exited Cycle 7): $811.49
+  vs. 50-day SMA $830.35 (-2.3% on intraday price, -3.0% on yesterday's close)
+  — gap continues to narrow (was -3.8% at Cycle 24), RSI a neutral 46.1; a new
+  Atlas Energy Solutions equipment order (283MW + 328MW of CAT power-generation
+  gear for AI data-center projects) reinforces the existing power-demand
+  thesis but isn't itself a new catalyst. Still no confirmed close above the
+  SMA — not a re-entry yet, keeps narrowing toward one.
+**Thesis / notes:** Still 13 positions, cash $37.04/$1,005.97 (3.7%, inside the
+2-5% band but too few dollars to fund anything). Concentration check: largest
+single name MSFT ~10.9% (in-target, well under the 15% trim trigger); AI/cloud
+theme (NVDA+MSFT+AMZN+GOOGL) ~33.2% (flat vs. Cycle 24, still under the 40%
+cap) — MSFT's Copilot-feature/AI-news-driven pop today is a reminder the theme
+cap needs revisiting if the AI names keep running while the rest of the book
+lags; VOO ~18.0% (mid-band); Finance-tagged (PLD+V+AMT) cluster ~17.9%, well
+under sector caps. Watchlist now 8 names: MDT (7 cycles, 22/25, top of queue),
+ABBV (6 cycles, 19/25), CQP (11 cycles, 20/25), PGR (9 cycles, 20/25), CTAS
+(new, 18/25), CAT (25 cycles, SMA gap narrowing further, -3.8%→-2.3%/-3.0%), HD
+(12 cycles, twice-reaffirmed guidance), DE (10 cycles, 18/25, valuation the
+weak link). Watch next cycle: whether CAT's narrowing SMA gap finally crosses
+to a confirmed close above it (closer than ever after 25 cycles of watching);
+whether LIN's RSI recovery (29.6→43.65) eventually drags the price back above
+its 50-day SMA; the still-standing question of whether the owner wants to
+revisit the 8-10 single-name band — unchanged for a 9th straight cycle, now
+with a 5-deep unfunded queue (MDT/ABBV/CQP/PGR/CTAS) all clearing the ≥18/25
+bar with nowhere to go.

@@ -1,0 +1,1966 @@
+# Trading Journal
+
+Append-only log of every trading cycle. Newest entries at the bottom. Written by the
+autonomous agent itself each cycle. See `STRATEGY.md` for the entry format.
+
+---
+
+## Cycle 0 — 2026-07-14 (setup)
+**Portfolio:** $1,000.00 total | $1,000.00 cash | positions: none
+**Realized P&L to date:** $0.00
+**Market read:** Experiment initialized. Fresh $1,000 all-cash balance in the Agentic
+account (`••••6885`). No positions yet.
+**Actions:**
+- None (setup only).
+**Thesis / notes:** Standing instructions live in `STRATEGY.md`. Mandate: build a
+diversified equity basket with ~$50 starting positions, full discretion on selection,
+one cycle roughly every 3 days, human fully out of the loop. First real trading cycle
+(Cycle 1) follows.
+
+---
+
+## Cycle 1 — 2026-07-14 (Tuesday)
+**Portfolio:** $1,000.05 total | $500.00 cash | 10 positions (~$50 each):
+VOO, NVDA, MSFT, AMZN, GOOGL, JPM, LLY, XOM, COST, CAT
+**Realized P&L to date:** $0.00
+**Market read:** Market open (~11:15 ET), broadly calm. SPY ~$751 (+0.25% vs prior
+close). Built a diversified core: broad-market ballast (VOO) plus a spread of quality
+large-caps across sectors, ~$50 each, keeping half the account ($500) in cash to add
+over future cycles (building in gradually reduces timing risk).
+**Actions (all $50 market buys, filled):**
+- BUY VOO — 0.072406 @ $690.55 — order `6a564b8b-5e51-47ba-ac7b-18f87a501777` — broad S&P 500 core / ballast.
+- BUY NVDA — 0.240575 @ $207.84 — order `6a565275-51cd-4fa2-b3af-581ef3c97342` — AI/semiconductor leader (growth).
+- BUY MSFT — 0.129463 @ $386.21 — order `6a565277-191d-4436-a5f8-c22fa9b7d5a7` — software/cloud mega-cap.
+- BUY AMZN — 0.203566 @ $245.62 — order `6a565279-0448-4bfc-aae1-3e62c209f5cb` — consumer discretionary + cloud.
+- BUY GOOGL — 0.139555 @ $358.28 — order `6a56527a-f635-4320-92f0-eac4508b2d70` — search/AI/communication.
+- BUY JPM — 0.145582 @ $343.45 — order `6a56527c-0d18-4969-a206-f42591f12798` — financials bellwether.
+- BUY LLY — 0.043555 @ $1147.97 — order `6a56527e-0017-4db1-9aca-ac16789d492a` — healthcare/pharma growth.
+- BUY XOM — 0.345972 @ $144.52 — order `6a565280-0b94-4134-a339-58a21b8705db` — energy diversifier.
+- BUY COST — 0.053982 @ $926.23 — order `6a565282-a57e-4ff5-b86b-fa82abf5be06` — consumer staples/retail quality.
+- BUY CAT — 0.053192 @ $939.99 — order `6a565283-0bcd-4d37-aee7-b08e8ad18d8c` — industrials cyclical.
+**Thesis / notes:** Starter basket spans 8+ sectors (ETF core + tech/AI, comm, cons.
+disc., financials, healthcare, energy, staples, industrials). ~50% cash held as dry
+powder to add positions and rebalance over the next cycles per the money-management
+rules. (Note: the account's investor-profile KYC gate initially blocked the 2nd+ trade;
+resolved by the owner, after which all buys filled.) Next cycle: review fills vs.
+market, consider adding 1–2 missing sectors (e.g. utilities/comm-infra) and begin
+building toward the 15–20 name target.
+
+---
+
+## Cycle 2 — 2026-07-14 (Tuesday)
+**Portfolio:** $999.10 total | $400.00 cash | 12 positions (~$50 each):
+VOO, NVDA, MSFT, AMZN, GOOGL, JPM, LLY, XOM, COST, CAT, NEE, LIN
+**Realized P&L to date:** $0.00
+**Market read:** Market open (~11:41 ET), broadly firm — SPY $751.62 (+0.33% vs prior
+close $749.17). Reconciled broker vs. state.json: all 10 Cycle-1 positions filled and
+matched, no open orders, no realized P&L yet. Only minor unrealized drift from
+intraday moves (LLY -2.5%, JPM +1.7%, NVDA +2.6% since Cycle 1 fills).
+**Actions:**
+- BUY NEE — $50.00 (0.558472 sh @ $89.53 avg) — order `6a5658a7-4220-4f7a-9a78-0be3f6d1ecd6` — utilities sector was missing; regulated FL utility + renewables leader, 2.7% yield, reasonable PE (~22).
+- BUY LIN — $50.00 (0.095154 sh @ $525.46 avg) — order `6a5658a9-fdc3-4ac2-b6bf-c8c3ddfeba30` — materials/industrial-gases sector was missing; wide-moat quality compounder (Linde), steady dividend grower.
+**Thesis / notes:** Continuing the deliberate build-out from Cycle 1 (same trading day,
+so kept turnover light — 2 new adds, no trims/exits since nothing in the ~1hr since
+Cycle 1 broke any thesis). Now 12 names across 10 sectors, cash down to ~40% ($400/$999),
+still well above the 5-15% target band — intentional, to keep dry powder for measured
+additions rather than deploying all at once. Considered AMT (comm-infra/cell-tower
+REIT) but it's ~28% off its 52-week high and near a fresh low — skipping for now,
+watching for stabilization. Considered PLD (logistics REIT) but Robinhood's sector
+tagging buckets REITs under "Finance" alongside JPM — holding off until sector
+attribution is clearer, to avoid understating financials concentration. Next cycle:
+keep building toward 15-20 names (real estate, comm-infra, small/mid-cap or
+international diversifier candidates remain open); re-check AMT/PLD; monitor LLY's
+pullback (-2.5% today, no thesis-breaking news found) and NVDA/JPM strength.
+
+---
+
+## Cycle 3 — 2026-07-16 (Thursday)
+**Portfolio:** $1,004.30 total | $400.00 cash (pre-trade) | 12 positions (~$50 each):
+VOO, NVDA, MSFT, AMZN, GOOGL, JPM, LLY, XOM, COST, CAT, NEE, LIN
+**Realized P&L to date:** $0.00 (confirmed via broker — zero closed trades all-time)
+**Market read:** Market open (~11:04 ET). SPY $753.90 (-0.12% vs prior close $754.81),
+broadly flat/quiet session. Reconciled broker vs. state.json: all 12 positions,
+cash ($400.00), and buying power matched exactly — no discrepancies. No open/resting
+orders found. Position weights all ~4.7-5.2% of portfolio (VOO/NVDA/MSFT/AMZN/GOOGL/
+JPM/LLY/XOM/COST/CAT/NEE/LIN) — nowhere near the 10-15% single-name ceiling, and no
+sector near the 25-30% cap. No thesis breaks identified: CAT is down ~5% from cost
+(892.44 vs 939.99 avg) on no specific negative news found, NVDA roughly flat, LLY up
+~2.8% since purchase — holding all 12 as-is, no trims/exits this cycle.
+**Actions:**
+- BUY PLD — $50.00 (0.335296 sh @ $149.12 avg, filled) — order `6a58f30d-a901-46e9-88ea-379b5e06614d` — Prologis, logistics/industrial REIT; clean uptrend off the June 30 low ($135.47) to near 52-wk highs ($149-150 range), fills the still-missing real-estate sector. Note: Robinhood tags PLD "Finance" alongside JPM, but combined weight is only ~10% of portfolio, well under the 25-30% sector cap, so proceeding despite the tagging ambiguity flagged in Cycle 2.
+- BUY VXUS — $50.00 (0.593824 sh @ $84.20 avg, filled) — order `6a58f30e-8d98-4813-a16c-15afc346ff38` — Vanguard Total International ex-US ETF; portfolio had zero international exposure, adds broad developed+emerging-market diversification per the diversification mandate.
+**Thesis / notes:** Re-checked AMT (comm-infra REIT, on watchlist since Cycle 1):
+price has been choppy/basing between ~$162-170 for three weeks, still below its 50-day
+SMA (~178) with RSI a neutral 43 — no clear stabilization signal yet, so skipped again
+in favor of PLD which has a cleaner uptrend. Now 14 positions across 11 sectors
+(added Real Estate, International). Cash ~$300/$1,004 (~30%), still above the 5-15%
+target band but continuing the intentional gradual build toward 15-20 names —
+expect 1-2 more small/mid-cap or additional diversifier adds over the next couple
+cycles before cash normalizes into the target band. Watch next cycle: re-check AMT
+for stabilization, monitor CAT's -5% drawdown for any fundamental deterioration
+(vs. just noise), consider a dedicated small/mid-cap ETF (e.g. IJR) to round out the
+market-cap spectrum.
+
+---
+
+## Cycle 4 — 2026-07-19 (Sunday)
+**Portfolio:** $996.05 total | $300.00 cash | 14 positions: VOO -1.1%, NVDA -2.5%,
+MSFT +2.0%, AMZN +0.7%, GOOGL -3.3%, JPM -0.7%, LLY +2.7%, XOM +2.0%, COST +1.6%,
+CAT -6.4%, NEE -0.8%, LIN -2.4%, PLD +0.4%, VXUS -1.0% (all vs. avg cost)
+**Realized P&L to date:** $0.00 (confirmed via broker, all-time, zero closing trades)
+**Market read:** Market closed — Sunday, no session since Friday 2026-07-17 close.
+SPY closed Friday at $743.18, down -1.0% from Thursday's $750.72, a broad
+risk-off pullback (most holdings down slightly; CAT and GOOGL the biggest laggards).
+No single-name news found explaining the move — reads as market-wide, not
+stock-specific.
+**Actions:**
+- None. Market closed; dollar-based/fractional orders (the account's standard sizing)
+  require regular trading hours, so no new buys were queued. Reconciled broker vs.
+  state.json: all 14 positions, cash ($300.00), and buying power ($300.00) matched
+  exactly, no open/resting orders, $0 realized P&L — no discrepancies. Deferring to
+  the next cycle when the market is open, per STRATEGY.md's discretion on closed-market
+  cycles and the minimize-turnover rule.
+**Thesis / notes:** No thesis breaks identified — Friday's -1% broad pullback (SPY)
+looks like market noise, not company-specific deterioration. CAT is now -6.4% from
+cost (was -5% at Cycle 3), the largest laggard and worth a closer fundamentals/news
+check next cycle to confirm it's still noise and not a break. GOOGL's -3.3% is new
+since Cycle 3 (was near flat) — also worth a quick check next cycle, no specific
+negative news found in this pass. Cash still ~30% ($300/$996), above the 5-15% target
+band; the build-out toward 15-20 names (AMT re-check, IJR small-cap diversifier) picks
+back up next cycle once the market is open for fractional buys.
+
+---
+
+## Cycle 5 — 2026-07-22 (Wednesday)
+**Portfolio:** $998.998 total pre-trade | $300.00 cash | 14 positions: VOO -0.37%,
+NVDA +1.27%, MSFT +0.87%, AMZN -0.64%, GOOGL -2.71%, JPM +0.95%, LLY +1.35%,
+XOM +6.92%, COST -0.38%, CAT -4.63%, NEE -0.54%, LIN -3.46%, PLD -1.03%, VXUS +0.46%
+(all vs. avg cost, intraday prices)
+**Realized P&L to date:** $0.00 (confirmed via broker, all-time span, zero closing trades)
+**Market read:** Market open (~11:08 ET). SPY $748.51, roughly flat vs. Friday's close
+(prior session $748.28). Reconciled broker vs. state.json: all 14 positions, cash
+($300.00), buying power ($300.00), and $0 realized P&L matched exactly — no
+discrepancies, no open/resting orders. No thesis breaks: CAT's -4.6% drawdown checked
+against news — Board just raised the dividend 8% (to $1.63/sh) and multiple analysts
+lifted price targets (fair value ~$970 vs ~$913 prior) on strong construction/energy/
+data-center demand; stock is +64% YTD, today's dip reads as pre-earnings (Aug 4) noise,
+not deterioration. LIN's -3.5% also checked — RBC/BofA/Citi all raised price targets
+mid-July on tight helium supply (a tailwind for Linde's gas business); Q2 earnings
+July 31, no negative catalyst found. Holding both, no trims/exits this cycle.
+**Actions:**
+- BUY IJR — $50.00 (0.342635 sh @ $145.9276 avg, filled) — order
+  `6a60dcec-60fb-473a-9fc1-08edba8259a5` — iShares Core S&P Small-Cap ETF; portfolio
+  was entirely large/mega-cap, this fills the small-cap market-cap gap flagged since
+  Cycle 3/4. Technically healthy: $145.96 vs. 50-day SMA $141.63, near 52-wk high
+  ($149.35, hit July 1), clean uptrend off the Aug-2025 low ($107.09) — not chasing a
+  blowoff top.
+- Re-checked AMT (comm-infra REIT, watchlist since Cycle 1): still below its 50-day SMA
+  ($165.65 vs. $177.28) with RSI 37.5 (down from 43 at Cycle 3) — trend has gotten
+  *weaker*, not stabilized. Skipping again; will keep watching but this name is
+  looking less attractive each cycle, may drop from watchlist if no turn soon.
+**Thesis / notes:** Now 15 positions across 12 sectors/categories (added small-cap
+market-cap tier via IJR). Cash ~$249/$999 (~25%), still above the 5-15% target band but
+trending down as planned — one measured add this cycle, keeping turnover low per the
+minimize-turnover rule since no position needed trimming/exiting. All 14 legacy
+positions still within thesis, no single name or sector near the concentration caps
+(all individual weights ~4.7-5.4% of portfolio). Watch next cycle: continue monitoring
+CAT/LIN into their upcoming earnings (CAT Aug 4, LIN Jul 31) for any real thesis shift
+post-print; re-check AMT for a turn (may retire from watchlist if it keeps deteriorating);
+continue gradual build toward 15-20 names and the cash target band — 1 more diversifier
+add (e.g. a comm-infra/REIT alternative to AMT, or a dividend-quality ETF) would round
+out the roster nicely over the next cycle or two.
+
+---
+
+## Cycle 6 — 2026-07-25 (Saturday)
+**Portfolio:** $992.97 total | $250.09 cash | 15 positions: VOO -1.66%, NVDA -0.42%,
+MSFT -1.16%, AMZN -5.51%, GOOGL -10.75%, JPM +2.82%, LLY +4.21%, XOM +8.59%,
+COST +0.98%, CAT -5.44%, NEE +0.28%, LIN -2.48%, PLD -1.01%, VXUS -0.95%,
+IJR -0.72% (all vs. avg cost, using Friday 7/24 close)
+**Realized P&L to date:** $0.00 (confirmed via broker, all-time span, zero closing trades)
+**Market read:** Market closed — Saturday, no session since Friday 2026-07-24 close.
+SPY closed Friday $738.85, down from $748.51 at Cycle 5 (Wed 7/22), a ~-1.3% pullback
+over the week. Reconciled broker vs. state.json: all 15 positions, cash, and $0
+realized P&L matched (cash $250.09 vs. the $249.00 post-trade estimate logged at
+Cycle 5 — a $1.09 gap, immaterial, likely a small accrual/rounding). No open/resting
+orders.
+**Actions:**
+- None. Market closed; dollar-based/fractional orders (the account's standard sizing)
+  require regular trading hours, so no new buys or trims were placed. Per
+  STRATEGY.md's discretion on closed-market cycles and the minimize-turnover rule,
+  deferring to the next cycle when the market is open.
+**Thesis / notes:** Checked the two largest laggards for a thesis break: GOOGL
+(-10.75% from cost) reported Q2 on 7/22 with a strong beat — revenue +24% to $119.8B,
+Google Cloud +82% to $24.8B, EPS $9.11 vs. $2.88 consensus — but sold off ~7% after
+guiding 2026 capex to $195-205B, pushing free cash flow negative for the first time
+ever; shares are now below their 200-day SMA. AMZN (-5.5%) fell on the same
+sector-wide AI-capex-jitters rotation (peers' capex hikes, ~$200B 2026 capex plan of
+its own reported) plus a new Senate marketplace inquiry, ahead of its own earnings
+7/30. Read this as a sector-wide repricing of AI infrastructure spend, not
+company-specific deterioration — both companies beat/are executing, not broken
+theses — so holding both, no trim. Position sizes remain well within caps (GOOGL
+~4.5%, AMZN ~4.8% of portfolio). CAT (-5.44%) and LIN (-2.48%) unchanged from Cycle 5
+read (positive catalysts, earnings CAT 8/4). Cash still ~25% ($250/$993), above the
+5-15% target band. Watch next cycle: AMZN earnings 7/30 and CAT earnings 8/4 for real
+thesis tests; re-check AMT for a turn; resume the gradual build toward 15-20 names
+and the cash target band once the market is open for fractional buys.
+
+---
+
+## Cycle 7 — 2026-07-28 (Tuesday)
+**Portfolio:** $995.24 total | $244.19 cash (post-trade) | 15 positions: VOO -1.68%,
+NVDA -5.63%, MSFT +2.87%, AMZN -6.68%, GOOGL -8.10%, JPM +3.51%, LLY +6.47%,
+XOM +7.53%, COST +5.96%, NEE +0.60%, LIN -1.21%, PLD -0.52%, VXUS -1.40%,
+IJR -0.23%, SCHD flat (new) (all vs. avg cost, intraday prices)
+**Realized P&L to date:** -$5.90 (CAT closed this cycle; $0 realized all prior cycles,
+confirmed via broker)
+**Market read:** Market open (~11:13 ET). SPY $738.72, roughly flat vs. Monday's close
+($739.09). Reconciled broker vs. state.json cleanly before trading: all 15 positions,
+$250.09 cash, $0 realized P&L, no open orders — matched exactly, no discrepancies.
+**Actions:**
+- SELL CAT — 0.053192 sh @ $829.05 avg (filled), full exit — order
+  `6a68c706-49c4-4b87-bd75-c11c3a970058` — realized loss -$5.90. Thesis break, not
+  noise: position had deteriorated from -5.44% (Cycle 5) to -11.97% from cost in three
+  days. Web research found real fundamental cracks ahead of the Aug 4 print — Resource
+  Industries operating margin down ~700bps YoY (segment profit -39%), Power & Energy
+  margin down 170bps sequentially, full-year tariff/import-compliance cost guided to
+  $2.2-2.4B, total sales -4% YoY missing consensus, and an analyst downgrade to Hold
+  (from Buy) on 7/27 explicitly cited as pressuring shares ahead of earnings. RSI a
+  neutral 40 (not a panic/oversold bounce setup) and stock is ~23% off its June 30
+  52-wk high ($1073.46). This is margin/tariff-driven deterioration, not market noise —
+  cutting per the "cut losers" rule rather than holding into an increasingly risky
+  earnings print.
+- BUY SCHD — $50.00 (1.465850 sh @ $34.1099 avg, filled) — order
+  `6a68c70f-84df-42f5-8040-94081765471f` — Schwab US Dividend Equity ETF; fills the
+  Industrials gap left by the CAT exit with a diversified, quality-first dividend
+  compounder instead of another single-name cyclical bet. Trading at a fresh 52-wk
+  high ($34.24), 3.27% SEC yield, PE ~17.6x, ~$20M avg daily volume (liquid) — a
+  candidate flagged since Cycle 5 as a good round-out name.
+- Checked NVDA (-5.63% from cost, worsened from -0.42% at Cycle 6): web research shows
+  this is a broad AI-sector pullback (NVDA -18% off its June high, sector-wide
+  de-rating amid OpenAI-related headlines), not a company-specific break — 37-analyst
+  consensus remains Buy with a $302 average target vs. $196 spot. Holding, no action.
+- Re-checked GOOGL (-8.10%, improved from -10.75%) and AMZN (-6.68%, roughly flat vs.
+  -5.51%): no new negative catalysts found; AMZN reports Q2 earnings 7/30 (in 2 days) —
+  the real test of the Cycle 6 thesis is still ahead. Holding both, no trims.
+**Thesis / notes:** Still 15 positions but now 11 sectors (Industrials slot emptied by
+the CAT exit; SCHD adds a diversified dividend-ETF sleeve rather than refilling
+Industrials with another single cyclical name — will watch for a higher-quality
+industrial/cyclical replacement over future cycles, but in no rush). Cash $244.19/
+$995.24 (~24.5%), still above the 5-15% target band — continuing the deliberate,
+gradual glide down (was ~25.1% pre-trade). No position or sector near the
+concentration caps (largest single names ~5.4%, XOM/LLY/COST cluster). Watch next
+cycle: AMZN earnings 7/30 (real thesis test), broader AI-sector sentiment for NVDA/
+GOOGL, and continue building toward the 15-20 name target / cash normalization —
+a genuine higher-quality industrials name (or another sector-filling ETF) is the
+next natural add once one screens well.
+
+---
+
+## Cycle 8 — 2026-07-31 (Friday)
+**Portfolio:** $1,000.40 total | $144.27 cash (post-trade) | 17 positions: VOO -1.20%,
+NVDA -4.93%, MSFT +16.87%, AMZN +10.01%, GOOGL -1.68%, JPM +2.96%, LLY -1.19%,
+XOM +6.30%, COST +2.26%, NEE -2.38%, LIN -9.37%, PLD -3.56%, VXUS +0.46%, IJR -0.62%,
+SCHD -2.45%, XLI 0.00% (new), XLV 0.00% (new) (all vs. avg cost, intraday prices)
+**vs SPY since inception:** portfolio +0.04% | SPY -1.17% (SPY $742.25 vs. inception
+$751.07 on 2026-07-14)
+**Realized P&L to date:** -$5.90 (CAT, Cycle 7; confirmed via broker, all-time, one
+closing trade)
+**Lesson from last cycle:** Cycle 7 correctly held NVDA/GOOGL/AMZN through the
+AI-capex-jitters sell-off on the read that beats + execution outweigh sector-wide
+repricing fear — vindicated this cycle by AMZN's post-earnings +14.7% pop and GOOGL's
++3% AI-optimism rally. Reflexively trimming winners-turned-laggards would have been
+the wrong call; research-based conviction was the edge.
+**Market read:** Market open (~11:10 ET). SPY $742.25, roughly flat vs. Thursday's
+close ($741.69). Reconciled broker vs. state.json: 15 positions, cash $244.27 (vs.
+$244.19 logged — $0.08 immaterial drift), $0 open orders, -$5.90 realized P&L
+all-time — all matched cleanly, no real discrepancies. Two big overnight moves
+investigated: AMZN +14.7% on a Q2 blowout (AWS +37% — fastest pace in 18 quarters,
+revenue/EPS crushed estimates) confirming the Cycle 6/7 thesis that AI-capex jitters
+were sentiment, not substance; LIN -9.4% from cost (was -1.2% at Cycle 7) despite
+*beating* Q2 estimates ($4.50 adj. EPS vs. $4.49 est., revenue beat) — the drop is
+guidance-driven multiple compression (Q3/FY26 guide of $4.45-4.55 landed slightly
+below the $4.59 consensus), not a broken business (29.5% adj. operating margin, sales
++9%); reading this as noise on a premium multiple, not deterioration. XOM also
+reported Q2 this morning: EPS $3.52 missed the $3.68-3.76 estimate range by ~2.7%,
+but revenue beat (+42% YoY to $116B) with strong FCF ($17.2B) and $9.4B of shareholder
+returns — a modest, explainable miss, not a thesis break. No exits this cycle.
+**Actions:**
+- BUY XLI — $50.00 (0.279376 sh @ $178.9699 avg, filled) — order
+  `6a6cbafe-e952-43de-bb9a-4090209be294` — Industrial Select Sector SPDR ETF; refills
+  the Industrials slot left empty since the Cycle 7 CAT exit with diversified quality
+  exposure instead of a single cyclical name (the exact lesson from the CAT round-trip).
+  Basing right at its 50-day SMA ($178.22 vs. $179.03 spot), neutral RSI 46 — not
+  chasing, not broken. Spread ~0.02%, liquid. Score: quality 4, valuation 3, trend 4,
+  catalyst 3, fit 5 = 19/25.
+- BUY XLV — $50.00 (0.308966 sh @ $161.8299 avg, filled) — order
+  `6a6cbaff-85d8-45bf-a2b8-c5f86e9bdd89` — Health Care Select Sector SPDR ETF;
+  diversifies healthcare exposure beyond the single-name LLY concentration (portfolio's
+  only prior healthcare holding). Healthy uptrend (price $161.75 vs. 50-day SMA
+  $156.02), RSI 57 (not overbought), near 52-wk highs without being extended. Spread
+  ~0.01%, liquid. Score: quality 5, valuation 4, trend 4, catalyst 3, fit 5 = 21/25.
+- Re-checked AMT (comm-infra REIT, watchlist since Cycle 1): RSI improved to 54.6 (from
+  37.5 at Cycle 5) but price ($172.47) still below its 50-day SMA ($176.57) — momentum
+  is turning but hasn't confirmed a break above the average yet. Keeping on watchlist
+  one more cycle rather than buying or dropping; will act on a decisive move above the
+  50-day SMA.
+- Completed the STRATEGY.md-mandated migration: every holding now has an explicit
+  invalidation trigger and next-earnings date recorded in `state.json` (see that file).
+**Thesis / notes:** Now 17 positions across 12+ sector slots (Industrials refilled via
+XLI, Healthcare diversified via XLV) — within the 15-20 target range for the first
+time. Cash $144.27/$1,000.40 (~14.4%) — now inside the 5-15% target band for the first
+time since the build-out began; future cycles should be genuinely selective adds only,
+not routine glide-down buys. No position or sector near concentration caps (largest
+single name MSFT ~5.8%, JPM+PLD "Finance"-tagged combined ~10.0%). Watch next cycle:
+LLY earnings 2026-08-05 (5 days out) and CAT earnings 2026-08-04 (watchlist re-check
+post-print, still not a reflexive re-buy per Cycle 7's exit reasoning) are the two
+near-term catalysts; keep tracking LIN's guide-vs-consensus gap for signs of real
+(not just multiple-driven) deceleration; re-check AMT for a confirmed break above its
+50-day SMA before considering a buy.
+
+---
+
+## Cycle 9 — 2026-08-01 (Saturday)
+**Portfolio:** $1,005.17 total | $144.27 cash | 17 positions: VOO -0.59%, NVDA -3.38%,
+MSFT +20.43%, AMZN +10.57%, GOOGL -0.54%, JPM +2.44%, LLY +0.05%, XOM +7.57%,
+COST +2.77%, NEE -2.90%, LIN -8.97%, PLD -3.00%, VXUS +0.46%, IJR -0.32%,
+SCHD -1.93%, XLI +0.46%, XLV +0.45% (all vs. avg cost, Friday 7/31 close)
+**vs SPY since inception:** portfolio +0.52% | SPY -0.57% (SPY $746.81 vs. inception
+$751.07 on 2026-07-14)
+**Realized P&L to date:** -$5.90 (CAT, Cycle 7; confirmed via broker, all-time, one
+closing trade)
+**Lesson from last cycle:** Cycle 8's decision to hold MSFT/AMZN/GOOGL through
+earnings and let Friday's post-print rally play out was correct — MSFT closed Friday
++20.4% from cost (up from +16.9% at the Cycle 8 mid-session check) and AMZN closed
++10.6% (from +10.0%), confirming real beats keep compounding through the session
+rather than fading; reactive trimming into a beat would have cost money.
+**Market read:** Market closed — Saturday, no session since Friday 2026-07-31 close.
+SPY closed Friday at $746.81, up from Thursday's $741.69 (+0.69%), a firm session
+driven by strong mega-cap earnings (MSFT, AMZN, GOOGL all up sharply). Reconciled
+broker vs. state.json: all 17 positions match exactly, cash $144.27 matches, buying
+power $144.27, no open/resting orders, realized P&L -$5.90 all-time (one closing
+trade, CAT) — no discrepancies. Portfolio total $1,005.17 (vs. $1,000.40 logged
+Friday) reflects Friday's continued mega-cap earnings rally into the close.
+**Actions:**
+- None — market closed (Saturday). Dollar-based/fractional orders require regular
+  trading hours per STRATEGY.md; deferring to the next open-market cycle. No thesis
+  breaks found on this pass: LIN remains the largest laggard (-8.97% from cost) but
+  no new information since Cycle 8's read (guidance-driven multiple compression on a
+  still-healthy business, not deteriorating fundamentals) — holding, no trim. NVDA
+  (-3.38%) and NEE (-2.90%) are minor, unremarkable drawdowns with no negative
+  catalysts found. All other positions flat-to-up. No single name or sector near
+  concentration caps (largest position MSFT ~6.0% of portfolio).
+**Thesis / notes:** Still 17 positions, cash $144.27/$1,005.17 (~14.4%), inside the
+5-15% target band — future adds remain genuinely selective per Cycle 8's note. Two
+near-term catalysts flagged last cycle are now imminent: CAT earnings 2026-08-04 (not
+held; watchlist re-check only, not a reflexive re-buy) and LLY earnings 2026-08-05
+(held, GLP-1 pipeline trajectory is the thing to watch). AMT stays on the watchlist at
+$173.41 (Friday close), still below its ~$176-177 50-day SMA as of Cycle 8 — will
+re-check technicals once the market reopens before considering a buy. Next
+open-market cycle: reassess LLY ahead of its 8/5 print, watch CAT's 8/4 report for
+any real stabilization signal (still not a re-buy candidate absent that), and
+continue monitoring LIN for a genuine (not just guidance-timing) deterioration signal.
+
+---
+
+## Cycle 10 — 2026-08-04 (Tuesday)
+**Portfolio:** $1,018.77 total | $144.27 cash (14.2%) | 17 positions: VOO +2.05%,
+NVDA +0.97%, MSFT +28.51%, AMZN +12.78%, GOOGL +5.25%, JPM +5.25%, LLY -1.95%,
+XOM +6.13%, COST +1.73%, NEE -3.80%, LIN -8.20%, PLD -5.57%, VXUS +2.25%, IJR +2.34%,
+SCHD -1.61%, XLI +3.20%, XLV -0.19% (all vs. avg cost, intraday prices)
+**vs SPY since inception:** portfolio +1.88% | SPY +2.07% (SPY $766.62 vs. inception
+$751.07 on 2026-07-14)
+**Realized P&L to date:** -$5.90 (CAT, Cycle 7; confirmed via broker, all-time, one
+closing trade)
+**Lesson from last cycle:** Cycle 9's hold-everything call (market closed) cost
+nothing — the account gained further into today's open on continued mega-cap
+strength, confirming that deferring trades on closed-market cycles rather than
+forcing action is the correct default when nothing is broken.
+**Market read:** Market open (~11:10 ET). SPY $766.62, +1.2% vs. Monday's close
+($757.67) — a firm, broadly risk-on session. Reconciled broker vs. state.json: all 17
+positions, $144.27 cash, $144.27 buying power, -$5.90 realized P&L all-time — matched
+exactly, no discrepancies, no open/resting orders. Biggest single-name mover in the
+market: CAT (not held) reported Q2 pre-market — EPS $8.17 vs. $6.17 est. (+32% beat),
+record $20.5B quarterly revenue, operating margin 20.9% (+360bps YoY), record $72B
+backlog on data-center-equipment demand — shares opened +11%, now +5.7% on the day
+after fading off the open. This is a genuine reversal of the Cycle 7 exit thesis
+(margin compression/tariff drag) — but per the execution rule against chasing >5%
+intraday spikes, and with CAT's PE now ~40.5x (rich vs. history), not re-buying today;
+watching for the move to consolidate before reconsidering. Checked the two largest
+laggards for thesis breaks: LIN (-8.2% from cost) — confirmed via broker earnings data
+the 7/31 print was a real beat (EPS $4.50 vs $4.48 est.) with a record $8.1B backlog
+(+$1B of new electronics wins); Bernstein raised its PT to $564 post-dip calling it a
+buying opportunity. Fundamentals intact, but technicals argue against adding now:
+price $482 is ~6% below its 50-day SMA ($514) and RSI is 31.2 — a confirmed downtrend,
+not a basing/turning setup (scored trend 1/5, see below). PLD (-5.6%) announced a
+recommended $18.8B acquisition of UK's SEGRO plc (47% European footprint expansion,
+~neutral-to-minimally-dilutive to FFO, closes H1 2027) alongside a $2.1B/15M-share
+stock offering pricing 8/5 — the offering is pressuring shares near-term (dilution),
+but this is a strategic growth move, not deteriorating logistics demand; invalidation
+trigger (occupancy/rent rollover) has not fired. Holding both, no trims.
+**Actions:**
+- No trades — cash is within the 5-15% target band (14.2%), no existing holding's
+  invalidation trigger fired, and the two candidates reviewed (CAT re-buy, LIN add)
+  both failed the process: CAT would be chasing a same-day >5% spike into a rich
+  ~40.5x PE; LIN scored 16/25 (quality 5, valuation 3, trend 1 — confirmed downtrend
+  below its 50-day SMA, catalyst 3, fit 4) and a trend score of 1 disqualifies a buy
+  regardless of total per STRATEGY.md. AMT re-checked: still below its 50-day SMA
+  ($173.63 vs. $176.16) — no buy signal, stays on watchlist.
+**Thesis / notes:** Still 17 positions, cash $144.27/$1,018.77 (~14.2%, inside target
+band) — portfolio +1.88% since inception vs. SPY +2.07%, essentially tracking the
+index with slight lag, not a drawdown situation. No position or sector near
+concentration caps (largest single name MSFT ~6.3%). Watch next cycle: LLY earnings
+2026-08-05 (tomorrow, held — GLP-1 pipeline trajectory is the test); CAT for
+consolidation after today's spike (a legitimate re-entry candidate once the move
+settles, given the reversed margin thesis); LIN for a close above its 50-day SMA
+before considering adding to the existing position; PLD's SEGRO deal and 8/5 stock
+offering for any sign of investor pushback beyond the immediate dilution reaction.
+
+---
+
+## Cycle 11 — 2026-08-07 (Friday)
+**Portfolio:** $1,023.70 total | $144.27 cash (14.1%) | 17 positions: VOO +2.91%,
+NVDA +7.62%, MSFT +30.08%, AMZN +12.66%, GOOGL -0.30%, JPM +3.72%, LLY +2.87%,
+XOM +5.64%, COST +2.07%, NEE -5.50%, LIN -6.57%, PLD -6.23%, VXUS +3.36%, IJR +2.12%,
+SCHD -1.01%, XLI +3.57%, XLV +1.84% (all vs. avg cost, intraday prices)
+**vs SPY since inception:** portfolio +2.37% | SPY +2.92% (SPY $773.03 vs. inception
+$751.07 on 2026-07-14)
+**Realized P&L to date:** -$5.90 (CAT, Cycle 7; confirmed via broker, all-time, one
+closing trade)
+**Lesson from last cycle:** Cycle 10 was right not to chase CAT's same-day post-earnings
+spike (+5.7% that day, PE ~40.5x) — price has since fully round-tripped, now $846.79
+and *below* its 50-day SMA ($918.23), confirming a hot intraday pop needs to consolidate
+before it's a legitimate entry, not just fade.
+**Market read:** Market open (~11:12 ET). SPY $773.03, +0.58% vs. Thursday's close
+($768.56) — firm tape, new highs. Reconciled broker vs. state.json: all 17 positions,
+$144.27 cash, $144.27 buying power, -$5.90 realized P&L all-time (one closing trade)
+— matched exactly, no discrepancies, no open/resting orders. This is the first cycle
+since the 2026-08-05 STRATEGY.md reliability upgrade; `HEALTH.log` did not yet exist
+in this checkout, so it was created this cycle (also required un-ignoring it in the
+repo's root `.gitignore`, which had a blanket `*.log` rule blocking it — added a
+`!trading-agent/HEALTH.log` exception since nothing else in `trading-agent/` should be
+gitignored).
+**Actions:**
+- No trades. Cash (14.1%) is inside the 5-15% target band, no invalidation trigger
+  fired on any of the 17 holdings, and every live candidate failed the process:
+  - LLY reported Q2 on 8/5: EPS $8.38 actual vs. $6.01 estimate, a ~39% beat — thesis
+    strong, no action needed (already held).
+  - LIN (-6.57% from cost, improved from -8.2% at Cycle 10): RSI ticked up to 39.2
+    (from 31.2) but price ($490.96) is still ~4.2% below its 50-day SMA ($512.35) —
+    stabilizing, not yet a confirmed turn. Not adding.
+  - AMT (watchlist): RSI 48.0 (neutral, up from 43 in July) but price ($172.76) still
+    ~1.5% below its 50-day SMA ($175.40). No buy signal yet, stays on watchlist.
+  - CAT (watchlist, exited Cycle 7): fell from the Cycle 10 earnings-day spike back to
+    $846.79 — now ~7.8% *below* its 50-day SMA ($918.23), RSI a neutral 46.1, PE still
+    rich at ~41.3x (fundamentals data confirms). The reversed-margin thesis from Cycle
+    10 is intact, but the technical setup has gotten worse, not better, since the
+    spike faded — not a re-entry yet.
+  - NEE (-5.50%, largest % laggard): checked web news — Q2 adj. EPS $1.15 beat, FY26
+    guidance reaffirmed, plus a new $100B AI-data-center project (Paducah, KY, with
+    Brookfield) as a fresh growth catalyst; a regulatory intervention was filed in the
+    pending Dominion Energy combination review, procedural noise, not a NEE thesis
+    issue. Holding, no trim — this reads as valuation drift on a still-strong business,
+    not deterioration.
+  - PLD (-6.23%): the SEGRO acquisition's $2.1B/15M-share offering priced 8/5 as
+    planned (~-3.5% reaction that day, in line with dilution math); SEGRO's own offer
+    deadline was extended to 8/12 (deal process, not a red flag). Strategic-growth
+    thesis intact, holding.
+**Thesis / notes:** Still 17 positions across 12+ sector/style slots, no single name
+or sector near the concentration caps (largest MSFT ~6.4%; combined "Finance"-tagged
+JPM+PLD ~9.6%; combined Healthcare LLY+XLV ~10.0%). Portfolio +2.37% since inception
+vs. SPY +2.92% — tracking with a modest, explainable lag (concentrated large-cap
+tech/AI rally has favored cap-weighted SPY slightly more than our diversified sleeve).
+Watch next cycle: LIN and AMT for a confirmed close above their 50-day SMAs before
+reconsidering; CAT for the technical setup to actually improve (not just the
+fundamental thesis) before a re-entry; NVDA earnings 2026-08-26 is the next real
+catalyst on the calendar. No genuinely new buy candidate was sourced this cycle
+(scanners/screens not run — existing watchlist review consumed the research budget);
+worth running a scan next cycle if cash drifts toward the top of the target band.
+
+---
+
+## Cycle 12 — 2026-08-11 (Tuesday)
+**Portfolio:** $1,028.10 total | $144.27 cash (14.0%) | 17 positions: VOO +2.87%,
+NVDA +5.48%, MSFT +30.29%, AMZN +11.25%, GOOGL -1.67%, JPM +4.95%, LLY +6.64%,
+XOM +11.58%, COST +1.44%, NEE -5.10%, LIN -6.26%, PLD -7.04%, VXUS +3.43%,
+IJR +1.74%, SCHD +0.34%, XLI +3.81%, XLV +3.90% (all vs. avg cost, intraday prices)
+**vs SPY since inception:** portfolio +2.81% | SPY +2.89% (SPY $772.78 vs. inception
+$751.07 on 2026-07-14)
+**Realized P&L to date:** -$5.90 (CAT, Cycle 7; confirmed via broker, all-time, one
+closing trade)
+**Lesson from last cycle:** Cycle 11's hold-everything call cost nothing — the
+account continued higher to $1,028.10 today, and LIN's fresh Q2 details (record
+$11.1B backlog, FY26 EPS guidance raised to $17.70-$17.90) confirm the
+fundamentals-strong/technicals-weak read was correct; waiting for a confirmed close
+above the 50-day SMA rather than averaging down into a laggard remains the right
+discipline.
+**Market read:** Market open (~11:09 ET). SPY $772.78, roughly flat vs. Monday's
+close ($773.03, -0.03%) — quiet tape. Reconciled broker vs. state.json: all 17
+positions, $144.27 cash, $144.27 buying power, -$5.90 realized P&L all-time (one
+closing trade) — matched exactly, no discrepancies, no open/resting orders. No
+watchdog commits or alerts found since Cycle 11.
+**Actions:**
+- No trades — cash (14.0%) is inside the 5-15% target band, no invalidation trigger
+  fired on any of the 17 holdings, and no watchlist candidate cleared the technical
+  bar:
+  - LIN (-6.26% from cost, improved from -6.57% at Cycle 11): confirmed record
+    Q2 order book ($11.1B backlog) and a raised FY26 EPS guide ($17.70-$17.90); a
+    few analysts trimmed price targets slightly (Citi/Goldman to $580, BMO to $546)
+    but all remain well above the $492 spot. RSI ticked up to 41.1 (from 39.2),
+    price still ~3.7% below its 50-day SMA ($511.80). Fundamentals continue to
+    strengthen while the chart lags — not yet a confirmed turn, not adding.
+  - AMT (watchlist): RSI 47.2 (neutral, roughly flat vs. 48.0 at Cycle 11), price
+    ($170.28) still ~2.6% below its 50-day SMA ($174.80). No buy signal, stays on
+    watchlist.
+  - CAT (watchlist, exited Cycle 7): $848.33, essentially flat vs. Cycle 11's
+    $846.79, still ~7.4% below its 50-day SMA ($915.88), RSI a neutral 42.2. The
+    reversed margin thesis is intact but the technical setup still hasn't turned —
+    not a re-entry.
+  - PLD (-7.04%, largest % laggard): confirmed the SEGRO acquisition is a signed,
+    board-recommended deal (not just a proposal) — $18.8B / 47% European footprint
+    expansion, on track to close H1 2027, no shareholder pushback or red flags found.
+    Strategic-growth thesis intact, holding.
+  - NEE (-5.10%): the Dominion Energy merger review saw a formal regulatory
+    intervention filed by Virginia's governor (procedural scrutiny of a $67B deal,
+    not a rejection) and the Paducah AI-data-center project remains on track.
+    Reads as valuation drift on a still-healthy business, not deterioration —
+    holding, no trim.
+**Thesis / notes:** Still 17 positions across 12+ sector/style slots, no single name
+or sector near the concentration caps (largest position MSFT ~6.3% of portfolio).
+Portfolio +2.81% since inception vs. SPY +2.89% — essentially tracking the index.
+No saved scanners exist on this account yet (checked via get_scans); with cash near
+the top of the 5-15% band and the existing roster already at 17 names across 12+
+sectors, priority stays on watching LIN/AMT/CAT for a confirmed technical turn
+rather than sourcing brand-new names. Watch next cycle: NVDA earnings 2026-08-26 is
+the next real catalyst; LIN/AMT for a close above their 50-day SMAs; CAT's technical
+setup for improvement; NEE's Dominion merger regulatory process for any real
+setback (vs. procedural noise).
+
+---
+
+## Strategy change — 2026-08-14 (owner-directed, between Cycles 12 and 13)
+
+Not a trading cycle — a change to the standing brief, recorded here so the reasoning
+lives in the log alongside the trades.
+
+**The diagnosis.** An owner review found the portfolio had become a **closet index
+fund**. By Cycle 12 it held 17 positions, six of them ETFs: `SCHD`, `XLI`, and `XLV`
+are subsets of `VOO` (with `XLV` also duplicating the `LLY` holding), while the eleven
+single names were all large-cap S&P constituents `VOO` already owns. Counting the
+$144.27 of idle cash (14.0%) alongside ~$253 of duplicate ETFs, roughly **39% of the
+account expressed no research view at all**. The result was exactly what that shape
+predicts: **+2.81% vs SPY +2.89%** — tracking the index and losing to it slightly,
+with no trades placed in four consecutive cycles.
+
+**The root cause** was a self-contradicting brief. `STRATEGY.md` said "maximize
+long-term profit" while its money-management rules — 15–20 names, ≥6 sectors, always
+hold an ETF core, keep 5–15% cash — mandated becoming the index. Those are
+variance-minimization rules; you cannot sit at both ends of the risk/return frontier.
+When the mandate and the rules conflicted, the rules won silently.
+
+**A second, separate finding:** the four-cycle no-trade stretch was *not* caused by
+too strict a scoring bar. Each individual no-trade call was defensible (CAT's spike
+genuinely did round-trip within three days). The real failure was a **funnel of only
+three stale candidates** — LIN, AMT, CAT — re-checked cycle after cycle, with zero new
+names screened and no scanners ever built. An early draft of this change proposed
+lowering the bar from 18/25 to 16/25; that was rejected as backwards. In a
+concentrated book each position carries more weight, so the bar must stay high and the
+*funnel* must widen instead.
+
+**What changed** (see `STRATEGY.md` for the full text):
+- **Concentrate** to 8–10 single names plus a `VOO` core at 15–20% — 9–11 positions
+  total, ~9–11% (~$90–110) each, instead of 17 positions at ~$50.
+- **Cash target 2–5%**, down from 5–15%.
+- **The beat-the-index test:** every single-name holding carries a required
+  `why_not_voo` line. If it can't be answered specifically, sell it and hold `VOO`.
+  No more sector/style ETFs that duplicate `VOO`.
+- **Correlated-theme cap ~40%**, which binds harder than the sector cap — the
+  NVDA/MSFT/AMZN/GOOGL cluster is one AI/cloud bet wearing four sector tags.
+- **≥2 brand-new candidates screened and scored every cycle**, with saved scanners
+  built via `create_scan` (none existed as of Cycle 12).
+- **Adding to winners is now explicitly permitted** — the mirror of the existing
+  no-averaging-down rule.
+- **Safety valve:** a new `benchmark_history` array in `state.json` makes it
+  mechanically checkable — if the portfolio lags SPY by >8 points over a trailing 10
+  cycles, at least half the active book rotates into `VOO` and `STATUS.md` alerts.
+
+**Deliberately left unchanged:** the ≥18/25 scoring bar, the >5% no-chase rule (its
+Cycle 11 lesson documents a real save), per-name trim at ~15%, invalidation triggers,
+next-earnings tracking, spread checks, the quality/liquidity filter, equities-only,
+and all heartbeat/commit reliability rules.
+
+**Next:** Cycle 13 executes the `restructure_mandate` in `state.json` as its first
+task — sell the three duplicate ETFs, re-underwrite all eleven single names down to
+8–10, top up the `VOO` core — with the single-name buys staged across Cycles 13–14
+rather than deployed at one moment's prices.
+
+**Honest note for the record:** concentration raises *variance*, not expected return.
+It is what makes beating the index possible and equally what makes badly lagging it
+possible. The most likely single outcome remains a bumpier portfolio that still lands
+near SPY. What genuinely changes is that research now drives the result instead of
+being decorative.
+
+---
+
+## Cycle 13 — 2026-08-14 (Friday) — RESTRUCTURE MANDATE EXECUTED
+
+**Portfolio:** $1,027.68 total | $363.01 cash (35.3% — see note) | 11 positions:
+VOO 14.8% (+1.1%), NVDA 5.3% (+8.3%), MSFT 6.3% (+29.0%), AMZN 5.2% (+7.6%),
+GOOGL 4.7% (-3.6%), LLY 5.0% (+3.1%), XOM 5.4% (+11.1%), NEE 4.7% (-3.6%),
+LIN 4.4% (-8.5%), PLD 4.6% (-5.3%), V 4.3% (new, ~flat) — all vs. avg cost,
+intraday prices.
+**vs SPY since inception:** portfolio +2.77% | SPY +3.32% (SPY $776.01 vs. inception
+$751.07 on 2026-07-14) | 10-cycle gap: -0.55 pts (valve: ok, not tripped — trailing
+gaps were +1.21/-0.19/-0.55/-0.08/-0.55 pts at cycles 8/10/11/12/13)
+**Realized P&L to date:** +$6.84 (confirmed via broker, all-time, 8 closing trades —
+today's 7 restructure sells netted +$12.74, more than offsetting the CAT loss)
+**Lesson from last cycle:** Cycle 12's individual no-trade call was fine, but the
+owner's 2026-08-14 review found the deeper problem: the old money-management rules
+(15-20 names, always hold an ETF core, 5-15% cash) mandated closet indexing
+regardless of how sound any single cycle's judgment was. A good process running on a
+self-contradicting brief still produces the wrong shape.
+**Market read:** Market open (~11:26 ET). SPY $776.01, -0.24% vs. Wednesday's close
+($777.88) — quiet, marginally softer tape. No holding or candidate moved >2.5%
+intraday, so no execution-rule (>5% chase) conflicts today. All spreads checked
+pre-trade were ≤0.14% (LLY widest at 0.14%, most <0.03%) — clear to use market orders.
+Reconciled broker vs. state.json before trading: all 17 legacy positions, $144.27
+cash/buying power, -$5.90 realized P&L all-time — matched cleanly, no discrepancies,
+no watchdog alerts found since Cycle 12.
+**Candidates screened this cycle:**
+- **V (Visa)** — quality 5, valuation 3, trend 4 (price $364.49, 4.9% above its
+  50-day SMA $347.44, RSI 57.4), catalyst 3, fit 4 = **19/25 — BUY.** Payments
+  duopoly with structurally expanding operating margins (opex scales slower than
+  transaction volume) as cashless payments keep taking global share.
+- **WM (Waste Management)** — quality 5, valuation 2.5 (PE 32x, rich vs. its own
+  24-28x history), trend 2 (price $225.34 slightly below its 50-day SMA $227.33, RSI
+  41.7), catalyst 2.5 (no confirmed near-term catalyst beyond "quality business"),
+  fit 4 = **16/25 — declined.** Good business, but doesn't clear the bar this cycle;
+  keeping on the watchlist in case valuation/trend improve.
+- **RTX (RTX Corp)** — quality 4, valuation 2 (PE 39.2x, rich vs. history), trend 2
+  (RSI 67.5, price at a 52-wk high set just 4 days ago — extended), catalyst 3
+  (defense spending tailwind, but widely known/priced), fit 4 = **15/25 —
+  declined,** and technically extended regardless of score. Not added to watchlist.
+**Actions — restructure_mandate steps 1-4 executed:**
+- SELL SCHD — 1.465850 sh @ $34.4704 avg (filled) — order `6a7f3385-6a2f-4c8f-81ce-11d04d8276f1`
+  — mandatory VOO-duplicate exit per the 2026-08-14 owner review.
+- SELL XLI — 0.279376 sh @ $186.4401 avg (filled) — order `6a7f3387-395f-4c2b-a7d4-5e9886a7fe85`
+  — mandatory VOO-duplicate exit.
+- SELL XLV — 0.308966 sh @ $167.4201 avg (filled) — order `6a7f3388-39bf-4347-91cd-04c5650bd6f4`
+  — mandatory VOO-duplicate exit (also duplicated the LLY holding).
+- SELL VXUS — 0.593824 sh @ $87.6129 avg (filled) — order `6a7f338a-a83f-4d08-bf33-50d673658464`
+  — discretionary call (restructure_mandate step 2): consolidating to a single
+  permitted index core (`VOO`) is more consistent with "every dollar must express a
+  view" than keeping a second index-style ETF sleeve; redeploying into researched
+  names (`V`) and the `VOO` core instead.
+- SELL IJR — 0.342635 sh @ $150.1201 avg (filled) — order `6a7f338a-7757-42c8-8b3c-f82ecc315862`
+  — same reasoning as VXUS: one ETF core, not three.
+- SELL JPM — 0.145582 sh @ $364.4401 avg (filled) — order `6a7f338c-bf9b-41c1-bcb8-9a1a07d5ff01`
+  — re-underwriting cut (restructure_mandate step 3): thesis was "banking bellwether,"
+  which fails the beat-the-index test — no specific mispricing or catalyst named, and
+  JPM is already a top-10 `VOO` constituent. Weakest `why_not_voo` of the 11 single
+  names.
+- SELL COST — 0.053982 sh @ $960.6401 avg (filled) — order `6a7f338d-1c4a-4c44-b882-d8891f4898e2`
+  — re-underwriting cut: thesis was "retail quality compounder," the exact "good
+  company" reasoning STRATEGY.md says is insufficient. Second-weakest `why_not_voo`.
+- BUY VOO — $100.00 (0.140203 sh @ $713.2499 avg, filled) — order `6a7f33b2-a912-41e2-b6b6-8d29077607d5`
+  — partial top-up toward the 15-20% core target (mandate step 4); brings VOO from
+  5.0% to 14.8% of the account. Only partially completed this cycle — see cash note.
+- BUY V — $44.00 (0.120700 sh @ $364.5391 avg, filled) — order `6a7f33b4-366f-4be5-803e-35c6663e45f6`
+  — new researched single name (score 19/25, see above), starter size; replaces the
+  JPM slot with a more specific, defensible thesis.
+- **Cash/settlement note:** the 7 sells generated ~$362.73 in proceeds, but this is a
+  **cash account — proceeds settle T+1 and were not spendable today.** Buying power
+  after the sells was only $144.27 (the pre-existing settled cash), which is what
+  funded the VOO + V buys above ($144.00 combined, $0.27 left over). The remaining
+  ~$362.73 will be settled and available at the next cycle. This is a bigger driver
+  of "staging across Cycles 13-14" than a stylistic choice — it's mechanically
+  enforced by settlement. **No margin/limited-margin upgrade was used or considered
+  — margin is a hard constraint violation per STRATEGY.md, cash-account settlement
+  is the correct behavior here.**
+**Thesis / notes:** Restructure mandate steps 1-4 substantially executed: down from
+17 positions (6 ETFs) to **11 positions (1 ETF)** — `VOO` core plus 10 single names
+(`NVDA MSFT AMZN GOOGL LLY XOM NEE LIN PLD V`), within the 8-10 single-name target at
+the top of the range. Every surviving holding now carries a specific `why_not_voo`
+line and a `theme` tag in `state.json` (mandate step 7). Concentration check:
+largest single name MSFT at 6.3% (nowhere near the 15% trim trigger — plenty of room
+to add), correlated AI/cloud theme (NVDA+MSFT+AMZN+GOOGL) at 21.5% (well under the
+40% cap), no sector above ~15%, 10 distinct sector tags (well above the 4-sector
+floor). `VOO` at 14.8%, just under the 15-20% target — finishing the top-up is
+Cycle 14's first job. **Watchlist alert: AMT's price ($176.02) closed above its
+50-day SMA ($173.88) for the first time since it entered the watchlist at Cycle 1 —
+RSI 54.4, a genuine technical turn after 6+ cycles of waiting.** This is now the
+top new-position candidate for Cycle 14 alongside finishing the top-ups on the 10
+existing single names (all still below the $90-110 target — LIN excluded from any
+add until its trend confirms, per the standing rule, RSI fell further to 33.96 and
+price is now 6.1% below its 50-day SMA, worse than Cycle 12). CAT re-checked: still
+~6.1% below its 50-day SMA ($913.93 vs. $858.47 spot), RSI neutral 45.9 — technical
+setup still hasn't turned, stays on watchlist only. Next cycle: deploy the ~$362.73
+of now-settled cash — finish `VOO` to 15-20%, add to the 9 non-LIN singles toward
+$90-110 each (prioritizing MSFT/AMZN as working winners per the add-to-winners
+rule), seriously evaluate AMT as a new buy given the confirmed SMA break, and keep
+LIN on hold until its own chart turns. NVDA earnings 2026-08-26 is the next
+real catalyst on the calendar.
+
+---
+
+## Cycle 14 — 2026-08-18 (Tuesday)
+**Portfolio:** $1,024.30 total | $35.01 cash (3.4%) | 13 positions: VOO 17.6% (+0.02%),
+NVDA 7.9% (+3.6%), MSFT 10.0% (+13.7%), AMZN 9.6% (+3.2%), GOOGL 4.7% (-4.4%),
+LLY 5.2% (+5.7%), XOM 5.5% (+13.5%), NEE 4.8% (-2.6%), LIN 4.5% (-8.3%),
+PLD 4.6% (-5.6%), V 4.3% (+0.3%), AMT 9.3% (new, ~flat), UNP 8.8% (new, ~flat)
+— all vs. avg cost, intraday prices.
+**vs SPY since inception:** portfolio +2.43% | SPY +2.22% (SPY $767.73 vs. inception
+$751.07 on 2026-07-14) | 10-cycle gap: +0.21 pts (valve: ok, not tripped — trailing
+gaps were +1.21/-0.19/-0.55/-0.08/-0.55/+0.21 pts at cycles 8/10/11/12/13/14)
+**Realized P&L to date:** +$6.84 (confirmed via broker, all-time, 8 closing trades;
+unchanged this cycle — no sells)
+**Lesson from last cycle:** Cycle 13's restructure correctly prioritized settled
+buying power over gross cash — the ~$362.73 that looked like "idle cash" at 35.3%
+was mechanically unspendable T+1 proceeds, not a real allocation problem, and it
+settled cleanly by this cycle with zero drift (buying power == cash exactly, no
+watchdog alerts). The lesson held: check buying_power specifically, don't panic at
+a high cash % right after a sell-heavy cycle.
+**Market read:** Market open (~11:14 ET). SPY $767.73, -0.64% vs. Monday's close
+($772.67) — a soft, broadly red tape (NVDA -2.7%, GOOGL -0.4%, VOO -0.6% intraday),
+with CAT (not held) down a sharp -4.9% continuing a six-week slide despite its
+genuine Aug-4 earnings beat — a reminder the market can stay skeptical of a reversed
+thesis for a long time; still not a re-entry (technicals never confirmed). Reconciled
+broker vs. state.json before trading: all 11 legacy positions matched exactly, and
+critically the ~$362.73 that was unsettled T+1 cash at Cycle 13 had fully settled —
+buying power was $363.01, equal to cash, with zero unsettled_funds per get_accounts.
+No open orders, no watchdog alerts. This is the deployment cycle flagged since
+Cycle 13: cash was 35.3% only because of settlement lag, not a real allocation call,
+so today's job was to put it to work per the restructure_mandate's step 5.
+**Candidates screened this cycle:**
+- **UNP (Union Pacific)** — quality 5, valuation 4, trend 4 (price $302.43, +6.7%
+  above its 50-day SMA $283.56, RSI 60.0 — healthy, not overbought, ~4% off its
+  52-wk high), catalyst 4 (Q2 revenue +12% to $6.9B, adj. EPS $3.41 beat $3.16 est.,
+  management raised full-year guidance to high-single-digit EPS growth citing
+  freight volume gains outpacing broad US GDP; some risk noted — hazardous-cargo
+  safety scrutiny and transcontinental-merger regulatory uncertainty), fit 5 (zero
+  prior industrials/transportation exposure) = **22/25 — BUY.** Rail duopoly with
+  structural pricing power and a genuine raised-guidance beat, exactly the playbook B
+  "earnings beat with raised guidance" angle.
+- **HD (Home Depot)** — quality 4, valuation 3 (PE 24.1x for ~flat-to-4% FY26 EPS
+  growth guide isn't cheap), trend 3 (price $337-344 basically sitting right at its
+  50-day SMA $338.25, RSI 47 neutral — a base, not a confirmed uptrend), catalyst 2
+  (Q2 beat on top/bottom line but management only *reaffirmed* FY26 guidance, not
+  raised, and explicitly flagged "frozen housing market conditions" as an ongoing
+  headwind), fit 4 (would diversify into consumer discretionary/retail) =
+  **16/25 — declined.** A real beat but no raised guidance and a specific,
+  named demand headwind — doesn't clear the bar. Added to watchlist: would
+  reconsider on a guidance raise or a cleaner technical breakout.
+**Actions:**
+- BUY UNP — $90.00 (0.297471 sh @ $302.5499 avg, filled) — order
+  `6a8476dc-da63-4614-afeb-e78268ed63c7` — new position, score 22/25 (see above) +
+  why_not_voo: rail duopoly EPS growth trajectory beating the index, raised guidance
+  specific to freight-share gains.
+- BUY AMT — $95.00 (0.544600 sh @ $174.4399 avg, filled) — order
+  `6a8476db-5be6-41e0-9794-51a45d02fd53` — re-scored 19/25 (quality 4, valuation 4,
+  trend 3 — price $174.21 just 0.5% above its 50-day SMA $173.31, a real but fragile
+  confirmation after 13 cycles of waiting; catalyst 4 — 5 of last 7 quarters beat EPS
+  estimates, 4.05% dividend yield; fit 4) — the top watchlist candidate flagged at
+  Cycle 13, now bought. why_not_voo: tower-leasing REIT with a specific 5G/data-center
+  infrastructure tailwind and a technical turn VOO's tiny REIT weight doesn't isolate.
+- BUY VOO — $30.00 (0.042512 sh @ $705.6799 avg, filled) — order
+  `6a8476dd-d6ba-49d1-bfef-c6382ff15596` — finishes the Cycle 13 top-up; VOO now
+  17.6% of the account, solidly inside the 15-20% core target.
+- BUY MSFT — $40.00 (0.083026 sh @ $481.775 avg, filled) — order
+  `6a8476de-c2aa-45c7-aafe-8d3c76319bec` — add-to-winner (Azure/Copilot thesis intact,
+  +13.7% from cost); brings MSFT to ~10.0% of the account, right at the $90-110/
+  9-11% target for the first time since the restructure.
+- BUY AMZN — $45.00 (0.172707 sh @ $260.5559 avg, filled) — order
+  `6a8476e0-cea7-429d-92b1-fad6ff681b93` — add-to-winner (AWS reacceleration thesis
+  intact); brings AMZN to ~9.6% of the account, near the target band.
+- BUY NVDA — $28.00 (0.127640 sh @ $219.3667 avg, filled) — order
+  `6a8476e0-dcff-4b56-b247-279a10155770` — smaller top-up (AI/semis leader, bought
+  the day's -2.7% dip, not a chase); brings NVDA to ~7.9%, still below target but
+  the AI/cloud theme cluster was managed deliberately (see concentration check below).
+  NVDA reports earnings 2026-08-26 (8 days out) — a real catalyst/risk ahead.
+- Re-checked LIN: RSI fell further to 33.7 (from 33.96 at Cycle 13), price $481.82 is
+  now ~5.5% below its 50-day SMA ($509.78) — technicals still weak, fundamentals
+  (record backlog, raised FY26 guide) unchanged. Not adding, per the standing rule
+  (wait for a confirmed close back above the 50-day SMA).
+- Re-checked CAT (watchlist, exited Cycle 7): down another -4.9% today, now $838.75,
+  continuing a six-week slide despite the genuine Aug-4 earnings beat and reversed
+  margin thesis — still no technical confirmation. Not a re-entry.
+- Built two durable scanners (`create_scan`, none existed before this cycle):
+  "Quality compounders near highs" (market cap >$10B, ROE >12%, RSI 45-70) and
+  "Quality post-move momentum" (market cap >$5B, 1-day % change 2-5%, RSI <70) — both
+  saved for reuse in future cycles per the playbook B scanner mandate. Today's runs
+  returned thin/no results (broadly red tape), which is expected and not a signal to
+  loosen the filters.
+**Thesis / notes:** Now **13 positions** (VOO core + 12 single names — one over the
+8-10 single-name target band, driven by adding 2 new names in one cycle rather than
+staging one per cycle; not a concern at this size, will let normal trims/exits bring
+it back in range rather than force a sell). Cash $35.01/$1,024.30 (3.4%), solidly
+inside the 2-5% target — **the Cycle 13 restructure's deployment phase is
+substantially complete.** Concentration check: largest single name MSFT at 10.0%
+(right at target, nowhere near the 15% trim trigger); correlated AI/cloud theme
+(NVDA+MSFT+AMZN+GOOGL) now 32.1% of the account (up from 21.5% at Cycle 13) — still
+under the 40% cap but climbing with today's adds, worth watching rather than adding
+further to this cluster next cycle; "Finance"-tagged REIT/payments cluster
+(PLD+V+AMT) at 18.2%, well under the 35% sector cap; UNP opens a genuinely new
+Transportation sector with zero prior overlap. Remaining single names still below
+the $90-110 target — GOOGL, LLY, XOM, NEE, LIN, PLD, V (all ~$44-57, 4.3-5.5%) — are
+candidates for gradual top-up in future cycles (LIN excluded until its chart turns),
+but minimize-turnover argues against forcing all of them to target in one more
+big cycle. Watch next cycle: NVDA earnings 2026-08-26 (real catalyst); LIN for a
+close above its 50-day SMA; CAT for the technical setup to finally turn (fundamentals
+already support a reversal); AMT/UNP for their first post-buy earnings prints
+(2026-10-27 and 2026-10-22 respectively); AI/cloud theme concentration (32.1%) as a
+soft ceiling — favor non-AI/cloud names for the next round of adds.
+
+---
+
+## Cycle 15 — 2026-08-21 (Friday)
+**Portfolio:** $1,029.32 total | $35.45 cash (3.4%) | 13 positions: VOO 17.4%
+(-0.2%), NVDA 7.7% (+1.7%), MSFT 10.0% (+14.6%), AMZN 9.5% (+3.1%), GOOGL 4.7%
+(-3.8%), LLY 5.4% (+10.3%), XOM 5.6% (+14.6%), NEE 4.6% (-5.4%), LIN 4.5% (-6.8%),
+PLD 4.6% (-5.6%), V 4.3% (+1.5%), AMT 9.4% (+1.7%), UNP 8.8% (+0.8%) — all vs. avg
+cost, intraday prices.
+**vs SPY since inception:** portfolio +2.93% | SPY +2.01% (SPY $766.20 vs. inception
+$751.07 on 2026-07-14) | this-cycle gap: +0.92 pts (valve: ok, not tripped — trailing
+gaps were +1.21/-0.19/-0.55/-0.08/-0.55/+0.21/+0.92 pts at cycles 8/10/11/12/13/14/15,
+averaging comfortably positive, nowhere near the -8pt trigger)
+**Realized P&L to date:** +$6.84 (confirmed via broker, all-time, 8 closing trades;
+unchanged this cycle — no sells)
+**Lesson from last cycle:** Cycle 14's deployment (UNP+AMT new, VOO/MSFT/AMZN/NVDA
+top-ups) was the right call while ~$363 of settled cash was sitting idle; it also
+pushed cash straight into the 2-5% target band, so this cycle's real lesson is that
+"cash is now genuinely scarce" — with $35 of buying power, a strong new idea can no
+longer be funded without either breaching the cash floor or trimming something, so
+future adds need a deliberate funding decision, not just leftover cash.
+**Market read:** Market open (~11:08 ET). SPY $766.20, +0.47% vs. Thursday's close
+($762.60) — firm, broadly green tape (MSFT +0.86%, GOOGL +1.21%, LIN +1.75%, AMT
++1.03% intraday). Reconciled broker vs. state.json before trading: all 13 positions
+matched exactly, cash $35.45 (vs. $35.01 logged at Cycle 14 — $0.44 immaterial drift,
+likely a dividend accrual), $0 open orders, +$6.84 realized P&L all-time — no
+discrepancies, no watchdog alerts found since Cycle 14.
+**Candidates screened this cycle:**
+- **CQP (Cheniere Energy Partners LP)** — quality 4 (Sabine Pass LNG export
+  terminal, long-term take-or-pay contracted cash flows; LP structure carries K-1
+  tax-form complexity and single-asset-cluster concentration risk, noted as a bear
+  case), valuation 4 (PE 12.4x, 4.8% distribution yield — cheap for the cash-flow
+  quality), trend 4 (price $69.44 intraday high, comfortably above its 50-day SMA
+  $63.87, RSI 58 per the scan — healthy uptrend, not overbought, near its 52-wk high
+  $70.64 set 3/24), catalyst 4 (Q2 2026: adjusted EBITDA +35% YoY to $983M, LNG
+  volumes +13% to 396 TBtu, FY26 distribution guidance of $3.10-3.40/unit
+  reconfirmed 8/6), fit 4 (genuinely new economic exposure — contracted LNG-export
+  infrastructure cash flows are a different driver than XOM's integrated-oil/FCF
+  thesis, and VOO's tiny midstream-MLP weight doesn't isolate it) = **20/25 — clears
+  the bar, but not bought this cycle (see Actions).** Surfaced by the "Quality
+  compounders near highs" saved scanner (built Cycle 14) — its first real hit.
+- **ADI (Analog Devices)** — quality 4 (established analog/mixed-signal
+  semiconductor leader, auto/industrial diversification beyond pure AI-training
+  silicon), valuation 2 (PE 43.9x, rich), trend 2 (price ~$375 vs. 50-day SMA $389 —
+  below the average, RSI 43.7 neutral-weak; stock is ~16% off its June 22 52-wk high
+  of $445.91 despite a real Q3 beat-and-raise print per web research — a "beat but
+  faded" chart, not a clean setup), catalyst 3 (real beat, but the move already
+  faded), fit 3 (adds semis diversification but still correlates meaningfully with
+  the existing AI/cloud/tech cluster) = **14/25 — declined,** doesn't clear the bar.
+**Actions:**
+- No trades — cash ($35.45, 3.4%) is already inside the 2-5% target band, not above
+  it, so there is no idle-cash mandate to deploy this cycle. CQP scored 20/25 and
+  would be a genuine buy, but funding a standard ~$50-90 position would spend nearly
+  all remaining buying power and push cash toward ~0%, breaching the cash floor with
+  no invalidation trigger or overweight position providing a clean funding source.
+  Minimize-turnover argues against trimming an in-target, thesis-intact holding
+  (e.g. V, GOOGL, PLD — all still below their own $90-110 target) just to manufacture
+  cash for a new name. **Adding CQP to the watchlist instead** — a durable, high-score
+  candidate to fund with either fresh dividend-accrued cash or a deliberate
+  trim-and-rotate decision next cycle, not this one.
+  - LIN (-6.8% from cost): RSI improved to 39.8 (from 33.7 at Cycle 14), price
+    $489.71 still ~3.6% below its 50-day SMA ($508.10) — technicals improving but
+    not yet confirmed. Not adding, per the standing rule.
+  - CAT (watchlist, exited Cycle 7): $818.06, still ~9.7% below its 50-day SMA
+    ($906.11) — the six-week slide has continued rather than stabilized. Not a
+    re-entry.
+  - NEE: Dominion Energy merger confirmed progressing on schedule — regulatory
+    filings made with Virginia SCC, NC, SC, FERC, and NRC in July; special
+    shareholder meetings expected early September; deal still targeted for H2 2027
+    close. No setback found, thesis intact, holding.
+  - PLD: SEGRO acquisition confirmed on track — terms finalized 8/4 (0.0920 PLD
+    shares + partial cash alternative per SEGRO share), a minor agreement amendment
+    on 8/12 with financial terms unchanged. No shareholder pushback found, thesis
+    intact, holding.
+**Thesis / notes:** Still 13 positions, cash $35.45/$1,029.32 (3.4%), inside the 2-5%
+target band — this is now a genuinely constrained-cash environment, a real change
+from the post-restructure deployment cycles. No invalidation trigger fired on any
+holding. Concentration check: largest single name MSFT at 10.0% (nowhere near the
+15% trim trigger); AI/cloud theme (NVDA+MSFT+AMZN+GOOGL) at 31.9% (essentially flat
+vs. 32.1% at Cycle 14, still under the 40% cap); "Finance"-tagged REIT/payments
+cluster (PLD+V+AMT) at 18.3%, well under the 35% sector cap. Watchlist now 4 names:
+CQP (new, 20/25, top candidate for next available cash), CAT (15 cycles watched,
+technicals still broken despite a reversed fundamental thesis), WM (3 cycles, still
+rich on valuation), HD (2 cycles, reaffirmed-not-raised guidance). Watch next cycle:
+NVDA earnings 2026-08-26 (5 days out, real catalyst/risk on the largest AI/cloud
+sleeve); LIN for a confirmed close above its 50-day SMA; CQP as the top new-buy
+candidate if cash allows (via dividend accrual or a deliberate funding decision);
+CAT for the technical setup to finally turn.
+
+---
+
+## Cycle 16 — 2026-08-25 (Tuesday)
+**Portfolio:** $1,030.29 total | $35.64 cash (3.5%) | 13 positions: VOO 17.4%
+(-0.4%), NVDA 7.5% (-0.6%), MSFT 10.1% (+15.5%), AMZN 9.5% (+3.3%), GOOGL 4.7%
+(-3.4%), LLY 5.3% (+10.1%), XOM 5.4% (+11.9%), NEE 4.5% (-6.4%), LIN 4.5% (-7.4%),
+PLD 4.6% (-4.2%), V 4.5% (+4.9%), AMT 9.4% (+1.9%), UNP 9.0% (+2.4%) — all vs. avg
+cost, intraday prices.
+**vs SPY since inception:** portfolio +3.03% | SPY +1.80% (SPY $764.61 vs. inception
+$751.07 on 2026-07-14) | this-cycle gap: +1.23 pts (valve: ok, not tripped — trailing
+gaps were +1.21/-0.19/-0.55/-0.08/-0.55/+0.21/+0.92/+1.23 pts at cycles
+8/10/11/12/13/14/15/16, comfortably positive, nowhere near the -8pt trigger)
+**Realized P&L to date:** +$6.84 (confirmed via broker, all-time, 8 closing trades;
+unchanged this cycle — no sells)
+**Lesson from last cycle:** Cycle 15's read held: with cash genuinely scarce (~3.4%,
+inside the target band rather than piled up), a high-scoring new idea (CQP, 20/25)
+still needs a deliberate funding decision, not leftover cash — and this cycle
+confirms that's now a recurring state, not a one-off.
+**Market read:** Market open (~11:07 ET, SPY $764.61 vs. Monday's close $763.47,
++0.15% — quiet, mixed tape ahead of NVDA's print tomorrow after the close). NVDA
+-0.6% from cost today but the real test is 2026-08-26 earnings (confirmed via
+`get_earnings_calendar`, PM release) — the largest single risk on the calendar for
+the AI/cloud sleeve (31.8% of the account). Reconciled broker vs. state.json before
+trading: all 13 positions, cash $35.64 (vs. $35.45 logged at Cycle 15 — $0.19
+immaterial drift), $0 open orders, +$6.84 realized P&L all-time — matched cleanly,
+no discrepancies, no watchdog alerts found since Cycle 15.
+**Candidates screened this cycle:**
+- **DE (Deere & Co.)** — quality 5 (dominant ag/construction-equipment franchise,
+  captive financing arm, wide moat), valuation 2 (PE ~36x — rich even accounting for
+  the market's re-rating of precision-ag/autonomy optionality; historically traded
+  well below this), trend 4 (price $633 vs. 50-day SMA $606.86, +4.3% above, RSI
+  62.5 — uptrend intact, though today is a -2.4% giveback five days after the
+  post-earnings pop faded from the $650s), catalyst 4 (confirmed via web search:
+  Q3 EPS $5.10 beat $4.72 est., **FY2026 net income guidance raised** to $4.75-5.00B
+  on cost discipline, even as large-ag equipment sales are still guided down
+  15-20% — a genuine raised-guidance beat, not a gimme), fit 3 (adds a second
+  industrial/heavy-equipment name alongside `UNP`; correlates moderately on
+  industrial-cycle sentiment, a real but partial overlap) = **18/25 — clears the bar,
+  but not bought (see Actions).**
+- **ROST (Ross Stores)** — quality 4 (well-run off-price retailer, but competitive/
+  commoditized vs. TJX/Burlington), valuation 2 (PE ~29x, and confirmed via web
+  search that ~$0.60 of the $2.66 EPS beat was a one-time IEEPA tariff refund —
+  roughly 23% of the beat was non-recurring, a less clean print than the headline
+  suggests), trend 2 (price $238 barely above its 50-day SMA $234.52, +1.5%, RSI
+  50.2 neutral, down -1.4% today three weeks past its 52-wk high with no real
+  follow-through despite a "beat and raise" headline), catalyst 3 (real beat +
+  raised FY26 EPS guide to $8.61-8.77, but partly inflated by the tariff-refund
+  one-off), fit 5 (genuinely new sector — off-price retail/consumer discretionary,
+  zero prior overlap) = **16/25 — declined,** doesn't clear the bar.
+**Actions:**
+- No trades. Cash ($35.64, 3.5%) is inside the 2-5% target band, not piled up above
+  it — the same genuinely-scarce-cash situation as Cycle 15, now in its second
+  cycle. DE cleared the bar at 18/25, but only barely, on a rich valuation as the
+  weak link; `CQP` (20/25, watchlisted Cycle 15) is still unbought and is the
+  stronger candidate in the queue. Buying a marginal 18/25 name — or forcing a trim
+  of a healthy, in-target, thesis-intact holding to fund it — ahead of a
+  higher-conviction 20/25 idea already waiting would be poor prioritization, not
+  discipline. Adding DE to the watchlist instead.
+  - LIN (-7.4% from cost): RSI $486.76 vs. 50-day SMA $507.16 (-4.0%), RSI 48.6
+    (up from 39.8 at Cycle 15) — technicals continuing to improve gradually but
+    still not a confirmed close above the SMA. Not adding, per the standing rule.
+  - AMT (+1.9%): price $177.71 vs. 50-day SMA $171.73 (+3.5% above) — uptrend
+    holding up well since the Cycle 14 buy. No action needed, already near target
+    size.
+  - CAT (watchlist, exited Cycle 7): $810.84, still ~10.3% below its 50-day SMA
+    ($903.82) — the slide continues, now into its 9th week since the reversed
+    Aug-4 earnings thesis. Not a re-entry.
+  - NEE (-6.4%): confirmed via web search the Dominion Energy merger remains on
+    schedule — SCPSC adopted a procedural schedule in early August, filings are in
+    with Virginia/NC/SC/FERC/NRC, and NextEra executives reiterated a late-2027
+    close target on the Q2 call. No setback, thesis intact, holding.
+  - PLD (-4.2%): confirmed via web search the SEGRO acquisition and the related
+    $2.1B/15M-share stock offering (which funds it) both closed as planned in
+    early August — no new developments, no pushback found. Thesis intact, holding.
+  - HD (watchlist, Cycle 14): reported Q2 on 8/18 — EPS $4.92 beat $4.73 est., but
+    (confirmed via web search) FY26 guidance was **reaffirmed, not raised** for the
+    second straight report (comp sales flat-to-2%, op margin 12.4-12.6%) — the
+    exact Cycle 14 concern repeating. Still doesn't clear the bar; stays on
+    watchlist, not dropped (only 3 cycles watched, inside the stale-name threshold).
+**Thesis / notes:** Still 13 positions, cash $35.64/$1,030.29 (3.5%), inside the 2-5%
+target band. No invalidation trigger fired on any holding. Concentration check:
+largest single name MSFT at 10.1% (nowhere near the 15% trim trigger, no clean trim
+candidate exists this cycle); AI/cloud theme (NVDA+MSFT+AMZN+GOOGL) at 31.8%
+(essentially flat vs. 31.9% at Cycle 15, still under the 40% cap) — this is now the
+single biggest near-term risk given NVDA reports tomorrow; "Finance"-tagged
+REIT/payments cluster (PLD+V+AMT) at 18.5%, well under the 35% sector cap.
+Watchlist now 5 names: CQP (2 cycles, 20/25, still the top unfunded candidate), CAT
+(16 cycles, technicals still broken), WM (4 cycles, not re-checked since Cycle 13 —
+due for a fresh look or a drop next cycle), HD (3 cycles, reaffirmed guidance again),
+DE (new, 18/25, borderline on valuation). Honest read: the account has now run two
+straight cycles in a genuinely cash-constrained regime where almost any new idea
+requires either a dividend-accrual window or trimming a healthy position — at this
+account size that tension is real and worth naming rather than glossing over, but
+manufacturing a trim just to stay "active" would be turnover for its own sake, which
+STRATEGY.md explicitly warns against. Watch next cycle: **NVDA earnings 2026-08-26
+after the close — the single largest near-term catalyst/risk on the book,** given
+NVDA+MSFT+AMZN+GOOGL sit just under the 40% theme cap; LIN for a confirmed SMA
+close; CQP and DE as the queued candidates if a deliberate funding decision
+(dividend accrual or a trim-and-rotate call) becomes appropriate; WM for a
+re-check or drop.
+
+---
+
+## Cycle 17 — 2026-08-28 (Friday)
+
+**Portfolio:** $1,036.65 total | $35.64 cash (3.4%) | 13 positions: VOO +0.89%,
+NVDA +6.22%, MSFT +21.52%, AMZN +5.31%, GOOGL -2.76%, LLY +2.52%, XOM +8.03%,
+NEE -8.05%, LIN -7.11%, PLD -5.12%, V +4.89%, AMT +0.99%, UNP +1.55% (all vs.
+avg cost, intraday prices)
+**vs SPY since inception:** portfolio +3.67% | SPY +3.08% (SPY $774.23 vs.
+inception $751.07 on 2026-07-14) | 10-cycle gap: +0.58 pts (valve: ok, not
+tripped — trailing gaps were +1.21/-0.19/-0.55/-0.08/-0.55/+0.21/+0.92/+1.23/+0.58
+pts at cycles 8/10/11/12/13/14/15/16/17)
+**Realized P&L to date:** +$6.84 (confirmed via broker, all-time, 8 closing trades,
+unchanged this cycle)
+**Lesson from last cycle:** Cycle 16's prioritization of the already-vetted CQP
+(20/25) over the newly-screened DE (18/25) remains sound with hindsight — neither
+got funded, and this cycle's fresh screen surfaced a third idea (PGR, 20/25) that
+also clears the bar and also can't be funded. Three straight cycles confirm the
+persistent constraint is the funding queue, not the scoring bar, and — new this
+cycle — not just the cash *percentage* but the absolute dollar amount: $35.64 of
+buying power can't fund any properly-sized (~$90-110) position regardless of what
+% of the account it represents.
+**Market read:** Market open (~11:10 ET). SPY $774.23, +0.41% vs. Thursday's close
+($771.10) — firm, broad-based tech-led rally (GOOGL +2.27%, AMZN +3.76%, MSFT
++1.92% intraday). Reconciled broker vs. state.json before trading: all 13
+positions, $35.64 cash, $35.64 buying power, +$6.84 realized P&L all-time — matched
+cleanly, no discrepancies, no open/resting orders, no watchdog alerts found since
+Cycle 16.
+**Candidates screened this cycle:**
+- **PGR (Progressive Corp)** — quality 5 (dominant direct-to-consumer + commercial
+  auto/property insurer, net margin expanded to 14.0% in Q2 from 12.7% in Q1 on
+  steadily growing premium revenue), valuation 5 (PE just 10.9x — genuinely cheap
+  for an insurer compounding underwriting profit at this rate; note the fundamentals
+  feed's 6.4% "dividend yield" is a data artifact — PGR's real trailing yield is
+  ~0.18%, confirmed via news, the ordinary quarterly dividend only), trend 3 (price
+  $219.07 barely above its 50-day SMA $216.45, RSI a neutral 53, still ~12% off its
+  Sept-2025 52-wk high but up ~16% from the May low), catalyst 3 (KBW upgraded to
+  Outperform 8/20 with PT raised $226→$250; BMO/UBS raised targets slightly this
+  week too but kept Hold/Market-Perform — mixed-to-positive, not a slam dunk), fit 4
+  (genuinely distinct insurance sub-industry vs. V's payments-network thesis,
+  diversifies the "Finance"-tagged cluster beyond payments/REITs) = **20/25 —
+  clears the bar, but unfunded** (buying power $35.64, nowhere near a $90-110
+  position). Added to watchlist alongside CQP as a queued candidate.
+- **SYK (Stryker)** — quality 5 (leading MedSurg/orthopedics medtech franchise),
+  valuation 2 (PE 33.4x, rich), trend 2 (price $327.56 essentially flat at its
+  50-day SMA $328.07, RSI 42.7 — below neutral, no confirmed uptrend), catalyst 3
+  (Q2 net margin jumped to 19.4% from 12.4% in Q1, a real improvement, but no
+  dated forward catalyst found beyond that), fit 3 (would be a second healthcare
+  name alongside LLY, but a genuinely distinct sub-theme — medtech devices vs.
+  GLP-1 pharma) = **15/25 — declined**, valuation and trend both too weak. Not
+  added to watchlist.
+**Actions:**
+- No trades — cash ($35.64, 3.4%) is inside the 2-5% target band by percentage,
+  but in absolute terms is well short of a sensible ~$90-110 position; no holding
+  is above the 15% trim trigger (largest is MSFT at 10.6%, in-target) so there is
+  no clean funding source without a discretionary trim of a healthy, thesis-intact
+  position, which the minimize-turnover rule counsels against absent a real reason.
+  Portfolio-first review found no invalidation trigger fired on any of the 13
+  holdings:
+  - **NVDA** reported Q2 (FY2027) on 8/26 after the close: adjusted EPS $2.22 vs.
+    $2.10 est. (beat), revenue $96.22B vs. $92.37B est. (beat), and Q3 guidance of
+    $108B came in above consensus. Amazon and Nvidia jointly announced AWS will buy
+    2 million Nvidia GPUs plus Nvidia's new Vera CPU — a fresh demand data point
+    that also reinforces the AMZN/AWS thesis. YoY revenue growth decelerated from
+    106% to a still-guided high-80s% for Q3, which caused some initial share
+    softness (stock -1.3% today, $225.00 vs. Wednesday's $227.98) — read this as
+    normal deceleration off a triple-digit base with guidance still raised in
+    absolute dollar terms, not the "clearly rolls over" scenario the invalidation
+    trigger specifies. Thesis strengthened, not broken. Holding, no action (and not
+    a chase candidate to add to today given the stock is down, not up, post-print).
+  - **LIN** (-7.1% from cost): price $488.08 still ~3.4% below its 50-day SMA
+    ($505.15), RSI 44.3 (down slightly from 48.6 at Cycle 16) — technicals have not
+    confirmed a turn; fundamentals unchanged since the Cycle 16 read (record
+    backlog, raised FY26 guide). Not adding, per the standing rule.
+  - **CAT** (watchlist, exited Cycle 7): $805.62, still ~10.2% below its 50-day SMA
+    ($897.02) — the slide is now in its 10th week since the reversed Aug-4 earnings
+    thesis. Not a re-entry.
+  - **AMT** (+1.0% from cost): price $176.17 vs. 50-day SMA $171.15 (+2.9% above) —
+    breakout still holding since the Cycle 14 buy. No action needed.
+  - **NEE** (-8.1%, largest laggard): confirmed via web news the drawdown reads as
+    sector-wide, not company-specific — utilities broadly have softened this month
+    as the 10-year Treasury pushed to a 20-month high (~4.75%), and a Benzinga
+    screen this week flagged NEE among 118 mega-caps yielding less than the 10-year
+    (routine for a growth utility, not new information). Positively, a fresh
+    Benzinga piece (8/24) on the AI power-demand buildout named NEE as a top
+    holding in a new AI-ecosystem ETF (DEPW) alongside Google and Broadcom,
+    reinforcing the Paducah/data-center-power thesis; Morgan Stanley kept
+    Overweight (PT trimmed slightly $116→$114), DBS raised its target ($85→$90).
+    No setback, thesis intact — this is rate-driven valuation drift, not
+    deterioration. Holding, no trim.
+  - **PLD** (-5.1%): no new developments found since Cycle 16 (SEGRO deal and its
+    funding offering both already closed as planned). Thesis intact, holding.
+  - **HD** (watchlist, Cycle 14): no new report since the 8/18 print reviewed last
+    cycle (reaffirmed-not-raised FY26 guidance for a second straight quarter).
+    Still doesn't clear the bar; stays on watchlist (4 cycles watched).
+  - **WM** (watchlist, Cycle 13): not re-checked since Cycle 13 — now 4 cycles of
+    inactivity with no thesis change. Per the stale-watchlist rule, **dropped from
+    the watchlist this cycle.**
+**Thesis / notes:** Still 13 positions, cash $35.64/$1,036.65 (3.4%), inside the
+2-5% target band but genuinely too small in dollar terms to fund a new position —
+the third straight cash-constrained cycle. No earnings due on any holding in the
+next 10 days (checked via the market-wide calendar). Concentration check: largest
+single name MSFT at 10.6% (in-target, nowhere near the 15% trim trigger); AI/cloud
+theme (NVDA+MSFT+AMZN+GOOGL) at 32.9% (up modestly from 31.8% on today's tech
+rally, still under the 40% cap — the thing to keep watching given NVDA's guide
+just reinforced the theme rather than cooling it); "Finance"-tagged REIT/payments
+cluster (PLD+V+AMT) at 18.3%, well under the 35% sector cap. Watchlist now 5 names:
+CQP (3 cycles, 20/25, top unfunded candidate), PGR (new, 20/25, joins CQP as an
+equally-qualified unfunded candidate), CAT (17 cycles, technicals still broken), HD
+(4 cycles, reaffirmed guidance twice running), DE (2 cycles, 18/25, weaker of the
+three funded-quality candidates). Honest read: the unfunded-candidate backlog is
+now two names deep at the same 20/25 score (CQP, PGR) with no over-cap position to
+trim — if a fourth or fifth cycle passes the same way, the deliberate choice next
+time should be a small, reasoned trim of the *weakest* `why_not_voo` among the
+sub-target singles (candidates: GOOGL's already-priced-in AI optimism, or NEE's
+rate-driven drift) to fund the stronger of the two queued ideas, rather than
+letting a growing backlog of good, scored ideas sit idle indefinitely — but that is
+a call for a future cycle with fresh eyes, not a forced decision today. Watch next
+cycle: whether cash finally clears enough (via dividend accruals — PGR and several
+holdings pay quarterly) to fund CQP or PGR; LIN for a confirmed SMA close; CAT for
+the slide to finally stop; AI/cloud theme drift toward the 40% cap.
+
+---
+
+## Cycle 18 — 2026-09-01 (Tuesday)
+**Portfolio:** $1,019.33 total | $35.64 cash (3.5%) | 13 positions: VOO 17.6% (-0.6%),
+NVDA 7.9% (+2.8%), MSFT 10.4% (+18.1%), AMZN 9.4% (+0.7%), GOOGL 4.6% (-6.1%),
+LLY 5.0% (+2.0%), XOM 5.5% (+12.8%), NEE 4.5% (-7.4%), LIN 4.5% (-7.7%),
+PLD 4.6% (-6.7%), V 4.5% (+3.4%), AMT 9.4% (+0.5%), UNP 8.6% (-2.2%) (all vs. avg
+cost, intraday prices)
+**vs SPY since inception:** portfolio +1.93% | SPY +1.57% (SPY $762.88 vs. inception
+$751.07 on 2026-07-14) | gap +0.36 pts (valve: ok, not tripped — nowhere near the
+-8pt trigger; 10 logged cycles all within a roughly -0.6/+1.2pt band)
+**Realized P&L to date:** +$6.84 (confirmed via broker, all-time, 8 closing trades,
+unchanged — no sells this cycle)
+**Lesson from last cycle:** Cycle 17 flagged GOOGL's "already-priced-in AI
+optimism" and NEE's "rate-driven drift" as the most likely trim-to-fund candidates
+if the cash-constrained streak continued. Checking both closely this cycle, neither
+holds up: GOOGL remains inside the intact, working AI/cloud thesis, and NEE's
+drift was actively reinforced this week (Morgan Stanley/DBS price-target raises, a
+new Benzinga power-bottleneck piece naming NEE alongside CEG/VST as a structural
+AI-power-demand beneficiary). The real lesson: the backlog isn't a cash problem to
+solve by trimming *any* laggard — it needs an actual broken thesis, and there
+wasn't one to find.
+**Market read:** Market open (~11:10 ET). SPY $762.88, -0.55% vs. Friday's close
+($767.05, Monday 8/31 was Labor-Day-eve but a normal session; no session Mon-Tue
+gap issue) — a broad, macro-driven risk-off session, not stock-specific: the 10-year
+Treasury yield hit a 20-month high (~4.79%), Brent crude +4.8% and WTI +2.8% on
+inflation/geopolitical concerns (Strait of Hormuz shipping incident), and Nasdaq
+futures were down ~1.2% pre-bell vs. S&P's ~0.6% — tech/semis bore the brunt
+(NVDA -1.5%, AMZN -1.6%, Micron -2%+) of a rates/commodities move, not an
+AI-demand or company-specific issue. Reconciled broker vs. state.json before
+trading: all 13 positions, $35.64 cash, $35.64 buying power, +$6.84 realized P&L
+all-time — matched exactly, no discrepancies, no open/resting orders, no watchdog
+alerts found since Cycle 17.
+**Candidates screened this cycle:**
+- **CEG (Constellation Energy)** — quality 4 (largest U.S. nuclear fleet, structurally
+  advantaged for AI/data-center power PPAs), valuation 4 (PE ~26.8x but ~34% off its
+  Oct-2025 52-wk high of $412.70, de-rated on power-market/regulatory jitters),
+  trend 3.5 (price ~$271 vs. 50-day SMA $264.98, +2.3% above, RSI 53.2 — a fragile
+  early uptrend off the July low, not confirmed), catalyst 4 (named today alongside
+  NEE in BlackRock's "AI bottleneck" power thesis and in a fresh Benzinga
+  power-demand piece — AI electricity demand projected +1,100% by 2033), fit 2
+  (this is the same Utilities/AI-power-demand theme the portfolio already owns via
+  NEE, and NEE has actually outperformed CEG this year — +3.36% YTD vs. CEG's
+  -25.49% YTD — while capturing the identical catalyst with a more diversified,
+  regulated-utility risk profile) = **17.5/25 — declined,** primarily on fit:
+  redundant exposure to an already-held theme, not a genuinely new view.
+- **MU (Micron)** — quality 4 (essential HBM supplier to Nvidia's Vera Rubin
+  platform, oligopoly memory market with Samsung/SK Hynix, all three at capacity),
+  valuation 4 (PE ~21.7x trailing against guided Q4 revenue ~$50.8B, up from $11.3B
+  a year ago — the growth-adjusted multiple looks cheap), trend 3 (price ~$940-958
+  vs. 50-day SMA $951.50 — roughly flat/rangebound, down ~25% off its June 52-wk
+  high of $1,255 on tariff/macro jitters, RSI 53.5 neutral, no confirmed breakout),
+  catalyst 4 (Sept-30 earnings expected to show explosive AI-memory-driven growth;
+  a Taiwan union strike threat over bonus pay is a near-term supply-tightening risk
+  that could support pricing further), fit 3 (a genuinely distinct
+  memory/HBM-scarcity angle vs. NVDA's compute thesis, but still squarely inside
+  the AI-infrastructure trade the portfolio is already at 32.3% theme exposure to)
+  = **18/25 — clears the bar on score alone, but declined on portfolio-construction
+  grounds:** the book already holds 13 positions (12 single names), two over the
+  8-10 single-name target band, so a new buy needs a vacated slot, not just a
+  passing score — and MU would push AI-adjacent theme concentration higher still.
+**Actions:**
+- No trades. Reconciliation was clean and no invalidation trigger fired on any of
+  the 13 holdings — today's -0.55% SPY move and the outsized tech/semis weakness
+  (NVDA/AMZN/MSFT/GOOGL all down 1-3% intraday) reads as a broad rates/commodities
+  repricing (20-month-high 10Y yield, surging oil), not a break in any single
+  thesis. Re-checked the four largest laggards: GOOGL (-6.1%, AI/cloud thesis
+  intact, no new negative catalyst), NEE (-7.4%, reinforced this week by analyst PT
+  raises and a fresh AI-power-bottleneck feature naming it a structural
+  beneficiary), LIN (-7.7%, price $484.74 still ~3.9% below its 50-day SMA $504.17,
+  RSI 46.5 — fundamentals-strong/technicals-lagging pattern unchanged, not adding),
+  PLD (-6.7%, RBC reiterated its post-SEGRO data-center-platform upgrade, Wells
+  Fargo held Overweight today — thesis intact). No holding reports earnings in the
+  next ~3 weeks (checked the market-wide calendar).
+- **Resolving the cash-constrained-backlog question raised at Cycle 17:** explicitly
+  decided **not** to force a trim-to-fund swap this cycle. The correct diagnosis,
+  on inspection, isn't "too little cash" — it's that position count (13, 12 single
+  names) is already **two above** the 8-10 single-name target band from the
+  restructure mandate. Buying CQP or PGR without an offsetting exit would push
+  further from the concentration target, not closer to it, regardless of how the
+  cash percentage reads. And the specific trim candidates Cycle 17 floated (GOOGL,
+  NEE) both checked out fine this cycle — no broken thesis to justify cutting
+  either just to make room. The rule ("cut losers, don't average down, exit when
+  thesis breaks") doesn't authorize selling a healthy holding purely to fund a new
+  idea. CQP and PGR stay queued on the watchlist, genuinely qualified (both 20/25)
+  and waiting for either (a) an actual invalidation trigger freeing a slot, or (b)
+  cash building further via dividend accruals/appreciation toward a real
+  ~$90-110 tranche without breaching the 2-5% floor.
+**Thesis / notes:** Still 13 positions, cash $35.64/$1,019.33 (3.5%, inside the
+2-5% target band). Concentration check: largest single name MSFT at 10.4%
+(in-target, well under the 15% trim trigger); AI/cloud theme (NVDA+MSFT+AMZN+GOOGL)
+at 32.3% (down slightly from 32.9% on today's tech-led pullback, still under the
+40% cap); "Finance"-tagged REIT/payments cluster (PLD+V+AMT) at 18.4%, well under
+sector caps. Watchlist: CQP (4 cycles, 20/25), PGR (2 cycles, 20/25), CAT (18
+cycles, still ~10%+ below its 50-day SMA), HD (5 cycles, twice-reaffirmed
+guidance), DE (3 cycles, 18/25, valuation the weak link). Honest read: the backlog
+is not evidence of indecision — it's what a genuinely full, at-target book looks
+like when good ideas keep clearing the bar faster than slots open up. The right
+next move is patience for a real trigger (an invalidation firing, or organic cash
+buildup), not manufacturing one. Watch next cycle: whether the 10-year yield/oil
+move here is the start of a sustained macro headwind (worth re-checking bond
+yields and the AI/cloud theme's resilience) or a one-day blip; LIN for a confirmed
+SMA close; CAT's now-18-week slide for any sign of stopping; PGR's/several
+holdings' upcoming dividend accruals as the more organic path to funding the
+backlog.
+
+---
+
+## Cycle 19 — 2026-09-04 (Friday)
+**Portfolio:** $1,024.22 total | $36.41 cash (3.6%) | 13 positions: VOO 17.6% (+0.3%),
+NVDA 8.4% (+9.8%), MSFT 10.4% (+18.3%), AMZN 9.4% (+1.2%), GOOGL 4.6% (-5.7%),
+LLY 4.9% (-0.4%), XOM 5.4% (+11.2%), NEE 4.6% (-6.4%), LIN 4.5% (-8.4%),
+PLD 4.5% (-7.4%), V 4.4% (+2.5%), AMT 9.3% (+0.7%), UNP 8.5% (-3.5%) (all vs. avg
+cost, intraday prices)
+**vs SPY since inception:** portfolio +2.42% | SPY +2.47% (SPY $769.63 vs. inception
+$751.07 on 2026-07-14) | gap -0.05 pts (valve: ok, not tripped — 10 logged cycles
+(10-19) all within a roughly -0.55/+1.23pt band, nowhere near the -8pt trigger)
+**Realized P&L to date:** +$6.84 (confirmed via broker, all-time, 8 closing trades,
+unchanged — no sells this cycle)
+**Lesson from last cycle:** Cycle 18 resolved the multi-cycle backlog as a
+position-count problem, not a cash problem, and declined to manufacture a trim.
+That diagnosis held again this cycle even as the backlog got objectively stronger —
+MDT screened at 22/25, clear of everything else in the queue — because every one
+of the 12 current singles sits at or below its target weight (nothing over-cap to
+trim) and none has a broken thesis. The real lesson: a strengthening pipeline of
+qualified ideas against a full, healthy book isn't a signal to force a sale — it's
+information worth surfacing to the owner, since resolving it now requires either
+loosening the position-count band or accepting a deliberate full-exit trade,
+neither of which this agent should do unilaterally on discretion alone.
+**Market read:** Market open (~11:09 ET). SPY $769.63, -0.46% vs. Thursday's close
+($773.17) on a mixed pre-bell session — August nonfarm payrolls beat sharply
+(+162K vs. +55K est.), unemployment held at 4.1%, S&P/Dow futures slipped modestly
+while Nasdaq futures gained ~0.5%. This follows a Wednesday-Thursday rally after
+Fed Governor Waller signaled openness to a September rate hold, pulling the 10-year
+Treasury yield off its 20-month high of 4.81% back to ~4.75-4.79%. Reconciled
+broker vs. state.json before trading: all 13 positions, $36.41 cash, $36.41 buying
+power, +$6.84 realized P&L all-time, zero orders placed since Cycle 18 (9/1) —
+matched exactly, no discrepancies, no watchdog alerts found.
+**Candidates screened this cycle:**
+- **MDT (Medtronic)** — quality 4 (diversified medtech leader across
+  Cardiovascular/Neuroscience/Med-Surg/Diabetes; Q1 FY27 broad-based beat, revenue
+  $9.756B vs. $9.548B est., adj. EPS $1.45 vs. $1.39 est., gross margin expanded to
+  65.2% vs. 64.8% est.; new $700M Cornerstone Robotics surgical-robotics
+  partnership), valuation 4 (PE ~22.9x, 3.06% dividend yield, still ~12% below its
+  52-wk high of $106.33 — not stretched), trend 4 (price $93.95 vs. 50-day SMA
+  $86.46, +8.7% above; RSI 61.5, bullish but not overbought; 4 sell-side PT raises
+  in the 2 days since the print — UBS $100->$110, Daiwa $95->$108, JPMorgan
+  $86->$96, plus BTIG/RBC/Needham on the print itself), catalyst 5 (FY27 organic
+  revenue guidance raised to 7.25-7.75% from 6.75-7.25%, ~50bps above consensus;
+  management called the raise conservative, with room for further upside), fit 5
+  (genuinely new Health Technology/medical-devices exposure — the book has zero
+  medtech today, and this is a distinct growth-inflection story from LLY's GLP-1
+  pharma thesis) = **22/25 — clears the bar decisively, the highest score screened
+  since UNP/AMT at Cycle 14, but declined on portfolio-construction grounds:** no
+  open slot (13 positions, 12 singles, already 2 over the 8-10 target band), and no
+  invalidation trigger has fired on any current holding to free one.
+- **CRWD (CrowdStrike)** — quality 4 (category-leading cloud-native endpoint
+  security; raised long-term TAM to $565B by 2034 and pulled its $10B/$20B ARR
+  targets forward a year at this week's Fal.Con analyst day), valuation 2 (PE
+  ~6,021x, P/B ~43x — priced for perfection on any traditional metric), trend 3
+  (price $215.37, +7.7% above its 50-day SMA $199.94, RSI 54 neutral, but the stock
+  is up double digits this week — +4.3% Wednesday alone — on the Fal.Con news,
+  which reads as chasing a fresh spike more than a clean entry), catalyst 4 (FY28
+  guidance of 20%+ net-new-ARR growth, above consensus; multiple analyst PT raises
+  this week — Scotiabank $250->$265, Roth $200->$220), fit 2 (framed by Wall Street
+  commentary this week explicitly as an "AI winner" alongside Snowflake/Palantir —
+  still squarely inside the AI-capex trade the book is already at 32.75% exposure
+  to via NVDA/MSFT/AMZN/GOOGL, not a genuinely uncorrelated theme) = **15/25 —
+  declined:** valuation is stretched, the fit is AI-theme-adjacent rather than
+  distinct, and the entry timing chases a week-long pop that runs against the
+  execution rule's spirit of not buying into outsized recent spikes.
+**Actions:**
+- No trades. Reconciliation was clean and no invalidation trigger fired on any of
+  the 13 holdings. The most notable development was **NEE**: both NEE and Dominion
+  Energy shareholders formally approved their $67B stock-for-stock merger this week
+  (99.47% of NEE votes cast in favor per 2026-09-04 regulatory filings; NEE
+  shareholders also approved raising authorized shares to 5B from 3.2B to fund the
+  deal) — a concrete de-risking step, with only remaining VA/NC/SC/FERC/NRC
+  regulatory approvals left before close. NEE is -6.4% from cost (improved from
+  -7.4% at Cycle 18), still reading as rate-driven (10Y yield near 20-month highs)
+  rather than company-specific. LIN (-8.4%, price $481.35 still ~4.2% below its
+  50-day SMA $502.41, Evercore reiterated Outperform with a raised PT) and PLD
+  (-7.4%, price $138.16 ~2.8% below its 50-day SMA $142.14, Wells Fargo reaffirmed
+  Overweight PT $166, quarterly dividend held at $1.07/share) both show the same
+  fundamentals-strong/technicals-lagging pattern as prior cycles — not adding,
+  theses intact. GOOGL (-5.7%) has no new negative catalyst. No holding reports
+  earnings in the next 3 weeks (confirmed via the market-wide high-market-cap
+  earnings calendar).
+- **The unfunded-candidate backlog is now three names deep** (MDT 22/25, CQP 20/25,
+  PGR 20/25) and, unlike Cycles 15-18, the newest entrant is meaningfully stronger
+  than what's already queued rather than merely tying it. Examined whether this
+  changes the Cycle 18 conclusion: it doesn't, on the same grounds — every one of
+  the 12 current single-name holdings sits at or below its ~9-11% target weight
+  (nothing above the 15% trim trigger to shave), and none has a broken thesis, so
+  there is no clean "trim the excess" or "cut the loser" lever available under the
+  strategy's own rules (rule 7 authorizes exits on broken theses, not on a better
+  idea showing up elsewhere). Funding MDT would require a full exit of a healthy
+  position purely to make room, which this agent is declining to do unilaterally.
+  Flagging this explicitly in STATUS.md Alerts for owner attention: the research
+  process is now producing qualified ideas faster than the 8-10 single-name band
+  can absorb without either a genuine invalidation or a deliberate policy call.
+**Thesis / notes:** Still 13 positions, cash $36.41/$1,024.22 (3.6%, inside the
+2-5% target band). Concentration check: largest single name MSFT at 10.4%
+(in-target, well under the 15% trim trigger); AI/cloud theme (NVDA+MSFT+AMZN+GOOGL)
+at 32.75% (roughly flat vs. Cycle 18's 32.3%, still under the 40% cap);
+"Finance"-tagged REIT/payments cluster (PLD+V+AMT) at 18.27%, well under sector
+caps. Watchlist now 6 names: MDT (new, 22/25, top of queue), CQP (5 cycles, 20/25),
+PGR (3 cycles, 20/25), CAT (19 cycles, still below its 50-day SMA), HD (6 cycles,
+twice-reaffirmed guidance), DE (4 cycles, 18/25, valuation the weak link). Watch
+next cycle: whether NEE's merger clears its remaining regulatory approvals; LIN and
+PLD for a confirmed SMA close; whether cash builds further via dividend accruals;
+and — the more consequential open question — whether the owner wants to revisit
+the 8-10 single-name band now that three straight 20+/25 ideas are queued against
+a full, healthy book with no natural exit in sight.
+
+## Cycle 20 — 2026-09-08 (Tuesday)
+**Portfolio:** $1,019.22 total | $36.41 cash (3.6%) | positions: VOO (0.2551 @ $705.55,
++0.0%), NVDA (0.3682 @ $211.83, +7.4%), MSFT (0.2125 @ $423.55, +16.3%), AMZN (0.3763
+@ $252.48, +1.6%), GOOGL (0.1396 @ $358.28, -5.8%), LLY (0.0436 @ $1147.97, -1.5%),
+XOM (0.3460 @ $144.52, +10.9%), NEE (0.5585 @ $89.53, -6.2%), LIN (0.0952 @ $525.46,
+-10.3%), PLD (0.3353 @ $149.12, -7.6%), V (0.1207 @ $364.54, +1.6%), AMT (0.5446 @
+$174.44, +2.1%), UNP (0.2975 @ $302.55, -4.0%)
+**vs SPY since inception:** portfolio +1.92% | SPY +2.21% | 10-cycle gap: -0.29 pts
+(valve: ok, well inside the -8pt threshold)
+**Realized P&L to date:** $6.84
+**Lesson from last cycle:** Cycle 19's flag-and-hold call was validated by a quiet
+week — no thesis breaks, no forced errors — but the backlog kept growing instead of
+resolving, which is itself informative (see this cycle's lesson below).
+**Market read:** Broad, mild pullback the first trading day back from the Labor Day
+holiday — SPY $767.64 (-0.33% vs. Friday's $770.19), most AI/mega-cap names (NVDA,
+MSFT, LLY, V, LIN) down 1-2% intraday with no single identifiable catalyst; reads as
+routine consolidation after last week's jobs-report/Fed-hold rally rather than a
+regime change. Reconciled clean before trading: 13 positions, $36.41 cash, $36.41
+buying power, +$6.84 realized P&L all-time, zero orders since Cycle 18 (9/1) —
+broker matched state.json exactly, no discrepancies, no watchdog alerts.
+**Candidates screened this cycle:**
+- **ABBV (AbbVie)** — quality 4 (post-Humira growth engine Skyrizi+Rinvoq scaling
+  well past a combined $20B run-rate; active pipeline replenishment via M&A, incl.
+  the $10.9B Apogee Therapeutics acquisition that closed 9/3, adding immunology/
+  dermatology assets), valuation 3 (headline GAAP PE ~72.5x looks rich but is
+  distorted by one-time acquired-IPR&D charges — Q1 net margin dropped to 4.6% vs.
+  Q2's 21.3% purely on the Apogee charge; 2.66% dividend yield; a clean forward/
+  adjusted-EPS multiple needs verification next time this name is revisited),
+  trend 4 (price ~$253, only ~5.4% below its 7/29 52-wk high of $267.47; BofA
+  raised its PT to $282 from $276 today, part of a string of recent PT raises),
+  catalyst 4 (positive Phase 3 CERVINO data for multiple myeloma drug etentamig —
+  74% objective response rate vs. 45.7% for standard-of-care; the closed Apogee
+  deal expands the pipeline), fit 4 (genuinely new pharma sub-thesis — zero overlap
+  with LLY's GLP-1/incretin franchise, first immunology/oncology exposure in the
+  book) = **19/25 — clears the bar, but declined on portfolio-construction
+  grounds:** no open slot (13 positions, 12 singles, still 2 over the 8-10 target
+  band), no invalidation trigger freed one this cycle. Added to the watchlist.
+- **COST (Costco)** — quality 5 (best-in-class membership-warehouse flywheel,
+  exceptional customer loyalty, no debate on business quality), valuation 2 (PE
+  ~46.1x, near the high end of its historical range for a low-single-digit-margin
+  retailer), trend 2 (price ~$914, ~16.6% below its 5/19 52-wk high of $1096.50;
+  UBS this week described sentiment toward hardline retailers, Costco included, as
+  "apathy, caution, and chagrin" amid a live debate over comp-sales deceleration
+  vs. stabilization), catalyst 2 (next earnings 9/24 could resolve the debate
+  either way, but no clear positive catalyst exists today — Bernstein just trimmed
+  its PT to $1,144 from $1,194), fit 3 (would be genuinely new consumer-staples
+  exposure, a sector gap in the book, but sector-gap-filling is a tiebreaker, not
+  a reason to buy per STRATEGY.md) = **14/25 — declined:** valuation is stretched
+  precisely where the growth debate is live and unresolved; revisit only if the
+  9/24 print delivers a clean re-acceleration or the multiple compresses further.
+**Actions:**
+- No trades. Reconciliation was clean and no invalidation trigger fired on any of
+  the 13 holdings. NEE: Dominion Energy shareholders also gave formal consent to
+  proceed with the $67B merger (per 9/4 filings, alongside NEE's own 99.47%
+  approval already logged at Cycle 19); separately NEE and the DOE agreed to a
+  combined conditional commitment of up to $1.9B to restart the 615MW Duane Arnold
+  nuclear plant in Iowa by Q1 2029 — an unrelated but reinforcing power-generation-
+  growth data point. LIN got a Deutsche Bank Buy reiteration ($575 PT, calling for
+  a return to 10%+ EPS growth starting 2027) but price ($471.43) is still ~6.0%
+  below its 50-day SMA ($501.51), a bit wider than Cycle 19's -4.2% gap — not
+  adding, thesis intact but technicals not yet confirmed. PLD held its $1.07/share
+  dividend; Wells Fargo trimmed its PT by $1 to $166 (immaterial), price ~3.0%
+  below its 50-day SMA. CAT remains ~5.3% below its 50-day SMA, still no confirmed
+  turn — not a re-entry. GOOGL thesis intact, no new negative catalyst.
+- **The unfunded-candidate backlog is now four names deep** (MDT 22/25, ABBV
+  19/25, CQP 20/25, PGR 20/25) — the fourth consecutive cycle this has been
+  flagged. The construction math hasn't changed: every one of the 12 current
+  single-name holdings sits at or below its ~9-11% target weight with an intact
+  thesis, so there is no over-cap position to trim and no broken thesis to exit —
+  only a full exit of a healthy holding would free a slot, which this agent
+  continues to decline to do unilaterally (STRATEGY.md rule 7 authorizes exits on
+  broken theses, not on a better idea appearing elsewhere). This is flagged again
+  in STATUS.md Alerts, now explicitly as a repeat, standing issue for owner
+  attention rather than a fresh finding.
+**Thesis / notes:** Still 13 positions, cash $36.41/$1,019.22 (3.6%, inside the
+2-5% target band but too few dollars to fund anything). Concentration check:
+largest single name MSFT ~10.3% (in-target, well under the 15% trim trigger);
+AI/cloud theme (NVDA+MSFT+AMZN+GOOGL) ~32.6% (roughly flat vs. Cycle 19's 32.75%,
+still under the 40% cap); Finance-tagged (PLD+V+AMT) cluster ~18.4%, well under
+sector caps. Watchlist now 7 names: MDT (2 cycles, 22/25, top of queue), ABBV (new,
+19/25), CQP (6 cycles, 20/25), PGR (4 cycles, 20/25), CAT (20 cycles, still below
+its 50-day SMA), HD (7 cycles, twice-reaffirmed guidance), DE (5 cycles, 18/25,
+valuation the weak link). Watch next cycle: whether LIN or PLD confirm a close back
+above their 50-day SMAs; whether NEE's merger clears remaining regulatory approvals;
+whether cash builds via dividend accruals; and the now-standing question of whether
+the owner wants to revisit the 8-10 single-name band given four straight cycles of
+qualified candidates piling up against a full, healthy book.
+
+## Cycle 21 — 2026-09-11 (Friday)
+**Portfolio:** $1,013.43 total | $36.59 cash (3.6%) | positions: VOO (0.2551 @ $705.55,
+-0.3%), NVDA (0.3682 @ $211.83, +4.0%), MSFT (0.2125 @ $423.55, +16.7%), AMZN (0.3763
+@ $252.48, +1.3%), GOOGL (0.1396 @ $358.28, -4.7%), LLY (0.0436 @ $1147.97, -2.5%),
+XOM (0.3460 @ $144.52, +13.9%), NEE (0.5585 @ $89.53, -8.0%), LIN (0.0952 @ $525.46,
+-11.6%), PLD (0.3353 @ $149.12, -9.2%), V (0.1207 @ $364.54, +1.5%), AMT (0.5446 @
+$174.44, +2.0%), UNP (0.2975 @ $302.55, -6.2%)
+**vs SPY since inception:** portfolio +1.34% | SPY +1.87% | gap: -0.53 pts
+(valve: ok, well inside the -8pt threshold)
+**Realized P&L to date:** $6.84
+**Lesson from last cycle:** Cycle 20's flag-and-hold call was validated again, and
+the repeat-flag pattern itself needed a check: is the agent re-litigating the same
+finding without new information? This cycle answers that directly (see below).
+**Market read:** SPY $765.11, up +0.96% intraday but still below Tuesday's $767.64
+close — a Wed/Thu risk-off wobble (Adobe's soft FQ4 revenue guide despite an EPS
+beat, a broad Nasdaq/S&P selloff Thursday per multiple names' technical write-ups)
+partly reversed today. Most AI-theme holdings were up strongly intraday (NVDA +3.9%,
+GOOGL +2.7% on a Blackstone-expands-Google-TPU-spend report, AMZN +1.5%, AMT +2.9% on
+a Barclays upgrade carried over from 8/20 plus a routine $1.6B notes offering).
+Reconciled clean before trading: 13 positions, $36.59 cash (up only $0.18 from
+Cycle 20 — minor dividend accrual, no trades since 9/1), $36.59 buying power, +$6.84
+realized P&L all-time, broker matched state.json exactly on every ticker/quantity/
+avg-cost with zero discrepancies, no watchdog alerts.
+**Candidates screened this cycle:**
+- **WMT (Walmart)** — quality 5 (dominant retail/membership flywheel, resilient
+  business), valuation 2 (PE ~38.3x, near the high end of its historical range for a
+  low-single-digit-margin retailer), trend 2 (price ~$106.5 below its 50-day SMA
+  $110.36, RSI 42.5 neutral-bearish; Kroger cut its FY26 comp-sales outlook this
+  morning citing industry-wide softness, and last month's WMT print itself showed
+  comps decelerating more than expected on a pharmacy headwind), catalyst 2 (no
+  positive catalyst identified — a minor Papa John's delivery partnership is not
+  thesis-moving), fit 3 (would add genuine consumer-staples exposure, a real sector
+  gap, but STRATEGY.md treats sector-gap-filling as a tiebreaker, not a reason to
+  buy) = **14/25 — declined:** rich valuation precisely where industry-wide comp
+  growth is decelerating, weak trend, no catalyst.
+- **UNH (UnitedHealth)** — quality 3 (historically a managed-care leader, but 2026
+  has been turbulent — sold an Optum Health Florida asset interest to TPG this week,
+  continued post-guidance-reset uncertainty), valuation 4 (PE ~25.0x, well off its own
+  historical highs and ~15% below its 52-wk high $461.62, 2.3% dividend yield —
+  genuinely cheap by its own history), trend 1 (price ~$385-391, well below its
+  50-day SMA $410.12, RSI 40.5, a wide intraday range today consistent with continued
+  selling pressure), catalyst 2 (asset divestitures read as defensive restructuring,
+  not a clear positive), fit 4 (would be genuinely new managed-care/health-services
+  exposure, distinct from LLY's GLP-1 pharma thesis) = **14/25 — declined:** even
+  under the contrarian-entry exception (trend=1 doesn't auto-veto if quality>=4 AND
+  valuation>=4 AND total>=18), quality here is only 3 — fails that bar too, not just
+  the ordinary 18/25 threshold.
+**Actions:**
+- No trades. Reconciliation was clean and no invalidation trigger fired on any of the
+  13 holdings; reviewed news for all 13 plus CAT. LLY completed its small AtaiBeckley
+  bolt-on acquisition (mental-health neuroplastogen pipeline, incremental to but not
+  central to the GLP-1 thesis). V, Mastercard, and Ant International announced a
+  "Know-Your-Agent" interoperability framework to verify AI agents in payments —
+  reinforces the network-effect payments-moat thesis as agentic commerce scales; an
+  insider sale (General Counsel, ~$688K) was routine and immaterial. LIN's technical
+  gap to its 50-day SMA widened again (-6.8% vs. Cycle 20's -6.0%; Benzinga flagged
+  it among the most oversold materials names this week, RSI ~29) even as Deutsche
+  Bank's Buy/$575 PT reiteration (9/4) stands — fundamentals intact, chart still not
+  confirmed, not adding. PLD's gap also widened slightly (-4.6% vs. -3.0%); SEGRO
+  deal progressing normally (a Benzinga structural piece on post-merger dividend
+  coverage math raised no red flag — Prologis itself expects broadly neutral-to-
+  minimally-dilutive per-share impact). CAT improved slightly (-4.7% vs. -5.3%) but
+  still no confirmed close above its 50-day SMA — not a re-entry. NVDA's CEO publicly
+  rebutted "circular financing" concerns at a Goldman conference (a live bear-case
+  debate to keep watching, not new information this cycle). GOOGL got a incremental
+  positive (Blackstone reportedly expanding Google TPU purchases well beyond its
+  initial $5B JV commitment). No holding reports earnings through 2026-10-01.
+- **The unfunded-candidate queue held steady at four names** (MDT 22/25, ABBV 19/25,
+  CQP 20/25, PGR 20/25) — the fifth consecutive cycle this has been flagged, but for
+  the first time since Cycle 17 the queue didn't grow: both fresh candidates screened
+  this cycle (WMT, UNH) declined outright on their own merits (rich valuation and weak
+  trend for WMT; cheap-but-mediocre-quality for UNH, failing even the contrarian bar),
+  so this cycle never reached the trim-vs-hold construction question at all. The
+  construction math is unchanged from Cycles 18-20: every one of the 12 current
+  single-name holdings sits at or below its ~9-11% target weight with an intact
+  thesis, so there is still no over-cap position to trim and no broken thesis to
+  exit. Flagged again in STATUS.md Alerts as a standing issue, but kept brief — no new
+  information this cycle means no new argument to make; the discipline holds by
+  default until either an invalidation trigger opens a real slot or the owner
+  revisits the position-count band.
+**Thesis / notes:** Still 13 positions, cash $36.59/$1,013.43 (3.6%, inside the 2-5%
+target band but too few dollars to fund anything). Concentration check: largest
+single name MSFT ~10.4% (in-target, well under the 15% trim trigger); AI/cloud theme
+(NVDA+MSFT+AMZN+GOOGL) ~32.6% (flat vs. Cycle 20, still under the 40% cap);
+Finance-tagged (PLD+V+AMT) cluster ~18.5%, well under sector caps. Watchlist still 7
+names: MDT (3 cycles, 22/25, top of queue), ABBV (2 cycles, 19/25), CQP (7 cycles,
+20/25), PGR (5 cycles, 20/25), CAT (21 cycles, still below its 50-day SMA), HD (8
+cycles, twice-reaffirmed guidance), DE (6 cycles, 18/25, valuation the weak link).
+Watch next cycle: whether LIN or PLD confirm a close back above their 50-day SMAs
+(LIN's gap is now wide enough, and RSI low enough, to be worth checking for a
+bounce); whether NEE's merger clears remaining regulatory approvals; and the
+still-standing question of whether the owner wants to revisit the 8-10 single-name
+band — unchanged from Cycle 20, just not urgent this particular cycle since nothing
+new joined the queue.
+
+---
+
+## Cycle 22 — 2026-09-15 (Tuesday)
+**Portfolio:** $1,009.37 total | $36.68 cash (3.6%) | 13 positions: VOO -1.4%,
+NVDA +0.2%, MSFT +18.3%, AMZN -1.5%, GOOGL -3.9%, LLY -0.6%, XOM +16.2%,
+NEE -9.3%, LIN -12.2%, PLD -9.4%, V +2.5%, AMT +2.1%, UNP -6.1% (all vs. avg cost,
+intraday prices)
+**vs SPY since inception:** portfolio +0.94% | SPY +0.79% (SPY $757.02 vs. inception
+$751.07 on 2026-07-14) | gap: +0.15 pts (valve: ok, not tripped — trailing gaps were
+-0.19/-0.55/-0.08/-0.55/+1.24/+2.14/+0.57/+0.79/-0.29/-0.53/+0.15 pts at cycles
+10-22)
+**Realized P&L to date:** +$6.84 (confirmed via broker, all-time, 8 closing trades,
+unchanged this cycle)
+**Lesson from last cycle:** Cycle 21's discipline (declining `WMT`/`UNH` outright,
+no chase, no forced trim) meant no fresh capital was sitting in tech when Monday's
+(9/14) AI-safety-driven selloff hit — Anthropic's CEO called for slowing AI model
+development, OpenAI's Altman confirmed no 2026 IPO, and semis fell ~5-6% intraday.
+The diversified non-AI sleeve (XOM +1.8% today, AMT +0.6%, UNP roughly flat)
+cushioned the portfolio through that session — confirms the correlated-theme cap
+is doing real work, not just a paperwork constraint.
+**Market read:** Market open (~11:07 ET). SPY $757.02, -0.51% vs. Friday's close
+($760.88) — tape still soft after Monday's broad tech/semis selloff (XLK -1.8%,
+semis -5.8% Monday) driven by AI-industry-safety headlines (Amodei call to slow
+model development, Altman's no-2026-IPO comment, hyperscalers reportedly
+restricting rival-model usage over data-security concerns) rather than any
+company-specific news. Oracle (not held) fell further on a fresh layoffs report
+(Business Insider) layered on top of the AI-capex-debt overhang. Reconciled broker
+vs. state.json before trading: all 13 positions, cash $36.68 (vs. $36.59 logged —
+$0.09 immaterial drift, likely a small dividend accrual), $0 open orders since
+9/1, +$6.84 realized P&L all-time — matched cleanly, no discrepancies, no watchdog
+alerts found since Cycle 21. No holding moved >2.5% intraday (largest: AMZN -1.9%,
+GOOGL -1.5%), so no execution-rule (>5% chase) conflicts today.
+**Candidates screened this cycle:**
+- **ORCL (Oracle)** — beat Q1 FY27 EPS ($1.92 vs. $1.67 est.) reported 9/10, but the
+  stock is down ~57% from its Sept-2025 52-wk high ($329.50) to a July-2026 low
+  ($114.50), now ~$143 — a new layoffs round (Business Insider, 9/14, "double-digit
+  percentages of certain teams") on top of heavy debt-financed OCI capacity buildout
+  points to real strategic-execution risk behind the AI-cloud backlog story, not just
+  sentiment. Scored: quality 3 (legit enterprise leader, but real execution doubt),
+  valuation 3 (PE 22.7x reasonable but reflects the risk), trend 2 (barely above the
+  50-day SMA $140.77 after a 57%-off-high round trip, no confirmed reversal, RSI a
+  neutral 46.9), catalyst 3 (beat, but layoffs are a real negative data point same
+  week), fit 2 (AI/cloud theme is already 32.3% of the book, near the 40% cap, and
+  there's no open position slot) = **13/25 — declined outright.**
+- **RH (Restoration Hardware)** — beat Q2 EPS decisively ($2.70 vs. $1.78 est.,
+  reported 9/10) but the stock is ~48% off its Sept-2025 high ($248.44), near its
+  52-wk low, price $130 vs. 50-day SMA $166 (-22%), RSI 33.1 (oversold, no confirmed
+  turn). Small-cap ($2.47B), historically leverage-heavy balance sheet, luxury home
+  furnishings exposed to a weak housing market. Scored: quality 3, valuation 3
+  (PE 23.9x, reasonable for the beat but small-cap/leverage risk), trend 1 (deeply
+  broken, well below 50-day SMA, no reversal confirmed), catalyst 3 (strong beat but
+  a real macro headwind), fit 3 (genuinely new small-cap consumer-discretionary/home
+  exposure) = **13/25 — declined**, and a trend score of 1 needs quality≥4 and
+  valuation≥4 for the contrarian exception, neither met.
+- Neither name added to the watchlist — both declined decisively on their own merits
+  (broken long-term trend riding on a single-quarter beat), not on a construction
+  technicality.
+**Actions:**
+- No trades. Cash ($36.68, 3.6%) remains inside the 2-5% band by percentage but too
+  thin in dollars to fund even a $50 half-size entry; all 13 holdings sit at or below
+  target weight with intact theses (largest, MSFT, ~10.6% — nowhere near the 15% trim
+  trigger); no invalidation trigger fired on any position. Checked each laggard for a
+  break: `LIN` (-12.2% from cost, still the largest % laggard) — Deutsche Bank
+  reiterated Buy/$575 PT on 9/4 (return to 10%+ EPS growth from 2027), Benzinga
+  flagged it among the most-oversold materials names (RSI ~29-30) this week — still
+  below its 50-day SMA, fundamentals-strong/technicals-weak thesis intact, not
+  adding. `NEE` (-9.3%) reaffirmed FY26 adjusted EPS guidance ($3.92-4.02, targeting
+  the high end) on 9/14 and expanded the Virginia customer-benefits package for the
+  Dominion merger (more credits, more jobs, still expected to close H2 2027) — no
+  setback, holding. `PLD` (-9.4%) held its $1.07 quarterly dividend (declared 9/2,
+  payable 9/30) with the SEGRO deal progressing normally — holding. `UNP` (-6.1%):
+  the Norfolk Southern merger review remains in its STB-mandated comment/briefing
+  schedule (nothing due until Nov/Dec 2026 and May 2027) — procedural, not a red
+  flag, holding. `GOOGL` (-3.9%): Google Cloud opened a new Singapore engineering
+  hub and expanded its Salesforce partnership this morning — incrementally positive,
+  holding. `CAT` (watchlist, exited Cycle 7): $779.25, now ~8.6% below its 50-day
+  SMA ($852.59) — worse than Cycle 21's -4.7% gap on this week's broad semis/AI
+  selloff spillover — still no re-entry signal.
+**Thesis / notes:** Still 13 positions, cash $36.68/$1,009.37 (3.6%, inside the 2-5%
+band but too few dollars to fund anything). Concentration check: largest single name
+MSFT ~10.6% (in-target, well under the 15% trim trigger); AI/cloud theme
+(NVDA+MSFT+AMZN+GOOGL) ~32.3% (essentially flat vs. Cycle 21, still under the 40%
+cap — and this cycle's screening pass is a live example of why the cap matters,
+since both ORCL and a look at the sector confirm how correlated an AI/cloud add
+would be to existing exposure); Finance-tagged (PLD+V+AMT) cluster ~18.6%, well
+under sector caps. Watchlist still 7 names, unchanged: MDT (4 cycles, 22/25, top of
+queue), ABBV (3 cycles, 19/25), CQP (8 cycles, 20/25), PGR (6 cycles, 20/25), CAT
+(22 cycles, still below its 50-day SMA, gap widened this week), HD (9 cycles,
+twice-reaffirmed guidance), DE (7 cycles, 18/25, valuation the weak link). Today's
+broad AI-safety-driven tech selloff (Amodei/Altman commentary, semis -5-6% Monday)
+is a sentiment/narrative rotation so far, not a company-specific break in any held
+name — matches the Cycle 6-7 pattern where AI-capex-jitters proved to be sentiment,
+not substance, though it bears watching if it persists. Watch next cycle: whether
+the AI-safety narrative extends into a real capex-guidance cut from any mega-cap
+holding (the actual thing that would break the NVDA/MSFT/AMZN/GOOGL thesis, vs. just
+sentiment); whether LIN's oversold RSI (~29-30) produces a technical bounce; the
+still-standing question of whether the owner wants to revisit the 8-10 single-name
+band — unchanged for a 6th straight cycle, still not urgent since nothing new
+cleared the bar and joined the queue this cycle.
+
+---
+
+## Cycle 23 — 2026-09-18 (Friday)
+**Portfolio:** $1,008.49 total | $36.68 cash (3.6%) | 13 positions: VOO -0.7%,
+NVDA +3.6%, MSFT +16.7%, AMZN +1.1%, GOOGL -2.1%, LLY -0.4%, XOM +12.7%,
+NEE -10.0%, LIN -12.8%, PLD -9.9%, V +1.1%, AMT -0.1%, UNP -7.6% (all vs. avg cost,
+intraday prices)
+**vs SPY since inception:** portfolio +0.85% | SPY +1.19% (SPY $759.98 vs. inception
+$751.07 on 2026-07-14) | gap: -0.34 pts (valve: ok, not tripped — trailing 10-cycle
+average gap +0.23 pts, nowhere near the -8pt threshold)
+**Realized P&L to date:** +$6.84 (confirmed via broker, all-time, 8 closing trades,
+unchanged this cycle)
+**Lesson from last cycle:** Cycle 22 flagged the open question of whether the
+AI-safety narrative (Amodei/Altman commentary) would extend into a real capex cut —
+it didn't. AI names are broadly flat-to-up since (NVDA +0.05%, GOOGL +0.97%, AMZN
++1.61% day-over-day) and CAT's gap to its 50-day SMA narrowed from -8.6% to -4.9% in
+four days, matching the Cycle 6-7 pattern where sector-wide AI sentiment swings
+reversed without any company-specific break showing up. Confirms holding through
+narrative-driven selloffs (not chasing the recovery either) remains the right call.
+**Market read:** Market open (~11:07 ET). SPY $759.98, -0.10% vs. Wednesday's close
+($760.71) — quiet, marginally softer tape, a rebound week from last week's
+AI-safety-driven selloff largely holding. Reconciled broker vs. state.json before
+trading: all 13 positions, cash $36.68 (flat vs. Cycle 22, $0 drift), $0 open orders,
++$6.84 realized P&L all-time — matched exactly, no discrepancies, no watchdog alerts
+found since Cycle 22. No holding moved >2% intraday (largest: GOOGL +0.97%, AMZN
++1.61% day-over-day), so no execution-rule (>5% chase) conflicts today.
+**Candidates screened this cycle:**
+- **ADBE (Adobe)** — beat Q3 FY26 on 9/10 (adj. EPS $6.13 vs. $6.09 est., revenue
+  $6.76B vs. $6.69B est., record revenue, AI-first ARR +150% YoY crossing $650M) and
+  raised FY26 guidance (EPS $24.45-24.50, revenue $26.58-26.63B) — but the stock is
+  down ~29% over the past year, essentially flat since the print, and analyst
+  reaction is genuinely split: Goldman Sachs held a Sell rating with a $200 PT
+  (~20% *below* spot) the same week RBC reiterated Outperform at $315; core Creative
+  segment ARR growth is decelerating (a real bear-case data point, not just noise).
+  Scored: quality 4 (dominant creative/marketing-software franchise, 1B+ MAU, but
+  real growth-deceleration debate), valuation 4 (PE ~14.1x is statistically cheap for
+  this quality tier, but the dispersion in analyst targets suggests the market isn't
+  sure it's cheap for the right reason), trend 2 (price $251 essentially at its
+  50-day SMA $255.53, RSI 44.3 neutral — rangebound, no confirmed turn after a
+  year-long decline), catalyst 3 (AI-ARR growth is real and specific, but tempered by
+  core-segment deceleration and a split Street), fit 4 (genuinely new
+  enterprise/creative-software exposure, distinct from every current holding) =
+  **17/25 — declined,** just under the bar; the trend/catalyst uncertainty and the
+  live Goldman bear case are enough to wait for confirmation.
+- **ETN (Eaton)** — power-management/electrification leader supplying switchgear,
+  transformers, UPS systems and liquid-cooling (via its Boyd Thermal acquisition) for
+  AI data centers — a name that keeps surfacing in "AI infrastructure beyond GPUs"
+  coverage (Trump/Huang comments this week, Palantir AIPCon presenter). But the near-
+  term picture is the opposite of a diversifier: shares fell -5.8% and then another
+  -7.0% intraday (to $395.61) on 9/14-9/15 specifically on the Amodei/Altman
+  AI-slowdown headlines — i.e., it is *more* correlated to AI-capex sentiment than
+  some of the book's actual AI/cloud holdings, not less. Scored: quality 4 (genuine
+  diversified electrical-equipment leader, real secular power-infrastructure demand),
+  valuation 2 (PE ~41.7x, rich, pricing in continued hyperscale capex growth),
+  trend 2 (price $411-419 essentially at its 50-day SMA $415.49 after whipsawing
+  ~14% off its Aug-12 high on AI-capex-sentiment swings, RSI a neutral 49.1, no clear
+  direction), catalyst 2 (the dominant near-term catalyst this week was negative —
+  AI-slowdown chatter hit the stock hard), fit 2 (would meaningfully raise, not
+  diversify, the portfolio's effective AI-capex-sentiment exposure despite carrying a
+  different Robinhood sector tag from NVDA/MSFT/AMZN/GOOGL) = **12/25 — declined,**
+  a clear no on valuation and correlated-theme grounds.
+- Neither name added to the watchlist — both declined on their own merits (ADBE on
+  unresolved trend/analyst-dispersion grounds, ETN on rich valuation plus poor
+  diversification value), not on a construction technicality.
+**Actions:**
+- No trades. Cash ($36.68, 3.6%) remains inside the 2-5% band by percentage but too
+  thin in dollars to fund even a $50 half-size entry; all 13 holdings sit at or below
+  target weight with intact theses (largest, MSFT, ~10.4% — nowhere near the 15% trim
+  trigger); no invalidation trigger fired on any position. Checked each laggard for a
+  break: `LIN` (-12.8% from cost, still the largest % laggard) — still RSI ~28.7,
+  deeply oversold, still below its 50-day SMA ($458.09 vs. $491.00, -6.7%); no new
+  negative news, Deutsche Bank's Buy/$575 PT (return to 10%+ EPS growth from 2027)
+  still stands, Benzinga again flagged LIN among the most-oversold materials names
+  this week — fundamentals-strong/technicals-weak thesis intact, not adding. `NEE`
+  (-10.0%) reaffirmed FY26 adjusted EPS guidance ($3.92-4.02, targeting the high end)
+  on 9/14 and expanded the Virginia customer-benefits package for the Dominion
+  merger; Morgan Stanley trimmed its NEE PT slightly ($114->$111) but kept Overweight,
+  still well above spot — a CNBC "Mad Money" pundit call to sell NEE is opinion, not
+  new information, disregarded. Holding, no trim. `PLD` (-9.9%): dividend held at
+  $1.07 (paid 9/30), SEGRO deal progressing normally, Wells Fargo/RBC both maintain
+  Overweight/Outperform ratings with PTs ($166/$160) well above spot $134 — holding.
+  `UNP` (-7.6%): no new merger-review news this cycle, procedural schedule unchanged
+  — holding. `GOOGL` (-2.1%): no new negative catalysts, day-over-day +0.97% on the
+  broader tech rebound — holding. `CAT` (watchlist, exited Cycle 7): $801.71, now
+  only ~4.9% below its 50-day SMA ($842.73) — a real improvement from Cycle 22's
+  -8.6% gap, RSI a neutral 43.6 — the technical setup is finally narrowing after
+  22 cycles of watching, but still no confirmed close above the SMA, so still not a
+  re-entry this cycle; worth a close look next cycle if the gap keeps narrowing.
+**Thesis / notes:** Still 13 positions, cash $36.68/$1,008.49 (3.6%, inside the 2-5%
+band but too few dollars to fund anything). Concentration check: largest single name
+MSFT ~10.4% (in-target, well under the 15% trim trigger); AI/cloud theme
+(NVDA+MSFT+AMZN+GOOGL) ~32.8% (essentially flat vs. Cycle 22, still under the 40%
+cap — and this cycle's ETN decline is a live reminder that "AI infrastructure"
+exposure can hide in unrelated sector tags, reinforcing why the theme cap looks past
+Robinhood's own sector labels); VOO ~17.7% (mid-band); Finance-tagged (PLD+V+AMT)
+cluster ~18.3%, well under sector caps. Watchlist still 7 names: MDT (5 cycles,
+22/25, top of queue), ABBV (4 cycles, 19/25), CQP (9 cycles, 20/25), PGR (7 cycles,
+20/25), CAT (23 cycles, gap to its 50-day SMA narrowing — the first real technical
+improvement since the Cycle 10 earnings spike faded), HD (10 cycles, twice-reaffirmed
+guidance), DE (8 cycles, 18/25, valuation the weak link). Watch next cycle: whether
+CAT's narrowing SMA gap continues toward a confirmed close above it (a legitimate
+re-entry candidate if so); whether LIN's deep oversold RSI (~28-29) finally produces
+a technical bounce; the still-standing question of whether the owner wants to revisit
+the 8-10 single-name band — unchanged for a 7th straight cycle, still unresolved but
+not urgent since no new candidate cleared the bar and joined the queue this cycle.
+
+---
+
+## Cycle 24 — 2026-09-22 (Tuesday)
+**Portfolio:** $1,015.00 total | $37.04 cash (3.6%) | 13 positions: VOO +1.1%,
+NVDA +8.0%, MSFT +17.2%, AMZN +1.2%, GOOGL +0.2%, LLY +2.3%, XOM +10.2%,
+NEE -10.9%, LIN -12.1%, PLD -9.6%, V -0.05%, AMT +0.6%, UNP -10.3% (all vs. avg
+cost, intraday prices)
+**vs SPY since inception:** portfolio +1.50% | SPY +3.00% (SPY $773.635 vs.
+inception $751.07 on 2026-07-14) | gap: -1.50 pts (valve: ok, not tripped —
+trailing 10-cycle average gap +0.05 pts, nowhere near the -8pt threshold)
+**Realized P&L to date:** +$6.84 (confirmed via broker, all-time, 8 closing trades,
+unchanged this cycle)
+**Lesson from last cycle:** Cycle 23's read that the AI-safety selloff was sentiment,
+not substance, kept holding through it rather than chasing the recovery — confirmed
+again this cycle by UBS's unprompted 9/16 upgrade on UNP (Neutral→Buy, PT
+$310→$339, citing 2027 volume/pricing tailwinds and NS-merger upside) landing on a
+position the agent had held through a -7.6%/-10.3% drawdown without ever touching
+it. Not reflexively trimming a laggard with an intact thesis keeps optionality alive
+for exactly this kind of unprompted re-rating.
+**Market read:** Market open (~11:08 ET). SPY $773.64, roughly flat vs. Monday's
+close ($773.50, +0.02%) — quiet tape, mixed under the surface (GOOGL +1.10%,
+NVDA +0.60%, UNP +0.60%, LIN +0.93% vs. MSFT -1.04%, AMZN -1.14%, V -1.51%,
+CAT -1.31% day-over-day). Reconciled broker vs. state.json before trading: all 13
+positions matched on qty/avg-cost; cash $37.04 vs. $36.68 logged ($0.36 drift,
+immaterial — a small dividend accrual, not a discrepancy); $0 open orders; +$6.84
+realized P&L all-time, unchanged — no real discrepancies, no watchdog alerts found
+since Cycle 23. No holding moved >2% intraday, so no execution-rule (>5% chase)
+conflicts today. No held name reports earnings in the next 14 days (checked the
+high-market-cap earnings calendar through 2026-10-06 — nothing from the 13-name
+book appears).
+**Candidates screened this cycle:**
+- **NTNX (Nutanix)** — sourced fresh off the "Quality compounders near highs"
+  scanner. Real business momentum (FQ4 beat 8/27: adj. EPS $0.60 vs. $0.49 est.,
+  revenue $757M vs. $738M est., FY27 revenue guide $3.18-3.23B roughly in line;
+  RBC raised its PT to $90 citing durable cloud-native/AI growth; announced the
+  Ryax Technologies acquisition today for AI-orchestration/GPU-scheduling
+  capability, financially immaterial). But technically extended: price $69.64 is
+  +10.2% above its 50-day SMA ($63.22), RSI 65 (near the scan's own 70 cap) after
+  already popping ~8% on the print and roughly doubling off its April low —
+  chasing a run that has largely already happened. PE 13.5x looks statistically
+  cheap but is distorted for a software name running on non-GAAP adjustments
+  (P/B a rich 27x); CFO sold ~$2.7M of stock 9/15 (routine Section 16 activity,
+  not weighted heavily on its own). Scored: quality 3 (genuine VMware-displacement
+  share-gainer, but a smaller-cap software name with more execution risk than the
+  book's mega-caps, GAAP profitability still murky), valuation 3 (headline PE
+  cheap but the metric is distorted; real multiple unclear), trend 3 (uptrend
+  intact but extended — not a fresh entry), catalyst 4 (VMware/Broadcom
+  displacement plus a genuine, if small, AI-orchestration bolt-on), fit 3 (new
+  market-cap tier but still cloud-infrastructure-adjacent, some correlated-theme
+  overlap with the existing AI/cloud sleeve) = **16/25 — declined,** just under
+  the bar on an extended chart.
+- **CMI (Cummins)** — power-generation/diesel-electric leader with a genuine
+  data-center-backup-power angle, screened as an industrials/power diversifier
+  distinct from UNP (rail) and not currently held. But the chart is the opposite
+  of "near highs": price ~$526 is *-13.1% below* its 50-day SMA ($605.34), RSI
+  33, and the stock is ~28.7% off its 52-week high ($737.76, set 6/18) — a real,
+  unexplained downtrend (checked recent news for a specific negative catalyst;
+  found none beyond routine options-flow chatter and a small insider sale, which
+  itself is a yellow flag — the sell-off looks more informed than the news flow
+  explains). Analyst mean price target ($781.63) is stale (last updated 9/5,
+  before most of the recent decline) and implies an improbable ~48% upside from
+  spot — a sign targets haven't caught up, not a real margin of safety. PE 27.3x
+  is rich versus Cummins' own 15-20x historical range for a name with a
+  deteriorating chart. Scored: quality 4 (diversified powertrain/power-generation
+  leader, real secular tailwind), valuation 2 (27x is not cheap given the
+  earnings-risk implied by the price action), trend 1 (confirmed, uninterrupted
+  downtrend — not a basing pattern), catalyst 2 (no clear near-term positive
+  catalyst found; mixed/bearish options flow), fit 3 (would add power-generation
+  diversification but doesn't clearly reduce correlated-theme exposure) =
+  **12/25 — declined.** Quality alone doesn't qualify for the contrarian-entry
+  exception, which requires valuation ≥4 as well as quality ≥4 — this fails on
+  valuation, so the ordinary trend-1 veto stands; not a falling-knife catch.
+- Neither name added to the watchlist — NTNX declined on being technically
+  extended (would reconsider on a pullback toward its 50-day SMA), CMI declined
+  on valuation plus an unexplained downtrend (would reconsider only if a specific
+  negative catalyst surfaces and gets priced in, or the chart genuinely bases).
+**Actions:**
+- No trades. Cash ($37.04, 3.6%) remains inside the 2-5% band by percentage but
+  is below even a $50 half-size entry in dollars; all 13 holdings sit at or below
+  target weight with intact theses (largest, MSFT, ~10.4% — nowhere near the 15%
+  trim trigger); no invalidation trigger fired on any position; and the book
+  itself is still 2 positions over the 8-10 single-name target, so a new buy needs
+  a vacated slot, not just funding. Checked each laggard for a break: `LIN`
+  (-12.1% from cost, still the largest % laggard) — RSI 29.6, still below its
+  50-day SMA ($461.76 vs. $488.26, -5.4%), no new negative news, Deutsche Bank's
+  9/4 Buy/$575 PT (return to 10%+ EPS growth from 2027) still stands — thesis
+  intact, not adding. `NEE` (-10.9%): reaffirmed FY26 adjusted EPS guidance
+  ($3.92-4.02, targeting the high end) again this week; a CNBC "Mad Money"
+  segment had Jim Cramer call it a sell on pure valuation/opinion grounds with no
+  new fact behind it — disregarded as noise, not information; Morgan Stanley
+  still Overweight (PT trimmed slightly to $111). Holding, no trim. `PLD` (-9.6%):
+  dividend held at $1.07 (paid 9/30), Wells Fargo reiterated Overweight (PT
+  trimmed slightly to $166), SEGRO deal progressing normally — holding. `UNP`
+  (-10.3%, now the second-largest % laggard): the opposite of a break — UBS
+  upgraded to Buy from Neutral on 9/16 (PT $310→$339) on 2027 volume/pricing
+  tailwinds and NS-merger upside, raising 2026/2027 EPS estimates above
+  consensus; this week's JBHT diesel-cost profit warning is a trucking-specific
+  margin story (fuel cost pass-through lag), not a rail read-through — if
+  anything, expensive diesel makes rail more cost-competitive vs. trucking, a
+  modest positive, not a negative. Holding, no trim, thesis strengthening.
+  `CAT` (watchlist, exited Cycle 7): $805.80 vs. 50-day SMA $837.42 (-3.8%,
+  narrower again vs. Cycle 23's -4.9%), RSI a neutral 49.4 — the gap keeps
+  closing but still no confirmed close above the SMA, still not a re-entry.
+**Thesis / notes:** Still 13 positions, cash $37.04/$1,015.00 (3.6%, inside the
+2-5% band but too few dollars to fund anything). Concentration check: largest
+single name MSFT ~10.4% (in-target, well under the 15% trim trigger); AI/cloud
+theme (NVDA+MSFT+AMZN+GOOGL) ~33.1% (essentially flat vs. Cycle 23, still under
+the 40% cap); VOO ~17.9% (mid-band); Finance-tagged (PLD+V+AMT) cluster ~18.2%,
+well under sector caps. Watchlist still 7 names: MDT (6 cycles, 22/25, top of
+queue), ABBV (5 cycles, 19/25), CQP (10 cycles, 20/25), PGR (8 cycles, 20/25),
+CAT (24 cycles, SMA gap narrowing further, -4.9%→-3.8%), HD (11 cycles,
+twice-reaffirmed guidance), DE (9 cycles, 18/25, valuation the weak link). Watch
+next cycle: whether CAT's narrowing SMA gap finally crosses to a confirmed close
+above it (getting close after 24 cycles of watching); whether LIN's oversold RSI
+(~28-30 for three straight cycles now) finally produces a technical bounce; the
+still-standing question of whether the owner wants to revisit the 8-10
+single-name band — unchanged for an 8th straight cycle, still unresolved but not
+urgent since neither fresh candidate this cycle (NTNX, CMI) cleared the bar
+anyway.
+
+---
+
+## Cycle 25 — 2026-09-25 (Friday)
+**Portfolio:** $1,005.97 total | $37.04 cash (3.7%) | 13 positions: VOO +0.4%,
+NVDA +5.9%, MSFT +21.5%, AMZN -1.5%, GOOGL -4.1%, LLY +1.6%, XOM +11.7%,
+NEE -15.5%, LIN -10.8%, PLD -10.8%, V +0.4%, AMT -4.2%, UNP -9.6% (all vs. avg
+cost, intraday prices)
+**vs SPY since inception:** portfolio +0.60% | SPY +2.37% (SPY $768.90 vs.
+inception $751.07 on 2026-07-14) | gap: -1.78 pts (valve: ok, not tripped —
+trailing 10-cycle average gap -0.22 pts, nowhere near the -8pt threshold)
+**Realized P&L to date:** +$6.84 (confirmed via broker, all-time, 8 closing trades,
+unchanged this cycle)
+**Lesson from last cycle:** Cycle 24 flagged LIN's persistently deep-oversold RSI
+(~28-30 for three straight cycles) as worth watching for a bounce — it bounced
+(RSI 29.6→43.65 this cycle) while price is still ~3.4% below its 50-day SMA
+($468.78 vs. $485.10). Confirms that a technical recovery in momentum terms can
+run well ahead of a confirmed SMA close-above — patience on the SMA requirement
+continues to be the right discipline rather than treating the RSI bounce alone
+as a green light.
+**Market read:** Market open (~11:14 ET). SPY $768.90, +0.22% vs. Thursday's
+close ($767.18) — quiet Friday tape, both saved scanners ("Quality post-move
+momentum," "Quality compounders near highs") returned zero matches, confirming
+the low-volatility read. MSFT was the notable single-name mover, +2.56%
+intraday on a mix of a new Copilot-app feature launch (Home/Code/Autopilot
+capabilities) and a Politico/Bloomberg report that the White House asked
+OpenAI/Anthropic to delay UK access to new AI models pending US review —
+neither is a fundamental earnings catalyst, reads as noise/sentiment, not
+addable information. Reconciled broker vs. state.json before trading: all 13
+positions matched on qty/avg-cost; cash $37.04 (unchanged from Cycle 24's
+$37.04 logged figure, no drift); $0 open orders; +$6.84 realized P&L all-time,
+unchanged — no discrepancies, no watchdog alerts found since Cycle 24. No held
+name reports earnings in the next 14 days (checked the high-market-cap calendar
+through 2026-10-09 — nothing from the 13-name book appears).
+**Candidates screened this cycle:**
+- **AZO (AutoZone)** — sourced off the earnings-beat lookback (Q4 EPS $56.05
+  vs. $53.98 est., a genuine beat) but revenue rose only 5.6% to $6.595B,
+  slightly missing the $6.681B consensus — and six sell-side analysts
+  (Guggenheim, Baird, Barclays, BMO, Mizuho, Raymond James) all cut price
+  targets same-day despite mostly maintaining ratings, a broad negative
+  re-rating wave despite the EPS beat. Stock hit a fresh 52-week low ($2,764.88)
+  two days ago and sits $2,878.60, ~3.5% below its 50-day SMA ($2,981.84), RSI a
+  neutral 44 — a real, current downtrend, not a basing pattern. PE 18.8x is
+  reasonable but not the ≥4 valuation the contrarian-entry exception requires
+  to override a broken trend. Scored: quality 4 (dominant auto-parts retailer,
+  aggressive buyback compounder, float nearly equals shares outstanding),
+  valuation 3 (reasonable but not a standout discount), trend 1 (confirmed
+  downtrend, fresh 52-wk low this week), catalyst 2 (EPS beat undercut by a
+  revenue miss and a broad wave of PT cuts), fit 4 (new specialty-retail
+  exposure, no overlap with current holdings) = **14/25 — declined.** Fails the
+  ordinary bar and fails the contrarian exception (valuation only 3, not ≥4).
+- **CTAS (Cintas)** — sourced off the same earnings-beat lookback: fiscal Q1
+  beat-and-raise reported 9/23, organic revenue growth accelerated to 8.9%
+  with broad-based gains across all four segments, and FY27 incremental-margin
+  guidance was raised to 32-34% from 30-32%. UBS reiterated Buy and raised its
+  PT to $235 from $230 citing durable customer-win/cross-sell momentum; RBC
+  stayed more cautious (Sector Perform, $206 PT) flagging peak-employment/macro
+  headwinds as a risk to future guidance. Price $198.55 is modestly (~1.9%)
+  below its 50-day SMA ($202.40), RSI a neutral 48.3 — recovering off the
+  post-earnings pop, not yet a confirmed uptrend but not broken either. PE
+  ~39.0x is rich (above Cintas' own historical 30-35x range) — the real
+  weakness in the score. Scored: quality 5 (route-density wide moat, decades of
+  consistent double-digit compounding, raised margin guidance this quarter),
+  valuation 2 (39x is genuinely rich, the weak link), trend 3 (basing just
+  below its 50-day SMA, RSI neutral, not extended, not confirmed either),
+  catalyst 4 (genuine beat-and-raise with accelerating organic growth, tempered
+  by one analyst's macro-headwind caveat), fit 4 (commercial/business-services
+  exposure, no overlap with any current holding) = **18/25 — clears the bar.**
+  Same construction constraint as MDT/ABBV/CQP/PGR: no open single-name slot
+  (book is still 13 positions, 2 over the 8-10 target) and no cash to fund it
+  regardless ($37.04). Joins the unfunded queue.
+**Actions:**
+- No trades. Cash ($37.04, 3.7%) remains inside the 2-5% band by percentage
+  but funds nothing; all 13 holdings sit at or below target weight with intact
+  theses (largest, MSFT, ~10.9% — nowhere near the 15% trim trigger); no
+  invalidation trigger fired; book is still 2 positions over the 8-10
+  single-name target, so even CTAS clearing the bar this cycle needs a vacated
+  slot, not just funding. Checked each laggard for a break: `NEE` (-15.5% from
+  cost, largest % laggard) — no new news since the 9/17 Cramer sell call
+  (opinion, already disregarded last cycle) and the 9/18 Morgan Stanley PT trim
+  to $111 (still Overweight, still well above spot $75.66); FY26 guidance
+  standing unchanged. Holding, no trim. `LIN` (-10.8%): RSI recovered
+  meaningfully to 43.65 (from ~29.6 at Cycle 24) though price is still ~3.4%
+  below its 50-day SMA; Deutsche Bank's 9/4 Buy/$575 PT stands; a Benzinga
+  screen last week (9/9) flagged LIN among oversold materials names — that
+  screen is now stale as the RSI recovery shows. Thesis intact, not adding
+  (SMA confirmation still absent). `PLD` (-10.8%): no new news this cycle
+  beyond the standing SEGRO-deal/dividend facts already logged — holding.
+  `UNP` (-9.6%): RBC trimmed its PT to $326 from $339 on 9/24 (one day after
+  UBS's 9/16 upgrade to $339) while keeping an Outperform rating — a modest,
+  not thesis-threatening, walk-back; the Surface Transportation Board denied
+  requests to dismiss the NS-merger application (9/22), keeping the merger
+  process on its normal H2-2027 timeline; UNP also began testing its first two
+  battery-electric locomotives this week (incremental operational news, not a
+  thesis driver). Holding, no trim. `CAT` (watchlist, exited Cycle 7): $811.49
+  vs. 50-day SMA $830.35 (-2.3% on intraday price, -3.0% on yesterday's close)
+  — gap continues to narrow (was -3.8% at Cycle 24), RSI a neutral 46.1; a new
+  Atlas Energy Solutions equipment order (283MW + 328MW of CAT power-generation
+  gear for AI data-center projects) reinforces the existing power-demand
+  thesis but isn't itself a new catalyst. Still no confirmed close above the
+  SMA — not a re-entry yet, keeps narrowing toward one.
+**Thesis / notes:** Still 13 positions, cash $37.04/$1,005.97 (3.7%, inside the
+2-5% band but too few dollars to fund anything). Concentration check: largest
+single name MSFT ~10.9% (in-target, well under the 15% trim trigger); AI/cloud
+theme (NVDA+MSFT+AMZN+GOOGL) ~33.2% (flat vs. Cycle 24, still under the 40%
+cap) — MSFT's Copilot-feature/AI-news-driven pop today is a reminder the theme
+cap needs revisiting if the AI names keep running while the rest of the book
+lags; VOO ~18.0% (mid-band); Finance-tagged (PLD+V+AMT) cluster ~17.9%, well
+under sector caps. Watchlist now 8 names: MDT (7 cycles, 22/25, top of queue),
+ABBV (6 cycles, 19/25), CQP (11 cycles, 20/25), PGR (9 cycles, 20/25), CTAS
+(new, 18/25), CAT (25 cycles, SMA gap narrowing further, -3.8%→-2.3%/-3.0%), HD
+(12 cycles, twice-reaffirmed guidance), DE (10 cycles, 18/25, valuation the
+weak link). Watch next cycle: whether CAT's narrowing SMA gap finally crosses
+to a confirmed close above it (closer than ever after 25 cycles of watching);
+whether LIN's RSI recovery (29.6→43.65) eventually drags the price back above
+its 50-day SMA; the still-standing question of whether the owner wants to
+revisit the 8-10 single-name band — unchanged for a 9th straight cycle, now
+with a 5-deep unfunded queue (MDT/ABBV/CQP/PGR/CTAS) all clearing the ≥18/25
+bar with nowhere to go.

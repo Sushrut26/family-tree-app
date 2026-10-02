@@ -1977,3 +1977,11 @@ bar with nowhere to go.
 **Actions:**
 - No trades — cash $37.04 funds nothing, book is 2 over the 8–10 single-name band, no invalidation trigger fired, no candidate scored ≥18 that is not already queued.
 **Thesis / notes:** Largest name MSFT ~10.6%; AI/cloud theme ~33%; VOO ~17.8%. UNP $273 (-9.8% from cost), NEE $75.43, PLD $132.70, LIN $473 (still below 50-day SMA), CAT $820 (SMA ~$830, gap narrowing). MDT fell to $87.44 (-2.3% today) — the queue leader is cheaper than when screened. Owner decision on the position-count band remains open.
+
+## Cycle 27 — 2026-10-02 (Friday)
+**Portfolio:** $1,010.67 total | $37.50 cash (3.7%) | 13 positions unchanged
+**vs SPY since inception:** portfolio +1.07% | SPY +2.52% (SPY $769.98, +0.78% on the day)
+**Market read:** Market open; broker matched state.json; no open orders.
+**Candidates (light screen — quotes only, technicals tool call failed on missing params):**
+- ISRG $399.27 (-0.5% today) and ADP $259.46 (-1.7% today) — not scored to the 18/25 bar; no deep dive done this cycle, so neither is actionable. MDT (queue leader) $87.69.
+**Actions:** No trades — $37.50 cash funds nothing meaningful, book still 3 over the single-name band, no invalidation trigger fired. MSFT $515.59, NVDA $235.72, UNP $276.84 (recovering toward cost). Owner decision on position-count band still open.

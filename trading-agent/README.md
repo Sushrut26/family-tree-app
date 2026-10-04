@@ -45,24 +45,44 @@ Each cycle follows the loop documented in [`STRATEGY.md`](STRATEGY.md):
 
 ## The rules the AI gives itself
 
-Full discretion on *what* to trade, inside a **moderately aggressive, research-driven**
-mandate (set 2026-08-14, replacing the original broad-diversification rules):
+**v3 (2026-10-04)** — aim: beat the S&P 500 after costs. Full rules in
+[`STRATEGY.md`](STRATEGY.md); the core of it:
 
-- **Concentrate** — 8–10 researched single names plus a `VOO` core, ~9–11% each.
-  Fewer, better bets rather than a basket of everything.
-- **Keep a `VOO` ballast core at 15–20%** — the anchor that keeps this *moderately*
-  rather than fully aggressive.
-- **Every dollar expresses a view** — each holding must answer "why is owning this
-  better than the same dollars in `VOO`?" or get sold. Cash target just 2–5%.
-- **Screen widely, buy rarely** — ≥2 brand-new candidates researched every cycle, but
-  a high bar to actually buy (≥18/25 on a five-factor score).
-- **Guardrails stay** — no single name over ~15%, no correlated theme over ~40%, and
-  an automatic rotation back into `VOO` if it lags the S&P by more than 8 points over
-  10 cycles.
+- **Up to 10 researched stocks around a `VOO` core (≥15%).** Unused cash above 5% goes
+  into `VOO` — if the agent has no good ideas, it owns the index rather than cash.
+- **Rank everything, every cycle.** Holdings and candidates are scored fresh on five
+  factors; the trend factor is mechanical (50/200-day moving averages), not self-graded.
+- **Swap rule:** a candidate scoring ≥3 points above the weakest holding replaces it
+  (max 2 swaps per cycle). This replaced the count and cash bands that froze the agent
+  for 12 cycles.
+- **Sell rules:** an invalidation trigger fires, or a **stop-loss** (≥12% down *and* below
+  a falling 50-day average), or it's swapped out, or it's trimmed above 15%.
+- **Guardrails kept** because they have evidence behind them: no chasing >5% intraday
+  spikes, spread checks, a specific "why not just own VOO?" answer for every stock, ≤40%
+  in any correlated theme, and an automatic retreat into `VOO` if it lags the S&P by
+  >8 points over 10 cycles.
 
-*Why it changed:* by Cycle 12 the portfolio had drifted into 17 positions — six of
-them overlapping ETFs — and was effectively an index fund with 14% idle cash. See
-[`STATUS.md`](STATUS.md) for the full diagnosis.
+## Owner to-dos (things only you can change, in claude.ai → Routines)
+
+1. **Replace the "auto trader" prompt** ([open it](https://claude.ai/code/routines/trig_0197RVvY9HFPZY9S5iLrrLPw)) — it still carries the July rules (15–20 names,
+   5–15% cash, $50 buys), which contradict STRATEGY.md every cycle. Replace it with:
+
+   > You are the autonomous trading agent for the small "Agentic" Robinhood account
+   > (account number `<ACCOUNT NUMBER>`). Scheduled and unattended — no human in the loop;
+   > make every decision yourself. Run exactly ONE cycle, then stop. In the family-tree-app
+   > repo, `git fetch origin claude/autonomous-trading-agent-r1s6y2` and check out that
+   > branch at origin's tip. Read trading-agent/STRATEGY.md first and follow it exactly —
+   > it is the single source of truth for rules, cycle steps and file formats, and it wins
+   > any conflict with this prompt. Use that account number in every Robinhood call and
+   > never write it into a file. Commit as Claude <noreply@anthropic.com> and push before
+   > you stop — an uncommitted cycle is a lost cycle.
+
+2. **Delete the "trading agent watchdog" Routine** ([open it](https://claude.ai/code/routines/trig_016a6NSte2o6jFezS9oC3ub4)). It fires twice a week and reports
+   success but has never recorded a check (most likely no repo access). Every cycle now
+   runs the same checks itself.
+3. **Trim connectors on both Routines to Robinhood only.** They also carry Gmail,
+   Gamma, Indeed and Vercel, which an unattended trading agent doesn't need — Gmail in
+   particular is a needless risk.
 
 ## Watching along
 

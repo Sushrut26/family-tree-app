@@ -9,14 +9,15 @@
 
 | | |
 |---|---|
-| **Last completed cycle** | 26 — 2026-09-29 (no trades; COST 15/25 and PAYX 13/25 screened and declined) |
-| **Account value** | $1,004.92 (as of 2026-09-29 ~11:15 ET) |
-| **Cash** | $37.04 (~3.7% — inside the 2-5% target band, but too few dollars for a ~$90-110 buy) |
-| **Positions** | 13 (VOO core + 12 single names — unchanged from Cycle 14) |
-| **vs SPY since inception** | portfolio +0.49% vs SPY +1.74% (as of 2026-09-29) — -1.25pt gap, safety valve not tripped (trailing 10-cycle avg gap -0.22pt) |
-| **Realized P&L (all-time)** | +$6.84 (8 closed trades; unchanged this cycle — no sells) |
-| **Next scheduled run** | per cron `0 15 */3 * *` (drifts month-to-month; see Known quirks) |
-| **Strategy** | Moderately aggressive, research-driven (changed 2026-08-14). Target: **8–10 single names + a `VOO` core (15–20%)**, ~9–11% per name, cash 2–5%, correlated-theme cap 40%. Every holding must justify itself against just buying `VOO`. |
+| **Last completed cycle** | 27 — 2026-10-02 (no trades; degraded run — 37s, skipped heartbeat, technicals call failed. Root causes fixed in STRATEGY v3) |
+| **Account value** | $1,010.85 (broker, Oct 2 close) |
+| **Cash** | $38.47 (3.8%) |
+| **Positions** | 13 (VOO + 12 stocks). Owner-approved rotation pending → 11 (VOO + 10 stocks) |
+| **vs SPY since inception** | portfolio +1.07% vs SPY +2.52% (Cycle 27) — trailing by ~1.5 pts; safety valve not tripped |
+| **Realized P&L (all-time)** | +$6.84 (8 closed trades, broker-verified). The pending rotation will realize ≈ −$20.54 → ≈ −$13.70 |
+| **Next scheduled run** | **Mon 2026-10-05 14:00 UTC** — one-off run to execute the approved rotation; then the regular cycles **Tue + Fri 15:00 UTC** (cron `0 15 * * 2,5`) |
+| **Strategy** | **v3 (2026-10-04)** — up to 10 stocks + VOO core ≥15%, ~9% per new stock, cash ≤5% (excess → VOO). **Swap rule:** a candidate ≥3 pts above the weakest holding replaces it. Stop-loss at −12% *and* below a falling 50-day SMA. Mechanical trend score. |
+| **Watchdog** | ⚠️ The external watchdog Routine fires (last: Oct 3) but has **never recorded a check** — it likely lacks repo access. Every cycle now runs its own self-audit instead; see the owner to-dos in README. |
 | **Alerts** | ⚠️ **Owner-approved trade pending execution** — approved Sun 2026-10-04 while the market was closed; fills at the next open session. SELL NEE + AMT + PLD (all below falling 50-day SMAs) → BUY PGR ~$95, top up XOM +$40, and LIN +$45 only if it clears its 50-day SMA. Resolves a 12-cycle no-trade deadlock and returns the book to 10 single names, inside every band. |
 
 ## Health check — how to tell it's alive
@@ -90,7 +91,8 @@ possible.
 
 ## Known quirks
 
-- **Cron `*/3` resets every month** — fires drift (Jul 28 → Jul 31 → Aug 1 → Aug 4)
-  and land on weekends. Weekend fires are harmless (agent reconciles, defers trades).
-  Recommended fix (owner action, in the claude.ai Routines UI): change the schedule to
-  `0 15 * * 2,5` (Tue + Fri, 15:00 UTC) — always market days, steady ~3–4 day spacing.
+- Schedule is **Tue + Fri 15:00 UTC** (`0 15 * * 2,5`, fixed by the owner in August —
+  the old `*/3` month-boundary drift is gone).
+- The **"auto trader" Routine prompt still contains the old rules** (15–20 names, 5–15%
+  cash, ~$50 buys). STRATEGY.md v3 tells the agent that STRATEGY.md wins any conflict, but
+  the prompt should be replaced — paste-ready text is in README → *Owner to-dos*.

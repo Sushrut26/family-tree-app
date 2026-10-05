@@ -9,16 +9,16 @@
 
 | | |
 |---|---|
-| **Last completed cycle** | 27 — 2026-10-02 (no trades; degraded run — 37s, skipped heartbeat, technicals call failed. Root causes fixed in STRATEGY v3) |
-| **Account value** | $1,010.85 (broker, Oct 2 close) |
-| **Cash** | $38.47 (3.8%) |
-| **Positions** | 13 (VOO + 12 stocks). Owner-approved rotation pending → 11 (VOO + 10 stocks) |
-| **vs SPY since inception** | portfolio +1.07% vs SPY +2.52% (Cycle 27) — trailing by ~1.5 pts; safety valve not tripped |
-| **Realized P&L (all-time)** | +$6.84 (8 closed trades, broker-verified). The pending rotation will realize ≈ −$20.54 → ≈ −$13.70 |
-| **Next scheduled run** | **Mon 2026-10-05 14:00 UTC** — one-off run to execute the approved rotation; then the regular cycles **Tue + Fri 15:00 UTC** (cron `0 15 * * 2,5`) |
+| **Last completed cycle** | 28 — 2026-10-05 (owner-approved rotation, Leg 1: sold NEE, AMT, PLD; all filled) |
+| **Account value** | $1,013.74 (broker, Mon 2026-10-05 ~11:15 ET) |
+| **Cash** | $212.11, of which only **$38.47 is spendable** until Monday's $173.64 of sale proceeds settles (T+1, Tue 2026-10-06) |
+| **Positions** | 10 (VOO + 9 stocks). Becomes 11 (VOO + 10) once PGR is bought Tuesday |
+| **vs SPY since inception** | portfolio +1.37% vs SPY +2.84% (Cycle 28) — trailing by ~1.5 pts; safety valve not tripped |
+| **Realized P&L (all-time)** | ≈ −$14.52 (was +$6.84; Cycle 28's three sells realized −$21.36) |
+| **Next scheduled run** | **Tue 2026-10-06 14:00 UTC** — owner session places the staged buys; then the regular cycles Tue + Fri 15:00 UTC |
 | **Strategy** | **v3 (2026-10-04)** — up to 10 stocks + VOO core ≥15%, ~9% per new stock, cash ≤5% (excess → VOO). **Swap rule:** a candidate ≥3 pts above the weakest holding replaces it. Stop-loss at −12% *and* below a falling 50-day SMA. Mechanical trend score. |
 | **Watchdog** | ⚠️ The external watchdog Routine fires (last: Oct 3) but has **never recorded a check** — it likely lacks repo access. Every cycle now runs its own self-audit instead; see the owner to-dos in README. |
-| **Alerts** | ⚠️ **Owner-approved trade pending execution** — approved Sun 2026-10-04 while the market was closed; fills at the next open session. SELL NEE + AMT + PLD (all below falling 50-day SMAs) → BUY PGR ~$95, top up XOM +$40, and LIN +$45 only if it clears its 50-day SMA. Resolves a 12-cycle no-trade deadlock and returns the book to 10 single names, inside every band. |
+| **Alerts** | ⏳ **Rotation half-done.** Sells filled Mon 10/05 (NEE, AMT, PLD). Buys staged for Tue 10:00 ET after settlement: PGR $95, XOM +$40, LIN +$45 (only on a confirmed close above its 50-day), remainder into VOO. |
 
 ## Health check — how to tell it's alive
 
@@ -38,6 +38,8 @@ looks like the agent stopped (this exact false alarm happened 2026-08-05).
 
 | Date (UTC) | Cycle | Result |
 |---|---|---|
+| 2026-10-05 | 28 | ✅ Owner-approved rotation, Leg 1 — sold NEE, AMT, PLD (all below falling 50-day SMAs), realized −$21.36. Buys staged for T+1. |
+| 2026-10-02 | 27 | ⚠️ No trades — degraded 37s run (skipped heartbeat, tool-parameter failure); fixed in v3 |
 | 2026-09-29 | 26 | ✅ No trades — reconciled clean; `COST` (15/25) and `PAYX` (13/25) screened new and declined. Queue unchanged at 5 deep; owner decision on the position-count band still open. |
 | 2026-09-25 | 25 | ✅ No trades — reconciled clean, no thesis breaks; `LIN`'s RSI recovered sharply (29.6→43.65) while still below its 50-day SMA, `CAT`'s SMA gap narrowed further to ~-2.3%/-3.0%. Screened `AZO` (new, 14/25, declined — EPS beat undercut by a revenue miss and a wave of analyst PT cuts, fresh 52-wk low) and `CTAS` (new, 18/25, clears the bar — beat-and-raise quarter, but rich ~39x PE and no open slot/cash). Backlog grew to 5 deep (`MDT`/`ABBV`/`CQP`/`PGR`/`CTAS`) — flagged as a standing, 9th-straight-cycle owner decision point. |
 | 2026-09-22 | 24 | ✅ No trades — reconciled clean, no thesis breaks; `UNP` got an unprompted UBS upgrade to Buy (PT $310→$339) while held through a drawdown, `CAT`'s 50-day SMA gap narrowed further to -3.8%. Screened `NTNX` (new, 16/25, declined — real beat/VMware-displacement tailwind but technically extended, RSI 65) and `CMI` (new, 12/25, declined — rich valuation, unexplained downtrend, stale analyst targets). Backlog held steady at 4 deep (`MDT`/`ABBV`/`CQP`/`PGR`, no new names joined) — flagged as a standing, 8th-straight-cycle owner decision point. |

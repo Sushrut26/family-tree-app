@@ -31,3 +31,4 @@
 2026-09-29T15:16:00Z | cycle=26 | START | trades=- | value=- | run started
 2026-09-29T15:27:00Z | cycle=26 | OK | trades=0 | value=1004.92 | reconciled clean, no trades — COST (15/25) and PAYX (13/25) screened+declined; backlog steady at 5 deep, owner decision on position-count band still open
 2026-10-05T15:00:36Z | cycle=28 | START | trades=- | value=- | run started (owner-approved rotation: pending_trade_mandate)
+2026-10-05T15:15:18Z | cycle=28 | OK | trades=3 | value=1013.74 | rotation Leg 1: sold NEE/AMT/PLD (filled, realized -21.36); Leg 2 buys staged for Tue after T+1

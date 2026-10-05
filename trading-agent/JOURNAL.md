@@ -400,3 +400,20 @@ conditionally) is unchanged and executes at the next open session. It is consist
 NEE and PLD would now trip the stop-loss on their own.
 
 ---
+
+## Cycle 28 — 2026-10-05 (Monday)
+**Account:** $1,013.74 | cash $212.11 (only $38.47 spendable until T+1) | 9 stocks + VOO | vs SPY since inception: +1.37% vs +2.84%
+**Self-audit:** clean — broker matched state.json (13 positions, $38.47 cash, no orders since Oct 3); Cycle 27's missing heartbeat noted and fixed in STRATEGY v3.
+**Run type:** owner-approved `pending_trade_mandate`, executed in an owner session under STRATEGY v3. Lock set to IN PROGRESS before any order.
+**Re-check at 11:00 ET:** all three sells still below falling 50-day SMAs (NEE −7.5%, AMT −6.5%, PLD −7.1%); spreads 0.01–0.09%.
+**Actions (Leg 1, all filled 15:13 UTC):**
+- SELL NEE 0.558472 @ $76.5518 — order 6ac3be8a-32f6-46e5-a0ff-432f51729eb4 — realized −$7.25 — trend 1, new 52-wk low 10/01, −14.5% (v3 stop-loss territory)
+- SELL AMT 0.544600 @ $161.1628 — order 6ac3be93-a2c0-407e-b453-76aa07568a35 — realized −$7.23 — failed C14 breakout entry, trend 1
+- SELL PLD 0.335296 @ $128.6101 — order 6ac3be98-0588-4a93-a50b-5e15e39ef635 — realized −$6.88 — trend 1, −13.8% (v3 stop-loss territory), dilution overhang
+- Proceeds $173.64; realized −$21.36; all-time realized +$6.84 → ≈ −$14.52.
+**Leg 2 staged (T+1):** buying power stayed $38.47 after the sells, confirming that unsettled proceeds aren't spendable on this cash account. Staged for Tue 10:00 ET: PGR $95 (19/25, PE 10.5), XOM +$40 (above a rising SMA50), LIN +$45 only on a confirmed close above its SMA50 ($480.56 vs $480.55 at the open, not confirmation), and the remainder into VOO.
+**Concentration after Leg 2 (est.):** 10 stocks + VOO; MSFT ~10.9% largest; AI/cloud ~33.5%; rate-sensitive utility/REIT exposure → 0%.
+**Lesson:** The T+1 constraint is real on this account. Plan rotations as a two-session move (sell, then buy next session), or fund buys from cash already on hand.
+**Watch next:** staged buys Tue 10:00 ET; LIN's Monday close vs its SMA50; PGR's no-chase check.
+
+---

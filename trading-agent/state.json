@@ -1,6 +1,6 @@
 {
-  "last_cycle": 27,
-  "last_run": "2026-10-02T15:10Z",
+  "last_cycle": 28,
+  "last_run": "2026-10-05T15:13Z",
   "account_masked": "••••6885",
   "benchmark": {
     "ticker": "SPY",
@@ -99,13 +99,20 @@
       "date": "2026-10-02",
       "spy_return_pct": 2.52,
       "portfolio_return_pct": 1.07
+    },
+    {
+      "cycle": 28,
+      "date": "2026-10-05",
+      "spy_return_pct": 2.84,
+      "portfolio_return_pct": 1.37
     }
   ],
   "portfolio_snapshot": {
-    "total_value": "1004.92",
-    "cash": "37.04",
-    "equity_value": "967.88",
-    "buying_power": "37.04"
+    "total_value": "1013.74",
+    "cash": "212.11",
+    "equity_value": "801.63",
+    "buying_power": "38.47",
+    "note": "$173.64 of Monday's sale proceeds unsettled until Tue 2026-10-06 (T+1)"
   },
   "holdings": [
     {
@@ -200,20 +207,6 @@
       "score_cycle": null
     },
     {
-      "ticker": "NEE",
-      "sector": "Utilities",
-      "theme": "Utilities/AI-power-demand",
-      "thesis": "Regulated FL utility + renewables leader. Q2 2026 adj. EPS $1.15 beat, FY26 guidance reaffirmed. $100B AI-data-center project (Paducah KY, with Brookfield) on track. Pursuing a $67B Dominion Energy combination — both companies' shareholders formally approved the merger as of Cycle 19 (99.47% of NEE votes in favor), leaving only remaining regulatory approvals (VA/NC/SC/FERC/NRC) before close. New this cycle: NEE + DOE committed up to $1.9B (conditional) to restart the 615MW Duane Arnold nuclear plant in Iowa by Q1 2029 — another concrete power-generation growth data point. As of Cycle 20: price $83.96 vs. avg cost $89.53 (-6.2%), drawdown still reads as rate-driven, not company-specific. Still below target size, a future top-up candidate.",
-      "why_not_voo": "AI data-center power demand (the Paducah JV, and now a DOE-backed nuclear restart) is a specific, underappreciated tailwind for a regulated utility with renewables scale — the index's tiny utility weight doesn't capture this.",
-      "invalidation": "sell if a regulatory/rate-case setback or a renewables execution miss emerges",
-      "next_earnings": "2026-10-27 (tentative)",
-      "opened_cycle": 2,
-      "avg_cost": "89.53",
-      "cycle22_note": "price $81.25 vs avg cost $89.53 (-9.3%) as of Cycle 22 — reaffirmed FY26 adjusted EPS guidance ($3.92-4.02, targeting high end) on 9/14, expanded VA customer-benefits package for the Dominion merger (still on track for H2 2027 close); drawdown still reads as rate-driven, not company-specific.",
-      "last_score": null,
-      "score_cycle": null
-    },
-    {
       "ticker": "LIN",
       "sector": "Materials",
       "theme": "Materials/industrial-gases",
@@ -227,19 +220,6 @@
       "score_cycle": null
     },
     {
-      "ticker": "PLD",
-      "sector": "Real Estate (Robinhood tags 'Finance')",
-      "theme": "Real estate/logistics-M&A",
-      "thesis": "Logistics/industrial REIT. Signed, board-recommended $18.8B acquisition of UK's SEGRO plc (47% European footprint expansion, closes H1 2027) progressing normally. Quarterly dividend held at $1.07/share (declared 9/2, payable 9/30). As of Cycle 22: price $135.04, -9.4% from cost; still below target size, a future top-up candidate.",
-      "why_not_voo": "The board-recommended SEGRO acquisition is a specific, dated catalyst (European logistics expansion, H1 2027 close) that the index's small REIT weight doesn't isolate.",
-      "invalidation": "sell if occupancy/rent growth rolls over or e-commerce logistics demand breaks down",
-      "next_earnings": "2026-10-14 (tentative)",
-      "opened_cycle": 3,
-      "avg_cost": "149.12",
-      "last_score": null,
-      "score_cycle": null
-    },
-    {
       "ticker": "V",
       "sector": "Finance (Payments)",
       "theme": "Payments/financials (distinct from banking)",
@@ -249,19 +229,6 @@
       "next_earnings": "~late Oct 2026 (estimate)",
       "opened_cycle": 13,
       "avg_cost": "364.5391",
-      "last_score": null,
-      "score_cycle": null
-    },
-    {
-      "ticker": "AMT",
-      "sector": "Real Estate (Robinhood tags 'Finance')",
-      "theme": "Comm-infra/REIT",
-      "thesis": "Cell-tower/wireless infrastructure REIT. Watched since Cycle 1 (13 cycles); confirmed a technical breakout above its 50-day SMA at Cycle 13 and bought at Cycle 14. Score 19/25 (quality 4, valuation 4, trend 3 — price $174.21 just 0.5% above its 50-day SMA $173.31, a real but fragile confirmation; catalyst 4 — 5 of last 7 quarters beat EPS estimates, 4.05% dividend yield; fit 4).",
-      "why_not_voo": "Tower-leasing REIT with a consistent EPS-beat record and a 4% dividend yield; the wireless/5G/data-center infrastructure buildout is a specific structural tailwind VOO's tiny REIT weight doesn't isolate, and the chart just confirmed a technical turn after 13 cycles of waiting despite always-intact fundamentals.",
-      "invalidation": "sell if price closes back below the 50-day SMA on a sustained basis, tower colocation/leasing demand rolls over, or a dividend cut/guidance miss",
-      "next_earnings": "2026-10-27",
-      "opened_cycle": 14,
-      "avg_cost": "174.4399",
       "last_score": null,
       "score_cycle": null
     },
@@ -311,10 +278,35 @@
       "why": "Exited C7; the Q2 print reversed the thesis (record $72B backlog) but the stock lagged. SMA gap was narrowing (-2.3% at C25). Re-score fresh; buy if it clears a rising SMA50."
     }
   ],
-  "staged_buys": [],
+  "staged_buys": [
+    {
+      "ticker": "PGR",
+      "amount_usd": 95,
+      "condition": "new position; skip if up >5% on the day",
+      "reason": "owner-approved mandate, 19/25"
+    },
+    {
+      "ticker": "XOM",
+      "amount_usd": 40,
+      "condition": "only if still above its 50-day SMA",
+      "reason": "add-to-winner, the only holding in a confirmed uptrend"
+    },
+    {
+      "ticker": "LIN",
+      "amount_usd": 45,
+      "condition": "only if it CLOSED Mon 2026-10-05 above its 50-day SMA (~$480.55) AND trades above it at order time; else skip",
+      "reason": "contrarian second half, awaiting confirmation"
+    },
+    {
+      "ticker": "VOO",
+      "amount_usd": "remainder",
+      "condition": "after the above, sweep cash above 5% of the account into VOO",
+      "reason": "v3 idle-cash rule"
+    }
+  ],
   "open_orders": [],
   "pending_trade_mandate": {
-    "status": "IN PROGRESS 28 2026-10-05T15:00:36Z — Leg 1 sells being placed by the owner-approved session",
+    "status": "IN PROGRESS 28 — LEG 1 DONE 2026-10-05 (NEE/AMT/PLD sold, filled). LEG 2 STAGED in staged_buys pending T+1 settlement; owner session scheduled Tue 2026-10-06 14:00 UTC to place it. A later run must reconcile against the broker and must not re-sell or double-buy.",
     "authorized": "Owner-approved 2026-10-04 (Sunday, market closed — orders deliberately deferred per the execution rules). Research was completed and verified live against the broker at Oct 2 close; re-verify everything before acting.",
     "why": "The agent placed NO trades for 12 consecutive cycles (15-27) while 5 candidates sat queued above the >=18/25 bar. Cause was structural, not research failure: 12 single names against the 8-10 band with cash at 3.8% inside the 2-5% target leaves ZERO capacity to act on a good idea without first selling. This mandate breaks that deadlock and returns the book to inside every band.",
     "leg_1_sells": [
@@ -349,7 +341,12 @@
     "expected_end_state": "10 single stocks + VOO; cash <=5% (excess swept into VOO); largest stock MSFT ~10.9% (<15%); AI/cloud theme ~33.5% (<40%). GOOGL 4.7%, LLY 4.9% and V 4.3% stay sub-scale deliberately - LLY and V are below their SMA50s, and adding to GOOGL would push the AI theme toward 38%.",
     "on_completion": "Set status to DONE <cycle> <date> (keep the block). Remove NEE/AMT/PLD from holdings; add PGR (theme 'Insurance/P&C', last_score 19, score_cycle 27, why_not_voo 'a PE-10.5 dominant P&C insurer with underwriting margins expanding 12.7%->14.0%, uncorrelated to this book's 33.5% AI/cloud concentration, where VOO carries ~35% tech', invalidation 'sell if the combined ratio deteriorates above ~100 or policy growth stalls alongside margin compression', next_earnings from get_earnings_calendar); remove PGR from the watchlist; clear staged_buys; append benchmark_history; refresh STATUS.md; journal per STRATEGY v3 (<=25 lines).",
     "lock": "Before placing ANY order for this mandate: git fetch, re-read this block, then set status to 'IN PROGRESS <cycle> <UTC time>' and push. If status is already IN PROGRESS or DONE, do NOT re-execute - reconcile against get_equity_orders/get_equity_positions and only finish legs that have not filled. Three things may act on this mandate (the owner's scheduled wakeup Mon 2026-10-05 14:00 UTC, its Tuesday follow-up if buys wait on T+1, and the regular Tue 15:00 UTC cycle), so this lock prevents double orders.",
-    "t_plus_1": "Cash account: if buying_power does not reflect the sale proceeds after Leg 1, write the Leg 2 buys into state.json staged_buys (ticker, amount, condition) and place them at the next open session."
+    "t_plus_1": "Cash account: if buying_power does not reflect the sale proceeds after Leg 1, write the Leg 2 buys into state.json staged_buys (ticker, amount, condition) and place them at the next open session.",
+    "leg_1_fills": [
+      "SELL NEE 0.558472 sh @ $76.5518 — order 6ac3be8a-32f6-46e5-a0ff-432f51729eb4 — realized $-7.25",
+      "SELL AMT 0.5446 sh @ $161.1628 — order 6ac3be93-a2c0-407e-b453-76aa07568a35 — realized $-7.23",
+      "SELL PLD 0.335296 sh @ $128.6101 — order 6ac3be98-0588-4a93-a50b-5e15e39ef635 — realized $-6.88"
+    ]
   },
   "lessons": [
     "C1-7: Exit on evidence, not price - CAT was rightly held through a -5% dip (C5) and rightly sold on margin deterioration (C7).",
@@ -363,5 +360,5 @@
     "C27: Fast runs cut corners - Cycle 27 took 37s, skipped its heartbeat, and its technicals call failed on missing params. Use the cheat-sheet; never skip steps 2/3/8/9.",
     "Ops: always git fetch before judging state (stale-clone false alarm, 2026-08-05); required files can be silently gitignored (*.log, C11)."
   ],
-  "notes": "STRATEGY v3 took effect 2026-10-04 (swap rule, idle cash -> VOO, mechanical trend score, stop-loss, self-audit, lean reads) - read STRATEGY.md fully. PRIORITY: execute pending_trade_mandate at the next open session, honoring its lock and T+1 notes. Before then: 13 positions, $38.47 cash, portfolio +1.07% vs SPY +2.52% since inception (C27). Restructure of Aug 14 completed in C14 (see JOURNAL-ARCHIVE.md)."
+  "notes": "Cycle 28 (2026-10-05): owner-approved rotation Leg 1 filled - sold NEE/AMT/PLD, proceeds $173.64, realized $-21.36; all-time realized now about -$14.52. Cash $212.11, but only $38.47 spendable until T+1. PRIORITY next run: place staged_buys (PGR $95, XOM $40, LIN $45 conditional, rest into VOO), honoring the mandate lock. Strategy v3 is in force."
 }

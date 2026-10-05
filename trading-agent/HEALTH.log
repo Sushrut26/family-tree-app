@@ -30,3 +30,4 @@
 2026-09-25T15:20:14Z | cycle=25 | OK | trades=0 | value=1005.97 | reconciled clean, no trades — no thesis breaks; LIN RSI recovered sharply (29.6->43.65) still below 50-day SMA, CAT SMA gap narrowed further to ~-2.3%/-3.0%; AZO (14/25) declined and CTAS (18/25) screened+queued (rich PE, no open slot/cash); backlog grew to 5 deep (MDT/ABBV/CQP/PGR/CTAS), flagged as standing 9th-cycle owner decision point
 2026-09-29T15:16:00Z | cycle=26 | START | trades=- | value=- | run started
 2026-09-29T15:27:00Z | cycle=26 | OK | trades=0 | value=1004.92 | reconciled clean, no trades — COST (15/25) and PAYX (13/25) screened+declined; backlog steady at 5 deep, owner decision on position-count band still open
+2026-10-05T15:00:36Z | cycle=28 | START | trades=- | value=- | run started (owner-approved rotation: pending_trade_mandate)

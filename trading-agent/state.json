@@ -314,7 +314,7 @@
   "staged_buys": [],
   "open_orders": [],
   "pending_trade_mandate": {
-    "status": "PENDING — EXECUTE AT THE NEXT OPEN-MARKET CYCLE, as the first task, before any new-idea research",
+    "status": "IN PROGRESS 28 2026-10-05T15:00:36Z — Leg 1 sells being placed by the owner-approved session",
     "authorized": "Owner-approved 2026-10-04 (Sunday, market closed — orders deliberately deferred per the execution rules). Research was completed and verified live against the broker at Oct 2 close; re-verify everything before acting.",
     "why": "The agent placed NO trades for 12 consecutive cycles (15-27) while 5 candidates sat queued above the >=18/25 bar. Cause was structural, not research failure: 12 single names against the 8-10 band with cash at 3.8% inside the 2-5% target leaves ZERO capacity to act on a good idea without first selling. This mandate breaks that deadlock and returns the book to inside every band.",
     "leg_1_sells": [

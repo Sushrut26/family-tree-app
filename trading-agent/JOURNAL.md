@@ -417,3 +417,16 @@ NEE and PLD would now trip the stop-loss on their own.
 **Watch next:** staged buys Tue 10:00 ET; LIN's Monday close vs its SMA50; PGR's no-chase check.
 
 ---
+
+## Cycle 29 — 2026-10-06 (Tuesday)
+**Account:** $1,023.24 | cash $32.11 (3.1%) | 10 stocks + VOO | vs SPY since inception: +2.32% vs +3.94%
+**Self-audit:** clean — broker positions (10) and cash matched state.json; Oct 5 sells all in journal; C28 START/OK paired.
+**Run type:** executed staged Leg 2 of the owner mandate after T+1 settled (buying power $212.11). Lock set IN PROGRESS before orders.
+**Re-checks (11:05 ET):** PGR flat vs prior close (no chase), $212.68 vs SMA50 $214.34; XOM $164.30 > rising SMA50 $160.68; LIN closed 10/5 $482.38 > SMA50 $479.95 and traded $487.23 → confirmed. Spreads <0.05%.
+**New names screened:** none beyond the mandate research this run — no new screen (mandate execution only); fresh re-score of all holdings due next cycle.
+**Actions (all filled):**
+- BUY PGR $95 @ $212.76 — order 6ac50e52-1b14-4dd4-878a-4d846c6e0849 — mandate, 19/25
+- BUY XOM $40 @ $164.40 — order 6ac50e53-e56c-42b2-9193-e37ae2537446 — add-to-winner (trend 4)
+- BUY LIN $45 @ $487.49 — order 6ac50e54-1d99-4ff5-b8c8-f84c8f377733 — confirmed close above SMA50
+**Lesson:** Staging buys for T+1 worked cleanly; the conditional LIN trigger resolved on data, not hope.
+**Watch next:** PGR/UNP/MSFT/GOOGL earnings in the next 3 weeks; re-score everything; ≥2 new names; lag vs SPY (1.6 pts, valve at 8).

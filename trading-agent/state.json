@@ -1,6 +1,6 @@
 {
-  "last_cycle": 29,
-  "last_run": "2026-10-06T15:10Z",
+  "last_cycle": 30,
+  "last_run": "2026-10-09T15:15Z",
   "account_masked": "\u2022\u2022\u2022\u20226885",
   "benchmark": {
     "ticker": "SPY",
@@ -8,11 +8,11 @@
     "inception_value": 1000.0,
     "inception_date": "2026-07-14",
     "last_check": {
-      "date": "2026-10-06",
-      "spy_price": 780.7,
-      "spy_return_pct": 3.94,
-      "portfolio_value": 1023.24,
-      "portfolio_return_pct": 2.32
+      "date": "2026-10-09",
+      "spy_price": 777.18,
+      "spy_return_pct": 3.47,
+      "portfolio_value": 1027.38,
+      "portfolio_return_pct": 2.74
     }
   },
   "benchmark_history": [
@@ -111,14 +111,20 @@
       "date": "2026-10-06",
       "spy_return_pct": 3.94,
       "portfolio_return_pct": 2.32
+    },
+    {
+      "cycle": 30,
+      "date": "2026-10-09",
+      "spy_return_pct": 3.47,
+      "portfolio_return_pct": 2.74
     }
   ],
   "portfolio_snapshot": {
-    "total_value": "1023.24",
+    "total_value": "1027.38",
     "cash": "32.11",
-    "equity_value": "991.13",
+    "equity_value": "995.27",
     "buying_power": "32.11",
-    "note": "all sale proceeds settled; cash 3.1%"
+    "note": "cash 3.1%; no trades C30"
   },
   "holdings": [
     {
@@ -132,7 +138,8 @@
       "opened_cycle": 1,
       "avg_cost": "705.55",
       "last_score": null,
-      "score_cycle": null
+      "score_cycle": null,
+      "trend_c30": 4
     },
     {
       "ticker": "NVDA",
@@ -145,7 +152,8 @@
       "opened_cycle": 1,
       "avg_cost": "211.83",
       "last_score": null,
-      "score_cycle": null
+      "score_cycle": null,
+      "trend_c30": 4
     },
     {
       "ticker": "MSFT",
@@ -158,7 +166,8 @@
       "opened_cycle": 1,
       "avg_cost": "423.55",
       "last_score": null,
-      "score_cycle": null
+      "score_cycle": null,
+      "trend_c30": 4
     },
     {
       "ticker": "AMZN",
@@ -171,7 +180,8 @@
       "opened_cycle": 1,
       "avg_cost": "252.48",
       "last_score": null,
-      "score_cycle": null
+      "score_cycle": null,
+      "trend_c30": 4
     },
     {
       "ticker": "GOOGL",
@@ -184,7 +194,8 @@
       "opened_cycle": 1,
       "avg_cost": "358.28",
       "last_score": null,
-      "score_cycle": null
+      "score_cycle": null,
+      "trend_c30": 4
     },
     {
       "ticker": "LLY",
@@ -197,7 +208,8 @@
       "opened_cycle": 1,
       "avg_cost": "1147.97",
       "last_score": null,
-      "score_cycle": null
+      "score_cycle": null,
+      "trend_c30": 3
     },
     {
       "ticker": "XOM",
@@ -210,7 +222,8 @@
       "opened_cycle": 1,
       "avg_cost": "152.7283",
       "last_score": null,
-      "score_cycle": null
+      "score_cycle": null,
+      "trend_c30": 4
     },
     {
       "ticker": "LIN",
@@ -223,7 +236,8 @@
       "opened_cycle": 2,
       "avg_cost": "506.7631",
       "last_score": null,
-      "score_cycle": null
+      "score_cycle": null,
+      "trend_c30": 4
     },
     {
       "ticker": "V",
@@ -236,7 +250,8 @@
       "opened_cycle": 13,
       "avg_cost": "364.5391",
       "last_score": null,
-      "score_cycle": null
+      "score_cycle": null,
+      "trend_c30": 4
     },
     {
       "ticker": "UNP",
@@ -249,7 +264,8 @@
       "opened_cycle": 14,
       "avg_cost": "302.5499",
       "last_score": null,
-      "score_cycle": null
+      "score_cycle": null,
+      "trend_c30": 2
     },
     {
       "ticker": "PGR",
@@ -262,7 +278,8 @@
       "last_score": 19,
       "score_cycle": 27,
       "opened_cycle": 29,
-      "avg_cost": "212.7614"
+      "avg_cost": "212.7614",
+      "trend_c30": 4
     }
   ],
   "watchlist": [
@@ -353,5 +370,5 @@
     "C27: Fast runs cut corners - Cycle 27 took 37s, skipped its heartbeat, and its technicals call failed on missing params. Use the cheat-sheet; never skip steps 2/3/8/9.",
     "Ops: always git fetch before judging state (stale-clone false alarm, 2026-08-05); required files can be silently gitignored (*.log, C11)."
   ],
-  "notes": "Cycle 29 (2026-10-06): mandate DONE. Leg 2 filled: PGR $95, XOM +$40, LIN +$45. 10 stocks + VOO, cash $32 (3.1%). Next: full re-score of holdings (scores void), screen >=2 new names, check PGR earnings date; lag vs SPY ~1.6pts."
+  "notes": "Cycle 30 (2026-10-09): hold, no trades. Trend re-checked vs SMA50: all >=4 except LLY 3 (-0.4%), UNP 2 (-3.9%, -8.3% from cost, stop needs -12%). Cash 3.1%. Screened COST (+1.4% vs SMA, PE high, no buy) and JPM (-5% vs SMA, no). Full fundamental re-score still due; earnings late Oct."
 }

@@ -430,3 +430,14 @@ NEE and PLD would now trip the stop-loss on their own.
 - BUY LIN $45 @ $487.49 — order 6ac50e54-1d99-4ff5-b8c8-f84c8f377733 — confirmed close above SMA50
 **Lesson:** Staging buys for T+1 worked cleanly; the conditional LIN trigger resolved on data, not hope.
 **Watch next:** PGR/UNP/MSFT/GOOGL earnings in the next 3 weeks; re-score everything; ≥2 new names; lag vs SPY (1.6 pts, valve at 8).
+
+---
+
+## Cycle 30 — 2026-10-09 (Friday)
+**Account:** $1,027.38 | cash $32.11 (3.1%) | 10 stocks + VOO | vs SPY since inception: +2.74% vs +3.47%
+**Self-audit:** clean — broker positions and cash match state.json; no orders since Oct 6; C29 START/OK paired.
+**Ranking (mechanical trend vs SMA50):** MSFT, NVDA, XOM, AMZN, LIN, PGR, V, GOOGL all trend 4 (above SMA50); LLY 3 (−0.4%); UNP 2 (−3.9% vs flat SMA, −8.3% from cost — below the −12% stop).
+**New names screened:** COST — $944.7 only +1.4% over SMA50 with a rich multiple, no edge over VOO; JPM — $331.9, −5.3% under SMA50, trend 1–2, fails. Also re-checked ABBV (+6% over SMA50, still PE/negative-equity issue), MDT (−2% under SMA50, no), CAT (−2.4% under SMA50, no).
+**Actions:** none — no sell rule fired, no candidate cleared the bar, cash inside the 5% limit.
+**Lesson:** Holding is a valid cycle; the book is mostly in uptrends with SPY lag narrowing (0.7 pts).
+**Watch next:** UNP earnings ~10/22 (stop at −12% ≈ $266), then MSFT/GOOGL 10/28, AMZN/LLY 10/29, XOM/LIN 10/30.

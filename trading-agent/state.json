@@ -1,0 +1,374 @@
+{
+  "last_cycle": 30,
+  "last_run": "2026-10-09T15:15Z",
+  "account_masked": "\u2022\u2022\u2022\u20226885",
+  "benchmark": {
+    "ticker": "SPY",
+    "inception_price": 751.07,
+    "inception_value": 1000.0,
+    "inception_date": "2026-07-14",
+    "last_check": {
+      "date": "2026-10-09",
+      "spy_price": 777.18,
+      "spy_return_pct": 3.47,
+      "portfolio_value": 1027.38,
+      "portfolio_return_pct": 2.74
+    }
+  },
+  "benchmark_history": [
+    {
+      "cycle": 14,
+      "date": "2026-08-18",
+      "spy_return_pct": 2.22,
+      "portfolio_return_pct": 2.43
+    },
+    {
+      "cycle": 15,
+      "date": "2026-08-21",
+      "spy_return_pct": 2.01,
+      "portfolio_return_pct": 2.93
+    },
+    {
+      "cycle": 16,
+      "date": "2026-08-25",
+      "spy_return_pct": 1.8,
+      "portfolio_return_pct": 3.03
+    },
+    {
+      "cycle": 17,
+      "date": "2026-08-28",
+      "spy_return_pct": 3.08,
+      "portfolio_return_pct": 3.67
+    },
+    {
+      "cycle": 18,
+      "date": "2026-09-01",
+      "spy_return_pct": 1.57,
+      "portfolio_return_pct": 1.93
+    },
+    {
+      "cycle": 19,
+      "date": "2026-09-04",
+      "spy_return_pct": 2.47,
+      "portfolio_return_pct": 2.42
+    },
+    {
+      "cycle": 20,
+      "date": "2026-09-08",
+      "spy_return_pct": 2.21,
+      "portfolio_return_pct": 1.92
+    },
+    {
+      "cycle": 21,
+      "date": "2026-09-11",
+      "spy_return_pct": 1.87,
+      "portfolio_return_pct": 1.34
+    },
+    {
+      "cycle": 22,
+      "date": "2026-09-15",
+      "spy_return_pct": 0.79,
+      "portfolio_return_pct": 0.94
+    },
+    {
+      "cycle": 23,
+      "date": "2026-09-18",
+      "spy_return_pct": 1.19,
+      "portfolio_return_pct": 0.85
+    },
+    {
+      "cycle": 24,
+      "date": "2026-09-22",
+      "spy_return_pct": 3.0,
+      "portfolio_return_pct": 1.5
+    },
+    {
+      "cycle": 25,
+      "date": "2026-09-25",
+      "spy_return_pct": 2.37,
+      "portfolio_return_pct": 0.6
+    },
+    {
+      "cycle": 26,
+      "date": "2026-09-29",
+      "spy_return_pct": 1.74,
+      "portfolio_return_pct": 0.49
+    },
+    {
+      "cycle": 27,
+      "date": "2026-10-02",
+      "spy_return_pct": 2.52,
+      "portfolio_return_pct": 1.07
+    },
+    {
+      "cycle": 28,
+      "date": "2026-10-05",
+      "spy_return_pct": 2.84,
+      "portfolio_return_pct": 1.37
+    },
+    {
+      "cycle": 29,
+      "date": "2026-10-06",
+      "spy_return_pct": 3.94,
+      "portfolio_return_pct": 2.32
+    },
+    {
+      "cycle": 30,
+      "date": "2026-10-09",
+      "spy_return_pct": 3.47,
+      "portfolio_return_pct": 2.74
+    }
+  ],
+  "portfolio_snapshot": {
+    "total_value": "1027.38",
+    "cash": "32.11",
+    "equity_value": "995.27",
+    "buying_power": "32.11",
+    "note": "cash 3.1%; no trades C30"
+  },
+  "holdings": [
+    {
+      "ticker": "VOO",
+      "sector": "Broad ETF",
+      "theme": "none \u2014 index core",
+      "thesis": "S&P 500 core / ballast. Topped up Cycle 13 (5.0%->14.8%) and finished Cycle 14 (->17.6%), solidly inside the 15-20% target; the only permitted index holding post-restructure.",
+      "why_not_voo": "n/a \u2014 this IS the index core, exempt per STRATEGY.md",
+      "invalidation": "n/a \u2014 permanent core holding, no single-company break applies",
+      "next_earnings": "n/a",
+      "opened_cycle": 1,
+      "avg_cost": "705.55",
+      "last_score": null,
+      "score_cycle": null,
+      "trend_c30": 4
+    },
+    {
+      "ticker": "NVDA",
+      "sector": "Technology/Semis",
+      "theme": "AI/cloud",
+      "thesis": "AI/semiconductor leader. Q2 FY2027 reported 2026-08-26: adj. EPS $2.22 vs $2.10 est., revenue $96.22B vs $92.37B est. (beat), Q3 guidance $108B above consensus; AWS announced it will buy 2M Nvidia GPUs plus the new Vera CPU. YoY growth decelerating (106%->guided high-80s%) off a huge base, not a rollover. +6.2% from cost as of Cycle 17.",
+      "why_not_voo": "Pure-play leader in AI training/inference silicon; owning it directly captures outsized data-center-capex-driven earnings growth without diluting into the other 499 S&P names.",
+      "invalidation": "sell if data-center/AI capex demand clearly rolls over (multiple hyperscaler capex cuts) or if margin/guidance materially deteriorates",
+      "next_earnings": "~2026-11-19 (estimate, next quarterly report)",
+      "opened_cycle": 1,
+      "avg_cost": "211.83",
+      "last_score": null,
+      "score_cycle": null,
+      "trend_c30": 4
+    },
+    {
+      "ticker": "MSFT",
+      "sector": "Technology/Software",
+      "theme": "AI/cloud",
+      "thesis": "Software & cloud mega-cap. Q4 FY26 beat reported 2026-07-29 (EPS $4.74 vs $4.23 est) \u2014 thesis strong. Added to at Cycle 14 per the add-to-winners rule; now ~10.0% of the account, at the single-name target for the first time since the restructure.",
+      "why_not_voo": "Azure + Copilot monetization is compounding faster than the index average (Azure ~30%+ YoY); a working thesis the mandate explicitly says to add to, not trim.",
+      "invalidation": "sell if Azure growth decelerates sharply or cloud margins compress on a sustained basis",
+      "next_earnings": "2026-10-28 (tentative)",
+      "opened_cycle": 1,
+      "avg_cost": "423.55",
+      "last_score": null,
+      "score_cycle": null,
+      "trend_c30": 4
+    },
+    {
+      "ticker": "AMZN",
+      "sector": "Consumer Discretionary",
+      "theme": "AI/cloud",
+      "thesis": "E-commerce + AWS cloud + AI infra. Q2 2026 blowout reported 2026-07-30 (AWS +37%, revenue/EPS crushed estimates). Added to at Cycle 14 per the add-to-winners rule; now ~9.6% of the account, near target.",
+      "why_not_voo": "AWS reaccelerated to its fastest growth in 18 quarters plus a high-margin ads business scaling fast \u2014 a distinct earnings trajectory from the broad index.",
+      "invalidation": "sell if AWS growth decelerates materially or retail margins break down",
+      "next_earnings": "2026-10-29",
+      "opened_cycle": 1,
+      "avg_cost": "252.48",
+      "last_score": null,
+      "score_cycle": null,
+      "trend_c30": 4
+    },
+    {
+      "ticker": "GOOGL",
+      "sector": "Communication Services",
+      "theme": "AI/cloud",
+      "thesis": "Search/AI/cloud. Q2 beat (Cloud +82%, Cloud reached profitability) plus AI-optimism catalysts (DeepMind Gemini Robotics 2). -4.4% from cost as of Cycle 14; still below target size, a candidate for future top-up but not this cycle (AI/cloud theme already grew to 32.1% with other adds).",
+      "why_not_voo": "Cloud just crossed into sustained profitability while Search integrates Gemini defensively \u2014 a specific margin-inflection catalyst the index doesn't isolate.",
+      "invalidation": "sell if Search revenue is materially disrupted by AI competition or Cloud capex fails to monetize",
+      "next_earnings": "2026-10-28 (tentative)",
+      "opened_cycle": 1,
+      "avg_cost": "358.28",
+      "last_score": null,
+      "score_cycle": null,
+      "trend_c30": 4
+    },
+    {
+      "ticker": "LLY",
+      "sector": "Healthcare",
+      "theme": "GLP-1/pharma growth",
+      "thesis": "Pharma growth (GLP-1/incretin leadership). Q2 2026 reported 2026-08-05: EPS $8.38 actual vs $6.01 est., a ~39% beat. Completed the AtaiBeckley acquisition (Cycle 21, 2026-09-11) \u2014 a small bolt-on adding a mental-health neuroplastogen pipeline (BPL-003 for treatment-resistant depression), incremental not core to the GLP-1 thesis. -2.5% from cost as of Cycle 21; still below target size, a future top-up candidate.",
+      "why_not_voo": "GLP-1/incretin franchise is compounding earnings far faster than the healthcare-sector average \u2014 a multi-year volume ramp specific to LLY, not a sector-wide trend.",
+      "invalidation": "sell if GLP-1 pipeline setback (trial failure, major competitor share loss) or guidance cut",
+      "next_earnings": "2026-10-29",
+      "opened_cycle": 1,
+      "avg_cost": "1147.97",
+      "last_score": null,
+      "score_cycle": null,
+      "trend_c30": 3
+    },
+    {
+      "ticker": "XOM",
+      "sector": "Energy",
+      "theme": "Energy/capital-return",
+      "thesis": "Energy diversifier, strong FCF/buybacks. Q2 2026 reported 2026-07-31: EPS $3.52 modestly missed but revenue beat +42% YoY with $17.2B FCF and $9.4B shareholder returns. +13.5% from cost as of Cycle 14; still below target size, a future top-up candidate.",
+      "why_not_voo": "Structural FCF/buyback discipline gives a distinct capital-return profile vs. the tech-heavy index \u2014 a specific view on energy capital discipline, not a broad commodity bet.",
+      "invalidation": "sell if oil price collapse is sustained alongside a cut to capital-return guidance",
+      "next_earnings": "2026-10-30 (tentative)",
+      "opened_cycle": 1,
+      "avg_cost": "152.7283",
+      "last_score": null,
+      "score_cycle": null,
+      "trend_c30": 4
+    },
+    {
+      "ticker": "LIN",
+      "sector": "Materials",
+      "theme": "Materials/industrial-gases",
+      "thesis": "Industrial gases wide-moat compounder. Q2 2026 beat estimates with a record $11.1B backlog; FY26 adj. EPS guidance raised to $17.70-$17.90. Deutsche Bank reiterated Buy this cycle ($575 PT), calling for a return to 10%+ EPS growth starting 2027 as helium/Lincare headwinds stabilize. As of Cycle 22: price $461.34, still below its 50-day SMA (~$498) \u2014 technicals still lagging the fundamentals; Benzinga again named LIN among the most-oversold materials names this week (RSI ~29-30). Not adding until price closes back above the 50-day SMA.",
+      "why_not_voo": "Record backlog and a raised FY26 EPS guide reflect a company-specific decarbonization/electronics-and-helium volume tailwind; the chart lagging the fundamentals is the market's mispricing, not the business's problem.",
+      "invalidation": "sell if underlying volume/pricing actually turns negative (not just a guidance-timing gap vs. consensus)",
+      "next_earnings": "2026-10-30 (tentative)",
+      "opened_cycle": 2,
+      "avg_cost": "506.7631",
+      "last_score": null,
+      "score_cycle": null,
+      "trend_c30": 4
+    },
+    {
+      "ticker": "V",
+      "sector": "Finance (Payments)",
+      "theme": "Payments/financials (distinct from banking)",
+      "thesis": "Global payments-network duopoly (with Mastercard). Opened Cycle 13 to replace the JPM slot with a more specific thesis. Cycle 21: Visa/Mastercard/Ant International announced a 'Know-Your-Agent' framework to verify AI agents in payments, reinforcing the network-effect moat thesis as agentic commerce scales. +1.5% from cost as of Cycle 21; still below target size, a future top-up candidate.",
+      "why_not_voo": "Network-effect payments business with structurally expanding operating margins (opex scales slower than transaction volume) as cashless payments keep taking global share \u2014 a specific margin-expansion trajectory that JPM's generic 'banking bellwether' thesis couldn't articulate.",
+      "invalidation": "sell if network volume growth decelerates sharply or a payment-disintermediation threat (real-time bank rails, stablecoins) gains material merchant share",
+      "next_earnings": "~late Oct 2026 (estimate)",
+      "opened_cycle": 13,
+      "avg_cost": "364.5391",
+      "last_score": null,
+      "score_cycle": null,
+      "trend_c30": 4
+    },
+    {
+      "ticker": "UNP",
+      "sector": "Transportation/Industrials",
+      "theme": "Rail/freight",
+      "thesis": "Class I railroad duopoly-position operator. Opened Cycle 14 as a brand-new candidate. Score 22/25 (quality 5, valuation 4, trend 4 \u2014 price $302.43, +6.7% above its 50-day SMA $283.56, RSI 60.0, ~4% off 52-wk high; catalyst 4 \u2014 Q2 revenue +12% to $6.9B, adj. EPS $3.41 beat $3.16 est., management raised FY guidance to high-single-digit EPS growth on freight share gains ahead of GDP; fit 5 \u2014 first industrials/transportation exposure). As of Cycle 24: UBS upgraded to Buy from Neutral (9/16, PT $310->$339) on 2027 volume/pricing tailwinds and NS-merger upside, raising EPS estimates above consensus for 2026/2027 \u2014 thesis strengthening despite the -10.3% drawdown from cost.",
+      "why_not_voo": "Rail duopoly with ~35%+ ROE; Q2 results drove a raised full-year EPS growth guide on freight volume gaining share ahead of broad GDP \u2014 a specific volume/pricing trajectory the index's small transportation weight doesn't capture.",
+      "invalidation": "sell if freight volume growth reverses, the transcontinental merger process introduces material regulatory/financial risk, or margin/EPS guidance is cut",
+      "next_earnings": "2026-10-22 (tentative)",
+      "opened_cycle": 14,
+      "avg_cost": "302.5499",
+      "last_score": null,
+      "score_cycle": null,
+      "trend_c30": 2
+    },
+    {
+      "ticker": "PGR",
+      "sector": "Finance (Insurance)",
+      "theme": "Insurance/P&C",
+      "thesis": "Dominant P&C insurer, PE ~10.5, net margin expanded 12.7%->14.0%. Value entry below SMA50 (trend 2).",
+      "why_not_voo": "a PE-10.5 dominant P&C insurer with underwriting margins expanding 12.7%->14.0%, uncorrelated to this book's AI/cloud concentration, where VOO carries ~35% tech",
+      "invalidation": "sell if the combined ratio deteriorates above ~100 or policy growth stalls alongside margin compression",
+      "next_earnings": "~mid-Oct 2026 (verify)",
+      "last_score": 19,
+      "score_cycle": 27,
+      "opened_cycle": 29,
+      "avg_cost": "212.7614",
+      "trend_c30": 4
+    }
+  ],
+  "watchlist": [
+    {
+      "ticker": "ABBV",
+      "last_score": 18,
+      "score_cycle": 27,
+      "why": "Runner-up. Only candidate in an uptrend (trend 4: +2.0% above a rising SMA50, RSI 53.7, 2.4% below its 52-wk high) but PE 74.3 with negative book equity, and it would be a second pharma beside LLY."
+    },
+    {
+      "ticker": "MDT",
+      "last_score": 17,
+      "score_cycle": 27,
+      "why": "Failed re-score (was 22/25 at C19). $86.36 is 4.0% below a rising SMA50 (trend 2), RSI 35.5, closed near its low on 1.87x volume. PE 21, 3.3% yield. Reconsider above the SMA50."
+    },
+    {
+      "ticker": "CTAS",
+      "last_score": 15,
+      "score_cycle": 27,
+      "why": "Fails: PE 38.1, closed -1.3% near its low on Oct 2. Quality 5 business; needs a better price."
+    },
+    {
+      "ticker": "CAT",
+      "last_score": null,
+      "score_cycle": 25,
+      "why": "Exited C7; the Q2 print reversed the thesis (record $72B backlog) but the stock lagged. SMA gap was narrowing (-2.3% at C25). Re-score fresh; buy if it clears a rising SMA50."
+    }
+  ],
+  "staged_buys": [],
+  "open_orders": [],
+  "pending_trade_mandate": {
+    "status": "DONE 29 2026-10-06",
+    "authorized": "Owner-approved 2026-10-04 (Sunday, market closed \u2014 orders deliberately deferred per the execution rules). Research was completed and verified live against the broker at Oct 2 close; re-verify everything before acting.",
+    "why": "The agent placed NO trades for 12 consecutive cycles (15-27) while 5 candidates sat queued above the >=18/25 bar. Cause was structural, not research failure: 12 single names against the 8-10 band with cash at 3.8% inside the 2-5% target leaves ZERO capacity to act on a good idea without first selling. This mandate breaks that deadlock and returns the book to inside every band.",
+    "leg_1_sells": [
+      "SELL NEE IN FULL (~0.558472 sh). Evidence: $76.83 vs a FALLING 50-day SMA $83.06 (-7.5%); made a NEW 52-WEEK LOW on 2026-10-01; -14.2% from cost, worst in book.",
+      "SELL AMT IN FULL (~0.544600 sh). Evidence: $162.19 vs a FALLING 50-day SMA $172.89 (-6.2%); sits 1.3% above its 52-wk low. Its Cycle 14 entry was explicitly a 50-day-SMA BREAKOUT trade - that breakout has failed, so the entry thesis is dead.",
+      "SELL PLD IN FULL (~0.335296 sh). Evidence: $128.92 vs a FALLING 50-day SMA $138.69 (-7.0%); -13.6% from cost; $2.1B equity-offering dilution overhang.",
+      "Thematic coherence: these are a utility + two REITs - all long-duration rate-sensitive assets, the exact group the Cycle 18 journal flagged as pressured by the 10Y yield at 20-month highs. One macro decision, not three unrelated sells.",
+      "Expected: ~$174.47 proceeds; realized ~-$20.54 (NEE -7.10, AMT -6.67, PLD -6.77); all-time realized P&L +6.84 (broker-verified: CAT -5.90, Aug restructure +12.74) -> ~-13.70. Single names 12 -> 9."
+    ],
+    "leg_2_buys": [
+      "BUY PGR ~$95 (NEW position) -> single names 9 -> 10, inside the 8-10 band. Score 18-19/25: quality 5 (dominant P&C insurer, net margin expanded 12.7%->14.0%), valuation 4-5 (PE 10.5, 15% below 52-wk high), trend 2 (-1.9% vs SMA50 $214.36, RSI 46.9 - a VALUE entry, not momentum), catalyst 3, fit 4 (adds insurance; book has none).",
+      "TOP UP XOM +$40 -> ~$96.78. The ONLY holding in a confirmed uptrend: $164.13 vs a RISING 50-day SMA $160.54 (+2.2%), +13.6% from cost. This is the add-to-winners rule, correctly applied.",
+      "TOP UP LIN +$45 -> ~$90.62 *** CONDITIONAL *** - ONLY if LIN is trading ABOVE its 50-day SMA (~$480.6) at execution. It closed 2026-10-02 at $479.48, just 0.2% below the line it has been under for ~20 cycles. This is exactly the confirmation the contrarian-entry rule demands. IF UNCONFIRMED: SKIP IT - do NOT substitute another stock (no other holding is in an uptrend). Under STRATEGY v3, sweep any cash above 5% into VOO instead."
+    ],
+    "do_not_buy": [
+      "LLY - do NOT top up. $1143.30 vs a FALLING 50-day SMA $1176.79 (-2.8%). An earlier draft of this plan included an LLY add; it was REMOVED because that is averaging down into a downtrend, which the rules forbid.",
+      "V (-2.2% vs SMA50) and UNP (-4.2% vs a falling SMA50) - no adds, both below their averages.",
+      "GOOGL - do NOT top up despite being sub-scale at 4.7%; adding pushes the AI/cloud theme from 33.5% toward 38%, tightening against the 40% correlated-theme cap.",
+      "MDT - do NOT buy. Its 22/25 (Cycle 19, Sept 4) was a stale high-water mark. Re-scored on Oct 2 data it is ~17/25 and FAILS the bar: $86.36 is 4.0% below a RISING SMA50 $89.92, RSI 35.5, and it closed near the day's low on 1.87x average volume (distribution). The catalyst decayed while it sat queued.",
+      "ABBV - runner-up only (18/25). The sole candidate in a real uptrend (+2.0% above a rising SMA50, RSI 53.7), but PE 74.3 with NEGATIVE book equity (P/B -78.3), and it would be a second pharma beside LLY. Keep on the watchlist.",
+      "CTAS ~15/25 - fails (PE 38.1). CQP - DROP FROM THE WATCHLIST PERMANENTLY: it is an MLP issuing K-1 tax forms, a disproportionate annual filing burden for a ~$1,000 taxable account, plus poor liquidity."
+    ],
+    "execution_guards": [
+      "RE-VERIFY LIVE BID/ASK BEFORE EVERY ORDER. The 2026-10-02 closed book is unusable - PGR showed bid $110.07 / ask $214.04. If a live spread exceeds ~0.3%, use a limit near the mid or skip.",
+      "Trade between ~10:00 and ~15:30 ET to avoid auction noise.",
+      "CASH ACCOUNT, T+1 SETTLEMENT: unsettled sale proceeds are NOT spendable. History confirms it - Cycle 13's $144 of buys came from pre-existing settled cash while that session's $362.75 of proceeds were only deployed 4 days later in Cycle 14. So: place the SELLS, then call get_portfolio and READ buying_power. If it already reflects the proceeds, place the buys the same session; otherwise place them the NEXT session. VERIFY, never assume.",
+      "Re-apply the >5% no-chase rule to PGR immediately before buying.",
+      "RE-CHECK EACH SELL STILL QUALIFIES. If NEE/AMT/PLD gapped sharply UP, pause that leg and journal why rather than selling reflexively.",
+      "Record every order ID and confirm state=filled before journaling anything as done.",
+      "If the market is closed when you read this, do the analysis, journal it, and defer again - do not force orders."
+    ],
+    "expected_end_state": "10 single stocks + VOO; cash <=5% (excess swept into VOO); largest stock MSFT ~10.9% (<15%); AI/cloud theme ~33.5% (<40%). GOOGL 4.7%, LLY 4.9% and V 4.3% stay sub-scale deliberately - LLY and V are below their SMA50s, and adding to GOOGL would push the AI theme toward 38%.",
+    "on_completion": "Set status to DONE <cycle> <date> (keep the block). Remove NEE/AMT/PLD from holdings; add PGR (theme 'Insurance/P&C', last_score 19, score_cycle 27, why_not_voo 'a PE-10.5 dominant P&C insurer with underwriting margins expanding 12.7%->14.0%, uncorrelated to this book's 33.5% AI/cloud concentration, where VOO carries ~35% tech', invalidation 'sell if the combined ratio deteriorates above ~100 or policy growth stalls alongside margin compression', next_earnings from get_earnings_calendar); remove PGR from the watchlist; clear staged_buys; append benchmark_history; refresh STATUS.md; journal per STRATEGY v3 (<=25 lines).",
+    "lock": "Before placing ANY order for this mandate: git fetch, re-read this block, then set status to 'IN PROGRESS <cycle> <UTC time>' and push. If status is already IN PROGRESS or DONE, do NOT re-execute - reconcile against get_equity_orders/get_equity_positions and only finish legs that have not filled. Three things may act on this mandate (the owner's scheduled wakeup Mon 2026-10-05 14:00 UTC, its Tuesday follow-up if buys wait on T+1, and the regular Tue 15:00 UTC cycle), so this lock prevents double orders.",
+    "t_plus_1": "Cash account: if buying_power does not reflect the sale proceeds after Leg 1, write the Leg 2 buys into state.json staged_buys (ticker, amount, condition) and place them at the next open session.",
+    "leg_1_fills": [
+      "SELL NEE 0.558472 sh @ $76.5518 \u2014 order 6ac3be8a-32f6-46e5-a0ff-432f51729eb4 \u2014 realized $-7.25",
+      "SELL AMT 0.5446 sh @ $161.1628 \u2014 order 6ac3be93-a2c0-407e-b453-76aa07568a35 \u2014 realized $-7.23",
+      "SELL PLD 0.335296 sh @ $128.6101 \u2014 order 6ac3be98-0588-4a93-a50b-5e15e39ef635 \u2014 realized $-6.88"
+    ],
+    "leg_2_fills": [
+      "BUY PGR 0.446509 sh @ $212.7614 \u2014 order 6ac50e52-1b14-4dd4-878a-4d846c6e0849",
+      "BUY XOM 0.243309 sh @ $164.40 \u2014 order 6ac50e53-e56c-42b2-9193-e37ae2537446",
+      "BUY LIN 0.092309 sh @ $487.4899 \u2014 order 6ac50e54-1d99-4ff5-b8c8-f84c8f377733 (confirmed: closed 10/5 $482.38 > SMA50 $479.95)"
+    ]
+  },
+  "lessons": [
+    "C1-7: Exit on evidence, not price - CAT was rightly held through a -5% dip (C5) and rightly sold on margin deterioration (C7).",
+    "C8: Don't trim winners on sector-wide fear when the company is executing - AMZN popped +14.7% on earnings after being held through the AI-capex scare.",
+    "C10-11: A >5% same-day spike is a chase - CAT's earnings pop fully round-tripped within 3 trading days.",
+    "C10-12/C22/C25: Business quality and chart trend are separate signals; a beat on a broken chart (ORCL, RH, AZO) still fails.",
+    "C1-12: Diversification rules silently turned the book into an index fund - every dollar needs a specific why_not_voo.",
+    "C15-27: 12 no-trade cycles were an arithmetic deadlock (count band + cash band), not caution - if 'no trades' repeats 3+ cycles, audit the rules, don't re-flag the backlog.",
+    "C19->C27: Queued scores decay - MDT went 22/25 -> 17/25 while waiting. Re-score anything older than 2 cycles before buying.",
+    "C23-24: Holding through an intact-thesis drawdown can pay - the AI-safety selloff reversed within days; UNP drew a UBS upgrade while held.",
+    "C27: Fast runs cut corners - Cycle 27 took 37s, skipped its heartbeat, and its technicals call failed on missing params. Use the cheat-sheet; never skip steps 2/3/8/9.",
+    "Ops: always git fetch before judging state (stale-clone false alarm, 2026-08-05); required files can be silently gitignored (*.log, C11)."
+  ],
+  "notes": "Cycle 30 (2026-10-09): hold, no trades. Trend re-checked vs SMA50: all >=4 except LLY 3 (-0.4%), UNP 2 (-3.9%, -8.3% from cost, stop needs -12%). Cash 3.1%. Screened COST (+1.4% vs SMA, PE high, no buy) and JPM (-5% vs SMA, no). Full fundamental re-score still due; earnings late Oct."
+}

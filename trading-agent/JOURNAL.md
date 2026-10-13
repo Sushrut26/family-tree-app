@@ -441,3 +441,14 @@ NEE and PLD would now trip the stop-loss on their own.
 **Actions:** none — no sell rule fired, no candidate cleared the bar, cash inside the 5% limit.
 **Lesson:** Holding is a valid cycle; the book is mostly in uptrends with SPY lag narrowing (0.7 pts).
 **Watch next:** UNP earnings ~10/22 (stop at −12% ≈ $266), then MSFT/GOOGL 10/28, AMZN/LLY 10/29, XOM/LIN 10/30.
+
+---
+
+## Cycle 31 — 2026-10-13 (Tuesday)
+**Account:** $1,037.13 | cash $32.11 (3.1%) | 10 stocks + VOO | vs SPY since inception: +3.71% vs +3.47%
+**Self-audit:** clean — broker positions and cash match state.json; no orders since Oct 6; C30 START/OK paired.
+**Ranking (mechanical trend vs SMA50):** MSFT, NVDA, XOM, AMZN, LIN, PGR, V, GOOGL, LLY all above/near SMA50 (trend 3–4); UNP trend 1 (−2.5% vs falling SMA50 $288.4), −7.0% from cost — above the −12% stop.
+**New names screened:** JNJ — $249.5, −6% vs SMA50 and −5.4% today, trend 1, fails; HD — $292.9, −7.6% vs SMA50, fails.
+**Actions:** none — no sell rule fired, no candidate cleared the bar, cash inside the 5% limit.
+**Lesson:** Portfolio has moved ahead of SPY; holding remains correct while no trigger fires.
+**Watch next:** UNP earnings ~10/22 (stop ≈ $266); MSFT/GOOGL 10/28, AMZN/LLY 10/29, XOM/LIN 10/30.

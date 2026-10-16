@@ -452,3 +452,14 @@ NEE and PLD would now trip the stop-loss on their own.
 **Actions:** none — no sell rule fired, no candidate cleared the bar, cash inside the 5% limit.
 **Lesson:** Portfolio has moved ahead of SPY; holding remains correct while no trigger fires.
 **Watch next:** UNP earnings ~10/22 (stop ≈ $266); MSFT/GOOGL 10/28, AMZN/LLY 10/29, XOM/LIN 10/30.
+
+---
+
+## Cycle 32 — 2026-10-16 (Friday)
+**Account:** $1,035.62 | cash $32.11 (3.1%) | 10 stocks + VOO | vs SPY since inception: +3.56% vs +2.67%
+**Self-audit:** clean — broker positions and cash match state.json; no orders since Oct 6; C31 START/OK paired.
+**Ranking (live):** XOM, LIN, LLY, V, PGR, NVDA, AMZN above cost/trend 3–4; MSFT and GOOGL softer today (−1%) but above cost; UNP −4.0% from cost, bounced to $290.56 — far from the −12% stop.
+**New names screened:** AAPL — $346, +6.5% vs SMA50 but rich multiple and no edge over VOO; BRK.B — $531, +4.5% vs SMA50, no specific edge over VOO. Neither buyable with $32 cash anyway.
+**Actions:** none — no sell rule fired, no candidate cleared the bar, cash inside the 5% limit.
+**Lesson:** Holding is correct while no trigger fires; the book leads SPY by ~0.9 pts.
+**Watch next:** UNP earnings 10/22 (stop ≈ $266); MSFT/GOOGL 10/28, AMZN/LLY 10/29, XOM/LIN 10/30.

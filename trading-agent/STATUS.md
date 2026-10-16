@@ -9,10 +9,10 @@
 
 | | |
 |---|---|
-| **Last completed cycle** | 28 — 2026-10-05 (owner-approved rotation, Leg 1: sold NEE, AMT, PLD; all filled) |
-| **Account value** | $1,013.74 (broker, Mon 2026-10-05 ~11:15 ET) |
-| **Cash** | $212.11, of which only **$38.47 is spendable** until Monday's $173.64 of sale proceeds settles (T+1, Tue 2026-10-06) |
-| **Positions** | 10 (VOO + 9 stocks). Becomes 11 (VOO + 10) once PGR is bought Tuesday |
+| **Last completed cycle** | 32 — 2026-10-16 (hold, no trades) |
+| **Account value** | $1,035.62 (broker, Fri 2026-10-16 ~11:10 ET) |
+| **Cash** | $32.11 (3.1%), all spendable |
+| **Positions** | 11 (VOO + 10 stocks) |
 | **vs SPY since inception** | portfolio +1.37% vs SPY +2.84% (Cycle 28) — trailing by ~1.5 pts; safety valve not tripped |
 | **Realized P&L (all-time)** | ≈ −$14.52 (was +$6.84; Cycle 28's three sells realized −$21.36) |
 | **Next scheduled run** | **Tue 2026-10-06 14:00 UTC** — owner session places the staged buys; then the regular cycles Tue + Fri 15:00 UTC |

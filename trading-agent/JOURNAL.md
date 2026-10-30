@@ -496,3 +496,14 @@ NEE and PLD would now trip the stop-loss on their own.
 **Actions:** none — no sell rule fired, no candidate cleared the bar, cash inside the 5% limit.
 **Lesson:** Holding is correct while no trigger fires; lead over SPY widened to ~1.7 pts.
 **Watch next:** MSFT/GOOGL 10/28, AMZN/LLY 10/29, XOM/LIN 10/30 earnings; no adds ahead of prints.
+
+---
+
+## Cycle 36 — 2026-10-30 (Friday)
+**Account:** $1,037.13 | cash $32.11 (3.1%) | 10 stocks + VOO | vs SPY since inception: +3.71% vs +0.87%
+**Self-audit:** clean — broker positions and cash match state.json; no open orders, none since Oct 6; C35 START/OK paired.
+**Ranking (live, quotes only):** LLY $1426 (+3.8% today, no chase), XOM $185.5, LIN $512.9, V $413.7, PGR $232, UNP $302.9 all above cost; NVDA $205.7 (−2.9% from cost), AMZN $239.1 (−5.3%), MSFT $522 (~+23% from cost) soft in a −1.5% SPY tape; none near the −12% stop.
+**New names screened:** AVGO — $325.8, −5.6% today, more AI/semis overlap, no; BRK.B $546.6 / COST $1014 — no specific edge over VOO.
+**Actions:** none — no sell rule fired, no candidate cleared the bar, cash inside the 5% limit; XOM/LIN earnings today so no adds.
+**Lesson:** SPY fell ~1.5% today; book's lead over SPY widened to ~2.8 pts. Holding is a valid cycle.
+**Watch next:** XOM/LIN prints, AMZN/NVDA vs cost, XOM weight vs 15%.

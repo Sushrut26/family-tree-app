@@ -1,6 +1,6 @@
 {
-  "last_cycle": 38,
-  "last_run": "2026-11-06T15:10Z",
+  "last_cycle": 39,
+  "last_run": "2026-11-10T16:10Z",
   "account_masked": "\u2022\u2022\u2022\u20226885",
   "benchmark": {
     "ticker": "SPY",
@@ -8,11 +8,11 @@
     "inception_value": 1000.0,
     "inception_date": "2026-07-14",
     "last_check": {
-      "date": "2026-11-06",
-      "spy_price": 738.925,
-      "spy_return_pct": -1.62,
-      "portfolio_value": 1020.37,
-      "portfolio_return_pct": 2.04
+      "date": "2026-11-10",
+      "spy_price": 748.28,
+      "spy_return_pct": -0.37,
+      "portfolio_value": 1023.1,
+      "portfolio_return_pct": 2.31
     }
   },
   "benchmark_history": [
@@ -165,14 +165,20 @@
       "date": "2026-11-06",
       "spy_return_pct": -1.62,
       "portfolio_return_pct": 2.04
+    },
+    {
+      "cycle": 39,
+      "date": "2026-11-10",
+      "spy_return_pct": -0.37,
+      "portfolio_return_pct": 2.31
     }
   ],
   "portfolio_snapshot": {
-    "total_value": "1033.20",
-    "cash": "32.11",
-    "equity_value": "1001.09",
+    "total_value": "1023.10",
+    "cash": "94.65",
+    "equity_value": "928.45",
     "buying_power": "32.11",
-    "note": "cash 3.1%; no trades C37"
+    "note": "cash incl. ~$62.54 unsettled NVDA proceeds (staged for VOO)"
   },
   "holdings": [
     {
@@ -185,20 +191,6 @@
       "next_earnings": "n/a",
       "opened_cycle": 1,
       "avg_cost": "705.55",
-      "last_score": null,
-      "score_cycle": null,
-      "trend_c30": 4
-    },
-    {
-      "ticker": "NVDA",
-      "sector": "Technology/Semis",
-      "theme": "AI/cloud",
-      "thesis": "AI/semiconductor leader. Q2 FY2027 reported 2026-08-26: adj. EPS $2.22 vs $2.10 est., revenue $96.22B vs $92.37B est. (beat), Q3 guidance $108B above consensus; AWS announced it will buy 2M Nvidia GPUs plus the new Vera CPU. YoY growth decelerating (106%->guided high-80s%) off a huge base, not a rollover. +6.2% from cost as of Cycle 17.",
-      "why_not_voo": "Pure-play leader in AI training/inference silicon; owning it directly captures outsized data-center-capex-driven earnings growth without diluting into the other 499 S&P names.",
-      "invalidation": "sell if data-center/AI capex demand clearly rolls over (multiple hyperscaler capex cuts) or if margin/guidance materially deteriorates",
-      "next_earnings": "~2026-11-19 (estimate, next quarterly report)",
-      "opened_cycle": 1,
-      "avg_cost": "211.83",
       "last_score": null,
       "score_cycle": null,
       "trend_c30": 4
@@ -356,7 +348,13 @@
       "why": "Exited C7; the Q2 print reversed the thesis (record $72B backlog) but the stock lagged. SMA gap was narrowing (-2.3% at C25). Re-score fresh; buy if it clears a rising SMA50."
     }
   ],
-  "staged_buys": [],
+  "staged_buys": [
+    {
+      "ticker": "VOO",
+      "amount": "62.5",
+      "condition": "next session after NVDA sale proceeds settle (T+1); check get_portfolio buying_power first"
+    }
+  ],
   "open_orders": [],
   "pending_trade_mandate": {
     "status": "DONE 29 2026-10-06",
@@ -407,7 +405,6 @@
     ]
   },
   "lessons": [
-    "C1-7: Exit on evidence, not price - CAT was rightly held through a -5% dip (C5) and rightly sold on margin deterioration (C7).",
     "C8: Don't trim winners on sector-wide fear when the company is executing - AMZN popped +14.7% on earnings after being held through the AI-capex scare.",
     "C10-11: A >5% same-day spike is a chase - CAT's earnings pop fully round-tripped within 3 trading days.",
     "C10-12/C22/C25: Business quality and chart trend are separate signals; a beat on a broken chart (ORCL, RH, AZO) still fails.",
@@ -416,7 +413,8 @@
     "C19->C27: Queued scores decay - MDT went 22/25 -> 17/25 while waiting. Re-score anything older than 2 cycles before buying.",
     "C23-24: Holding through an intact-thesis drawdown can pay - the AI-safety selloff reversed within days; UNP drew a UBS upgrade while held.",
     "C27: Fast runs cut corners - Cycle 27 took 37s, skipped its heartbeat, and its technicals call failed on missing params. Use the cheat-sheet; never skip steps 2/3/8/9.",
-    "Ops: always git fetch before judging state (stale-clone false alarm, 2026-08-05); required files can be silently gitignored (*.log, C11)."
+    "Ops: always git fetch before judging state (stale-clone false alarm, 2026-08-05); required files can be silently gitignored (*.log, C11).",
+    "C39: NVDA stop-loss fired mechanically (-19.9% vs cost, below falling SMA50 $219) after the pre-earnings slide; the -12% rule is checked every cycle, not just when near."
   ],
-  "notes": "Cycle 38 (2026-11-06): hold, no trades. Portfolio +2.04% vs SPY -1.62%. NVDA -9.0% vs cost is worst (stop is -12% AND trend 1); UNP -3.7%. NVDA earnings ~11/19. Cash 3.1%."
+  "notes": "Cycle 39 (2026-11-10): SOLD NVDA in full (stop-loss, order 6af34181-33f0-4981-9795-edbe86e9ad77, realized ~-15.46). 9 stocks + VOO. $62.5 staged to VOO next session (T+1). Portfolio +2.31% vs SPY -0.37%."
 }

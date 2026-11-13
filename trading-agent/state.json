@@ -1,6 +1,6 @@
 {
-  "last_cycle": 39,
-  "last_run": "2026-11-10T16:10Z",
+  "last_cycle": 40,
+  "last_run": "2026-11-13T16:15:00Z",
   "account_masked": "\u2022\u2022\u2022\u20226885",
   "benchmark": {
     "ticker": "SPY",
@@ -8,11 +8,11 @@
     "inception_value": 1000.0,
     "inception_date": "2026-07-14",
     "last_check": {
-      "date": "2026-11-10",
-      "spy_price": 748.28,
-      "spy_return_pct": -0.37,
-      "portfolio_value": 1023.1,
-      "portfolio_return_pct": 2.31
+      "date": "2026-11-13",
+      "spy_price": 750.44,
+      "spy_return_pct": -0.08,
+      "portfolio_value": 1033.16,
+      "portfolio_return_pct": 3.32
     }
   },
   "benchmark_history": [
@@ -171,14 +171,20 @@
       "date": "2026-11-10",
       "spy_return_pct": -0.37,
       "portfolio_return_pct": 2.31
+    },
+    {
+      "cycle": 40,
+      "date": "2026-11-13",
+      "spy_return_pct": -0.08,
+      "portfolio_return_pct": 3.32
     }
   ],
   "portfolio_snapshot": {
-    "total_value": "1023.10",
-    "cash": "94.65",
-    "equity_value": "928.45",
-    "buying_power": "32.11",
-    "note": "cash incl. ~$62.54 unsettled NVDA proceeds (staged for VOO)"
+    "total_value": "1033.16",
+    "cash": "32.24",
+    "equity_value": "1000.92",
+    "buying_power": "32.24",
+    "note": "all settled; no staged buys"
   },
   "holdings": [
     {
@@ -190,7 +196,7 @@
       "invalidation": "n/a \u2014 permanent core holding, no single-company break applies",
       "next_earnings": "n/a",
       "opened_cycle": 1,
-      "avg_cost": "705.55",
+      "avg_cost": 701.5,
       "last_score": null,
       "score_cycle": null,
       "trend_c30": 4
@@ -348,13 +354,7 @@
       "why": "Exited C7; the Q2 print reversed the thesis (record $72B backlog) but the stock lagged. SMA gap was narrowing (-2.3% at C25). Re-score fresh; buy if it clears a rising SMA50."
     }
   ],
-  "staged_buys": [
-    {
-      "ticker": "VOO",
-      "amount": "62.5",
-      "condition": "next session after NVDA sale proceeds settle (T+1); check get_portfolio buying_power first"
-    }
-  ],
+  "staged_buys": [],
   "open_orders": [],
   "pending_trade_mandate": {
     "status": "DONE 29 2026-10-06",
@@ -416,5 +416,5 @@
     "Ops: always git fetch before judging state (stale-clone false alarm, 2026-08-05); required files can be silently gitignored (*.log, C11).",
     "C39: NVDA stop-loss fired mechanically (-19.9% vs cost, below falling SMA50 $219) after the pre-earnings slide; the -12% rule is checked every cycle, not just when near."
   ],
-  "notes": "Cycle 39 (2026-11-10): SOLD NVDA in full (stop-loss, order 6af34181-33f0-4981-9795-edbe86e9ad77, realized ~-15.46). 9 stocks + VOO. $62.5 staged to VOO next session (T+1). Portfolio +2.31% vs SPY -0.37%."
+  "notes": "Cycle 40 (2026-11-13): executed staged VOO buy $62.50 (order 6af7370b-0448-4592-937e-d0ca18087821, filled @690.07). 9 stocks + VOO, cash ~3.1%. No stops near firing. Portfolio +3.32% vs SPY -0.08%."
 }

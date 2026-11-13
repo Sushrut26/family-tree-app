@@ -540,3 +540,12 @@ NEE and PLD would now trip the stop-loss on their own.
 **Actions:** SELL NVDA 0.368215 sh @ $169.84 — order 6af34181-33f0-4981-9795-edbe86e9ad77 (filled) — rule: stop-loss (≥12% down AND trend 1). Realized ≈ -$15.46.
 **Lesson:** Stop-loss was overdue — NVDA was already -9% on 11/6 and gapped lower; run the mechanical check on every holding each cycle.
 **Watch next:** staged VOO buy ~$62.5 once proceeds settle (T+1); AI/cloud theme now smaller; screen >=2 new names.
+
+## Cycle 40 — 2026-11-13 (Friday)
+**Account:** $1,033.16 | cash $32.24 (3.1%) | 9 stocks + VOO | vs SPY since inception: +3.32% vs -0.08%
+**Self-audit:** clean — positions match state.json; no open orders; C39 START/OK paired.
+**Ranking:** all 9 stocks above cost (MSFT, AMZN, LLY, LIN, V, PGR, GOOGL, XOM, UNP); no stop-loss candidate; no fresh full re-score this cycle.
+**New names screened:** none — quick maintenance cycle (funnel skipped; do two names next cycle).
+**Actions:** BUY VOO $62.50 @ 690.07 — order 6af7370b-0448-4592-937e-d0ca18087821 (filled) — staged T+1 buy / sweep cash >5%.
+**Lesson:** Staged buys clear cleanly once proceeds settle; cash back inside the 5% limit.
+**Watch next:** screen >=2 new names; re-score holdings (scores stale); stops via mechanical check.

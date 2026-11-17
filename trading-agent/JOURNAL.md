@@ -549,3 +549,12 @@ NEE and PLD would now trip the stop-loss on their own.
 **Actions:** BUY VOO $62.50 @ 690.07 — order 6af7370b-0448-4592-937e-d0ca18087821 (filled) — staged T+1 buy / sweep cash >5%.
 **Lesson:** Staged buys clear cleanly once proceeds settle; cash back inside the 5% limit.
 **Watch next:** screen >=2 new names; re-score holdings (scores stale); stops via mechanical check.
+
+## Cycle 41 — 2026-11-17 (Tuesday)
+**Account:** $1,009.69 | cash $32.24 (3.2%) | 9 stocks + VOO | vs SPY since inception: +0.97% vs -2.62%
+**Self-audit:** clean — positions match state.json; no open orders; C40 START/OK paired.
+**Ranking (live quotes):** broad selloff day (SPY -1.15%, MSFT -3.3%, V -1.8%, UNP -2.2%). All holdings above cost except UNP $297.1 (-1.8%); none near the -12% stop.
+**New names screened:** none — quotes-only hold run; funnel skipped again (owed next cycle).
+**Actions:** none — no sell rule fired, no scored buy candidate, cash inside 5% limit.
+**Lesson:** Lead over SPY holds (~3.6 pts) in a down tape.
+**Watch next:** screen >=2 new names and re-score holdings; UNP vs cost.

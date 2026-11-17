@@ -1,6 +1,6 @@
 {
-  "last_cycle": 40,
-  "last_run": "2026-11-13T16:15:00Z",
+  "last_cycle": 41,
+  "last_run": "2026-11-17T16:10:00Z",
   "account_masked": "\u2022\u2022\u2022\u20226885",
   "benchmark": {
     "ticker": "SPY",
@@ -8,11 +8,11 @@
     "inception_value": 1000.0,
     "inception_date": "2026-07-14",
     "last_check": {
-      "date": "2026-11-13",
-      "spy_price": 750.44,
-      "spy_return_pct": -0.08,
-      "portfolio_value": 1033.16,
-      "portfolio_return_pct": 3.32
+      "date": "2026-11-17",
+      "spy_price": 731.4,
+      "spy_return_pct": -2.62,
+      "portfolio_value": 1009.69,
+      "portfolio_return_pct": 0.97
     }
   },
   "benchmark_history": [
@@ -177,12 +177,18 @@
       "date": "2026-11-13",
       "spy_return_pct": -0.08,
       "portfolio_return_pct": 3.32
+    },
+    {
+      "cycle": 41,
+      "date": "2026-11-17",
+      "spy_return_pct": -2.62,
+      "portfolio_return_pct": 0.97
     }
   ],
   "portfolio_snapshot": {
-    "total_value": "1033.16",
+    "total_value": "1009.69",
     "cash": "32.24",
-    "equity_value": "1000.92",
+    "equity_value": "977.45",
     "buying_power": "32.24",
     "note": "all settled; no staged buys"
   },
@@ -416,5 +422,5 @@
     "Ops: always git fetch before judging state (stale-clone false alarm, 2026-08-05); required files can be silently gitignored (*.log, C11).",
     "C39: NVDA stop-loss fired mechanically (-19.9% vs cost, below falling SMA50 $219) after the pre-earnings slide; the -12% rule is checked every cycle, not just when near."
   ],
-  "notes": "Cycle 40 (2026-11-13): executed staged VOO buy $62.50 (order 6af7370b-0448-4592-937e-d0ca18087821, filled @690.07). 9 stocks + VOO, cash ~3.1%. No stops near firing. Portfolio +3.32% vs SPY -0.08%."
+  "notes": "Cycle 41 (2026-11-17): hold, no trades. Market-wide dip (SPY -1.15% intraday). 9 stocks + VOO, cash 3.2%. Portfolio +0.97% vs SPY -2.62%."
 }

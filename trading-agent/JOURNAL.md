@@ -558,3 +558,12 @@ NEE and PLD would now trip the stop-loss on their own.
 **Actions:** none — no sell rule fired, no scored buy candidate, cash inside 5% limit.
 **Lesson:** Lead over SPY holds (~3.6 pts) in a down tape.
 **Watch next:** screen >=2 new names and re-score holdings; UNP vs cost.
+
+## Cycle 42 — 2026-11-20 (Friday)
+**Account:** $987.56 | cash $32.95 (3.3%) + ~$38.5 unsettled | 8 stocks + VOO (post-sale) | vs SPY since inception: -1.24% vs -6.11%
+**Self-audit:** clean — positions match state.json; no open orders; C41 START/OK paired.
+**Ranking (live quotes):** broad selloff (SPY -1.5% intraday). GOOGL $275.8 = -22.9% from broker cost $358.28, SMA50 $323.8 falling (trend 1) — stop-loss. Others vs cost: MSFT +16%, LLY +18%, V +12%, PGR +11%, XOM +5%, LIN +0.7%, AMZN +0.5%, UNP -2.9%.
+**New names screened:** ABBV $287.9, COST $1120 (+2.4% today, rich), JNJ $271 — quotes only; none cleared the bar.
+**Actions:** SELL GOOGL 0.139555 sh @ $275.795 — order 6b006fc1-94ff-44d9-8ce5-303030319521 (filled) — stop-loss rule. Realized ≈ -$11.5.
+**Lesson:** Earlier journals showed GOOGL "above cost" at ~$288 vs broker cost $358 — state/journal cost basis disagreed with the broker; always compare against broker average_buy_price.
+**Watch next:** staged VOO buy ~$38.5 after T+1 settle; AI/cloud theme smaller; real funnel screen of 2 names owed.

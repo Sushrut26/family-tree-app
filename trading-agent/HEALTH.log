@@ -59,3 +59,4 @@
 2026-11-17T16:04:11Z | cycle=41 | START | trades=- | value=- | run started
 2026-11-17T16:04:22Z | cycle=41 | OK | trades=0 | value=1009.69 | hold; broad selloff, no rules fired
 2026-11-20T16:05:00Z | cycle=42 | START | trades=- | value=- | run started
+2026-11-20T16:05:36Z | cycle=42 | OK | trades=1 | value=987.56 | sold GOOGL (stop-loss); VOO buy staged T+1

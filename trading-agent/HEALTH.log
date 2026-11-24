@@ -61,3 +61,4 @@
 2026-11-20T16:05:00Z | cycle=42 | START | trades=- | value=- | run started
 2026-11-20T16:05:36Z | cycle=42 | OK | trades=1 | value=987.56 | sold GOOGL (stop-loss); VOO buy staged T+1
 2026-11-24T16:04:13Z | cycle=43 | START | trades=- | value=- | run started
+2026-11-24T16:04:31Z | cycle=43 | OK | trades=1 | value=990.35 | staged VOO buy filled

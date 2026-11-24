@@ -1,6 +1,6 @@
 {
- "last_cycle": 42,
- "last_run": "2026-11-20T16:12:00Z",
+ "last_cycle": 43,
+ "last_run": "2026-11-24T16:10:00Z",
  "account_masked": "\u2022\u2022\u2022\u20226885",
  "benchmark": {
   "ticker": "SPY",
@@ -8,11 +8,11 @@
   "inception_value": 1000.0,
   "inception_date": "2026-07-14",
   "last_check": {
-   "date": "2026-11-20",
-   "spy_price": 705.16,
-   "spy_return_pct": -6.11,
-   "portfolio_value": 987.56,
-   "portfolio_return_pct": -1.24
+   "date": "2026-11-24",
+   "spy_price": 713.5,
+   "spy_return_pct": -5.0,
+   "portfolio_value": 990.35,
+   "portfolio_return_pct": -0.96
   }
  },
  "benchmark_history": [
@@ -189,12 +189,18 @@
    "date": "2026-11-20",
    "spy_return_pct": -6.11,
    "portfolio_return_pct": -1.24
+  },
+  {
+   "cycle": 43,
+   "date": "2026-11-24",
+   "spy_return_pct": -5.0,
+   "portfolio_return_pct": -0.96
   }
  ],
  "portfolio_snapshot": {
-  "total_value": "987.56",
-  "cash": "32.95",
-  "note": "+~38.48 unsettled GOOGL proceeds; staged VOO buy"
+  "total_value": "990.35",
+  "cash": "33.17",
+  "note": "staged VOO buy executed C43"
  },
  "holdings": [
   {
@@ -350,14 +356,7 @@
    "why": "Exited C7; the Q2 print reversed the thesis (record $72B backlog) but the stock lagged. SMA gap was narrowing (-2.3% at C25). Re-score fresh; buy if it clears a rising SMA50."
   }
  ],
- "staged_buys": [
-  {
-   "ticker": "VOO",
-   "amount": 38.48,
-   "reason": "GOOGL stop-loss proceeds, buy once settled (T+1)",
-   "earliest": "2026-11-24"
-  }
- ],
+ "staged_buys": [],
  "open_orders": [],
  "pending_trade_mandate": {
   "status": "DONE 29 2026-10-06",
@@ -419,5 +418,5 @@
   "Ops: always git fetch before judging state (stale-clone false alarm, 2026-08-05); required files can be silently gitignored (*.log, C11).",
   "C39: NVDA stop-loss fired mechanically (-19.9% vs cost, below falling SMA50 $219) after the pre-earnings slide; the -12% rule is checked every cycle, not just when near."
  ],
- "notes": "Cycle 42 (2026-11-20): sold GOOGL on stop-loss (-23% vs cost 358.28, SMA50 falling). 8 stocks + VOO. Staged VOO ~$38.5 next session."
+ "notes": "Cycle 43 (2026-11-24): staged VOO $38.48 filled. 8 stocks + VOO, cash ~3.3%. Funnel screen of 2 new names still owed; holdings scores stale (re-score next cycle)."
 }

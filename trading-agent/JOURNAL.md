@@ -567,3 +567,12 @@ NEE and PLD would now trip the stop-loss on their own.
 **Actions:** SELL GOOGL 0.139555 sh @ $275.795 — order 6b006fc1-94ff-44d9-8ce5-303030319521 (filled) — stop-loss rule. Realized ≈ -$11.5.
 **Lesson:** Earlier journals showed GOOGL "above cost" at ~$288 vs broker cost $358 — state/journal cost basis disagreed with the broker; always compare against broker average_buy_price.
 **Watch next:** staged VOO buy ~$38.5 after T+1 settle; AI/cloud theme smaller; real funnel screen of 2 names owed.
+
+## Cycle 43 — 2026-11-24 (Tuesday)
+**Account:** $990.35 | cash $71.65 pre-order -> ~$33.2 (3.3%) | 8 stocks + VOO | vs SPY since inception: -0.96% vs -5.00%
+**Self-audit:** clean — broker positions match state.json (8 stocks + VOO); no open orders; C42 START/OK paired.
+**Ranking (live quotes):** no fresh full re-score (quotes-only). All holdings above cost except UNP $288.06 (-4.8%) and AMZN $251.56 (-0.4%); none near -12% stop.
+**New names screened:** none — funnel still owed (flagged for next cycle).
+**Actions:** BUY VOO $38.48 @ 656.065 — order 6b05b584-86fd-4545-a43d-b11f3f4fdde1 (filled) — staged T+1 buy from GOOGL proceeds.
+**Lesson:** Staged buys clear cleanly; lead over SPY ~4 pts in a falling tape.
+**Watch next:** real screen of >=2 new names; re-score holdings; UNP vs cost.

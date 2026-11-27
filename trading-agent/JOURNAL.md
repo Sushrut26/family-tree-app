@@ -576,3 +576,12 @@ NEE and PLD would now trip the stop-loss on their own.
 **Actions:** BUY VOO $38.48 @ 656.065 — order 6b05b584-86fd-4545-a43d-b11f3f4fdde1 (filled) — staged T+1 buy from GOOGL proceeds.
 **Lesson:** Staged buys clear cleanly; lead over SPY ~4 pts in a falling tape.
 **Watch next:** real screen of >=2 new names; re-score holdings; UNP vs cost.
+
+## Cycle 44 — 2026-11-27 (Friday, half-day)
+**Account:** $1,005.53 | cash $33.17 (3.3%) | 8 stocks + VOO | vs SPY since inception: +0.55% vs -3.39%
+**Self-audit:** clean — broker positions match state.json; no open orders; C43 START/OK paired.
+**Ranking (live quotes):** all holdings above broker cost except UNP $298.65 (-1.3%); none near -12% stop. No fresh full re-score.
+**New names screened:** JPM $324 (+2.3% today, no edge over VOO); HD $360 — quotes only, none cleared the bar.
+**Actions:** none — no sell rule fired, cash inside 5% limit, no scored buy candidate.
+**Lesson:** Holding is a valid cycle; market rebounded after the selloff.
+**Watch next:** real fundamentals re-score of holdings; UNP vs cost.
